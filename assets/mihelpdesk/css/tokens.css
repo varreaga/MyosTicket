@@ -15,13 +15,19 @@
   --mh-brand-hover:      #005d99;
   --mh-brand-soft:       #e6f1f9;
   --mh-on-brand:         #ffffff;
+  --mh-link:             #00548a;   /* texto azul con contraste AA sobre blanco */
+  --mh-link-hover:       #003d66;
+  --mh-focus:            rgba(0, 114, 188, .35);
 
   /* Superficies y texto */
   --mh-bg:               #f5f7fa;
   --mh-surface:          #ffffff;
   --mh-surface-alt:      #f0f3f7;
   --mh-border:           #dde3ea;
+  --mh-border-strong:    #c5cfda;
+  --mh-border-soft:      #edf1f5;
   --mh-text:             #1f2933;
+  --mh-text-2:           #3e4c59;
   --mh-text-muted:       #5f6b7a;
 
   /* Estados de ticket */
@@ -36,11 +42,23 @@
   --mh-priority-high:    #b26a00;
   --mh-priority-urgent:  #c62828;
 
-  /* Mensajes */
+  /* Mensajes (fondo suave, borde y texto con contraste AA) */
   --mh-success:          #1e7e34;
+  --mh-success-soft:     #e7f5ec;
+  --mh-success-border:   #a8d5b5;
+  --mh-success-text:     #1b6b2f;
   --mh-warning:          #b26a00;
+  --mh-warning-soft:     #fff3e0;
+  --mh-warning-border:   #f3c98b;
+  --mh-warning-text:     #8a4b00;
   --mh-danger:           #c62828;
+  --mh-danger-soft:      #fdecea;
+  --mh-danger-border:    #f3c2bd;
+  --mh-danger-text:      #a61b1b;
   --mh-info:             #0072bc;
+  --mh-info-border:      #b9d7ee;
+  --mh-neutral-soft:     #eef0f3;
+  --mh-neutral-text:     #4b5563;
 
   /* Tipografía */
   --mh-font:             system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -51,6 +69,7 @@
   --mh-text-lg:          16px;
   --mh-text-xl:          20px;
   --mh-text-2xl:         26px;
+  --mh-text-3xl:         34px;
 
   /* Espaciado (múltiplos de 4px) */
   --mh-space-1:          4px;
@@ -58,7 +77,10 @@
   --mh-space-3:          12px;
   --mh-space-4:          16px;
   --mh-space-6:          24px;
+  --mh-space-5:          20px;
   --mh-space-8:          32px;
+  --mh-space-10:         40px;
+  --mh-space-12:         56px;
 
   /* Bordes y sombras */
   --mh-radius-sm:        4px;
@@ -66,6 +88,9 @@
   --mh-radius-lg:        12px;
   --mh-shadow-sm:        0 1px 2px rgba(16, 24, 40, .06);
   --mh-shadow:           0 2px 8px rgba(16, 24, 40, .08);
+
+  /* Ancho máximo del contenido de las páginas */
+  --mh-page-width:       1120px;
 
   /* Puntos de corte (referencia; en @media se escriben los valores) */
   /* celular < 640px · tableta < 1024px · escritorio >= 1024px */

@@ -87,7 +87,7 @@ if (osTicket::is_ie())
 <?php
     }
     ?>
-    <?php app_theme_styles('client'); ?>
+    <?php app_theme_styles('client'); app_theme_scripts('client'); ?>
 </head>
 <body<?php echo app_theme_body_class('client'); ?>>
     <div id="container">
@@ -99,6 +99,7 @@ if (osTicket::is_ie())
         elseif($ost->getNotice())
             echo sprintf('<div class="notice_bar">%s</div>', $ost->getNotice());
         ?>
+        <div class="mh-topbar"><div class="mh-topbar-inner">
         <div id="header">
             <div class="pull-right flush-right">
             <p>
@@ -151,6 +152,11 @@ if (($all_langs = Internationalization::getConfiguredSystemLanguages())
         </div>
         <div class="clear"></div>
         <?php
+        if ($nav && app_theme()) { ?>
+        <button type="button" class="mh-menu-toggle" aria-controls="nav" aria-expanded="false"
+            aria-label="<?php echo __('Menu'); ?>"><span aria-hidden="true"></span></button>
+        <?php
+        }
         if($nav){ ?>
         <ul id="nav" class="flush-left">
             <?php
@@ -165,6 +171,7 @@ if (($all_langs = Internationalization::getConfiguredSystemLanguages())
          <hr>
         <?php
         } ?>
+        </div></div>
         <div id="content">
 
          <?php if($errors['err']) { ?>
