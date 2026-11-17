@@ -23,6 +23,21 @@ Base
 Historial de cambios
 --------------------
 
+### 2026-11-17 — Portal: todas las páginas con el tema (varreaga)
+
+Se completó el rediseño en las páginas del portal que aún mezclaban el
+diseño anterior. Solo cambian archivos del tema; no se modificó ningún
+archivo de osTicket.
+
+* Registro, perfil y edición de ticket: tarjeta, etiquetas y secciones
+  con el estilo del tema; sin anchos fijos en celular.
+* Abrir ticket con sesión iniciada: bloque del cliente ordenado.
+* Base de conocimiento: listas de preguntas en categorías y búsqueda.
+* Páginas del sitio (tipo "otra") con barra lateral adaptable.
+* Tipografía del tema en el texto de mensajes, artículos y editor.
+* `tools/dev/seed-demo.php` crea además una página de ejemplo
+  ("Horarios de atención").
+
 ### 2026-11-16 — Fase 2: rediseño del portal de clientes (varreaga)
 
 Rediseño del portal de clientes con la capa de tema `assets/mihelpdesk/`.
