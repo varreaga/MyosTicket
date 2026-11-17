@@ -23,6 +23,33 @@ Base
 Historial de cambios
 --------------------
 
+### 2026-11-16 — Fase 2: rediseño del portal de clientes (varreaga)
+
+Rediseño del portal de clientes con la capa de tema `assets/mihelpdesk/`.
+Con el tema desactivado (`define('APP_THEME', '')`) el portal se ve y
+funciona como el original.
+
+* Diseño adaptable a celular, con menú desplegable.
+* Nueva página de inicio: buscador, accesos rápidos, artículos populares y
+  categorías (`include/client/templates/mh-home.tmpl.php`, archivo nuevo).
+* Abrir ticket: selector de temas en dos niveles (tema principal y
+  subtemas) construido sobre el `<select>` original.
+* Vista de ticket como conversación; estado con color.
+* Base de conocimiento, acceso, registro y lista de tickets con el estilo
+  del tema; editor y zona de adjuntos integrados.
+* Nueva función `app_theme_scripts()` en `bootstrap.php` y archivo
+  `assets/mihelpdesk/js/client.js`.
+* Herramientas de desarrollo: `tools/dev/seed-demo.php` (datos de
+  demostración) y `tools/dev/access-link.php` (enlace de acceso de cliente).
+
+Archivos modificados en este cambio:
+
+* `bootstrap.php`
+* `index.php`
+* `include/client/header.inc.php`
+* `include/client/open.inc.php`
+* `include/client/view.inc.php`
+
 ### 2026-11-16 — Base del tema visual (varreaga)
 
 Se agregó una capa de tema propia que se carga después de las hojas de

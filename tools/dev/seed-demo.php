@@ -158,4 +158,15 @@ if (!$existe && $tidCorreo) {
         out("Error ticket: ".print_r($errors, true));
     }
 }
+// ------------------------------------- Cuenta del cliente de ejemplo
+// Permite entrar al portal como cliente registrado para ver "Mis tickets".
+$demoUser = User::lookupByEmail('jorge.ramirez@example.com');
+if ($demoUser && !$demoUser->getAccount()) {
+    $errors = array();
+    if (UserAccount::register($demoUser, array('passwd1' => 'Demo12345!',
+            'passwd2' => 'Demo12345!', 'timezone' => $cfg->getTimezone()), $errors))
+        out("Cuenta de cliente: jorge.ramirez@example.com / Demo12345!");
+    else
+        out("Error cuenta: ".print_r($errors, true));
+}
 out("Listo.");

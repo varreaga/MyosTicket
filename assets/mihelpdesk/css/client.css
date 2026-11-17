@@ -1078,6 +1078,336 @@
 
 /* ==== Base de conocimiento ==== */
 
+/* Cuadrícula de dos columnas (contenido + barra lateral) */
+.mh-client .row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--mh-space-6);
+  align-items: flex-start;
+}
+.mh-client .span8 {
+  display: block;
+  flex: 999 1 560px;
+  min-width: 0;
+  width: auto;
+  margin: 0;
+}
+.mh-client .span4,
+.mh-client .span4.pull-right {
+  display: block;
+  flex: 1 1 260px;
+  width: auto;
+  margin: 0;
+  float: none;
+}
+.mh-client .sidebar,
+.mh-client.rtl .sidebar {
+  width: auto;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--mh-space-4);
+}
+.mh-client .sidebar .content {
+  padding: var(--mh-space-4);
+  background: var(--mh-surface);
+  border: 1px solid var(--mh-border);
+  border-radius: var(--mh-radius-lg);
+}
+.mh-client .sidebar .content:not(:has(a)) {
+  display: none;
+}
+.mh-client .sidebar section .header {
+  font-size: var(--mh-text-xs);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--mh-text-muted);
+  margin-bottom: var(--mh-space-2);
+}
+.mh-client .sidebar section div + div {
+  margin-top: var(--mh-space-2);
+}
+.mh-client .searchbar .search,
+.mh-client .search-form .search {
+  width: 100%;
+  margin: 0;
+  box-shadow: none;
+}
+.mh-client .sidebar select {
+  width: 100%;
+}
+
+/* Lista de categorías */
+.mh-client #kb {
+  list-style: none;
+  margin: var(--mh-space-4) 0 0;
+  padding: 0;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  gap: var(--mh-space-4);
+}
+.mh-client #kb > li {
+  padding: var(--mh-space-5) var(--mh-space-6);
+  background: var(--mh-surface);
+  border: 1px solid var(--mh-border);
+  border-radius: var(--mh-radius-lg);
+  box-shadow: var(--mh-shadow-sm);
+}
+.mh-client #kb > li > i {
+  display: none;
+}
+.mh-client #kb > li > div {
+  margin-left: 0 !important;
+}
+.mh-client #kb > li h4 {
+  margin: 0;
+}
+.mh-client #kb > li h4 a {
+  font-size: var(--mh-text-lg);
+  font-weight: 700;
+  text-decoration: none;
+}
+.mh-client #kb > li .faded {
+  margin: var(--mh-space-1) 0 var(--mh-space-3) !important;
+  color: var(--mh-text-muted);
+}
+.mh-client #kb .popular-faq {
+  padding: var(--mh-space-2) 0;
+  border-top: 1px solid var(--mh-border-soft);
+}
+.mh-client #kb .popular-faq i {
+  color: var(--mh-text-muted);
+  margin-right: var(--mh-space-2);
+}
+
+/* Artículo */
+.mh-client #breadcrumbs {
+  font-size: var(--mh-text-sm);
+  color: var(--mh-text-muted);
+  margin-bottom: var(--mh-space-4);
+}
+.mh-client .faq-content {
+  padding: var(--mh-space-6);
+  background: var(--mh-surface);
+  border: 1px solid var(--mh-border);
+  border-radius: var(--mh-radius-lg);
+  box-shadow: var(--mh-shadow-sm);
+}
+.mh-client .faq-content .article-title {
+  font-size: var(--mh-text-2xl);
+  font-weight: 700;
+  line-height: 1.25;
+}
+.mh-client .faq-content .faded {
+  color: var(--mh-text-muted);
+  font-size: var(--mh-text-sm);
+  margin-bottom: var(--mh-space-4);
+}
+.mh-client .faq-content .thread-body {
+  font-size: var(--mh-text-lg);
+  line-height: 1.6;
+  background: transparent;
+}
+
+/* ==== Mis tickets (lista) ==== */
+
+.mh-client .search.well {
+  padding: var(--mh-space-4);
+  background: var(--mh-surface);
+  border: 1px solid var(--mh-border);
+  border-radius: var(--mh-radius-lg);
+}
+.mh-client #ticketSearchForm {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--mh-space-3);
+}
+.mh-client #ticketSearchForm input[name="keywords"] {
+  flex: 1 1 220px;
+}
+.mh-client #ticketSearchForm .pull-right {
+  float: none;
+  margin-left: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--mh-space-2);
+  min-width: 0;
+  max-width: 100%;
+  color: var(--mh-text-muted);
+}
+.mh-client #ticketSearchForm .pull-right select {
+  min-width: 0;
+  max-width: 100%;
+}
+.mh-client .states a.state {
+  padding: 4px 12px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+}
+.mh-client .states a.state.active {
+  background: var(--mh-brand-soft);
+}
+.mh-client #ticketTable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--mh-surface);
+  border: 1px solid var(--mh-border);
+  border-radius: var(--mh-radius-lg);
+  overflow: hidden;
+}
+.mh-client #ticketTable caption {
+  caption-side: bottom;
+  padding: var(--mh-space-2) var(--mh-space-4);
+  text-align: left;
+  color: var(--mh-text-muted);
+  font-size: var(--mh-text-sm);
+  font-weight: 500;
+  background: var(--mh-surface-alt);
+  border-top: 1px solid var(--mh-border);
+}
+.mh-client #ticketTable td {
+  vertical-align: middle;
+}
+.mh-client #ticketTable td .truncate {
+  display: block;
+  max-height: none !important;
+}
+.mh-client h1:has(> a .refresh) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--mh-space-3);
+  margin: var(--mh-space-6) 0 var(--mh-space-4) !important;
+}
+.mh-client h1 > a:has(.refresh) {
+  color: var(--mh-text);
+  text-decoration: none;
+}
+.mh-client h1 .refresh {
+  font-size: var(--mh-text-base);
+  color: var(--mh-text-muted);
+}
+.mh-client h1 .states {
+  float: none;
+  margin-left: auto;
+  font-size: var(--mh-text-base);
+  font-weight: 500;
+}
+.mh-client h1 .states small {
+  font-size: var(--mh-text-base);
+}
+.mh-client #ticketTable th {
+  padding: var(--mh-space-3) var(--mh-space-4);
+  background: var(--mh-surface-alt);
+  border: 0;
+  border-bottom: 1px solid var(--mh-border);
+  text-align: left;
+  font-size: var(--mh-text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.mh-client #ticketTable th a {
+  color: var(--mh-text-muted);
+  text-decoration: none;
+}
+.mh-client #ticketTable td {
+  padding: var(--mh-space-3) var(--mh-space-4);
+  border: 0;
+  border-bottom: 1px solid var(--mh-border-soft);
+  background: none;
+}
+.mh-client #ticketTable tbody tr:last-child td {
+  border-bottom: 0;
+}
+.mh-client #ticketTable tbody tr:hover td {
+  background: var(--mh-surface-alt);
+}
+.mh-client #ticketTable .Icon {
+  padding-left: 0;
+  background-image: none;
+  font-weight: 600;
+}
+
+/* ==== Editor de texto (Redactor) y zona de adjuntos ==== */
+
+.mh-client .redactor-box.redactor-styles-on {
+  border: 1px solid var(--mh-border-strong);
+  border-radius: var(--mh-radius);
+  overflow: hidden;
+}
+.mh-client .redactor-focus.redactor-styles-on,
+.mh-client .redactor-focus:focus.redactor-styles-on {
+  border-color: var(--mh-brand) !important;
+  box-shadow: 0 0 0 3px var(--mh-focus);
+}
+.mh-client .redactor-box.redactor-styles-on .redactor-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  padding: 6px 8px;
+  background: var(--mh-surface-alt);
+  border-bottom: 1px solid var(--mh-border);
+  box-shadow: none;
+}
+.mh-client .redactor-toolbar a,
+.mh-client .redactor-toolbar a.re-button-icon {
+  min-width: 36px;
+  height: 36px;
+  margin: 0;
+  padding: 0 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 6px;
+  color: var(--mh-text-2);
+}
+.mh-client .redactor-toolbar a:hover,
+.mh-client .redactor-toolbar a.redactor-button-active {
+  background: var(--mh-brand-soft);
+  color: var(--mh-link);
+}
+.mh-client .redactor-styles {
+  padding: var(--mh-space-3) var(--mh-space-4);
+  font-family: var(--mh-font);
+  font-size: var(--mh-text-lg);
+  color: var(--mh-text);
+}
+.mh-client .filedrop .dropzone {
+  margin-top: var(--mh-space-2);
+  padding: var(--mh-space-3);
+  border: 2px dashed var(--mh-border-strong);
+  border-radius: var(--mh-radius);
+  background: var(--mh-surface-alt);
+  color: var(--mh-text-muted);
+  text-align: center;
+}
+.mh-client .filedrop .dropzone a {
+  color: var(--mh-link);
+  font-weight: 600;
+}
+
+/* ==== Tablas de formulario (registro, perfil) ==== */
+
+.mh-client table.padded {
+  width: 100%;
+  max-width: 800px;
+  padding: var(--mh-space-4);
+  background: var(--mh-surface);
+  border: 1px solid var(--mh-border);
+  border-radius: var(--mh-radius-lg);
+}
+.mh-client table.padded hr {
+  display: none;
+}
+
 /* ==== Adaptación a celular (@media max-width: 640px) ==== */
 
 @media (max-width: 760px) {
@@ -1133,5 +1463,22 @@
   }
   .mh-client #reply {
     padding: var(--mh-space-4);
+  }
+  /* Tablas de formulario: una columna */
+  .mh-client table.padded,
+  .mh-client table.padded > tbody,
+  .mh-client table.padded > tbody > tr,
+  .mh-client table.padded > tbody > tr > td {
+    display: block;
+    width: auto !important;
+  }
+  .mh-client table.padded input,
+  .mh-client table.padded select {
+    width: 100%;
+  }
+  /* La lista de tickets se desplaza dentro de su caja */
+  .mh-client #ticketTable {
+    display: block;
+    overflow-x: auto;
   }
 }
