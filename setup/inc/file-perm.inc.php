@@ -1,4 +1,5 @@
 <?php
+// Modificado el 2026-11-16 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca. Ver NOTICE.md.
 if(!defined('SETUPINC')) die('Kwaheri!');
 ?>
     <div id="main">
@@ -6,7 +7,7 @@ if(!defined('SETUPINC')) die('Kwaheri!');
             <div id="intro">
             <p> <?php
             echo sprintf(
-                 __('osTicket installer requires ability to write to the configuration file %s'),
+                 brand(__('osTicket installer requires ability to write to the configuration file %s')),
                  '<b style="white-space:nowrap">include/ost-config.php</b>');?>
              </p>
             </div>
@@ -31,6 +32,6 @@ if(!defined('SETUPINC')) die('Kwaheri!');
     <div id="sidebar">
             <h3><?php echo __('Need Help?');?></h3>
             <p>
-            <?php echo __('If you are looking for a greater level of support, we provide <u>professional installation services</u> and commercial support with guaranteed response times, and access to the core development team. We can also help customize osTicket or even add new features to the system to meet your unique needs.');?> <a target="_blank" href="https://osticket.com/support"><?php echo __('Learn More!');?></a>
+            <?php echo __('Professional installation services and commercial support are available.');?>
             </p>
     </div>

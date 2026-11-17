@@ -1,3 +1,4 @@
+# Modificado el 2026-11-16 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca. Ver NOTICE.md.
 #
 # email2fa-staff.yaml
 #
@@ -7,7 +8,7 @@
 notes: >
     This template defines the email sent to Staff who use Email for
     Two Factor Authentication
-name: "osTicket Two Factor Authentication"
+name: "MiHelpdesk Two Factor Authentication"
 body: >
     <h3><strong>Hi %{staff.name.first},</strong></h3>
     <div>
@@ -19,6 +20,5 @@ body: >
     <br />
     <em style="font-size: small">Your friendly Customer Support System</em>
     <br />
-    <img src="cid:b56944cb4722cc5cda9d1e23a3ea7fbc" alt="Powered by
-    osTicket" width="126" height="19" style="width: 126px" />
+    <img src="cid:b56944cb4722cc5cda9d1e23a3ea7fbc" alt="MiHelpdesk" width="126" height="19" style="width: 126px" />
     </div>

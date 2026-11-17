@@ -1,4 +1,5 @@
 <?php
+// Modificado el 2026-11-16 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca. Ver NOTICE.md.
 include_once(INCLUDE_DIR.'staff/login.header.php');
 defined('OSTSCPINC') or die('Invalid path');
 $info = ($_POST && $errors)?Format::htmlchars($_POST):array();
@@ -11,7 +12,7 @@ $info = ($_POST && $errors)?Format::htmlchars($_POST):array();
     </div>
     <h1 id="logo"><a href="index.php">
         <span class="valign-helper"></span>
-        <img src="logo.php?login" alt="osTicket :: <?php echo __('Agent Password Reset');?>" />
+        <img src="logo.php?login" alt="<?php echo Format::htmlchars(APP_NAME); ?> :: <?php echo __('Agent Password Reset');?>" />
     </a></h1>
     <h3><?php echo __('A confirmation email has been sent'); ?></h3>
     <h3 style="color:black;"><em><?php echo __(
@@ -31,7 +32,7 @@ $info = ($_POST && $errors)?Format::htmlchars($_POST):array();
 </div>
 <div id="poweredBy"><?php echo __('Powered by'); ?>
     <a href="http://www.osticket.com" target="_blank">
-        <img alt="osTicket" src="images/osticket-grey.png" class="osticket-logo">
+        <img alt="<?php echo Format::htmlchars(APP_NAME); ?>" src="images/osticket-grey.png" class="osticket-logo">
     </a>
 </div>
     <script>

@@ -1,3 +1,4 @@
+# Modificado el 2026-11-16 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca. Ver NOTICE.md.
 #
 # registration-staff.yaml
 #
@@ -8,7 +9,7 @@
 notes: >
     This template defines the initial email (optional) sent to Agents when an account
     is created on their behalf.
-name: "Welcome to osTicket"
+name: "Welcome to MiHelpdesk"
 body: >
     <h3><strong>Hi %{recipient.name.first},</strong></h3>
     <div>

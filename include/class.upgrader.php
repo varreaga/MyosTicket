@@ -1,4 +1,5 @@
 <?php
+// Modificado el 2026-11-16 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca. Ver NOTICE.md.
 /*********************************************************************
     class.upgrader.php
 
@@ -290,7 +291,7 @@ class StreamUpgrader extends SetupWizard {
 
     function getNextAction() {
 
-        $action=sprintf(__('Upgrade osTicket to %s'), $this->getVersion());
+        $action=sprintf(brand(__('Upgrade osTicket to %s')), $this->getVersion());
         if($task=$this->getTask()) {
             $action = $task->getDescription() .' ('.$task->getStatus().')';
         } elseif($this->isUpgradable() && ($nextversion = $this->getNextVersion())) {

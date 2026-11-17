@@ -1,3 +1,4 @@
+# Modificado el 2026-11-16 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca. Ver NOTICE.md.
 #
 # Initial organizations defined for the system.
 #
@@ -6,16 +7,8 @@
 # fields - custom fields
 #
 ---
-- name: osTicket
+- name: MiHelpdesk
   fields:
-    address:|
-        1120 5th Street
-        Alexandria, LA 71301
-    phone: (318) 290-3674
-    website: https://osticket.com
     notes: >
-        Not only do we develop the software, we also use it to manage
-        support for osTicket. Let us help you quickly implement and leverage
-        the full potential of osTicket's features and functionality. Contact
-        us for professional support or visit our website for documentation
-        and community support.
+        Sample organization created by the installer. Replace it with your
+        own company details or delete it.

@@ -1,3 +1,4 @@
+# Modificado el 2026-11-16 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca. Ver NOTICE.md.
 #
 # Default email template group for the system
 #
@@ -15,6 +16,6 @@
 ---
 - id: 1
   isactive: 1
-  name: osTicket Default Template (HTML)
+  name: MiHelpdesk Default Template (HTML)
   notes: |
-    Default osTicket templates
+    Default MiHelpdesk templates

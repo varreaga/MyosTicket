@@ -1,3 +1,4 @@
+# Modificado el 2026-11-16 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca. Ver NOTICE.md.
 #
 # Email template: assigned.alert.yaml
 #
@@ -51,4 +52,4 @@ body: |
     System</em>
     <br>
     <img src="cid:b56944cb4722cc5cda9d1e23a3ea7fbc"
-    alt="Powered by osTicket" width="126" height="19" style="width: 126px;">
+    alt="MiHelpdesk" width="126" height="19" style="width: 126px;">

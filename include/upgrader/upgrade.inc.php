@@ -1,4 +1,5 @@
 <?php
+// Modificado el 2026-11-16 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca. Ver NOTICE.md.
 if(!defined('OSTSCPINC') || !$thisstaff || !$thisstaff->isAdmin()) die('Access Denied');
 
 //See if we need to switch the mode of upgrade...e.g from ajax (default) to manual
@@ -13,16 +14,16 @@ if(($mode = $ost->get_var('m', $_GET)) &&  $mode!=$upgrader->getMode()) {
 
 $action=$upgrader->getNextAction();
 ?>
-    <h2><?php echo sprintf(__('Migrate to osTicket %s'), THIS_VERSION); ?></h2>
+    <h2><?php echo sprintf(brand(__('Migrate to osTicket %s')), THIS_VERSION); ?></h2>
 <div id="upgrader">
     <div id="main">
             <div id="intro">
-             <p><?php echo __('Thank you for taking the time to upgrade your osTicket installation!');?></p>
+             <p><?php echo brand(__('Thank you for taking the time to upgrade your osTicket installation!'));?></p>
              <p><strong><?php echo __("Please don't cancel or close the browser. Any errors at this stage will be fatal.");?></strong></p>
             </div>
             <h2 id="task"><?php echo sprintf(__('Applying updates to database stream: %s'),
                 $upgrader->getCurrentStream()->name); ?></h2>
-            <p><?php echo __('In order to upgrade to this version of osTicket, a database migration is required. This upgrader will automatically apply the database patches shipped with osTicket since your last upgrade.'); ?></p>
+            <p><?php echo brand(__('In order to upgrade to this version of osTicket, a database migration is required. This upgrader will automatically apply the database patches shipped with osTicket since your last upgrade.')); ?></p>
             <p><?php echo __('The upgrade wizard will now attempt to upgrade your database and core settings!'); ?>
             <?php echo __('Below is a summary of the database patches to be applied.'); ?>
             </p>
@@ -51,7 +52,7 @@ $action=$upgrader->getNextAction();
         <i class="icon-spinner icon-spin icon-3x pull-left icon-light"></i>
         <div style="display: inline-block; width: 220px">
         <h4 id="action"><?php echo $action; ?></h4>
-        <?php echo __('Please wait... while we upgrade your osTicket installation!');?>
+        <?php echo brand(__('Please wait... while we upgrade your osTicket installation!'));?>
         <div id="msg" style="font-weight: bold;padding-top:10px;">
             <?php echo sprintf(__('%s - Relax!'), $thisstaff->getFirstName()); ?>
         </div>

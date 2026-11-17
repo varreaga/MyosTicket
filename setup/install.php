@@ -1,4 +1,5 @@
 <?php
+// Modificado el 2026-11-16 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca. Ver NOTICE.md.
 /*********************************************************************
     install.php
 
@@ -24,11 +25,10 @@ define('OSTICKET_CONFIGFILE','../include/ost-config.php'); //XXX: Make sure the 
 
 $installer = new Installer(OSTICKET_CONFIGFILE); //Installer instance.
 $wizard=array();
-$wizard['title']=__('osTicket Installer');
-$wizard['tagline']=sprintf(__('Installing osTicket %s'),$installer->getVersionVerbose());
+$wizard['title']=brand(__('osTicket Installer'));
+$wizard['tagline']=sprintf(brand(__('Installing osTicket %s')),$installer->getVersionVerbose());
 $wizard['logo']='logo.png';
-$wizard['menu']=array(__('Installation Guide')=>'https://docs.osticket.com/en/latest/Getting%20Started/Installation.html',
-        __('Get Professional Help')=>'https://osticket.com/support');
+$wizard['menu']=array(__('Installation Guide')=>'https://docs.osticket.com/en/latest/Getting%20Started/Installation.html');
 
 if($_POST && $_POST['s']) {
     $errors = array();
@@ -57,7 +57,7 @@ if($_POST && $_POST['s']) {
                 $_SESSION['ost_installer']['s']='done';
             } elseif(!($errors=$installer->getErrors()) || !$errors['err']) {
                 $errors['err'] = sprintf('%s %s',
-                    __('Error installing osTicket.'),
+                    brand(__('Error installing osTicket.')),
                     __('Correct any errors below and try again.'));
             }
             break;

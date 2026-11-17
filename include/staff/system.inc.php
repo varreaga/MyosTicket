@@ -1,4 +1,5 @@
 <?php
+// Modificado el 2026-11-16 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca. Ver NOTICE.md.
 if(!defined('OSTADMININC') || !$thisstaff || !$thisstaff->isAdmin()) die('Access Denied');
 
 $commit = GIT_VERSION != '$git' ? GIT_VERSION : (
@@ -64,13 +65,13 @@ $extensions = array(
         );
 
 ?>
-<h2><?php echo __('About this osTicket Installation'); ?></h2>
+<h2><?php echo brand(__('About this osTicket Installation')); ?></h2>
 <table class="list" width="100%";>
 <thead>
     <tr><th colspan="2"><?php echo __('Server Information'); ?></th></tr>
 </thead>
 <tbody>
-    <tr><td><?php echo __('osTicket Version'); ?></td>
+    <tr><td><?php echo brand(__('osTicket Version')); ?></td>
         <td><span class="ltr"><?php
             echo sprintf("%s (%s)", THIS_VERSION, trim($commit)); ?></span>
 <?php
@@ -95,7 +96,7 @@ else {
 <?php }
 }
 if (!$lv) { ?>
-    <strong> — <?php echo __('This osTicket version is no longer supported. Please consider upgrading');
+    <strong> — <?php echo brand(__('This osTicket version is no longer supported. Please consider upgrading'));
         ?></strong>
 <?php
 }

@@ -1,4 +1,5 @@
 <?php
+// Modificado el 2026-11-16 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca. Ver NOTICE.md.
 /*********************************************************************
     ajax.content.php
 
@@ -89,7 +90,7 @@ class ContentAjaxAPI extends AjaxController {
                     <tr><td>%{note}</td><td>'.__('Internal note <em>(expandable)</em>').'</td></tr>
                     <tr><td>%{assignee}</td><td>'.__('Assigned Agent / Team').'</td></tr>
                     <tr><td>%{assigner}</td><td>'.__('Agent assigning the ticket').'</td></tr>
-                    <tr><td>%{url}</td><td>'.__('osTicket\'s base url (FQDN)').'</td></tr>
+                    <tr><td>%{url}</td><td>'.brand(__('osTicket\'s base url (FQDN)')).'</td></tr>
                     <tr><td>%{reset_link}</td>
                         <td>'.__('Reset link used by the password reset feature').'</td></tr>
                 </table>

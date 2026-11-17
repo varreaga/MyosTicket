@@ -1,0 +1,72 @@
+/*
+ * MiHelpdesk — Variables de diseño (design tokens)
+ * Parte del tema visual de MiHelpdesk, fork de osTicket bajo GPLv2.
+ *
+ * Todos los colores, tipografías, espacios y radios del tema salen de aquí.
+ * Para cambiar la identidad visual (por ejemplo, el color de marca) basta
+ * con editar este archivo.
+ *
+ * VALORES PROVISIONALES: se ajustarán cuando se aprueben las maquetas y el
+ * logo definitivo.
+ */
+:root {
+  /* Marca */
+  --mh-brand:            #0072bc;
+  --mh-brand-hover:      #005d99;
+  --mh-brand-soft:       #e6f1f9;
+  --mh-on-brand:         #ffffff;
+
+  /* Superficies y texto */
+  --mh-bg:               #f5f7fa;
+  --mh-surface:          #ffffff;
+  --mh-surface-alt:      #f0f3f7;
+  --mh-border:           #dde3ea;
+  --mh-text:             #1f2933;
+  --mh-text-muted:       #5f6b7a;
+
+  /* Estados de ticket */
+  --mh-status-open:      #0072bc;
+  --mh-status-progress:  #b26a00;
+  --mh-status-resolved:  #1e7e34;
+  --mh-status-closed:    #6b7280;
+
+  /* Prioridades */
+  --mh-priority-low:     #6b7280;
+  --mh-priority-normal:  #0072bc;
+  --mh-priority-high:    #b26a00;
+  --mh-priority-urgent:  #c62828;
+
+  /* Mensajes */
+  --mh-success:          #1e7e34;
+  --mh-warning:          #b26a00;
+  --mh-danger:           #c62828;
+  --mh-info:             #0072bc;
+
+  /* Tipografía */
+  --mh-font:             system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mh-font-mono:        ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --mh-text-xs:          12px;
+  --mh-text-sm:          13px;
+  --mh-text-base:        14px;
+  --mh-text-lg:          16px;
+  --mh-text-xl:          20px;
+  --mh-text-2xl:         26px;
+
+  /* Espaciado (múltiplos de 4px) */
+  --mh-space-1:          4px;
+  --mh-space-2:          8px;
+  --mh-space-3:          12px;
+  --mh-space-4:          16px;
+  --mh-space-6:          24px;
+  --mh-space-8:          32px;
+
+  /* Bordes y sombras */
+  --mh-radius-sm:        4px;
+  --mh-radius:           8px;
+  --mh-radius-lg:        12px;
+  --mh-shadow-sm:        0 1px 2px rgba(16, 24, 40, .06);
+  --mh-shadow:           0 2px 8px rgba(16, 24, 40, .08);
+
+  /* Puntos de corte (referencia; en @media se escriben los valores) */
+  /* celular < 640px · tableta < 1024px · escritorio >= 1024px */
+}

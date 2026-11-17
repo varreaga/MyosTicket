@@ -1,3 +1,4 @@
+# Modificado el 2026-11-16 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca. Ver NOTICE.md.
 #
 # Email template: task.alert.yaml
 #
@@ -37,5 +38,5 @@ body: |
     <em style="font-size: small">Your friendly Customer Support System</em>
     <br>
     <a href="https://osticket.com/"><img width="126" height="19"
-        style="width: 126px; " alt="Powered By osTicket"
+        style="width: 126px; " alt="MiHelpdesk"
         src="cid:b56944cb4722cc5cda9d1e23a3ea7fbc"/></a>

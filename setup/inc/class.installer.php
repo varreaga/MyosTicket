@@ -1,4 +1,5 @@
 <?php
+// Modificado el 2026-11-16 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca. Ver NOTICE.md.
 /*********************************************************************
     class.installer.php
 
@@ -94,7 +95,7 @@ class Installer extends SetupWizard {
             if(!db_connect($vars['dbhost'],$vars['dbuser'],$vars['dbpass']))
                 $this->errors['db']=sprintf(__('Unable to connect to MySQL server: %s'), db_connect_error());
             elseif(explode('.', db_version()) < explode('.', SetupWizard::getMySQLVersion()))
-                $this->errors['db']=sprintf(__('osTicket requires MySQL %s or later!'),SetupWizard::getMySQLVersion());
+                $this->errors['db']=sprintf(brand(__('osTicket requires MySQL %s or later!')),SetupWizard::getMySQLVersion());
             elseif(!db_select_database($vars['dbname']) && !db_create_database($vars['dbname'])) {
                 $this->errors['dbname']=__("Database doesn't exist");
                 $this->errors['db']=__('Unable to create the database.');
@@ -325,7 +326,7 @@ class Installer extends SetupWizard {
 
         //TODO: create another personalized ticket and assign to admin??
         //Log a message.
-        $msg=__("Congratulations osTicket basic installation completed!\n\nThank you for choosing osTicket!");
+        $msg=brand(__("Congratulations osTicket basic installation completed!\n\nThank you for choosing osTicket!"));
         $sql='INSERT INTO '.TABLE_PREFIX.'syslog SET created=NOW(), updated=NOW(), log_type="Debug" '
             .', title="osTicket installed!"'
             .', log='.db_input($msg)

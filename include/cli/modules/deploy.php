@@ -1,4 +1,5 @@
 <?php
+// Modificado el 2026-11-16 por varreaga (proyecto MiHelpdesk, fork de osTicket): excluir tools/ del despliegue. Ver NOTICE.md.
 require_once dirname(__file__) . "/unpack.php";
 
 class Deployment extends Unpacker {
@@ -258,7 +259,9 @@ class Deployment extends Unpacker {
         $this->readManifest($this->destination.'/.MANIFEST');
 
         $exclusions = array("$rootPattern/include/*", "$rootPattern/.git*",
-            "*.sw[a-z]","*.md", "*.txt");
+            "*.sw[a-z]","*.md", "*.txt",
+            // MiHelpdesk: herramientas de desarrollo, no van al servidor web
+            "$rootPattern/tools/*");
         if (!$options['setup'])
             $exclusions[] = "$rootPattern/setup/*";
 

@@ -1,4 +1,5 @@
 <?php
+// Modificado el 2026-11-16 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca. Ver NOTICE.md.
 include_once(INCLUDE_DIR.'staff/login.header.php');
 $info = ($_POST && $errors)?Format::htmlchars($_POST):array();
 
@@ -14,7 +15,7 @@ if ($thisstaff && $thisstaff->is2FAPending())
     </div>
     <h1 id="logo"><a href="index.php">
         <span class="valign-helper"></span>
-        <img src="logo.php?login" alt="osTicket :: <?php echo __('Staff Control Panel');?>" />
+        <img src="logo.php?login" alt="<?php echo Format::htmlchars(APP_NAME); ?> :: <?php echo __('Staff Control Panel');?>" />
     </a></h1>
     <h3 id="login-message"><?php echo Format::htmlchars($msg); ?></h3>
     <div class="banner"><small><?php echo ($content) ? Format::display($content->getLocalBody()) : ''; ?></small></div>
@@ -75,7 +76,7 @@ if (($bks=StaffAuthenticationBackend::getExternal())) { ?>
 </div>
 <div id="poweredBy"><?php echo __('Powered by'); ?>
     <a href="http://www.osticket.com" target="_blank">
-        <img alt="osTicket" src="images/osticket-grey.png" class="osticket-logo">
+        <img alt="<?php echo Format::htmlchars(APP_NAME); ?>" src="images/osticket-grey.png" class="osticket-logo">
     </a>
 </div>
     <script>

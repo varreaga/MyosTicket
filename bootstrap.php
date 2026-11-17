@@ -1,4 +1,5 @@
 <?php
+// Modificado el 2026-11-16 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca. Ver NOTICE.md.
 
 class Bootstrap {
 
@@ -369,6 +370,66 @@ define('CLI_DIR', INCLUDE_DIR.'cli/');
 define('GIT_VERSION','$git');
 define('MAJOR_VERSION', '1.18');
 define('THIS_VERSION', MAJOR_VERSION.'-git'); //Shown on admin panel
+
+#Branding: nombre visible del producto (fork de osTicket bajo GPLv2).
+#Cambia APP_NAME aqui cuando tengas el nombre definitivo; ver BRANDING.md.
+define('APP_NAME', 'MiHelpdesk');
+define('APP_UPSTREAM_NAME', 'osTicket');
+define('APP_UPSTREAM_URL', 'https://osticket.com');
+
+/**
+ * Sustituye la marca original por APP_NAME en un texto ya traducido.
+ * Uso: brand(__('osTicket :: Staff Control Panel'))
+ * Asi se siguen aprovechando los paquetes de idioma existentes.
+ */
+function brand($text) {
+    return str_replace('osTicket', APP_NAME, $text);
+}
+
+/**
+ * Tema visual de MiHelpdesk: hojas de estilo propias que se cargan DESPUES
+ * de las originales, para cambiar el aspecto sin editar el CSS de osTicket.
+ *
+ * Por defecto se usa la carpeta assets/mihelpdesk/. Para desactivar el tema
+ * (y ver la interfaz original), agrega en include/ost-config.php:
+ *     define('APP_THEME', '');
+ * Para usar otra carpeta de tema: define('APP_THEME', 'otro-tema');
+ */
+function app_theme() {
+    $theme = defined('APP_THEME') ? APP_THEME : 'mihelpdesk';
+    if (!$theme || !preg_match('/^[a-z0-9_-]+$/i', $theme)
+            || !is_dir(ROOT_DIR.'assets/'.$theme))
+        return '';
+    return $theme;
+}
+
+/**
+ * Imprime los <link> del tema para un area: 'client', 'staff' o 'login'.
+ * Carga tokens.css (variables de diseno) y luego el CSS del area.
+ */
+function app_theme_styles($area) {
+    if (!($theme = app_theme()))
+        return;
+    $base = 'assets/'.$theme.'/css/';
+    foreach (array('tokens', $area) as $name) {
+        $file = $base.$name.'.css';
+        if (!is_file(ROOT_DIR.$file))
+            continue;
+        // filemtime como version: el navegador recarga el CSS cuando cambia
+        echo sprintf("\n    <link rel=\"stylesheet\" href=\"%s%s?v=%d\" media=\"screen\">",
+            ROOT_PATH, $file, filemtime(ROOT_DIR.$file));
+    }
+    echo "\n";
+}
+
+/**
+ * Clases para <body>, para que el CSS del tema pueda limitarse a cada area.
+ */
+function app_theme_body_class($area) {
+    if (!($theme = app_theme()))
+        return '';
+    return sprintf(' class="mh-theme mh-%s"', $area);
+}
 //Path separator
 if(!defined('PATH_SEPARATOR')){
     if(strpos($_ENV['OS'],'Win')!==false || !strcasecmp(substr(PHP_OS, 0, 3),'WIN'))
