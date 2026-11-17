@@ -2,12 +2,12 @@ MiHelpdesk
 ==========
 
 > **MiHelpdesk** es un sistema de tickets de soporte de código abierto,
-> **basado en [osTicket](https://osticket.com)** y distribuido bajo la
+> **basado en el proyecto [osTicket](https://osticket.com)** distribuido bajo la
 > **Licencia Pública General de GNU, versión 2 (GPLv2)**.
 >
 > MiHelpdesk es un proyecto independiente. **No está afiliado, patrocinado
 > ni respaldado por Enhancesoft, LLC ni por el proyecto osTicket.**
-> "osTicket" es una marca de Enhancesoft, LLC y aquí se menciona solo para
+> "osTicket" es una marca de Enhancesoft, LLC y aquí se menciona para
 > indicar el origen del software.
 
 Qué es
@@ -23,14 +23,14 @@ seguimiento y archivar los tickets de soporte.
 Licencia y libertades
 ---------------------
 MiHelpdesk es **software libre**. Puedes usarlo, estudiarlo, modificarlo y
-redistribuirlo bajo los términos de la GPLv2 (ver [LICENSE.txt](LICENSE.txt)).
+redistribuirlo bajo los términos de GPLv2 (ver [LICENSE.txt](LICENSE.txt)).
 En particular:
 
   * El código fuente completo, incluidas todas las modificaciones de este
     fork, está disponible en este repositorio.
   * Si redistribuyes MiHelpdesk o una versión modificada, debes hacerlo bajo
     la misma licencia GPLv2 y entregar también el código fuente.
-  * El software se ofrece **SIN NINGUNA GARANTÍA**, tal como indica la GPLv2.
+  * El software se ofrece **SIN NINGUNA GARANTÍA**.
 
 Los cambios hechos en este fork respecto a osTicket están documentados en
 [NOTICE.md](NOTICE.md).
@@ -42,7 +42,7 @@ instalación, configuración, personalización, alojamiento y soporte técnico
 con tiempos de respuesta garantizados. Ver [SOPORTE.md](SOPORTE.md).
 
 Contratar soporte no cambia la licencia del software ni limita tus derechos
-bajo la GPLv2.
+bajo GPLv2.
 
 Requisitos
 ----------
