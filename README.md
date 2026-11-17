@@ -1,107 +1,110 @@
-osTicket
-========
-<a href="https://osticket.com"><img height="80px" width="80px" src="images/favicon.png"
-align="left" hspace="10" vspace="6"></a>
+MiHelpdesk
+==========
 
-**osTicket** is a widely-used open source support ticket system. It seamlessly
-integrates inquiries created via email, phone and web-based forms into a
-simple easy-to-use multi-user web interface. Manage, organize and archive
-all your support requests and responses in one place while providing your
-customers with accountability and responsiveness they deserve.
+> **MiHelpdesk** es un sistema de tickets de soporte de código abierto,
+> **basado en [osTicket](https://osticket.com)** y distribuido bajo la
+> **Licencia Pública General de GNU, versión 2 (GPLv2)**.
+>
+> MiHelpdesk es un proyecto independiente. **No está afiliado, patrocinado
+> ni respaldado por Enhancesoft, LLC ni por el proyecto osTicket.**
+> "osTicket" es una marca de Enhancesoft, LLC y aquí se menciona solo para
+> indicar el origen del software.
 
-How osTicket works for you
---------------------------
-  1. Users create tickets via your website, email, or phone
-  1. Incoming tickets are saved and assigned to agents
-  1. Agents help your users resolve their issues
+Qué es
+------
+MiHelpdesk integra en una sola interfaz web las solicitudes que llegan por
+correo, teléfono y formularios web. Permite organizar, asignar, dar
+seguimiento y archivar los tickets de soporte.
 
-osTicket is an attractive alternative to higher-cost and complex customer
-support systems; simple, lightweight, reliable, open source, web-based and
-easy to setup and use. The best part is, it's completely free.
+  1. Los usuarios crean tickets desde el portal web, por correo o por teléfono.
+  2. Los tickets se guardan y se asignan a agentes.
+  3. Los agentes ayudan a resolver cada caso.
 
-Requirements
-------------
-  * HTTP server running Microsoft® IIS or Apache
-  * PHP version 8.2 - 8.4 (8.4 recommended)
-  * mysqli extension for PHP
-  * MySQL database version 5.5 (or greater)
+Licencia y libertades
+---------------------
+MiHelpdesk es **software libre**. Puedes usarlo, estudiarlo, modificarlo y
+redistribuirlo bajo los términos de la GPLv2 (ver [LICENSE.txt](LICENSE.txt)).
+En particular:
 
-### Recommendations
-  * ctype, fileinfo, gd, gettext, iconv, imap, intl, json, mbstring,
-    Zend OPcache, phar, xml, xml-dom, and zip extensions for PHP
-  * APCu module enabled and configured for PHP
+  * El código fuente completo, incluidas todas las modificaciones de este
+    fork, está disponible en este repositorio.
+  * Si redistribuyes MiHelpdesk o una versión modificada, debes hacerlo bajo
+    la misma licencia GPLv2 y entregar también el código fuente.
+  * El software se ofrece **SIN NINGUNA GARANTÍA**, tal como indica la GPLv2.
 
-Deployment
+Los cambios hechos en este fork respecto a osTicket están documentados en
+[NOTICE.md](NOTICE.md).
+
+Soporte profesional
+-------------------
+El software es gratuito. De forma opcional se ofrecen **servicios de pago**:
+instalación, configuración, personalización, alojamiento y soporte técnico
+con tiempos de respuesta garantizados. Ver [SOPORTE.md](SOPORTE.md).
+
+Contratar soporte no cambia la licencia del software ni limita tus derechos
+bajo la GPLv2.
+
+Requisitos
 ----------
-osTicket now supports bleeding-edge installations. The easiest way to
-install the software and track updates is to clone the public repository.
-Create a folder on you web server (using whatever method makes sense for
-you) and cd into it. Then clone the repository (the folder must be empty!):
+  * Servidor HTTP: Apache o Microsoft® IIS
+  * PHP 8.2 – 8.4 (se recomienda 8.4)
+  * Extensión mysqli de PHP
+  * MySQL 5.5 o superior (o MariaDB)
 
-    git clone https://github.com/osTicket/osTicket
+### Recomendado
+  * Extensiones de PHP: ctype, fileinfo, gd, gettext, iconv, imap, intl,
+    json, mbstring, Zend OPcache, phar, xml, xml-dom y zip
+  * Módulo APCu habilitado y configurado
 
-And deploy the code into somewhere in your server's www root folder, for
-instance
+Instalación
+-----------
+Clona el repositorio y despliega el código en la carpeta pública de tu
+servidor web:
 
-    cd osTicket
-    php manage.php deploy --setup /var/www/htdocs/osticket/
+    git clone https://github.com/varreaga/MyosTicket
+    cd MyosTicket
+    php manage.php deploy --setup /var/www/htdocs/mihelpdesk/
 
-Then you can configure your server if necessary to serve that folder, and
-visit the page and install osTicket as usual. Go ahead and even delete
-setup/ folder out of the deployment location when you’re finished. Then,
-later, you can fetch updates and deploy them (from the folder where you
-cloned the git repo into)
+Después abre la URL en el navegador y sigue el instalador. Al terminar,
+borra la carpeta `setup/` del servidor.
+
+Para desplegar actualizaciones:
 
     git pull
-    php manage.php deploy -v /var/www/htdocs/osticket/
+    php manage.php deploy -v /var/www/htdocs/mihelpdesk/
 
-Upgrading
----------
-osTicket supports upgrading from 1.6-rc1 and later versions. As with any
-upgrade, strongly consider a backup of your attachment files, database, and
-osTicket codebase before embarking on an upgrade. Please review our [Upgrade
-Guide](https://docs.osticket.com/en/latest/Getting%20Started/Upgrade%20and%20Migration.html)
-or the [UPGRADING.txt file](UPGRADING.txt) for upgrade instructions.
+Actualización desde osTicket
+----------------------------
+MiHelpdesk mantiene la estructura de base de datos de osTicket, así que se
+puede instalar sobre una instalación existente de osTicket 1.6-rc1 o
+posterior. Antes de actualizar, haz siempre un respaldo de la base de datos,
+los adjuntos y el código. Consulta [UPGRADING.txt](UPGRADING.txt).
 
-Help
-----
-Visit the [Documentation](https://docs.osticket.com/) or the
-[forum](https://forum.osticket.com/). And if you'd like professional help
-managing your osTicket installation,
-[commercial support](https://osticket.com/support/) is available.
+Cambiar el nombre o el logo
+---------------------------
+El nombre visible del producto está definido en un solo lugar
+(`APP_NAME` en `bootstrap.php`). Para cambiarlo en todo el proyecto, ver
+[BRANDING.md](BRANDING.md).
 
-Contributing
+Traducciones
 ------------
-Create your own fork of the project and use
-[git-flow](https://github.com/nvie/gitflow) to create a new feature. Once
-the feature is published in your fork, send a pull request to begin the
-conversation of integrating your new feature into osTicket.
+La interfaz es traducible y es compatible con los paquetes de idioma de
+osTicket. En los títulos, el pie de página y el instalador, los textos
+traducidos que contienen la marca original se muestran con el nombre de
+MiHelpdesk (ver la función `brand()` en `bootstrap.php`).
 
-### Localization
-[![Crowdin](https://badges.crowdin.net/osticket-official/localized.svg)](https://crowdin.com/project/osticket-official)
+Créditos
+--------
+MiHelpdesk se basa en **osTicket**, creado por Peter Rotich y desarrollado
+por Enhancesoft y su comunidad. Se conservan todos los avisos de copyright
+originales de los archivos fuente.
 
-The interface for osTicket is now completely translatable. Language packs
-are available on the [download page](https://osticket.com/download). If you
-do not see your language there, join the [Crowdin](https://crowdin.com/project/osticket-official)
-project and request to have your language added. Languages which reach 100%
-translated are are significantly reviewed will be made available on the
-osTicket download page.
-
-The software can also be translated in place in our [JIPT site](http://jipt.i18n.osticket.com).
-Once you have a Crowdin account, login and translate the software in your browser!
-
-Localizing strings in new code requires usage of a [few rules](setup/doc/i18n.md).
-
-License
--------
-osTicket is released under the GPL2 license. See the included LICENSE.txt
-file for the gory details of the General Public License.
-
-osTicket is supported by several magical open source projects including:
+El proyecto incluye, además, estas bibliotecas de código abierto, cada una
+con su propia licencia:
 
   * [Font-Awesome](https://fontawesome.com/)
   * [HTMLawed](https://www.bioinformatics.org/phplabware/internal_utilities/htmLawed)
-  * [jQuery dropdown](https://labs.abeautifulsite.net/jquery-dropdown/) (Project Deleted)
+  * [jQuery dropdown](https://labs.abeautifulsite.net/jquery-dropdown/) (proyecto eliminado)
   * [jsTimezoneDetect](https://pellepim.bitbucket.org/jstz/)
   * [laminas-mail](https://github.com/laminas/laminas-mail)
   * [mPDF](https://github.com/mpdf/mpdf)

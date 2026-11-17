@@ -1,4 +1,5 @@
 <?php
+// Modificado el 2026-11-16 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca. Ver NOTICE.md.
 /*********************************************************************
     class.setup.php
 
@@ -31,7 +32,7 @@ class SetupWizard {
 
     function __construct(){
         $this->errors=array();
-        $this->version_verbose = sprintf(__('osTicket %s' /* <%s> is for the version */),
+        $this->version_verbose = sprintf(brand(__('osTicket %s' /* <%s> is for the version */)),
             THIS_VERSION);
 
     }

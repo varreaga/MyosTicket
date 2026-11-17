@@ -1,9 +1,12 @@
+<?php /* Modificado el 2026-11-16 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca. Ver NOTICE.md. */ ?>
         </div>
     </div>
     <div id="footer">
         <p><?php echo __('Copyright &copy;'); ?> <?php echo date('Y'); ?> <?php
-        echo Format::htmlchars((string) $ost->company ?: 'osTicket.com'); ?> - <?php echo __('All rights reserved.'); ?></p>
-        <a id="poweredBy" href="https://osticket.com" target="_blank"><?php echo __('Helpdesk software - powered by osTicket'); ?></a>
+        echo Format::htmlchars((string) $ost->company ?: APP_NAME); ?> - <?php echo __('All rights reserved.'); ?></p>
+        <p class="based-on"><?php echo sprintf(__('%1$s is free software based on %2$s, licensed under the GNU GPL v2.'),
+            Format::htmlchars(APP_NAME),
+            '<a href="'.APP_UPSTREAM_URL.'" target="_blank" rel="noopener">'.APP_UPSTREAM_NAME.'</a>'); ?></p>
     </div>
 <div id="overlay"></div>
 <div id="loading">

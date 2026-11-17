@@ -1,3 +1,4 @@
+# Modificado el 2026-11-16 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca. Ver NOTICE.md.
 #
 # Welcome ticket template
 #
@@ -8,43 +9,25 @@
 ---
 deptId: 1 # support
 topicId: 1 # support
-name: osTicket Team
-email: feedback@osticket.com
+name: MiHelpdesk Team
+email: support@example.com
 source: Web # notrans
-subject: osTicket Installed!
+subject: MiHelpdesk Installed!
 message: |
     <p>
-    Thank you for choosing osTicket.
+    Thank you for choosing MiHelpdesk.
     </p><p>
-    Please make sure you join the <a
-    href="https://forum.osticket.com">osTicket forums</a> and our <a
-    href="https://osticket.com">mailing list</a> to stay up to date
-    on the latest news, security alerts and updates. The osTicket forums are
-    also a great place to get assistance, guidance, tips, and help from
-    other osTicket users.  In addition to the forums, the <a
-    href="https://docs.osticket.com">osTicket Docs</a> provides a useful
-    collection of educational materials, documentation, and notes from the
-    community. We welcome your contributions to the osTicket community.
+    MiHelpdesk is free software based on osTicket and released under the
+    GNU General Public License v2. You are free to use, study, modify and
+    share it under the terms of that license. A copy of the license is
+    included in the LICENSE.txt file.
     </p><p>
-    If you are looking for a greater level of support, we provide
-    professional services and commercial support with guaranteed response
-    times, and access to the core development team. We can also help
-    customize osTicket or even add new features to the system to meet your
-    unique needs.
-    </p><p>
-    If the idea of managing and upgrading this osTicket installation is
-    daunting, you can try osTicket as a hosted service at <a
-    href="https://supportsystem.com">https://supportsystem.com/</a> --
-    no installation required and we can import your data!  With
-    SupportSystem's turnkey infrastructure, you get osTicket at its best,
-    leaving you free to focus on your customers without the burden of making
-    sure the application is stable, maintained, and secure.
+    Professional services are available: installation, configuration,
+    customization, hosting and commercial support with guaranteed response
+    times. Contact us to discuss your needs.
     </p><p>
     Cheers,
     </p><p>
     -<br/>
-    osTicket Team - https://osticket.com/
-    </p><p>
-    <strong>PS.</strong> Don't just make customers happy, make happy
-    customers!
+    MiHelpdesk Team
     </p>

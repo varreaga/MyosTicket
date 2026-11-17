@@ -1,4 +1,5 @@
 <?php
+// Modificado el 2026-11-16 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca. Ver NOTICE.md.
 /*************************************************************************
     staff.inc.php
 
@@ -147,6 +148,6 @@ if($thisstaff->forcePasswdChange() && !$exempt) {
     exit;
 }
 $ost->setWarning($sysnotice);
-$ost->setPageTitle(__('osTicket :: Staff Control Panel'));
+$ost->setPageTitle(brand(__('osTicket :: Staff Control Panel')));
 
 ?>

@@ -1,4 +1,5 @@
 <?php
+// Modificado el 2026-11-16 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca. Ver NOTICE.md.
 if(!defined('OSTSCPINC') || !$thisstaff || !$thisstaff->isAdmin()) die('Access Denied');
 ?>
 <div id="upgrader">
@@ -27,7 +28,7 @@ if(!defined('OSTSCPINC') || !$thisstaff || !$thisstaff->isAdmin()) die('Access D
     <div class="sidebar">
             <h3><?php echo __('Need Help?');?></h3>
             <p>
-            <?php echo __('If you are looking for a greater level of support, we provide <u>professional upgrade</u> and commercial support with guaranteed response times and access to the core development team. We can also help customize osTicket or even add new features to the system to meet your unique needs. <a target="_blank" href="https://osticket.com/support">Learn More!</a>'); ?>
+            <?php echo __('Professional installation services and commercial support are available.'); ?>
             </p>
     </div>
     <div class="clear"></div>

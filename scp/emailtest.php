@@ -1,4 +1,5 @@
 <?php
+// Modificado el 2026-11-16 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca. Ver NOTICE.md.
 /*********************************************************************
     emailtest.php
 
@@ -52,7 +53,7 @@ $ost->addExtraHeader('<meta name="tip-namespace" content="emails.diagnostic" />'
 require(STAFFINC_DIR.'header.inc.php');
 
 $info=array();
-$info['subj']='osTicket test email';
+$info['subj']=APP_NAME.' test email';
 $info=Format::htmlchars(($errors && $_POST)?$_POST:$info, true);
 ?>
 <form action="emailtest.php" method="post" class="save">

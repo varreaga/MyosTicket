@@ -1,9 +1,10 @@
 <?php
+// Modificado el 2026-11-16 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca. Ver NOTICE.md.
 if(!defined('OSTADMININC') || !$thisstaff || !$thisstaff->isAdmin() || !$config) die('Access Denied');
 
 $gmtime = Misc::gmtime();
 ?>
-<h2><?php echo __('System Settings and Preferences');?> <small>— <span class="ltr">osTicket (<?php echo $cfg->getVersion(); ?>)</span></small></h2>
+<h2><?php echo __('System Settings and Preferences');?> <small>— <span class="ltr"><?php echo Format::htmlchars(APP_NAME); ?> (<?php echo $cfg->getVersion(); ?>)</span></small></h2>
 <form action="settings.php?t=system" method="post" class="save">
 <?php csrf_token(); ?>
 <input type="hidden" name="t" value="system" >
@@ -23,7 +24,7 @@ $gmtime = Misc::gmtime();
                 <span>
                 <label><input type="radio" name="isonline"  value="1"   <?php echo $config['isonline']?'checked="checked"':''; ?> />&nbsp;<b><?php echo __('Online'); ?></b>&nbsp;</label>
                 <label><input type="radio" name="isonline"  value="0"   <?php echo !$config['isonline']?'checked="checked"':''; ?> />&nbsp;<b><?php echo __('Offline'); ?></b></label>
-                &nbsp;<font class="error"><?php echo $config['isoffline']?'osTicket '.__('Offline'):''; ?></font>
+                &nbsp;<font class="error"><?php echo $config['isoffline']?APP_NAME.' '.__('Offline'):''; ?></font>
                 <i class="help-tip icon-question-sign" href="#helpdesk_status"></i>
                 </span>
             </td>

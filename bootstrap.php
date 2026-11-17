@@ -1,4 +1,5 @@
 <?php
+// Modificado el 2026-11-16 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca. Ver NOTICE.md.
 
 class Bootstrap {
 
@@ -369,6 +370,21 @@ define('CLI_DIR', INCLUDE_DIR.'cli/');
 define('GIT_VERSION','$git');
 define('MAJOR_VERSION', '1.18');
 define('THIS_VERSION', MAJOR_VERSION.'-git'); //Shown on admin panel
+
+#Branding: nombre visible del producto (fork de osTicket bajo GPLv2).
+#Cambia APP_NAME aqui cuando tengas el nombre definitivo; ver BRANDING.md.
+define('APP_NAME', 'MiHelpdesk');
+define('APP_UPSTREAM_NAME', 'osTicket');
+define('APP_UPSTREAM_URL', 'https://osticket.com');
+
+/**
+ * Sustituye la marca original por APP_NAME en un texto ya traducido.
+ * Uso: brand(__('osTicket :: Staff Control Panel'))
+ * Asi se siguen aprovechando los paquetes de idioma existentes.
+ */
+function brand($text) {
+    return str_replace('osTicket', APP_NAME, $text);
+}
 //Path separator
 if(!defined('PATH_SEPARATOR')){
     if(strpos($_ENV['OS'],'Win')!==false || !strcasecmp(substr(PHP_OS, 0, 3),'WIN'))

@@ -1,4 +1,5 @@
 <?php
+// Modificado el 2026-11-16 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca. Ver NOTICE.md.
 /*******************************************************************
     class.osticket.php
 
@@ -149,7 +150,7 @@ class osTicket {
 
     static function getVarScope() {
         return array(
-            'url' => __("osTicket's base url (FQDN)"),
+            'url' => brand(__("osTicket's base url (FQDN)")),
             'company' => array('class' => 'Company', 'desc' => __('Company Information')),
         );
     }
@@ -238,7 +239,7 @@ class osTicket {
             $email->sendAlert($to, $subject, $message, null, array('text'=>true, 'reply-tag'=>false));
         } else {//no luck - try the system mail.
             osTicket\Mail\Mailer::sendmail($to, $subject, $message,
-                     '"'.__('osTicket Alerts').sprintf('" <%s>',$to));
+                     '"'.brand(__('osTicket Alerts')).sprintf('" <%s>',$to));
         }
 
         //log the alert? Watch out for loops here.

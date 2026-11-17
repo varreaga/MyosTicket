@@ -1,18 +1,18 @@
+# Modificado el 2026-11-16 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca. Ver NOTICE.md.
 #
 # Canned response templates
 #
 ---
 - isenabled: 1
-  title: What is osTicket (sample)?
+  title: What is MiHelpdesk (sample)?
   response: |
-    osTicket is a widely-used open source support ticket system, an
-    attractive alternative to higher-cost and complex customer support
-    systems - simple, lightweight, reliable, open source, web-based and easy
-    to setup and use.
+    MiHelpdesk is an open source support ticket system based on osTicket and
+    released under the GNU General Public License v2 - simple, lightweight,
+    reliable, web-based and easy to set up and use.
   notes: |
 
   attachments:
-    - name: osTicket.txt
+    - name: sample.txt
       type: text/plain
       data: Canned Attachments Rock!
 

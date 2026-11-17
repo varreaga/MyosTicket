@@ -1,4 +1,5 @@
 <?php
+// Modificado el 2026-11-16 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca. Ver NOTICE.md.
 if ($cfg)
     header("Content-Security-Policy: frame-ancestors ".$cfg->getAllowIframes()."; script-src 'self' 'unsafe-inline'; object-src 'none'");
 ?>
@@ -12,7 +13,7 @@ if (($lang = Internationalization::getCurrentLanguage())
 
 // Dropped IE Support Warning
 if (osTicket::is_ie())
-    $warning = __('osTicket no longer supports Internet Explorer.');
+    $warning = brand(__('osTicket no longer supports Internet Explorer.'));
 ?>>
 <head>
     <title><?php echo $wizard['title']; ?></title>
@@ -24,16 +25,17 @@ if (osTicket::is_ie())
     <div id="wizard">
         <?php if ($warning) echo sprintf('<div class="warning_bar">%s</div>', $warning); ?>
         <div id="header">
-            <img id="logo" src="./images/<?php echo $wizard['logo'] ?: 'logo.png'; ?>" alt="osTicket">
+            <img id="logo" src="./images/<?php echo $wizard['logo'] ?: 'logo.png'; ?>" alt="<?php echo Format::htmlchars(APP_NAME); ?>">
             <div class="info"><?php echo $wizard['tagline']; ?></div>
             <br/>
             <ul class="links">
                 <li>
                    <?php
+                   $links = array();
                    foreach($wizard['menu'] as $k=>$v)
-                    echo sprintf('<a target="_blank" href="%s">%s</a> &mdash; ',$v,$k);
+                    $links[] = sprintf('<a target="_blank" href="%s">%s</a>',$v,$k);
+                   echo implode(' &mdash; ', $links);
                    ?>
-                    <a target="_blank" href="https://osticket.com/contact-us"><?php echo __('Contact Us');?></a>
                 </li>
             </ul>
             <div class="flags">

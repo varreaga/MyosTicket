@@ -1,4 +1,5 @@
 <?php
+// Modificado el 2026-11-16 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca. Ver NOTICE.md.
 /*********************************************************************
     admin.inc.php
 
@@ -66,5 +67,5 @@ $ost->setWarning($sysnotice);
 $nav = new AdminNav($thisstaff);
 
 //Page title.
-$ost->setPageTitle(__('osTicket :: Admin Control Panel'));
+$ost->setPageTitle(brand(__('osTicket :: Admin Control Panel')));
 ?>
