@@ -86,6 +86,12 @@ El nombre visible del producto está definido en un solo lugar
 (`APP_NAME` en `bootstrap.php`). Para cambiarlo en todo el proyecto, ver
 [BRANDING.md](BRANDING.md).
 
+Tema visual
+-----------
+El aspecto de la interfaz se personaliza en `assets/mihelpdesk/`, una capa
+de estilos propia que no modifica el CSS original. Ver
+[assets/mihelpdesk/README.md](assets/mihelpdesk/README.md).
+
 Traducciones
 ------------
 La interfaz es traducible y es compatible con los paquetes de idioma de

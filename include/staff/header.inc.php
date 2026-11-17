@@ -60,8 +60,9 @@ if (osTicket::is_ie())
         echo "\n\t".implode("\n\t", $headers)."\n";
     }
     ?>
+    <?php app_theme_styles('staff'); ?>
 </head>
-<body>
+<body<?php echo app_theme_body_class('staff'); ?>>
 <div id="container">
     <?php
     if($ost->getError())

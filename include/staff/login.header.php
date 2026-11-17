@@ -23,6 +23,7 @@ header("Content-Security-Policy: frame-ancestors ".$cfg->getAllowIframes()."; sc
             $("input:not(.dp):visible:enabled:first").focus();
          });
     </script>
+    <?php app_theme_styles('login'); ?>
 </head>
-<body id="loginBody">
+<body id="loginBody"<?php echo app_theme_body_class('login'); ?>>
 

@@ -87,8 +87,9 @@ if (osTicket::is_ie())
 <?php
     }
     ?>
+    <?php app_theme_styles('client'); ?>
 </head>
-<body>
+<body<?php echo app_theme_body_class('client'); ?>>
     <div id="container">
         <?php
         if($ost->getError())

@@ -1,0 +1,23 @@
+/*
+ * MiHelpdesk — Tema visual: Inicio de sesión de agentes
+ * Parte del tema visual de MiHelpdesk, fork de osTicket bajo GPLv2.
+ *
+ * Se carga DESPUÉS de las hojas de estilo originales de osTicket, así que
+ * cualquier regla aquí las sobrescribe sin modificarlas.
+ *
+ * Reglas:
+ *  - Limita cada selector con ".mh-login" para no afectar otras áreas.
+ *  - Usa siempre las variables de tokens.css (var(--mh-...)), nunca colores
+ *    o tamaños escritos a mano.
+ *  - No edites los CSS originales de osTicket: así se pueden seguir trayendo
+ *    sus actualizaciones sin conflictos.
+ *
+ * Por ahora este archivo no cambia nada: el rediseño se implementará aquí
+ * cuando se aprueben las maquetas.
+ */
+
+/* ==== Fondo ==== */
+
+/* ==== Caja de acceso ==== */
+
+/* ==== Mensajes de error ==== */

@@ -1,0 +1,33 @@
+/*
+ * MiHelpdesk — Tema visual: Panel de agentes
+ * Parte del tema visual de MiHelpdesk, fork de osTicket bajo GPLv2.
+ *
+ * Se carga DESPUÉS de las hojas de estilo originales de osTicket, así que
+ * cualquier regla aquí las sobrescribe sin modificarlas.
+ *
+ * Reglas:
+ *  - Limita cada selector con ".mh-staff" para no afectar otras áreas.
+ *  - Usa siempre las variables de tokens.css (var(--mh-...)), nunca colores
+ *    o tamaños escritos a mano.
+ *  - No edites los CSS originales de osTicket: así se pueden seguir trayendo
+ *    sus actualizaciones sin conflictos.
+ *
+ * Por ahora este archivo no cambia nada: el rediseño se implementará aquí
+ * cuando se aprueben las maquetas.
+ */
+
+/* ==== Estructura general ==== */
+
+/* ==== Navegación (barra lateral) ==== */
+
+/* ==== Lista de tickets ==== */
+
+/* ==== Vista de ticket ==== */
+
+/* ==== Cuadro de respuesta ==== */
+
+/* ==== Dashboard ==== */
+
+/* ==== Administración ==== */
+
+/* ==== Adaptación a tableta y celular ==== */

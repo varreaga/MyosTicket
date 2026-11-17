@@ -23,6 +23,31 @@ Base
 Historial de cambios
 --------------------
 
+### 2026-11-16 — Base del tema visual (varreaga)
+
+Se agregó una capa de tema propia que se carga después de las hojas de
+estilo originales, sin modificarlas. Por ahora no cambia el aspecto: solo
+define las variables de diseño.
+
+* Nuevas funciones `app_theme()`, `app_theme_styles()` y
+  `app_theme_body_class()` en `bootstrap.php`. El tema se puede desactivar
+  con `define('APP_THEME', '')` en `include/ost-config.php`.
+* `include/client/header.inc.php`, `include/staff/header.inc.php` e
+  `include/staff/login.header.php` cargan el CSS del tema y agregan clases
+  al `<body>`.
+* Nueva carpeta `assets/mihelpdesk/` (tokens.css, client.css, staff.css,
+  login.css y README.md).
+* `include/cli/modules/deploy.php`: la carpeta `tools/` ya no se copia al
+  servidor web al desplegar.
+
+Archivos modificados en este cambio:
+
+* `bootstrap.php`
+* `include/client/header.inc.php`
+* `include/staff/header.inc.php`
+* `include/staff/login.header.php`
+* `include/cli/modules/deploy.php`
+
 ### 2026-11-16 — Cambio de marca (varreaga)
 
 Se reemplazó la marca visible de osTicket por el nombre del producto, sin
