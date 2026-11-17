@@ -1,4 +1,5 @@
 <?php
+// Modificado el 2026-11-16 por varreaga (proyecto MiHelpdesk, fork de osTicket): página de inicio del tema visual. Ver NOTICE.md.
 /*********************************************************************
     index.php
 
@@ -19,6 +20,13 @@ require_once INCLUDE_DIR . 'class.page.php';
 
 $section = 'home';
 require(CLIENTINC_DIR.'header.inc.php');
+
+// MiHelpdesk: con el tema visual activo se usa la nueva página de inicio.
+if (app_theme()) {
+    include CLIENTINC_DIR.'templates/mh-home.tmpl.php';
+    require(CLIENTINC_DIR.'footer.inc.php');
+    exit;
+}
 ?>
 <div id="landing_page">
 <?php include CLIENTINC_DIR.'templates/sidebar.tmpl.php'; ?>

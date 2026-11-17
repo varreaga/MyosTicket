@@ -423,6 +423,20 @@ function app_theme_styles($area) {
 }
 
 /**
+ * Imprime el <script> del tema para un area, si existe
+ * (assets/<tema>/js/<area>.js). Se carga con "defer".
+ */
+function app_theme_scripts($area) {
+    if (!($theme = app_theme()))
+        return;
+    $file = 'assets/'.$theme.'/js/'.$area.'.js';
+    if (!is_file(ROOT_DIR.$file))
+        return;
+    echo sprintf("\n    <script defer src=\"%s%s?v=%d\"></script>\n",
+        ROOT_PATH, $file, filemtime(ROOT_DIR.$file));
+}
+
+/**
  * Clases para <body>, para que el CSS del tema pueda limitarse a cada area.
  */
 function app_theme_body_class($area) {

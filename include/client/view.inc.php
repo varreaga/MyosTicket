@@ -1,3 +1,4 @@
+<?php /* Modificado el 2026-11-16 por varreaga (proyecto MiHelpdesk, fork de osTicket): clase de color para el estado. Ver NOTICE.md. */ ?>
 <?php
 if(!defined('OSTCLIENTINC') || !$thisclient || !$ticket || !$ticket->checkUserAccess($thisclient)) die('Access Denied!');
 
@@ -64,7 +65,8 @@ if ($thisclient && $thisclient->isGuest()
                 </thead>
                 <tr>
                     <th width="100"><?php echo __('Ticket Status');?>:</th>
-                    <td><?php echo ($S = $ticket->getStatus()) ? $S->getLocalName() : ''; ?></td>
+                    <td><?php if ($S = $ticket->getStatus()) { ?><span class="mh-status mh-status--<?php
+                        echo Format::htmlchars($S->getState()); ?>"><?php echo $S->getLocalName(); ?></span><?php } ?></td>
                 </tr>
                 <tr>
                     <th><?php echo __('Department');?>:</th>
