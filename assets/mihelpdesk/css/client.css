@@ -341,14 +341,24 @@
   padding: var(--mh-space-6);
 }
 
+/* osTicket pinta de rojo el texto del botón de enviar cuando el formulario
+   cambia; sobre el botón azul sería ilegible, así que se mantiene blanco. */
+.mh-client input[type="submit"][style*="color"] {
+  color: var(--mh-on-brand) !important;
+}
+
 /* Solo para lectores de pantalla */
-.mh-client .mh-sr {
+.mh-client .mh-sr,
+.mh-client #ticketForm select.mh-sr {
   position: absolute;
   width: 1px;
   height: 1px;
   overflow: hidden;
   clip: rect(0 0 0 0);
   white-space: nowrap;
+  min-height: 0;
+  padding: 0;
+  border: 0;
 }
 
 /* ==== Acceso: consultar ticket, iniciar sesión, registro ==== */
@@ -598,6 +608,219 @@
 }
 
 /* ==== Formulario de nuevo ticket ==== */
+
+/* La tabla original se muestra como bloques: cada <tbody> es una tarjeta */
+.mh-client #ticketForm > table,
+.mh-client #ticketForm > table > tbody,
+.mh-client #ticketForm > table > tbody > tr,
+.mh-client #ticketForm > table > tbody > tr > td {
+  display: block;
+  width: auto;
+}
+.mh-client #ticketForm > table {
+  margin: 0;
+}
+.mh-client #ticketForm > table > tbody {
+  margin-bottom: var(--mh-space-5);
+  padding: var(--mh-space-6);
+  background: var(--mh-surface);
+  border: 1px solid var(--mh-border);
+  border-radius: var(--mh-radius-lg);
+  box-shadow: var(--mh-shadow-sm);
+}
+.mh-client #ticketForm > table > tbody:not(:has(tr)),
+.mh-client #ticketForm > table > tbody:last-child:not(:has(.captchaRow)) {
+  display: none;
+}
+.mh-client #ticketForm > table > tbody > tr > td {
+  padding: 0;
+}
+.mh-client #ticketForm > table > tbody > tr + tr > td {
+  padding-top: var(--mh-space-4);
+}
+.mh-client #ticketForm hr {
+  display: none;
+}
+.mh-client #ticketForm .form-header {
+  margin-bottom: var(--mh-space-2) !important;
+}
+.mh-client #ticketForm .form-header b,
+.mh-client #ticketForm .form-header h3 {
+  display: block;
+  margin: 0;
+  font-size: var(--mh-text-lg);
+  font-weight: 700;
+}
+.mh-client #ticketForm .form-header div:empty {
+  display: none;
+}
+.mh-client #ticketForm label {
+  display: block;
+  font-weight: 600;
+}
+.mh-client #ticketForm label em {
+  font-weight: 400;
+  font-style: normal;
+  color: var(--mh-text-muted) !important;
+  font-size: var(--mh-text-sm);
+}
+.mh-client #ticketForm label input[type="text"],
+.mh-client #ticketForm label input[type="email"],
+.mh-client #ticketForm label input[type="tel"],
+.mh-client #ticketForm label input:not([type]),
+.mh-client #ticketForm label select,
+.mh-client #ticketForm label textarea {
+  margin-top: var(--mh-space-2);
+  font-weight: 400;
+}
+.mh-client #ticketForm input[type="text"],
+.mh-client #ticketForm input[type="email"],
+.mh-client #ticketForm input:not([type]),
+.mh-client #ticketForm select,
+.mh-client #ticketForm textarea {
+  width: 100%;
+  max-width: 560px;
+}
+.mh-client #ticketForm input[type="tel"] {
+  width: calc(100% - 150px);
+  max-width: 400px;
+}
+.mh-client #ticketForm input[size="5"],
+.mh-client #ticketForm input[name$="-ext"] {
+  width: 90px;
+}
+.mh-client #ticketForm .error,
+.mh-client #ticketForm font.error {
+  color: var(--mh-danger-text);
+  font-size: var(--mh-text-sm);
+  font-weight: 600;
+}
+.mh-client #ticketForm .buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--mh-space-3);
+  text-align: right !important;
+}
+.mh-client #ticketForm > hr {
+  display: none;
+}
+
+/* Selector de temas en dos niveles (lo construye js/client.js) */
+.mh-client .mh-topic-picker:not(.is-ready),
+.mh-client .mh-topic-error.is-marker {
+  display: none;
+}
+.mh-client .mh-topic-error {
+  display: block;
+  margin-top: var(--mh-space-3);
+}
+.mh-client .mh-topic-label {
+  margin: var(--mh-space-2) 0;
+  font-size: var(--mh-text-xs);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--mh-text-muted);
+}
+.mh-client .mh-topic-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--mh-space-5);
+  align-items: flex-start;
+}
+.mh-client .mh-topic-roots {
+  flex: 1 1 280px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--mh-space-2);
+}
+.mh-client .mh-topic-columns:not(.has-subs) .mh-topic-roots {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+.mh-client .mh-topic-subs {
+  flex: 2 1 380px;
+  min-width: 0;
+  padding: var(--mh-space-4);
+  background: var(--mh-surface-alt);
+  border: 1px solid var(--mh-border);
+  border-radius: var(--mh-radius-lg);
+}
+.mh-client .mh-topic-subs .mh-topic-label {
+  margin-top: 0;
+}
+.mh-client .mh-topic-sublist {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: var(--mh-space-2);
+}
+.mh-client button.mh-topic-root,
+.mh-client button.mh-topic-sub {
+  display: flex;
+  align-items: center;
+  gap: var(--mh-space-3);
+  width: 100%;
+  min-height: 56px;
+  padding: var(--mh-space-3) var(--mh-space-4);
+  border: 2px solid var(--mh-border);
+  border-radius: var(--mh-radius);
+  background: var(--mh-surface);
+  color: var(--mh-text);
+  font-size: var(--mh-text-base);
+  text-align: left;
+  cursor: pointer;
+}
+.mh-client button.mh-topic-root:hover,
+.mh-client button.mh-topic-sub:hover {
+  border-color: var(--mh-border-strong);
+}
+.mh-client .mh-topic-root-name {
+  flex: 1 1 auto;
+  font-weight: 600;
+  font-size: var(--mh-text-lg);
+}
+.mh-client .mh-topic-root-meta {
+  color: var(--mh-text-muted);
+  font-size: var(--mh-text-sm);
+}
+.mh-client .mh-topic-chevron {
+  color: var(--mh-text-muted);
+  font-size: var(--mh-text-xl);
+  line-height: 1;
+}
+.mh-client button.mh-topic-root[aria-pressed="true"] {
+  border-color: var(--mh-brand);
+  background: var(--mh-brand-soft);
+}
+.mh-client button.mh-topic-root[aria-pressed="true"] .mh-topic-root-name {
+  color: var(--mh-link);
+}
+.mh-client button.mh-topic-sub {
+  min-height: 48px;
+  font-weight: 600;
+}
+.mh-client button.mh-topic-sub.is-general {
+  font-weight: 500;
+  color: var(--mh-text-2);
+}
+.mh-client .mh-topic-dot {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  box-sizing: border-box;
+  border: 2px solid var(--mh-border-strong);
+  border-radius: 50%;
+  background: var(--mh-surface);
+}
+.mh-client button.mh-topic-sub[aria-checked="true"] {
+  border-color: var(--mh-brand);
+  box-shadow: var(--mh-shadow);
+}
+.mh-client button.mh-topic-sub[aria-checked="true"] .mh-topic-dot {
+  border: 6px solid var(--mh-brand);
+}
 
 /* ==== Vista de ticket (conversación) ==== */
 

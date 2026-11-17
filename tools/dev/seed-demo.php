@@ -36,11 +36,23 @@ function out($msg) { echo $msg, "\n"; }
 
 // Igual que el panel de administración: crear vacío y luego actualizar.
 function crear_tema($nombre, $pid, $deptId, &$errors) {
+    // Formulario "Ticket Details" (asunto y mensaje), igual que los temas de fábrica
+    $form = DynamicForm::lookup(array('type' => 'T'));
     $t = Topic::create();
     $ok = $t->update(array('topic' => $nombre, 'topic_pid' => $pid,
         'dept_id' => $deptId, 'ispublic' => 1, 'status' => 'active',
-        'notes' => '', 'id' => null), $errors);
+        'notes' => '', 'id' => null,
+        'forms' => $form ? array($form->getId()) : array()), $errors);
     return $ok ? $t : null;
+}
+
+// Temas creados por versiones anteriores de este script sin formulario
+function asegurar_formulario(Topic $t) {
+    if (TopicFormModel::objects()->filter(array('topic_id' => $t->getId()))->exists())
+        return;
+    if ($form = DynamicForm::lookup(array('type' => 'T')))
+        (new TopicFormModel(array('topic_id' => $t->getId(),
+            'form_id' => $form->getId(), 'sort' => 1)))->save();
 }
 
 // ---------------------------------------------------------------- Temas
@@ -62,9 +74,12 @@ foreach ($temas as $padre => $hijos) {
         $pid = $t->getId();
         out("Tema creado: $padre");
     }
+    asegurar_formulario(Topic::lookup($pid));
     foreach ($hijos as $hijo) {
-        if (Topic::getIdByName($hijo, $pid))
+        if ($hid = Topic::getIdByName($hijo, $pid)) {
+            asegurar_formulario(Topic::lookup($hid));
             continue;
+        }
         $errors = array();
         $t = crear_tema($hijo, $pid, $dept->getId(), $errors);
         if ($t) { $creados[$hijo] = $t->getId(); out("  Subtema creado: $hijo"); }
