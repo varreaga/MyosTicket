@@ -628,8 +628,8 @@
   border-radius: var(--mh-radius-lg);
   box-shadow: var(--mh-shadow-sm);
 }
-.mh-client #ticketForm > table > tbody:not(:has(tr)),
-.mh-client #ticketForm > table > tbody:last-child:not(:has(.captchaRow)) {
+.mh-client #content #ticketForm > table > tbody:not(:has(tr)),
+.mh-client #content #ticketForm > table > tbody:last-child:not(:has(.captchaRow)) {
   display: none;
 }
 .mh-client #ticketForm > table > tbody > tr > td {
@@ -986,6 +986,17 @@
   font-size: var(--mh-text-lg);
   line-height: 1.5;
 }
+.mh-client .thread-body,
+.mh-client .thread-body h1,
+.mh-client .thread-body h2,
+.mh-client .thread-body h3,
+.mh-client .thread-body h4 {
+  font-family: var(--mh-font);
+}
+.mh-client .thread-body {
+  font-size: var(--mh-text-lg) !important;
+  color: var(--mh-text);
+}
 .mh-client .thread-entry .thread-body p:first-child { margin-top: 0; }
 .mh-client .thread-entry .thread-body p:last-child  { margin-bottom: 0; }
 
@@ -1138,6 +1149,27 @@
   width: 100%;
 }
 
+/* Páginas con barra lateral flotante (páginas del sitio, landing original):
+   la barra va a la derecha en escritorio y debajo del texto en celular */
+.mh-client #content > .sidebar {
+  float: right;
+  width: 260px;
+  margin: 0 0 var(--mh-space-4) var(--mh-space-6);
+}
+.mh-client #content > .main-content {
+  width: auto;
+  overflow: hidden;
+  padding: var(--mh-space-6);
+  background: var(--mh-surface);
+  border: 1px solid var(--mh-border);
+  border-radius: var(--mh-radius-lg);
+  box-shadow: var(--mh-shadow-sm);
+  font-size: var(--mh-text-lg);
+}
+.mh-client #content > .main-content h1:first-child {
+  margin-top: 0;
+}
+
 /* Lista de categorías */
 .mh-client #kb {
   list-style: none;
@@ -1180,6 +1212,51 @@
 .mh-client #kb .popular-faq i {
   color: var(--mh-text-muted);
   margin-right: var(--mh-space-2);
+}
+
+/* Preguntas de una categoría y resultados de búsqueda */
+.mh-client #faq ol {
+  list-style: none;
+  margin: var(--mh-space-3) 0 0;
+  padding: 0;
+  background: var(--mh-surface);
+  border: 1px solid var(--mh-border);
+  border-radius: var(--mh-radius-lg);
+  overflow: hidden;
+}
+.mh-client #faq ol li + li {
+  border-top: 1px solid var(--mh-border-soft);
+}
+.mh-client #faq ol li a,
+.mh-client #faq ol li a.previewfaq {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--mh-space-3);
+  padding: var(--mh-space-3) var(--mh-space-4);
+  border: 0;
+  background: none;
+  line-height: 1.4;
+  color: var(--mh-text);
+  text-decoration: none;
+}
+.mh-client #faq ol li a::after {
+  content: "›";
+  color: var(--mh-text-muted);
+}
+.mh-client #faq ol li a:hover {
+  background: var(--mh-surface-alt);
+  color: var(--mh-link);
+}
+.mh-client .span8 > h1 + div > strong,
+.mh-client .span8 > p {
+  color: var(--mh-text-muted);
+}
+.mh-client .span8 > hr {
+  display: none;
+}
+.mh-client .span8 h2 {
+  font-size: var(--mh-text-lg);
+  margin: var(--mh-space-5) 0 0;
 }
 
 /* Artículo */
@@ -1346,6 +1423,10 @@
   border-color: var(--mh-brand) !important;
   box-shadow: 0 0 0 3px var(--mh-focus);
 }
+.mh-client .redactor-toolbar,
+.mh-client .redactor-toolbar a {
+  font-family: var(--mh-font);
+}
 .mh-client .redactor-box.redactor-styles-on .redactor-toolbar {
   display: flex;
   flex-wrap: wrap;
@@ -1394,18 +1475,118 @@
   font-weight: 600;
 }
 
-/* ==== Tablas de formulario (registro, perfil) ==== */
+/* ==== Formularios con tabla (registro, perfil, editar ticket) ==== */
 
-.mh-client table.padded {
-  width: 100%;
+/* Todas las tablas de formulario se muestran como bloques */
+.mh-client #content form > table,
+.mh-client #content form > table > tbody,
+.mh-client #content form > table > tbody > tr,
+.mh-client #content form > table > tbody > tr > td {
+  display: block;
+  width: auto !important;
+}
+/* Fuera de "Abrir ticket" (que usa una tarjeta por sección) y de la
+   respuesta, la tabla completa es una tarjeta */
+.mh-client #content form:not(#ticketForm):not(#reply) > table {
   max-width: 800px;
-  padding: var(--mh-space-4);
+  margin: var(--mh-space-4) 0 var(--mh-space-5);
+  padding: var(--mh-space-6);
+  box-sizing: border-box;
   background: var(--mh-surface);
   border: 1px solid var(--mh-border);
   border-radius: var(--mh-radius-lg);
+  box-shadow: var(--mh-shadow-sm);
 }
-.mh-client table.padded hr {
+.mh-client #content form > table > tbody > tr > td,
+.mh-client #content form > table > tbody > tr > th {
+  height: auto;
+  padding: 0;
+}
+.mh-client #content form:not(#ticketForm):not(#reply) > table > tbody > tr + tr > td:first-child {
+  padding-top: var(--mh-space-4);
+}
+/* Filas de etiqueta + campo: dos columnas en escritorio */
+.mh-client #content form > table > tbody > tr:has(> td + td) {
+  display: grid;
+  grid-template-columns: minmax(140px, 200px) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--mh-space-2) var(--mh-space-4);
+}
+.mh-client #content form > table > tbody > tr:has(> td + td) > td:first-child {
+  font-weight: 600;
+  color: var(--mh-text-2);
+}
+.mh-client #content form > table > tbody > tr:has(> td + td) > td + td {
+  padding-top: 0 !important;
+}
+.mh-client #content form > table > tbody > tr:has(> td + td) > td + td input:not([type="checkbox"]):not([type="radio"]),
+.mh-client #content form > table > tbody > tr:has(> td + td) > td + td select {
+  width: 100%;
+  max-width: 400px;
+}
+/* Títulos de sección (Preferencias, Credenciales...) en lugar de líneas */
+.mh-client #content form > table hr,
+.mh-client #content form > hr {
   display: none;
+}
+.mh-client #content form > table td > div > h3,
+.mh-client #content form > table .form-header h3 {
+  margin: var(--mh-space-4) 0 var(--mh-space-1);
+  padding-top: var(--mh-space-4);
+  border-top: 1px solid var(--mh-border-soft);
+  font-size: var(--mh-text-lg);
+}
+.mh-client #content form > table > tbody:first-child > tr:first-child .form-header h3,
+.mh-client #content form > table > tbody:first-child > tr:first-child td > div > h3 {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+.mh-client #content form > table input[type="text"],
+.mh-client #content form > table input[type="email"],
+.mh-client #content form > table input[type="password"],
+.mh-client #content form > table input:not([type]),
+.mh-client #content form > table select,
+.mh-client #content form > table textarea {
+  width: 100%;
+  max-width: 560px;
+}
+.mh-client #content form > table input[size="5"],
+.mh-client #content form > table input[name$="-ext"] {
+  width: 90px;
+}
+.mh-client #content form > table input[type="tel"] {
+  width: calc(100% - 150px);
+  max-width: 400px;
+}
+.mh-client #content form > table .error {
+  color: var(--mh-danger-text);
+  font-size: var(--mh-text-sm);
+  font-weight: 600;
+}
+/* Botones al pie del formulario */
+.mh-client #content form > p[style*="center"],
+.mh-client #content form > p.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--mh-space-3);
+  max-width: 800px;
+}
+.mh-client #content form#ticketForm > p.buttons {
+  max-width: none;
+}
+/* Abrir ticket con sesión iniciada: correo y nombre del cliente */
+.mh-client #ticketForm > table > tbody > tr:has(> td + td) {
+  padding-top: var(--mh-space-2);
+}
+.mh-client #ticketForm > table > tbody > tr:has(> td + td) > td {
+  padding-top: 0 !important;
+}
+
+/* Página "Page Not Found" y mensajes sueltos dentro del contenido */
+.mh-client #content > p:only-child {
+  font-size: var(--mh-text-lg);
 }
 
 /* ==== Adaptación a celular (@media max-width: 640px) ==== */
@@ -1464,17 +1645,22 @@
   .mh-client #reply {
     padding: var(--mh-space-4);
   }
-  /* Tablas de formulario: una columna */
-  .mh-client table.padded,
-  .mh-client table.padded > tbody,
-  .mh-client table.padded > tbody > tr,
-  .mh-client table.padded > tbody > tr > td {
-    display: block;
-    width: auto !important;
+  .mh-client #content > .sidebar {
+    float: none;
+    width: auto;
+    margin: 0 0 var(--mh-space-4);
   }
-  .mh-client table.padded input,
-  .mh-client table.padded select {
-    width: 100%;
+  /* Formularios: una columna */
+  .mh-client #content form > table > tbody > tr:has(> td + td) {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--mh-space-2);
+  }
+  .mh-client #content form:not(#ticketForm):not(#reply) > table {
+    padding: var(--mh-space-4);
+  }
+  .mh-client #content form > table > tbody > tr:has(> td + td) > td + td input:not([type="checkbox"]):not([type="radio"]),
+  .mh-client #content form > table > tbody > tr:has(> td + td) > td + td select {
+    max-width: none;
   }
   /* La lista de tickets se desplaza dentro de su caja */
   .mh-client #ticketTable {

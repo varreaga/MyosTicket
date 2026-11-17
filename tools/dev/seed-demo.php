@@ -158,6 +158,20 @@ if (!$existe && $tidCorreo) {
         out("Error ticket: ".print_r($errors, true));
     }
 }
+// ------------------------------------------- Página del sitio de ejemplo
+require_once INCLUDE_DIR . 'class.page.php';
+if (!Page::getIdByName('Horarios de atención')) {
+    $errors = array();
+    $pg = Page::create();
+    if ($pg->update(array('type' => 'other', 'name' => 'Horarios de atención',
+            'isactive' => 1, 'notes' => '', 'id' => null,
+            'body' => '<h1>Horarios de atención</h1><p>Atendemos de lunes a viernes de 9:00 a 18:00 y sábados de 9:00 a 13:00.</p><ul><li>Portal y correo: las 24 horas.</li><li>Teléfono: en horario de oficina.</li></ul>'),
+            $errors))
+        out("Página creada: Horarios de atención (pages/index.php/horarios-de-atencion)");
+    else
+        out("Error página: ".print_r($errors, true));
+}
+
 // ------------------------------------- Cuenta del cliente de ejemplo
 // Permite entrar al portal como cliente registrado para ver "Mis tickets".
 $demoUser = User::lookupByEmail('jorge.ramirez@example.com');
