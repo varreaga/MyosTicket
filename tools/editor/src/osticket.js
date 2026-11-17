@@ -191,6 +191,76 @@ function setupAutolock(ed, el) {
   ed.on('change', () => { try { lock.exclusive('acquire'); } catch (e) { /* sin bloqueo */ } });
 }
 
+// ------------------------------------- Traducciones (FAQ, páginas, etc.)
+// Si el campo tiene data-translate-tag y hay más de un idioma, un botón
+// permite editar el texto en cada idioma. Al enviar se vuelve al principal.
+function setupTranslatable(ed, el) {
+  const tag = el.dataset.translateTag;
+  if (!tag) return;
+  const json = (url) => fetch(url, { credentials: 'same-origin', headers: { 'X-Requested-With': 'XMLHttpRequest' } })
+    .then((r) => r.json());
+  let translations = null;
+  const loadTranslations = () => (translations = translations || json('ajax.php/i18n/translate/' + tag));
+  Promise.all([json('ajax.php/i18n/langs/all'), new Promise((res) => getConfigSafe().then(res))])
+    .then(([langs, config]) => {
+      if (!langs || Object.keys(langs).length < 2 || !config || !config.primary_language) return;
+      const primary = config.primary_language.replace('-', '_');
+      let current = primary;
+      const changed = {};
+      const status = () => {
+        const info = langs[current] || {};
+        ed.setStatus('lang', (info.name || current) + (current === primary ? '' : ' — ' + t('translation')));
+        if (current !== primary && changed[current]) showCommit();
+        else ed.setStatus('translate-commit', null);
+      };
+      const showCommit = () => {
+        ed.setStatus('translate-commit', t('save translation'));
+        const item = ed.statuses['translate-commit'];
+        item.classList.add('is-link');
+        item.setAttribute('role', 'button');
+        item.tabIndex = 0;
+        item.onclick = commit;
+        item.onkeydown = (e) => { if (e.key === 'Enter') commit(); };
+      };
+      const commit = () => {
+        const data = new URLSearchParams();
+        data.append(current, ed.getHTML());
+        data.append('__CSRFToken__', csrf());
+        ed.setStatus('translate-commit', t('saving...'));
+        fetch('ajax.php/i18n/translate/' + tag, {
+          method: 'POST', body: data, credentials: 'same-origin',
+          headers: { 'X-CSRFToken': csrf(), 'X-Requested-With': 'XMLHttpRequest' },
+        }).then(() => { changed[current] = false; loadTranslations().then((tr) => { tr[current] = ed.getHTML(); }); status(); });
+      };
+      const switchTo = (lang) => {
+        if (lang === current) return;
+        loadTranslations().then((tr) => {
+          tr[current] = ed.getHTML();
+          current = lang;
+          ed.setHTML(tr[lang] || '', true);
+          ed.editor.view.dom.setAttribute('lang', lang);
+          ed.editor.view.dom.setAttribute('dir', (langs[lang] || {}).direction || 'ltr');
+          status();
+        });
+      };
+      ed.on('change', () => { if (current !== primary) { changed[current] = true; status(); } });
+      const order = [primary].concat(Object.keys(langs).filter((l) => l !== primary));
+      ed.addToolbarButton('translate', {
+        title: t('Translate'), icon: 'translate',
+        menu: () => order.map((l) => ({
+          label: (langs[l] || {}).name || l, active: () => l === current, run: () => switchTo(l),
+        })),
+      }, 'end');
+      const form = el.form || el.closest('form');
+      if (form) form.addEventListener('submit', () => {
+        if (current === primary || !translations) return;
+        translations.then((tr) => tr[primary]).then((html) => { current = primary; ed.setHTML(html || '', true); });
+      }, true);
+      status();
+    })
+    .catch(() => {});
+}
+
 // ------------------------------------------- Creación según clases y datos
 export function createEditor(el, extra) {
   if (el.mhEditor) return el.mhEditor;
@@ -239,6 +309,7 @@ export function createEditor(el, extra) {
   ctx.draft = new DraftSupport(ed, el, opts);
   if (!$ || !$.clientPortal) setupSignature(ed, el);
   setupAutolock(ed, el);
+  setupTranslatable(ed, el);
   ed.on('error', (msg) => sysAlert(t('Unable to upload the image'), msg));
   if (!opts.imageUpload()) ed.toolbar.querySelector('.mh-editor-btn--image')
     && !ctx.draft.enabled && (ed.opts.imageUploadAllowed = false);

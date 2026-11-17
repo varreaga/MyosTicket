@@ -26,6 +26,7 @@ const P = {
   quote: '<path d="M7 7h4v4H7z"/><path d="M7 11c0 3-1 5-3 6"/><path d="M15 7h4v4h-4z"/><path d="M15 11c0 3-1 5-3 6"/>',
   ltr: '<path d="M9 4v10"/><path d="M13 4v10"/><path d="M15 4H8.5a3.5 3.5 0 0 0 0 7H9"/><path d="M4 19h16"/><path d="m17 16 3 3-3 3"/>',
   rtl: '<path d="M11 4v10"/><path d="M15 4v10"/><path d="M17 4h-6.5a3.5 3.5 0 0 0 0 7H11"/><path d="M4 19h16"/><path d="m7 16-3 3 3 3"/>',
+  translate: '<path d="M4 5h8"/><path d="M8 3v2"/><path d="M10 5c-1 4-3 7-6 9"/><path d="M6 9c1 2 3 4 6 5"/><path d="m13 21 4-10 4 10"/><path d="M14.5 17h5"/>',
   variable: '<path d="M8 4c-2 0-3 1-3 3v3l-2 2 2 2v3c0 2 1 3 3 3"/><path d="M16 4c2 0 3 1 3 3v3l2 2-2 2v3c0 2-1 3-3 3"/>',
 };
 

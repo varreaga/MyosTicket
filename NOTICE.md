@@ -23,6 +23,30 @@ Base
 Historial de cambios
 --------------------
 
+### 2026-11-17 — Fase 3: editor Tiptap en lugar de Redactor (varreaga)
+
+Se reemplazó el editor Redactor 3 (Imperavi, licencia comercial que no
+permite publicarlo en un proyecto público) por un editor propio construido
+con Tiptap (licencia MIT). Ver `tools/editor/THIRD-PARTY.md`.
+
+* Nuevo: código fuente en `tools/editor/` y archivos generados
+  `js/mh-editor.js` y `css/mh-editor.css`.
+* Eliminados: `js/redactor.min.js`, `js/redactor-plugins.js`,
+  `js/redactor-osticket.js` y `css/redactor.css`.
+* Modificados:
+  * `include/client/header.inc.php`, `include/staff/header.inc.php` e
+    `include/staff/footer.inc.php`: cargan el nuevo editor.
+  * `include/ajax.staff.php` y `scp/ajax.php`: búsqueda de agentes para
+    las menciones con "@".
+  * `setup/test/tests/class.test.php`: lista de exclusión.
+* Se conservan los borradores automáticos, la subida de imágenes, las
+  respuestas predefinidas, las variables, las firmas, el bloqueo de ticket,
+  las traducciones y la vista HTML. Se agregan el menú con "/", la
+  autocompletación de variables con "%{", las menciones con "@", la barra
+  flotante al seleccionar texto y los atajos de Markdown.
+* No se portó la anotación de imágenes (`imageannotate`). Las menciones
+  solo insertan el nombre; todavía no envían avisos.
+
 ### 2026-11-17 — Portal: todas las páginas con el tema (varreaga)
 
 Se completó el rediseño en las páginas del portal que aún mezclaban el

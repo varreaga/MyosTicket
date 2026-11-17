@@ -1,4 +1,5 @@
 <?php
+// Modificado el 2026-11-17 por varreaga (proyecto MiHelpdesk, fork de osTicket): ruta de búsqueda de agentes para menciones. Ver NOTICE.md.
 /*********************************************************************
     ajax.php
 
@@ -296,6 +297,7 @@ $dispatcher = patterns('',
         url_get('^/role/(?P<id>\d+)/perms', 'getRolePerms')
     )),
     url('^/staff', patterns('ajax.staff.php:StaffAjaxAPI',
+        url_get('^/mention$', 'mention'),
         url('^/(?P<id>\d+)/set-password$', 'setPassword'),
         url('^/(?P<id>\d+)/change-password$', 'changePassword'),
         url_get('^/(?P<id>\d+)/perms', 'getAgentPerms'),

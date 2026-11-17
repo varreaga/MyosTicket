@@ -192,10 +192,13 @@ export class MHEditor {
         handleDrop: (view, event, slice, moved) => !moved && self._handleFiles(event.dataTransfer && event.dataTransfer.files, event),
       },
       onUpdate: () => this._changed(),
-      onSelectionUpdate: () => this._refreshToolbar(),
+      onSelectionUpdate: () => { this._refreshToolbar(); this._bubble(); },
       onTransaction: () => this._refreshToolbar(),
       onFocus: () => this.box.classList.add('is-focused'),
-      onBlur: () => this.box.classList.remove('is-focused'),
+      onBlur: ({ event }) => {
+        this.box.classList.remove('is-focused');
+        if (!(event && event.relatedTarget && this.bubble && this.bubble.contains(event.relatedTarget))) this._hideBubble();
+      },
     });
   }
 
@@ -330,7 +333,7 @@ export class MHEditor {
     const url = typeof this.opts.imageUpload === 'function' ? this.opts.imageUpload() : this.opts.imageUpload;
     if (!url) return;
     const data = new FormData();
-    data.append('file', file);
+    data.append('file[]', file); // osTicket espera una lista de archivos
     Object.entries(this.opts.uploadData ? this.opts.uploadData() : {}).forEach(([k, v]) => data.append(k, v));
     this.setStatus('upload', t('Uploading...'));
     fetch(url, { method: 'POST', body: data, credentials: 'same-origin' })
@@ -561,6 +564,54 @@ export class MHEditor {
     document.removeEventListener('mousedown', this._outside);
     document.removeEventListener('keydown', this._escape);
     this.menu = null;
+  }
+
+  // ------------------------- Barra flotante al seleccionar texto
+  _bubble() {
+    const { state, view } = this.editor;
+    const sel = state.selection;
+    if (this.sourceMode || sel.empty || !this.editor.isFocused || sel.node
+        || !state.doc.textBetween(sel.from, sel.to).trim()) return this._hideBubble();
+    if (!this.bubble) {
+      const e = () => this.editor;
+      const items = [
+        ['bold', t('Bold'), () => e().chain().focus().toggleBold().run(), () => e().isActive('bold')],
+        ['italic', t('Italic'), () => e().chain().focus().toggleItalic().run(), () => e().isActive('italic')],
+        ['underline', t('Underline'), () => e().chain().focus().toggleUnderline().run(), () => e().isActive('underline')],
+        ['deleted', t('Strikethrough'), () => e().chain().focus().toggleStrike().run(), () => e().isActive('strike')],
+        ['link', t('Link'), () => this._buttonDefs().link.action(), () => e().isActive('link')],
+        ['html', t('Code'), () => e().chain().focus().toggleCode().run(), () => e().isActive('code')],
+      ];
+      this.bubble = h('div', { class: 'mh-editor-bubble', role: 'toolbar', 'aria-label': t('Format selection') });
+      this.bubbleItems = items.map(([ic, label, run, active]) => {
+        const b = h('button', { type: 'button', class: 'mh-editor-bubble-btn', title: label, 'aria-label': label, html: icon(ic, 16) });
+        b.addEventListener('mousedown', (ev) => ev.preventDefault());
+        b.addEventListener('click', () => { run(); this._bubble(); });
+        this.bubble.appendChild(b);
+        return { b, active };
+      });
+      this.box.appendChild(this.bubble);
+    }
+    this.bubbleItems.forEach(({ b, active }) => {
+      const on = active();
+      b.classList.toggle('is-active', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    const start = view.coordsAtPos(sel.from);
+    const end = view.coordsAtPos(sel.to);
+    const box = this.box.getBoundingClientRect();
+    this.bubble.hidden = false;
+    const w = this.bubble.offsetWidth;
+    let left = (start.left + end.left) / 2 - box.left - w / 2;
+    left = Math.max(4, Math.min(left, box.width - w - 4));
+    let top = start.top - box.top - this.bubble.offsetHeight - 8;
+    if (top < this.toolbar.offsetHeight) top = end.bottom - box.top + 8;
+    this.bubble.style.left = left + 'px';
+    this.bubble.style.top = top + 'px';
+  }
+
+  _hideBubble() {
+    if (this.bubble) this.bubble.hidden = true;
   }
 
   // --------------------------------------- Vista HTML y pantalla completa
