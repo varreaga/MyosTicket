@@ -22,6 +22,14 @@ Archivos
 | `css/client.css` | Portal de clientes | Estilos del portal |
 | `css/staff.css` | Panel de agentes y de administración | Estilos del panel |
 | `css/login.css` | Inicio de sesión de agentes | Estilos de la pantalla de acceso |
+| `js/client.js` | Portal de clientes | Menú en celular y selector de temas en dos niveles |
+
+El JavaScript es **mejora progresiva**: si no carga, el portal sigue
+funcionando con los controles originales (por ejemplo, el `<select>` de
+temas). Se carga con `app_theme_scripts()` y lleva `defer`.
+
+Además, `include/client/templates/mh-home.tmpl.php` es la página de inicio
+del tema; `index.php` la usa solo cuando el tema está activo.
 
 El `<body>` de cada página recibe las clases `mh-theme` y `mh-client`,
 `mh-staff` o `mh-login`. **Cada regla debe empezar con la clase de su área**
@@ -61,7 +69,20 @@ navegador las recarga solo cuando cambian.
 Cómo funciona
 -------------
 
-Las funciones `app_theme()`, `app_theme_styles()` y
+Las funciones `app_theme()`, `app_theme_styles()`, `app_theme_scripts()` y
 `app_theme_body_class()` están en `bootstrap.php`. Se llaman desde
 `include/client/header.inc.php`, `include/staff/header.inc.php` e
 `include/staff/login.header.php`.
+
+Datos de demostración
+---------------------
+
+Para ver el tema con contenido realista (temas con subtemas, artículos y un
+ticket con conversación), en una instalación de pruebas corre:
+
+```bash
+php tools/dev/seed-demo.php
+```
+
+Crea también un cliente con cuenta: `jorge.ramirez@example.com` /
+`Demo12345!`. No lo uses en producción.

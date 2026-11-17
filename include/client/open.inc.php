@@ -1,3 +1,4 @@
+<?php /* Modificado el 2026-11-16 por varreaga (proyecto MiHelpdesk, fork de osTicket): selector de temas en dos niveles. Ver NOTICE.md. */ ?>
 <?php
 if(!defined('OSTCLIENTINC')) die('Access Denied!');
 $info=array();
@@ -82,6 +83,31 @@ if ($info['topicId'] && ($topic=Topic::lookup($info['topicId']))) {
                 } ?>
             </select>
             <font class="error">*&nbsp;<?php echo $errors['topicId']; ?></font>
+<?php
+            // MiHelpdesk: datos para el selector de temas en dos niveles
+            // (assets/mihelpdesk/js/client.js). El <select> de arriba sigue
+            // siendo el campo real del formulario.
+            if (app_theme() && $topics) {
+                $mh_topics = array();
+                foreach ($topics as $id => $fullname) {
+                    if (!($T = Topic::lookup($id)))
+                        continue;
+                    $mh_topics[] = array('id' => (int) $id,
+                        'pid' => (int) $T->getPid(),
+                        'name' => $T->getLocalName() ?: $T->getName());
+                }
+                $mh_data = array('topics' => $mh_topics, 'labels' => array(
+                    'main' => __('Main topics'),
+                    'sub' => __('Topics in %s'),
+                    'general' => __('Other'),
+                    'count1' => __('%d topic'),
+                    'count' => __('%d topics'),
+                ));
+                echo '<div class="mh-topic-picker" data-select="topicId"></div>';
+                echo '<script type="application/json" id="mh-topics-data">'
+                    .json_encode($mh_data, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS
+                        | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE).'</script>';
+            } ?>
         </td>
     </tr>
     </tbody>

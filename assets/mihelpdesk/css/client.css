@@ -11,21 +11,1474 @@
  *    o tamaños escritos a mano.
  *  - No edites los CSS originales de osTicket: así se pueden seguir trayendo
  *    sus actualizaciones sin conflictos.
- *
- * Por ahora este archivo no cambia nada: el rediseño se implementará aquí
- * cuando se aprueben las maquetas.
  */
 
 /* ==== Estructura general (contenedor, encabezado, pie) ==== */
+
+.mh-client {
+  background: var(--mh-bg);
+  color: var(--mh-text);
+  font-size: var(--mh-text-base);
+  line-height: 1.5;
+}
+.mh-client,
+.mh-client input,
+.mh-client select,
+.mh-client textarea,
+.mh-client button {
+  font-family: var(--mh-font);
+  color: var(--mh-text);
+}
+.mh-client a,
+.mh-client .link {
+  color: var(--mh-link);
+}
+.mh-client a:hover,
+.mh-client .link:hover {
+  color: var(--mh-link-hover);
+}
+.mh-client h1,
+.mh-client h2,
+.mh-client h3 {
+  color: var(--mh-text);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.mh-client h1 { font-size: var(--mh-text-2xl); line-height: 1.25; margin: 0 0 var(--mh-space-3); }
+.mh-client h2 { font-size: var(--mh-text-xl); line-height: 1.3; }
+.mh-client h3 { font-size: var(--mh-text-lg); }
+.mh-client hr {
+  background: var(--mh-border);
+  border: 0;
+  height: 1px;
+}
+
+.mh-client #container {
+  width: auto;
+  max-width: none;
+  margin: 0;
+  background: transparent;
+  box-shadow: none;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Barra superior: logo, menú y acceso */
+.mh-client .mh-topbar {
+  background: var(--mh-surface);
+  border-bottom: 1px solid var(--mh-border);
+}
+.mh-client .mh-topbar-inner {
+  max-width: var(--mh-page-width);
+  margin: 0 auto;
+  padding: var(--mh-space-3) var(--mh-space-6);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--mh-space-3) var(--mh-space-6);
+}
+.mh-client .mh-topbar-inner > .clear,
+.mh-client .mh-topbar-inner > hr {
+  display: none;
+}
+.mh-client #header {
+  display: contents;
+}
+.mh-client #logo {
+  order: 1;
+  display: flex;
+  align-items: center;
+  height: auto;
+  float: none;
+}
+.mh-client #logo .valign-helper {
+  display: none;
+}
+.mh-client #header #logo img {
+  max-height: 44px;
+  max-width: 220px;
+}
+.mh-client #header .pull-right {
+  order: 4;
+  float: none;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--mh-space-3);
+  text-align: right;
+}
+.mh-client #header p {
+  width: auto;
+  padding: 0;
+  margin: 0;
+  font-size: var(--mh-text-sm);
+  color: var(--mh-text-muted);
+}
+.mh-client #header p:empty {
+  display: none;
+}
+
+/* Menú principal */
+.mh-client #nav {
+  order: 2;
+  flex: 1 1 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--mh-space-1);
+  height: auto;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  box-shadow: none;
+  white-space: normal;
+}
+.mh-client #nav li {
+  display: block;
+}
+.mh-client #nav li a,
+.mh-client.rtl #nav li a {
+  display: block;
+  height: auto;
+  line-height: 1.4;
+  margin: 0;
+  padding: var(--mh-space-2) var(--mh-space-3);
+  border-radius: var(--mh-radius);
+  background-image: none;
+  color: var(--mh-text-2);
+  font-weight: 500;
+  font-size: var(--mh-text-base);
+  text-decoration: none;
+}
+.mh-client #nav li a:hover {
+  background-color: var(--mh-surface-alt);
+  color: var(--mh-text);
+}
+.mh-client #nav li a.active {
+  background-color: var(--mh-brand-soft);
+  color: var(--mh-link);
+  font-weight: 600;
+}
+
+/* Botón de menú (solo en celular) */
+.mh-client .mh-menu-toggle {
+  display: none;
+  order: 3;
+  margin-left: auto;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--mh-border);
+  border-radius: var(--mh-radius);
+  background: var(--mh-surface);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+.mh-client .mh-menu-toggle span,
+.mh-client .mh-menu-toggle span::before,
+.mh-client .mh-menu-toggle span::after {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--mh-text);
+  border-radius: 2px;
+  position: relative;
+  content: "";
+}
+.mh-client .mh-menu-toggle span::before { position: absolute; top: -6px; }
+.mh-client .mh-menu-toggle span::after  { position: absolute; top: 6px; }
+
+/* Contenido */
+.mh-client #content {
+  flex: 1 0 auto;
+  width: 100%;
+  max-width: var(--mh-page-width);
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: var(--mh-space-8) var(--mh-space-6);
+  min-height: 0;
+}
+
+/* Pie */
+.mh-client #footer {
+  background: var(--mh-surface);
+  border-top: 1px solid var(--mh-border);
+  color: var(--mh-text-muted);
+  font-size: var(--mh-text-sm);
+  padding: var(--mh-space-4) var(--mh-space-6);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--mh-space-2);
+}
+.mh-client #footer p {
+  margin: 0;
+}
+.mh-client #footer a {
+  color: var(--mh-link);
+}
+
+/* ==== Botones, formularios y mensajes ==== */
+
+.mh-client .button,
+.mh-client .button:visited,
+.mh-client input[type="submit"],
+.mh-client input[type="button"],
+.mh-client input[type="reset"],
+.mh-client button[type="submit"],
+.mh-client .action-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--mh-space-2);
+  min-height: 44px;
+  padding: 0 var(--mh-space-4);
+  border: 1px solid var(--mh-border-strong);
+  border-radius: var(--mh-radius);
+  background: var(--mh-surface);
+  background-image: none;
+  box-shadow: none;
+  color: var(--mh-text);
+  font-size: var(--mh-text-base);
+  font-weight: 600;
+  line-height: 1.2;
+  text-shadow: none;
+  text-decoration: none;
+  cursor: pointer;
+  box-sizing: border-box;
+  vertical-align: middle;
+}
+.mh-client .button:hover,
+.mh-client input[type="button"]:hover,
+.mh-client input[type="reset"]:hover {
+  background: var(--mh-surface-alt);
+  color: var(--mh-text);
+}
+/* Acción principal: el botón de enviar y los botones azules/verdes */
+.mh-client input[type="submit"],
+.mh-client button[type="submit"],
+.mh-client #clientLogin div input[type="submit"],
+.mh-client #ticketForm div input[type="submit"],
+.mh-client .button.blue,
+.mh-client .button.green,
+.mh-client .blue.button,
+.mh-client .green.button {
+  background: var(--mh-brand);
+  border-color: var(--mh-brand);
+  color: var(--mh-on-brand);
+}
+.mh-client input[type="submit"]:hover,
+.mh-client button[type="submit"]:hover,
+.mh-client #clientLogin div input[type="submit"]:hover,
+.mh-client #ticketForm div input[type="submit"]:hover,
+.mh-client .blue.button:hover,
+.mh-client .green.button:hover {
+  background: var(--mh-brand-hover);
+  border-color: var(--mh-brand-hover);
+  color: var(--mh-on-brand);
+}
+
+.mh-client input[type="text"],
+.mh-client input[type="email"],
+.mh-client input[type="password"],
+.mh-client input[type="tel"],
+.mh-client input[type="number"],
+.mh-client input[type="search"],
+.mh-client input[type="url"],
+.mh-client input[type="date"],
+.mh-client input:not([type]),
+.mh-client select,
+.mh-client textarea {
+  box-sizing: border-box;
+  min-height: 44px;
+  max-width: 100%;
+  padding: var(--mh-space-2) var(--mh-space-3);
+  border: 1px solid var(--mh-border-strong);
+  border-radius: var(--mh-radius);
+  background: var(--mh-surface);
+  font-size: var(--mh-text-lg);
+  line-height: 1.4;
+}
+.mh-client textarea {
+  min-height: 120px;
+}
+.mh-client input:focus,
+.mh-client select:focus,
+.mh-client textarea:focus,
+.mh-client .button:focus-visible,
+.mh-client a:focus-visible,
+.mh-client button:focus-visible {
+  outline: 3px solid var(--mh-focus);
+  outline-offset: 1px;
+  border-color: var(--mh-brand);
+}
+
+.mh-client #msg_notice,
+.mh-client #msg_warning,
+.mh-client #msg_error,
+.mh-client #msg_info,
+.mh-client .warning-banner {
+  margin: 0 0 var(--mh-space-4);
+  padding: var(--mh-space-3) var(--mh-space-4);
+  border-radius: var(--mh-radius);
+  border: 1px solid;
+  background-image: none;
+  font-size: var(--mh-text-base);
+}
+.mh-client #msg_notice  { background: var(--mh-success-soft); border-color: var(--mh-success-border); color: var(--mh-success-text); }
+.mh-client #msg_warning,
+.mh-client .warning-banner { background: var(--mh-warning-soft); border-color: var(--mh-warning-border); color: var(--mh-warning-text); }
+.mh-client #msg_error   { background: var(--mh-danger-soft);  border-color: var(--mh-danger-border);  color: var(--mh-danger-text); }
+.mh-client #msg_info    { background: var(--mh-brand-soft);   border-color: var(--mh-info-border);    color: var(--mh-link); }
+
+/* Tarjeta genérica (la usan varias páginas) */
+.mh-client .mh-card {
+  background: var(--mh-surface);
+  border: 1px solid var(--mh-border);
+  border-radius: var(--mh-radius-lg);
+  box-shadow: var(--mh-shadow-sm);
+  padding: var(--mh-space-6);
+}
+
+/* osTicket pinta de rojo el texto del botón de enviar cuando el formulario
+   cambia; sobre el botón azul sería ilegible, así que se mantiene blanco. */
+.mh-client input[type="submit"][style*="color"] {
+  color: var(--mh-on-brand) !important;
+}
+
+/* Solo para lectores de pantalla */
+.mh-client .mh-sr,
+.mh-client #ticketForm select.mh-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* ==== Acceso: consultar ticket, iniciar sesión, registro ==== */
+
+.mh-client #clientLogin {
+  margin-top: var(--mh-space-4);
+  padding: var(--mh-space-6);
+  background: var(--mh-surface);
+  border: 1px solid var(--mh-border);
+  border-radius: var(--mh-radius-lg);
+  box-shadow: var(--mh-shadow-sm);
+}
+.mh-client #clientLogin > div[style*="table-row"] {
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: var(--mh-space-6) var(--mh-space-8);
+}
+.mh-client #clientLogin .login-box {
+  flex: 1 1 300px;
+  width: auto;
+  max-width: 420px;
+  display: block;
+  padding: 0;
+  border: 0;
+  box-shadow: none;
+  background: none;
+}
+.mh-client #clientLogin .instructions,
+.mh-client.rtl #clientLogin .instructions {
+  flex: 1 1 240px;
+  display: block;
+  padding: var(--mh-space-4);
+  border-radius: var(--mh-radius);
+  background: var(--mh-surface-alt);
+  color: var(--mh-text-2);
+  align-self: flex-start;
+}
+.mh-client #clientLogin label {
+  display: block;
+  font-weight: 600;
+  font-size: var(--mh-text-base);
+  margin-bottom: var(--mh-space-4);
+}
+.mh-client #clientLogin input[type="text"],
+.mh-client #clientLogin input[type="password"],
+.mh-client #clientLogin input[type="email"] {
+  display: block;
+  width: 100%;
+  margin: var(--mh-space-2) 0 0;
+  padding: var(--mh-space-2) var(--mh-space-3);
+  border-radius: var(--mh-radius);
+  font-weight: 400;
+}
+.mh-client #clientLogin strong {
+  font-size: var(--mh-text-sm);
+  color: var(--mh-danger-text);
+}
+.mh-client #clientLogin input[type="submit"] {
+  padding: 0 var(--mh-space-6);
+  border-radius: var(--mh-radius);
+}
 
 /* ==== Navegación ==== */
 
 /* ==== Página de inicio ==== */
 
+/* La portada ocupa todo el ancho: el bloque principal tiene fondo blanco */
+.mh-client .mh-home {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mh-space-8);
+}
+.mh-client .mh-hero {
+  margin: calc(-1 * var(--mh-space-8)) calc(50% - 50vw) 0;
+  padding: var(--mh-space-12) var(--mh-space-6) var(--mh-space-10);
+  background: var(--mh-surface);
+  border-bottom: 1px solid var(--mh-border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--mh-space-4);
+  text-align: center;
+}
+.mh-client .mh-hero-text {
+  max-width: 720px;
+}
+.mh-client .mh-hero-text h1 {
+  font-size: var(--mh-text-3xl);
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--mh-space-3);
+}
+.mh-client .mh-hero-text p {
+  margin: 0 0 var(--mh-space-2);
+  font-size: var(--mh-text-lg);
+  color: var(--mh-text-muted);
+}
+.mh-client .mh-search {
+  width: 100%;
+  max-width: 720px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--mh-space-2);
+  padding: 6px;
+  background: var(--mh-surface);
+  border: 1px solid var(--mh-border-strong);
+  border-radius: var(--mh-radius-lg);
+  box-shadow: var(--mh-shadow);
+}
+.mh-client .mh-search:focus-within {
+  border-color: var(--mh-brand);
+  box-shadow: 0 0 0 3px var(--mh-focus);
+}
+.mh-client .mh-search-icon {
+  flex: 0 0 auto;
+  margin-left: var(--mh-space-2);
+  color: var(--mh-text-muted);
+}
+.mh-client .mh-search input[type="search"] {
+  flex: 1 1 auto;
+  min-width: 0;
+  border: 0;
+  outline: none;
+  box-shadow: none;
+  background: transparent;
+}
+.mh-client .mh-search input[type="search"]:focus {
+  outline: none;
+}
+
+.mh-client .mh-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--mh-space-5);
+}
+.mh-client .mh-action {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--mh-space-4);
+  padding: var(--mh-space-6);
+  background: var(--mh-surface);
+  border: 1px solid var(--mh-border);
+  border-radius: var(--mh-radius-lg);
+  box-shadow: var(--mh-shadow-sm);
+  color: var(--mh-text);
+  text-decoration: none;
+  transition: border-color .15s, box-shadow .15s;
+}
+.mh-client .mh-action:hover {
+  border-color: var(--mh-brand);
+  box-shadow: var(--mh-shadow);
+  color: var(--mh-text);
+}
+.mh-client .mh-action-icon {
+  flex: 0 0 auto;
+  width: 52px;
+  height: 52px;
+  border-radius: var(--mh-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mh-client .mh-action-icon--brand   { background: var(--mh-brand-soft);   color: var(--mh-link); }
+.mh-client .mh-action-icon--success { background: var(--mh-success-soft); color: var(--mh-success-text); }
+.mh-client .mh-action-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mh-space-1);
+}
+.mh-client .mh-action-title {
+  font-size: var(--mh-text-xl);
+  font-weight: 700;
+}
+.mh-client .mh-action-desc {
+  color: var(--mh-text-muted);
+  font-size: var(--mh-text-base);
+}
+.mh-client .mh-action-cta {
+  margin-top: var(--mh-space-2);
+  color: var(--mh-link);
+  font-weight: 600;
+}
+
+.mh-client .mh-kb-home {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--mh-space-6);
+  align-items: start;
+}
+.mh-client .mh-kb-home h2 {
+  margin: 0 0 var(--mh-space-3);
+  font-size: var(--mh-text-lg);
+}
+.mh-client .mh-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: var(--mh-surface);
+  border: 1px solid var(--mh-border);
+  border-radius: var(--mh-radius-lg);
+  overflow: hidden;
+}
+.mh-client .mh-list li + li {
+  border-top: 1px solid var(--mh-border-soft);
+}
+.mh-client .mh-list a {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--mh-space-3);
+  padding: var(--mh-space-3) var(--mh-space-4);
+  color: var(--mh-text);
+  text-decoration: none;
+}
+.mh-client .mh-list a:hover {
+  background: var(--mh-surface-alt);
+  color: var(--mh-link);
+}
+.mh-client .mh-list a span {
+  color: var(--mh-text-muted);
+}
+.mh-client .mh-category-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--mh-space-3);
+}
+.mh-client .mh-category {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mh-space-1);
+  padding: var(--mh-space-4);
+  background: var(--mh-surface);
+  border: 1px solid var(--mh-border);
+  border-radius: var(--mh-radius-lg);
+  color: var(--mh-text);
+  text-decoration: none;
+}
+.mh-client .mh-category:hover {
+  border-color: var(--mh-brand);
+  color: var(--mh-text);
+}
+.mh-client .mh-category-name {
+  font-weight: 600;
+}
+.mh-client .mh-category-count {
+  font-size: var(--mh-text-sm);
+  color: var(--mh-text-muted);
+}
+
 /* ==== Formulario de nuevo ticket ==== */
+
+/* La tabla original se muestra como bloques: cada <tbody> es una tarjeta */
+.mh-client #ticketForm > table,
+.mh-client #ticketForm > table > tbody,
+.mh-client #ticketForm > table > tbody > tr,
+.mh-client #ticketForm > table > tbody > tr > td {
+  display: block;
+  width: auto;
+}
+.mh-client #ticketForm > table {
+  margin: 0;
+}
+.mh-client #ticketForm > table > tbody {
+  margin-bottom: var(--mh-space-5);
+  padding: var(--mh-space-6);
+  background: var(--mh-surface);
+  border: 1px solid var(--mh-border);
+  border-radius: var(--mh-radius-lg);
+  box-shadow: var(--mh-shadow-sm);
+}
+.mh-client #ticketForm > table > tbody:not(:has(tr)),
+.mh-client #ticketForm > table > tbody:last-child:not(:has(.captchaRow)) {
+  display: none;
+}
+.mh-client #ticketForm > table > tbody > tr > td {
+  padding: 0;
+}
+.mh-client #ticketForm > table > tbody > tr + tr > td {
+  padding-top: var(--mh-space-4);
+}
+.mh-client #ticketForm hr {
+  display: none;
+}
+.mh-client #ticketForm .form-header {
+  margin-bottom: var(--mh-space-2) !important;
+}
+.mh-client #ticketForm .form-header b,
+.mh-client #ticketForm .form-header h3 {
+  display: block;
+  margin: 0;
+  font-size: var(--mh-text-lg);
+  font-weight: 700;
+}
+.mh-client #ticketForm .form-header div:empty {
+  display: none;
+}
+.mh-client #ticketForm label {
+  display: block;
+  font-weight: 600;
+}
+.mh-client #ticketForm label em {
+  font-weight: 400;
+  font-style: normal;
+  color: var(--mh-text-muted) !important;
+  font-size: var(--mh-text-sm);
+}
+.mh-client #ticketForm label input[type="text"],
+.mh-client #ticketForm label input[type="email"],
+.mh-client #ticketForm label input[type="tel"],
+.mh-client #ticketForm label input:not([type]),
+.mh-client #ticketForm label select,
+.mh-client #ticketForm label textarea {
+  margin-top: var(--mh-space-2);
+  font-weight: 400;
+}
+.mh-client #ticketForm input[type="text"],
+.mh-client #ticketForm input[type="email"],
+.mh-client #ticketForm input:not([type]),
+.mh-client #ticketForm select,
+.mh-client #ticketForm textarea {
+  width: 100%;
+  max-width: 560px;
+}
+.mh-client #ticketForm input[type="tel"] {
+  width: calc(100% - 150px);
+  max-width: 400px;
+}
+.mh-client #ticketForm input[size="5"],
+.mh-client #ticketForm input[name$="-ext"] {
+  width: 90px;
+}
+.mh-client #ticketForm .error,
+.mh-client #ticketForm font.error {
+  color: var(--mh-danger-text);
+  font-size: var(--mh-text-sm);
+  font-weight: 600;
+}
+.mh-client #ticketForm .buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--mh-space-3);
+  text-align: right !important;
+}
+.mh-client #ticketForm > hr {
+  display: none;
+}
+
+/* Selector de temas en dos niveles (lo construye js/client.js) */
+.mh-client .mh-topic-picker:not(.is-ready),
+.mh-client .mh-topic-error.is-marker {
+  display: none;
+}
+.mh-client .mh-topic-error {
+  display: block;
+  margin-top: var(--mh-space-3);
+}
+.mh-client .mh-topic-label {
+  margin: var(--mh-space-2) 0;
+  font-size: var(--mh-text-xs);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--mh-text-muted);
+}
+.mh-client .mh-topic-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--mh-space-5);
+  align-items: flex-start;
+}
+.mh-client .mh-topic-roots {
+  flex: 1 1 280px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--mh-space-2);
+}
+.mh-client .mh-topic-columns:not(.has-subs) .mh-topic-roots {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+.mh-client .mh-topic-subs {
+  flex: 2 1 380px;
+  min-width: 0;
+  padding: var(--mh-space-4);
+  background: var(--mh-surface-alt);
+  border: 1px solid var(--mh-border);
+  border-radius: var(--mh-radius-lg);
+}
+.mh-client .mh-topic-subs .mh-topic-label {
+  margin-top: 0;
+}
+.mh-client .mh-topic-sublist {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: var(--mh-space-2);
+}
+.mh-client button.mh-topic-root,
+.mh-client button.mh-topic-sub {
+  display: flex;
+  align-items: center;
+  gap: var(--mh-space-3);
+  width: 100%;
+  min-height: 56px;
+  padding: var(--mh-space-3) var(--mh-space-4);
+  border: 2px solid var(--mh-border);
+  border-radius: var(--mh-radius);
+  background: var(--mh-surface);
+  color: var(--mh-text);
+  font-size: var(--mh-text-base);
+  text-align: left;
+  cursor: pointer;
+}
+.mh-client button.mh-topic-root:hover,
+.mh-client button.mh-topic-sub:hover {
+  border-color: var(--mh-border-strong);
+}
+.mh-client .mh-topic-root-name {
+  flex: 1 1 auto;
+  font-weight: 600;
+  font-size: var(--mh-text-lg);
+}
+.mh-client .mh-topic-root-meta {
+  color: var(--mh-text-muted);
+  font-size: var(--mh-text-sm);
+}
+.mh-client .mh-topic-chevron {
+  color: var(--mh-text-muted);
+  font-size: var(--mh-text-xl);
+  line-height: 1;
+}
+.mh-client button.mh-topic-root[aria-pressed="true"] {
+  border-color: var(--mh-brand);
+  background: var(--mh-brand-soft);
+}
+.mh-client button.mh-topic-root[aria-pressed="true"] .mh-topic-root-name {
+  color: var(--mh-link);
+}
+.mh-client button.mh-topic-sub {
+  min-height: 48px;
+  font-weight: 600;
+}
+.mh-client button.mh-topic-sub.is-general {
+  font-weight: 500;
+  color: var(--mh-text-2);
+}
+.mh-client .mh-topic-dot {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  box-sizing: border-box;
+  border: 2px solid var(--mh-border-strong);
+  border-radius: 50%;
+  background: var(--mh-surface);
+}
+.mh-client button.mh-topic-sub[aria-checked="true"] {
+  border-color: var(--mh-brand);
+  box-shadow: var(--mh-shadow);
+}
+.mh-client button.mh-topic-sub[aria-checked="true"] .mh-topic-dot {
+  border: 6px solid var(--mh-brand);
+}
 
 /* ==== Vista de ticket (conversación) ==== */
 
+/* Encabezado del ticket: asunto, número, acciones y datos */
+.mh-client #ticketInfo,
+.mh-client #ticketInfo > tbody,
+.mh-client #ticketInfo > tbody > tr,
+.mh-client #ticketInfo > tbody > tr > td {
+  display: block;
+  width: auto;
+}
+.mh-client #ticketInfo > tbody > tr:nth-child(2) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--mh-space-4);
+  margin-top: var(--mh-space-4);
+}
+.mh-client #ticketInfo h1 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--mh-space-2) var(--mh-space-3);
+  margin: 0;
+}
+.mh-client #ticketInfo h1 b {
+  font-weight: 700;
+}
+.mh-client #ticketInfo h1 small {
+  color: var(--mh-text-muted);
+  font-size: var(--mh-text-lg);
+  font-weight: 500;
+}
+.mh-client #ticketInfo h1 .refresh {
+  font-size: var(--mh-text-base);
+  color: var(--mh-text-muted);
+}
+.mh-client #ticketInfo h1 .pull-right {
+  float: none;
+  margin-left: auto;
+  display: flex;
+  gap: var(--mh-space-2);
+}
+.mh-client #ticketInfo .action-button {
+  min-height: 36px;
+  font-size: var(--mh-text-sm);
+}
+.mh-client .infoTable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--mh-surface);
+  border: 1px solid var(--mh-border);
+  border-radius: var(--mh-radius-lg);
+  padding: var(--mh-space-2) var(--mh-space-4) var(--mh-space-3);
+}
+.mh-client .infoTable .headline {
+  padding: var(--mh-space-2) 0;
+  font-size: var(--mh-text-xs);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--mh-text-muted);
+  border: 0;
+  background: none;
+}
+.mh-client .infoTable th,
+.mh-client .infoTable td {
+  padding: var(--mh-space-1) 0;
+  background: none;
+  border: 0;
+  text-align: left;
+  vertical-align: top;
+  font-size: var(--mh-text-base);
+}
+.mh-client .infoTable th {
+  width: 40%;
+  color: var(--mh-text-muted);
+  font-weight: 500;
+}
+
+/* Estado del ticket con color */
+.mh-client .mh-status {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: var(--mh-text-sm);
+  font-weight: 600;
+  background: var(--mh-brand-soft);
+  color: var(--mh-link);
+}
+.mh-client .mh-status--closed,
+.mh-client .mh-status--archived {
+  background: var(--mh-neutral-soft);
+  color: var(--mh-neutral-text);
+}
+
+/* Conversación: los mensajes del cliente a la derecha, las respuestas
+   del equipo a la izquierda */
+.mh-client #ticketThread {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mh-space-4);
+  margin: var(--mh-space-6) 0;
+  border: 0;
+}
+.mh-client #ticketThread::before,
+.mh-client .thread-entry::before,
+.mh-client .thread-entry::after,
+.mh-client .thread-entry .header::before,
+.mh-client .thread-entry .header::after {
+  display: none;
+}
+.mh-client .thread-entry,
+.mh-client .thread-entry.avatar,
+.mh-client .thread-entry.response.avatar {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr);
+  grid-template-areas: "avatar header" "avatar body";
+  column-gap: var(--mh-space-3);
+  max-width: min(80%, 640px);
+  margin: 0;
+}
+.mh-client .thread-entry > .avatar,
+.mh-client .thread-entry.response > .avatar {
+  grid-area: avatar;
+  float: none;
+  margin: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--mh-surface-alt);
+  align-self: start;
+}
+.mh-client .thread-entry > .avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.mh-client .thread-entry .header {
+  grid-area: header;
+  position: static;
+  padding: 0 0 var(--mh-space-1);
+  border: 0;
+  border-radius: 0;
+  background: none;
+  font-size: var(--mh-text-sm);
+  color: var(--mh-text-muted);
+}
+.mh-client .thread-entry .header b {
+  color: var(--mh-text);
+}
+.mh-client .thread-entry .header .title,
+.mh-client .thread-entry .header .pull-right:not(:has(*:not(:empty))) {
+  display: none;
+}
+.mh-client .thread-entry .thread-body {
+  grid-area: body;
+  padding: var(--mh-space-3) var(--mh-space-4);
+  border: 1px solid var(--mh-border);
+  border-radius: 4px var(--mh-radius-lg) var(--mh-radius-lg) var(--mh-radius-lg);
+  background: var(--mh-surface);
+  font-size: var(--mh-text-lg);
+  line-height: 1.5;
+}
+.mh-client .thread-entry .thread-body p:first-child { margin-top: 0; }
+.mh-client .thread-entry .thread-body p:last-child  { margin-bottom: 0; }
+
+/* Mensajes del cliente */
+.mh-client .thread-entry.message,
+.mh-client .thread-entry.message.avatar {
+  margin-left: auto;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "header" "body";
+}
+.mh-client .thread-entry.message > .avatar {
+  display: none;
+}
+.mh-client .thread-entry.message .header {
+  text-align: right;
+}
+.mh-client .thread-entry.message .thread-body {
+  background: var(--mh-brand);
+  border-color: var(--mh-brand);
+  color: var(--mh-on-brand);
+  border-radius: var(--mh-radius-lg) var(--mh-radius-lg) 4px var(--mh-radius-lg);
+}
+.mh-client .thread-entry.message .thread-body a {
+  color: var(--mh-on-brand);
+  text-decoration: underline;
+}
+.mh-client .thread-body .attachments {
+  margin: var(--mh-space-3) calc(-1 * var(--mh-space-4)) calc(-1 * var(--mh-space-3));
+  padding: var(--mh-space-2) var(--mh-space-4);
+  top: 0;
+  background: var(--mh-surface-alt);
+  border-top: 1px solid var(--mh-border);
+  border-radius: 0 0 var(--mh-radius-lg) var(--mh-radius-lg);
+  font-size: var(--mh-text-sm);
+}
+.mh-client .thread-entry.message .thread-body .attachments a {
+  color: var(--mh-link);
+  text-decoration: none;
+}
+
+/* Eventos (creado, asignado, cerrado...) */
+.mh-client .thread-event {
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+  color: var(--mh-text-muted);
+  font-size: var(--mh-text-sm);
+}
+.mh-client .thread-event .type-icon {
+  display: none;
+}
+.mh-client .thread-event .description {
+  width: auto;
+  margin: 0;
+  padding: 0;
+}
+
+/* Responder */
+.mh-client #reply {
+  margin-top: var(--mh-space-6);
+  padding: var(--mh-space-6);
+  background: var(--mh-surface);
+  border: 1px solid var(--mh-border);
+  border-radius: var(--mh-radius-lg);
+  box-shadow: var(--mh-shadow-sm);
+}
+.mh-client #reply h2 {
+  margin: 0 0 var(--mh-space-3);
+  padding: 0;
+  border: 0;
+  font-size: var(--mh-text-lg);
+}
+.mh-client #reply > table,
+.mh-client #reply > table > tbody,
+.mh-client #reply > table > tbody > tr,
+.mh-client #reply > table > tbody > tr > td {
+  display: block;
+  width: auto;
+}
+.mh-client #reply textarea {
+  width: 100% !important;
+}
+.mh-client #reply .buttons,
+.mh-client #reply p[style*="center"] {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--mh-space-3);
+}
+
 /* ==== Base de conocimiento ==== */
 
+/* Cuadrícula de dos columnas (contenido + barra lateral) */
+.mh-client .row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--mh-space-6);
+  align-items: flex-start;
+}
+.mh-client .span8 {
+  display: block;
+  flex: 999 1 560px;
+  min-width: 0;
+  width: auto;
+  margin: 0;
+}
+.mh-client .span4,
+.mh-client .span4.pull-right {
+  display: block;
+  flex: 1 1 260px;
+  width: auto;
+  margin: 0;
+  float: none;
+}
+.mh-client .sidebar,
+.mh-client.rtl .sidebar {
+  width: auto;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--mh-space-4);
+}
+.mh-client .sidebar .content {
+  padding: var(--mh-space-4);
+  background: var(--mh-surface);
+  border: 1px solid var(--mh-border);
+  border-radius: var(--mh-radius-lg);
+}
+.mh-client .sidebar .content:not(:has(a)) {
+  display: none;
+}
+.mh-client .sidebar section .header {
+  font-size: var(--mh-text-xs);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--mh-text-muted);
+  margin-bottom: var(--mh-space-2);
+}
+.mh-client .sidebar section div + div {
+  margin-top: var(--mh-space-2);
+}
+.mh-client .searchbar .search,
+.mh-client .search-form .search {
+  width: 100%;
+  margin: 0;
+  box-shadow: none;
+}
+.mh-client .sidebar select {
+  width: 100%;
+}
+
+/* Lista de categorías */
+.mh-client #kb {
+  list-style: none;
+  margin: var(--mh-space-4) 0 0;
+  padding: 0;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  gap: var(--mh-space-4);
+}
+.mh-client #kb > li {
+  padding: var(--mh-space-5) var(--mh-space-6);
+  background: var(--mh-surface);
+  border: 1px solid var(--mh-border);
+  border-radius: var(--mh-radius-lg);
+  box-shadow: var(--mh-shadow-sm);
+}
+.mh-client #kb > li > i {
+  display: none;
+}
+.mh-client #kb > li > div {
+  margin-left: 0 !important;
+}
+.mh-client #kb > li h4 {
+  margin: 0;
+}
+.mh-client #kb > li h4 a {
+  font-size: var(--mh-text-lg);
+  font-weight: 700;
+  text-decoration: none;
+}
+.mh-client #kb > li .faded {
+  margin: var(--mh-space-1) 0 var(--mh-space-3) !important;
+  color: var(--mh-text-muted);
+}
+.mh-client #kb .popular-faq {
+  padding: var(--mh-space-2) 0;
+  border-top: 1px solid var(--mh-border-soft);
+}
+.mh-client #kb .popular-faq i {
+  color: var(--mh-text-muted);
+  margin-right: var(--mh-space-2);
+}
+
+/* Artículo */
+.mh-client #breadcrumbs {
+  font-size: var(--mh-text-sm);
+  color: var(--mh-text-muted);
+  margin-bottom: var(--mh-space-4);
+}
+.mh-client .faq-content {
+  padding: var(--mh-space-6);
+  background: var(--mh-surface);
+  border: 1px solid var(--mh-border);
+  border-radius: var(--mh-radius-lg);
+  box-shadow: var(--mh-shadow-sm);
+}
+.mh-client .faq-content .article-title {
+  font-size: var(--mh-text-2xl);
+  font-weight: 700;
+  line-height: 1.25;
+}
+.mh-client .faq-content .faded {
+  color: var(--mh-text-muted);
+  font-size: var(--mh-text-sm);
+  margin-bottom: var(--mh-space-4);
+}
+.mh-client .faq-content .thread-body {
+  font-size: var(--mh-text-lg);
+  line-height: 1.6;
+  background: transparent;
+}
+
+/* ==== Mis tickets (lista) ==== */
+
+.mh-client .search.well {
+  padding: var(--mh-space-4);
+  background: var(--mh-surface);
+  border: 1px solid var(--mh-border);
+  border-radius: var(--mh-radius-lg);
+}
+.mh-client #ticketSearchForm {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--mh-space-3);
+}
+.mh-client #ticketSearchForm input[name="keywords"] {
+  flex: 1 1 220px;
+}
+.mh-client #ticketSearchForm .pull-right {
+  float: none;
+  margin-left: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--mh-space-2);
+  min-width: 0;
+  max-width: 100%;
+  color: var(--mh-text-muted);
+}
+.mh-client #ticketSearchForm .pull-right select {
+  min-width: 0;
+  max-width: 100%;
+}
+.mh-client .states a.state {
+  padding: 4px 12px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+}
+.mh-client .states a.state.active {
+  background: var(--mh-brand-soft);
+}
+.mh-client #ticketTable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--mh-surface);
+  border: 1px solid var(--mh-border);
+  border-radius: var(--mh-radius-lg);
+  overflow: hidden;
+}
+.mh-client #ticketTable caption {
+  caption-side: bottom;
+  padding: var(--mh-space-2) var(--mh-space-4);
+  text-align: left;
+  color: var(--mh-text-muted);
+  font-size: var(--mh-text-sm);
+  font-weight: 500;
+  background: var(--mh-surface-alt);
+  border-top: 1px solid var(--mh-border);
+}
+.mh-client #ticketTable td {
+  vertical-align: middle;
+}
+.mh-client #ticketTable td .truncate {
+  display: block;
+  max-height: none !important;
+}
+.mh-client h1:has(> a .refresh) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--mh-space-3);
+  margin: var(--mh-space-6) 0 var(--mh-space-4) !important;
+}
+.mh-client h1 > a:has(.refresh) {
+  color: var(--mh-text);
+  text-decoration: none;
+}
+.mh-client h1 .refresh {
+  font-size: var(--mh-text-base);
+  color: var(--mh-text-muted);
+}
+.mh-client h1 .states {
+  float: none;
+  margin-left: auto;
+  font-size: var(--mh-text-base);
+  font-weight: 500;
+}
+.mh-client h1 .states small {
+  font-size: var(--mh-text-base);
+}
+.mh-client #ticketTable th {
+  padding: var(--mh-space-3) var(--mh-space-4);
+  background: var(--mh-surface-alt);
+  border: 0;
+  border-bottom: 1px solid var(--mh-border);
+  text-align: left;
+  font-size: var(--mh-text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.mh-client #ticketTable th a {
+  color: var(--mh-text-muted);
+  text-decoration: none;
+}
+.mh-client #ticketTable td {
+  padding: var(--mh-space-3) var(--mh-space-4);
+  border: 0;
+  border-bottom: 1px solid var(--mh-border-soft);
+  background: none;
+}
+.mh-client #ticketTable tbody tr:last-child td {
+  border-bottom: 0;
+}
+.mh-client #ticketTable tbody tr:hover td {
+  background: var(--mh-surface-alt);
+}
+.mh-client #ticketTable .Icon {
+  padding-left: 0;
+  background-image: none;
+  font-weight: 600;
+}
+
+/* ==== Editor de texto (Redactor) y zona de adjuntos ==== */
+
+.mh-client .redactor-box.redactor-styles-on {
+  border: 1px solid var(--mh-border-strong);
+  border-radius: var(--mh-radius);
+  overflow: hidden;
+}
+.mh-client .redactor-focus.redactor-styles-on,
+.mh-client .redactor-focus:focus.redactor-styles-on {
+  border-color: var(--mh-brand) !important;
+  box-shadow: 0 0 0 3px var(--mh-focus);
+}
+.mh-client .redactor-box.redactor-styles-on .redactor-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  padding: 6px 8px;
+  background: var(--mh-surface-alt);
+  border-bottom: 1px solid var(--mh-border);
+  box-shadow: none;
+}
+.mh-client .redactor-toolbar a,
+.mh-client .redactor-toolbar a.re-button-icon {
+  min-width: 36px;
+  height: 36px;
+  margin: 0;
+  padding: 0 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 6px;
+  color: var(--mh-text-2);
+}
+.mh-client .redactor-toolbar a:hover,
+.mh-client .redactor-toolbar a.redactor-button-active {
+  background: var(--mh-brand-soft);
+  color: var(--mh-link);
+}
+.mh-client .redactor-styles {
+  padding: var(--mh-space-3) var(--mh-space-4);
+  font-family: var(--mh-font);
+  font-size: var(--mh-text-lg);
+  color: var(--mh-text);
+}
+.mh-client .filedrop .dropzone {
+  margin-top: var(--mh-space-2);
+  padding: var(--mh-space-3);
+  border: 2px dashed var(--mh-border-strong);
+  border-radius: var(--mh-radius);
+  background: var(--mh-surface-alt);
+  color: var(--mh-text-muted);
+  text-align: center;
+}
+.mh-client .filedrop .dropzone a {
+  color: var(--mh-link);
+  font-weight: 600;
+}
+
+/* ==== Tablas de formulario (registro, perfil) ==== */
+
+.mh-client table.padded {
+  width: 100%;
+  max-width: 800px;
+  padding: var(--mh-space-4);
+  background: var(--mh-surface);
+  border: 1px solid var(--mh-border);
+  border-radius: var(--mh-radius-lg);
+}
+.mh-client table.padded hr {
+  display: none;
+}
+
 /* ==== Adaptación a celular (@media max-width: 640px) ==== */
+
+@media (max-width: 760px) {
+  .mh-client .mh-topbar-inner {
+    padding: var(--mh-space-2) var(--mh-space-4);
+    gap: var(--mh-space-2);
+  }
+  .mh-client .mh-menu-toggle {
+    display: inline-flex;
+  }
+  .mh-client #header .pull-right {
+    order: 5;
+    width: 100%;
+    margin: 0;
+    justify-content: flex-start;
+    display: none;
+  }
+  .mh-client #nav {
+    order: 4;
+    width: 100%;
+    flex-direction: column;
+    display: none;
+    padding-bottom: var(--mh-space-2);
+  }
+  .mh-client.mh-nav-open #nav,
+  .mh-client.mh-nav-open #header .pull-right {
+    display: flex;
+  }
+  .mh-client #nav li a {
+    padding: var(--mh-space-3);
+    font-size: var(--mh-text-lg);
+  }
+  .mh-client #content {
+    padding: var(--mh-space-6) var(--mh-space-4);
+  }
+  .mh-client #footer {
+    padding: var(--mh-space-4);
+  }
+  .mh-client .mh-hero {
+    margin-top: calc(-1 * var(--mh-space-6));
+    padding: var(--mh-space-8) var(--mh-space-4);
+  }
+  .mh-client .mh-hero-text h1 {
+    font-size: var(--mh-text-2xl);
+  }
+  .mh-client .mh-action {
+    padding: var(--mh-space-4);
+  }
+  .mh-client .thread-entry,
+  .mh-client .thread-entry.avatar,
+  .mh-client .thread-entry.response.avatar {
+    max-width: 92%;
+  }
+  .mh-client #reply {
+    padding: var(--mh-space-4);
+  }
+  /* Tablas de formulario: una columna */
+  .mh-client table.padded,
+  .mh-client table.padded > tbody,
+  .mh-client table.padded > tbody > tr,
+  .mh-client table.padded > tbody > tr > td {
+    display: block;
+    width: auto !important;
+  }
+  .mh-client table.padded input,
+  .mh-client table.padded select {
+    width: 100%;
+  }
+  /* La lista de tickets se desplaza dentro de su caja */
+  .mh-client #ticketTable {
+    display: block;
+    overflow-x: auto;
+  }
+}
