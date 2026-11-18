@@ -122,6 +122,24 @@
   enhanceQueues();
   if (window.jQuery) jQuery(document).on('pjax:end', enhanceQueues);
 
+  // ------------------------------------- Conversación del ticket
+  // Iniciales en lugar de la imagen de avatar de cada mensaje.
+  function enhanceThread() {
+    document.querySelectorAll('.thread-entry:not(.mh-done)').forEach(function (entry) {
+      entry.classList.add('mh-done');
+      var header = entry.querySelector('.header');
+      var name = header && header.querySelector(':scope > b');
+      if (!name) return;
+      var av = document.createElement('span');
+      av.className = 'mh-entry-avatar';
+      av.setAttribute('aria-hidden', 'true');
+      av.textContent = initials(name.textContent.trim());
+      header.insertBefore(av, name);
+    });
+  }
+  enhanceThread();
+  if (window.jQuery) jQuery(document).on('pjax:end', enhanceThread);
+
   // ------------------------- Sugerencias en el buscador de la barra superior
   // Usa la misma búsqueda rápida de tickets que el buscador original.
   if (window.jQuery && jQuery.fn.typeahead) {
