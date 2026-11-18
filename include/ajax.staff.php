@@ -1,8 +1,47 @@
 <?php
+// Modificado el 2026-11-17 por varreaga (proyecto MiHelpdesk, fork de osTicket): búsqueda de agentes para menciones del editor. Ver NOTICE.md.
 
 require_once(INCLUDE_DIR . 'class.staff.php');
 
 class StaffAjaxAPI extends AjaxController {
+
+  /**
+   * MiHelpdesk — Ajax: GET /staff/mention?q=<texto>
+   *
+   * Agentes activos cuyo nombre coincide con el texto, para las menciones
+   * con "@" del editor. Solo para agentes con sesión iniciada.
+   *
+   * Returns: [{id, name, dept}, ...] (máximo 10)
+   */
+  function mention() {
+      global $thisstaff;
+
+      if (!$thisstaff)
+          Http::response(403, 'Agent login required');
+
+      $q = trim((string) ($_GET['q'] ?? ''));
+      $agents = Staff::objects()
+          ->filter(array('isactive' => 1))
+          ->select_related('dept')
+          ->order_by('firstname', 'lastname')
+          ->limit(10);
+      if ($q !== '')
+          $agents->filter(Q::any(array(
+              'firstname__startswith' => $q,
+              'lastname__startswith' => $q,
+              'username__startswith' => $q,
+          )));
+
+      $list = array();
+      foreach ($agents as $S)
+          $list[] = array(
+              'id' => $S->getId(),
+              'name' => (string) $S->getName(),
+              'dept' => $S->dept ? (string) $S->dept->getName() : '',
+          );
+
+      return $this->encode($list);
+  }
 
   /**
    * Ajax: GET /staff/<id>/set-password

@@ -1,4 +1,5 @@
 <?php
+// Modificado el 2026-11-17 por varreaga (proyecto MiHelpdesk, fork de osTicket): el editor empaquetado reemplaza a Redactor en la lista de exclusión. Ver NOTICE.md.
 
 class Test {
     var $fails = array();
@@ -17,7 +18,7 @@ class Test {
         '/include/mpdf/',
         '/include/laminas-mail/',
         '/js/select2.min.js',
-        '/js/redactor.min.js',
+        '/js/mh-editor.js',
         '/js/jquery-ui-1.13.2.custom.min.js',
         '/js/fabric.min.js',
 
