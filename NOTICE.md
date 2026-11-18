@@ -23,6 +23,15 @@ Base
 Historial de cambios
 --------------------
 
+### 2026-11-18 — Tareas y calendario (varreaga)
+
+* Nuevo: `assets/mihelpdesk/css/widgets.css`, estilos comunes del tema
+  (calendario para elegir fecha y hora), que se carga en todas las áreas.
+* Modificado: `bootstrap.php` (`app_theme_styles()` carga `widgets.css`).
+* El calendario muestra un solo mes y el ícono va dentro del campo; las
+  ventanas emergentes (por ejemplo, Nueva tarea) ya no quedan tapadas por la
+  barra de acciones; la vista de tarea sigue el diseño de la de ticket.
+
 ### 2026-11-18 — Tablero nuevo del panel de agentes (varreaga)
 
 Con el tema activo, el tablero del panel se reemplaza por uno nuevo. El

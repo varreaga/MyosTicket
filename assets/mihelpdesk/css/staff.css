@@ -432,7 +432,7 @@ body.mh-staff, html:has(body.mh-staff) {
 .mh-staff #content div:has(> div.sticky.bar:not(.stop)) {
   position: sticky;
   top: 0;
-  z-index: 50;
+  z-index: 8; /* debajo del fondo (9) y las ventanas emergentes (10) del original */
   background: var(--mh-bg);
 }
 .mh-staff div.sticky.bar:not(.stop),
@@ -471,12 +471,15 @@ body.mh-staff, html:has(body.mh-staff) {
 .mh-staff #content h2 .icon-refresh { font-size: .6em; vertical-align: middle; color: var(--mh-text-muted); }
 .mh-staff div.sticky.bar { padding: 8px 0; background: transparent; }
 .mh-staff div.sticky.bar .content { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
-.mh-staff div.sticky.bar .content > .pull-right { margin-left: auto; float: none; display: flex; flex-wrap: wrap; gap: 6px; }
+.mh-staff div.sticky.bar .content > .pull-right,
+.mh-staff div.sticky.bar .content > .flush-right { margin-left: auto; float: none; display: flex; flex-wrap: wrap; gap: 6px; }
 .mh-staff div.sticky.bar .content > .pull-left,
 .mh-staff div.sticky.bar .content > .flush-left { float: none; order: -1; }
 /* Botones flotados a la derecha en el original: se conserva su orden visual */
-.mh-staff div.sticky.bar .content > .pull-right:has(> .pull-right) { flex-direction: row-reverse; justify-content: flex-start; }
-.mh-staff div.sticky.bar .content > .pull-right > .pull-right { float: none; }
+.mh-staff div.sticky.bar .content > .pull-right:has(> .pull-right),
+.mh-staff div.sticky.bar .content > .flush-right:has(> .pull-right) { flex-direction: row-reverse; justify-content: flex-start; }
+.mh-staff div.sticky.bar .content > .pull-right > .pull-right,
+.mh-staff div.sticky.bar .content > .flush-right > * { float: none; }
 .mh-staff div.sticky.bar .scroll-up { display: none; }
 
 /* Botones de acción del original (.action-button y .button) */
@@ -652,6 +655,7 @@ body.mh-staff, html:has(body.mh-staff) {
   font-size: var(--mh-text-sm);
 }
 .mh-staff table.list .Icon { display: none; }
+.mh-staff table.list td[align], .mh-staff table.list th[align] { text-align: left; }
 .mh-staff table.list .faded-more { color: var(--mh-text-muted); }
 .mh-staff table.list input[type=checkbox] { width: 16px; height: 16px; accent-color: var(--mh-brand); }
 
@@ -792,13 +796,18 @@ body.mh-staff, html:has(body.mh-staff) {
 /* ==== Vista de ticket ==== */
 
 /* Encabezado: número del ticket pequeño, asunto como título */
-.mh-staff #content:has(.mh-ticket-layout) div.sticky.bar h2 {
+.mh-staff #content:has(.mh-ticket-layout) div.sticky.bar h2,
+.mh-staff #task_content div.sticky.bar h2 {
   font-size: var(--mh-text-sm);
   font-weight: 600;
   color: var(--mh-text-muted);
   letter-spacing: 0;
 }
-.mh-staff #content:has(.mh-ticket-layout) div.sticky.bar h2 a { color: var(--mh-text-muted) !important; }
+.mh-staff #content:has(.mh-ticket-layout) div.sticky.bar h2 a,
+.mh-staff #task_content div.sticky.bar h2 a { color: var(--mh-text-muted) !important; }
+/* En la vista de tarea el número va arriba del título, como en los tickets */
+.mh-staff #task_content .tixTitle { margin-top: 4px; }
+.mh-staff #task_content > table.ticket_info { margin-bottom: 20px; }
 .mh-staff .tixTitle {
   margin: 0 0 20px;
   padding: 0;
@@ -1029,6 +1038,7 @@ body.mh-staff, html:has(body.mh-staff) {
 
 /* ==== Cuadro de respuesta ==== */
 
+.mh-staff #task_response_options,
 .mh-staff #response_options {
   margin-top: 8px;
   padding: 0;
@@ -1038,12 +1048,19 @@ body.mh-staff, html:has(body.mh-staff) {
   box-shadow: var(--mh-shadow);
   position: static !important;
 }
+.mh-staff #task_response_options ul.tabs,
 .mh-staff #response_options ul.tabs { margin: 0; padding: 0 12px; }
+.mh-staff #task_response_options > form,
 .mh-staff #response_options > form { padding: 16px 18px 18px; }
+.mh-staff #task_response_options form > table,
 .mh-staff #response_options form > table { width: 100%; border-collapse: collapse; }
+.mh-staff #task_response_options form > table td,
 .mh-staff #response_options form > table td { padding: 6px 4px; vertical-align: middle; }
+.mh-staff #task_response_options form > table td[width="120"],
 .mh-staff #response_options form > table td[width="120"] { width: 130px; color: var(--mh-text-2); font-size: var(--mh-text-sm); }
 .mh-staff #response_options form > table td label strong { font-weight: 600; }
+.mh-staff #task_response_options p[style*="text-align:center"],
+.mh-staff #task_response_options p[style*="text-align: center"],
 .mh-staff #response_options p[style*="text-align:center"],
 .mh-staff #response_options p[style*="text-align: center"] {
   display: flex;
@@ -1051,6 +1068,7 @@ body.mh-staff, html:has(body.mh-staff) {
   gap: 8px;
   margin: 16px 0 0;
 }
+.mh-staff #task_response_options .mh-editor,
 .mh-staff #response_options .mh-editor { margin-top: 4px; }
 .mh-staff #response_options form#note { background: #fffdf5; }
 .mh-staff .filedrop .dropzone {

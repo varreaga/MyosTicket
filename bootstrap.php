@@ -405,13 +405,14 @@ function app_theme() {
 
 /**
  * Imprime los <link> del tema para un area: 'client', 'staff' o 'login'.
- * Carga tokens.css (variables de diseno) y luego el CSS del area.
+ * Carga tokens.css (variables de diseno), widgets.css (componentes comunes,
+ * como el calendario) y luego el CSS del area.
  */
 function app_theme_styles($area) {
     if (!($theme = app_theme()))
         return;
     $base = 'assets/'.$theme.'/css/';
-    foreach (array('tokens', $area) as $name) {
+    foreach (array('tokens', 'widgets', $area) as $name) {
         $file = $base.$name.'.css';
         if (!is_file(ROOT_DIR.$file))
             continue;

@@ -1,0 +1,208 @@
+/*
+ * MiHelpdesk — Tema visual: componentes comunes
+ * Parte del tema visual de MiHelpdesk, fork de osTicket bajo GPLv2.
+ *
+ * Se carga en todas las áreas (portal, panel e inicio de sesión) después de
+ * tokens.css. Contiene el estilo de componentes de terceros que aparecen en
+ * varias áreas, como el calendario para elegir fecha y hora (jQuery UI
+ * Datepicker y su complemento de hora).
+ *
+ * El calendario se agrega al final de <body>, por eso las reglas empiezan
+ * con .mh-theme (la clase que el tema pone en <body> en todas las áreas).
+ */
+
+/* ==== Calendario (jQuery UI Datepicker) ==== */
+
+.mh-theme #ui-datepicker-div,
+.mh-theme .ui-datepicker {
+  box-sizing: border-box;
+  width: 300px;
+  max-width: calc(100vw - 16px);
+  padding: 12px;
+  border: 1px solid var(--mh-border) !important;
+  border-radius: var(--mh-radius-lg);
+  background: var(--mh-surface) !important;
+  box-shadow: 0 16px 40px rgba(16, 24, 40, .18);
+  color: var(--mh-text);
+  font-family: var(--mh-font);
+  font-size: var(--mh-text-base);
+  z-index: 3000 !important;
+}
+.mh-theme .ui-datepicker.ui-datepicker-multi { width: 300px !important; }
+.mh-theme .ui-datepicker-multi .ui-datepicker-group { float: none; width: auto; }
+.mh-theme .ui-datepicker-multi .ui-datepicker-group + .ui-datepicker-group { display: none; }
+.mh-theme .ui-datepicker-row-break { display: none; }
+
+/* Encabezado: mes y año con flechas */
+.mh-theme .ui-datepicker .ui-datepicker-header {
+  position: relative;
+  padding: 2px 0 10px;
+  border: 0 !important;
+  border-radius: 0;
+  background: none !important;
+  color: var(--mh-text) !important;
+}
+.mh-theme .ui-datepicker .ui-datepicker-title {
+  margin: 0 40px;
+  line-height: 32px;
+  font-size: var(--mh-text-base);
+  font-weight: 700;
+}
+.mh-theme .ui-datepicker .ui-datepicker-prev,
+.mh-theme .ui-datepicker .ui-datepicker-next {
+  top: 2px !important;
+  width: 32px;
+  height: 32px;
+  border: 0 !important;
+  border-radius: var(--mh-radius);
+  background: none !important;
+  cursor: pointer;
+}
+.mh-theme .ui-datepicker .ui-datepicker-prev { left: 0 !important; }
+.mh-theme .ui-datepicker .ui-datepicker-next { right: 0 !important; }
+.mh-theme .ui-datepicker .ui-datepicker-prev:hover,
+.mh-theme .ui-datepicker .ui-datepicker-next:hover { background: var(--mh-surface-alt) !important; }
+.mh-theme .ui-datepicker .ui-datepicker-prev.ui-state-disabled,
+.mh-theme .ui-datepicker .ui-datepicker-next.ui-state-disabled { opacity: .3; }
+.mh-theme .ui-datepicker .ui-datepicker-prev span,
+.mh-theme .ui-datepicker .ui-datepicker-next span {
+  width: 18px;
+  height: 18px;
+  margin: -9px 0 0 -9px;
+  background: var(--mh-text-2) !important;
+  -webkit-mask: center / 18px 18px no-repeat;
+          mask: center / 18px 18px no-repeat;
+}
+.mh-theme .ui-datepicker .ui-datepicker-prev span {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m15 18-6-6 6-6'/%3E%3C/svg%3E");
+          mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m15 18-6-6 6-6'/%3E%3C/svg%3E");
+}
+.mh-theme .ui-datepicker .ui-datepicker-next span {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m9 18 6-6-6-6'/%3E%3C/svg%3E");
+          mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m9 18 6-6-6-6'/%3E%3C/svg%3E");
+}
+
+/* Días */
+.mh-theme .ui-datepicker table { width: 100% !important; margin: 0; font-size: var(--mh-text-sm); border-collapse: separate; border-spacing: 2px; }
+.mh-theme .ui-datepicker th {
+  padding: 6px 0;
+  color: var(--mh-text-muted);
+  font-size: var(--mh-text-xs);
+  font-weight: 600;
+}
+.mh-theme .ui-datepicker td { padding: 0; }
+.mh-theme .ui-datepicker td a,
+.mh-theme .ui-datepicker td span {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  height: 34px;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: var(--mh-radius);
+  background: none !important;
+  color: var(--mh-text) !important;
+  font-weight: 500 !important;
+  text-align: center !important;
+}
+.mh-theme .ui-datepicker td a:hover { background: var(--mh-surface-alt) !important; }
+.mh-theme .ui-datepicker td .ui-state-highlight {
+  box-shadow: inset 0 0 0 1px var(--mh-brand);
+  color: var(--mh-link) !important;
+  font-weight: 700 !important;
+}
+.mh-theme .ui-datepicker td .ui-state-active,
+.mh-theme .ui-datepicker td .ui-state-active:hover {
+  background: var(--mh-brand) !important;
+  box-shadow: none;
+  color: var(--mh-on-brand) !important;
+  font-weight: 700 !important;
+}
+.mh-theme .ui-datepicker td.ui-state-disabled { opacity: 1; }
+.mh-theme .ui-datepicker td.ui-state-disabled span { color: var(--mh-border-strong) !important; }
+.mh-theme .ui-datepicker td.ui-datepicker-other-month { visibility: hidden; }
+
+/* Hora (jQuery UI Timepicker Addon) */
+.mh-theme .ui-timepicker-div {
+  margin-top: 8px;
+  padding-top: 10px;
+  border-top: 1px solid var(--mh-border-soft);
+}
+.mh-theme .ui-timepicker-div dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 8px 12px;
+  margin: 0;
+  text-align: left;
+}
+.mh-theme .ui-timepicker-div dl dt { margin: 0; color: var(--mh-text-2); font-size: var(--mh-text-sm); font-weight: 600; height: auto; float: none; clear: none; padding: 0; }
+.mh-theme .ui-timepicker-div dl dd { margin: 0; float: none; padding: 0; }
+.mh-theme .ui-timepicker-div dl dt.ui_tpicker_time_label,
+.mh-theme .ui-timepicker-div dl dd.ui_tpicker_time { font-weight: 700; color: var(--mh-text); }
+.mh-theme .ui-timepicker-div dl dd.ui_tpicker_time input {
+  width: 100%;
+  min-height: 34px;
+  padding: 4px 8px;
+  border: 1px solid var(--mh-border-strong);
+  border-radius: var(--mh-radius);
+  background: var(--mh-surface);
+  font: inherit;
+  box-sizing: border-box;
+}
+.mh-theme .ui-timepicker-div select {
+  min-height: 34px;
+  padding: 4px 8px;
+  border: 1px solid var(--mh-border-strong);
+  border-radius: var(--mh-radius);
+  background: var(--mh-surface);
+  color: var(--mh-text);
+  font: inherit;
+  font-size: var(--mh-text-sm);
+}
+
+/* Botones "Ahora/Hoy" y "Listo" */
+.mh-theme .ui-datepicker .ui-datepicker-buttonpane {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 12px 0 0;
+  padding: 10px 0 0;
+  border-top: 1px solid var(--mh-border-soft) !important;
+  background: none !important;
+}
+.mh-theme .ui-datepicker .ui-datepicker-buttonpane button {
+  float: none;
+  margin: 0;
+  min-height: 36px;
+  padding: 0 14px;
+  border: 1px solid var(--mh-border-strong) !important;
+  border-radius: var(--mh-radius);
+  background: var(--mh-surface) !important;
+  color: var(--mh-text-2) !important;
+  font: inherit;
+  font-size: var(--mh-text-sm);
+  font-weight: 500 !important;
+  opacity: 1 !important;
+  cursor: pointer;
+}
+.mh-theme .ui-datepicker .ui-datepicker-buttonpane button.ui-priority-primary {
+  border-color: var(--mh-brand) !important;
+  background: var(--mh-brand) !important;
+  color: var(--mh-on-brand) !important;
+  font-weight: 600 !important;
+}
+
+/* Campo de fecha: ícono de calendario dentro del campo, en lugar de la
+   imagen del original (que se oculta; el campo abre el calendario al
+   enfocarlo). */
+.mh-theme img.ui-datepicker-trigger,
+.mh-theme input.hasDatepicker ~ img[src*="cal.png"] { display: none; }
+.mh-theme input.hasDatepicker {
+  padding-right: 36px !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235f6b7a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='17' rx='2'/%3E%3Cpath d='M16 2v4M8 2v4M3 10h18'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 10px center !important;
+  background-size: 18px 18px !important;
+  cursor: pointer;
+}
