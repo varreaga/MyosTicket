@@ -1,4 +1,5 @@
 <?php
+// Modificado el 2026-11-18 por varreaga (proyecto MiHelpdesk, fork de osTicket): contenedores para la vista en dos columnas del tema. Ver NOTICE.md.
 //Note that ticket obj is initiated in tickets.php.
 if(!defined('OSTSCPINC') || !$thisstaff || !is_object($ticket) || !$ticket->getId()) die('Invalid path');
 
@@ -313,6 +314,7 @@ if($ticket->isOverdue())
             : Format::htmlchars($ticket->getSubject()); ?>
     </h3>
 </div>
+<?php if (app_theme()) echo '<div class="mh-ticket-layout"><aside class="mh-ticket-side" aria-label="'.__('Ticket Details').'">'; ?>
 <table class="ticket_info" cellspacing="0" cellpadding="0" width="940" border="0">
     <tr>
         <td width="50%">
@@ -730,6 +732,7 @@ foreach (DynamicFormEntry::forTicket($ticket->getId()) as $form) {
     </tbody>
     </table>
 <?php } ?>
+<?php if (app_theme()) echo '</aside><div class="mh-ticket-main">'; ?>
 <div class="clear"></div>
 
 <?php
@@ -1223,6 +1226,7 @@ if ($errors['err'] && isset($_POST['a'])) {
  </div>
  </div>
 </div>
+<?php if (app_theme()) echo "</div></div><!-- /mh-ticket-main /mh-ticket-layout -->"; ?>
 <div style="display:none;" class="dialog" id="print-options">
     <h3><?php echo __('Ticket Print Options');?></h3>
     <a class="close" href=""><i class="icon-remove-circle"></i></a>
