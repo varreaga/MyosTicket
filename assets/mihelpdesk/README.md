@@ -19,6 +19,7 @@ Archivos
 | Archivo | Se carga en | Para qué sirve |
 |---|---|---|
 | `css/tokens.css` | Todas las áreas | Variables de diseño: colores, tipografía, espaciado, radios y sombras |
+| `css/widgets.css` | Todas las áreas | Componentes comunes, como el calendario para elegir fecha y hora |
 | `css/client.css` | Portal de clientes | Estilos del portal |
 | `css/staff.css` | Panel de agentes y de administración | Estilos del panel |
 | `css/login.css` | Inicio de sesión de agentes | Estilos de la pantalla de acceso |
