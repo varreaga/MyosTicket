@@ -1,4 +1,4 @@
-<?php /* Modificado el 2026-11-16 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca. Ver NOTICE.md. */ ?>
+<?php /* Modificado el 2026-11-16, 2026-11-17 y 2026-11-18 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca, editor y script del tema. Ver NOTICE.md. */ ?>
 </div>
 </div>
 <?php if (!isset($_SERVER['HTTP_X_PJAX'])) { ?>
@@ -71,6 +71,7 @@ if ($thisstaff
     <script type="text/javascript" src="ajax.php/i18n/<?php
         echo $thisstaff->getLanguage(); ?>/js"></script>
 <?php } ?>
+<?php app_theme_scripts('staff'); ?>
 </body>
 </html>
 <?php } # endif X_PJAX ?>

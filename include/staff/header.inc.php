@@ -1,5 +1,5 @@
 <?php
-// Modificado el 2026-11-16 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca. Ver NOTICE.md.
+// Modificado el 2026-11-16 y el 2026-11-18 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca y barra superior del tema. Ver NOTICE.md.
 header("Content-Type: text/html; charset=UTF-8");
 header("Content-Security-Policy: frame-ancestors ".$cfg->getAllowIframes()."; script-src 'self' 'unsafe-inline' 'unsafe-eval'; object-src 'none'");
 
@@ -28,6 +28,9 @@ if (osTicket::is_ie())
     <meta http-equiv="pragma" content="no-cache" />
     <meta http-equiv="x-pjax-version" content="<?php echo GIT_VERSION; ?>">
     <title><?php echo Format::htmlchars($title); ?></title>
+<?php if (app_theme()) { ?>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<?php } ?>
     <!--[if IE]>
     <style type="text/css">
         .tip_shadow { display:block !important; }
@@ -72,6 +75,47 @@ if (osTicket::is_ie())
     elseif($ost->getNotice())
         echo sprintf('<div id="notice_bar">%s</div>', $ost->getNotice());
     ?>
+<?php if (app_theme()) {
+    // MiHelpdesk: barra superior del tema (buscador, nuevo ticket y menú del usuario)
+    $mh_initials = mb_strtoupper(mb_substr($thisstaff->getFirstName(), 0, 1)
+        .mb_substr($thisstaff->getLastName(), 0, 1));
+    $mh_can_create = $thisstaff->hasPerm(Ticket::PERM_CREATE, false); ?>
+    <div id="header" class="mh-header">
+        <a href="<?php echo ROOT_PATH ?>scp/index.php" class="no-pjax" id="logo">
+            <img src="<?php echo ROOT_PATH ?>scp/logo.php?<?php echo strtotime($cfg->lastModified('staff_logo_id')); ?>" alt="<?php echo Format::htmlchars(APP_NAME); ?>"/>
+        </a>
+        <div class="mh-topbar no-pjax">
+            <button type="button" class="mh-nav-toggle" aria-controls="nav" aria-expanded="false"
+                aria-label="<?php echo __('Menu'); ?>"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+            <form class="mh-top-search" role="search" action="<?php echo ROOT_PATH ?>scp/tickets.php" method="get">
+                <input type="hidden" name="a" value="search">
+                <input type="hidden" name="search-type" value="">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                <label for="mh-top-q" class="mh-sr"><?php echo __('Search tickets'); ?></label>
+                <input id="mh-top-q" type="search" name="query" autocomplete="off"
+                    placeholder="<?php echo __('Search by number, subject or user'); ?>">
+            </form>
+<?php if ($mh_can_create) { ?>
+            <a class="mh-top-new" href="<?php echo ROOT_PATH ?>scp/tickets.php?a=open"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span><?php echo __('New Ticket'); ?></span></a>
+<?php } ?>
+            <div class="mh-user">
+                <button type="button" class="mh-user-btn" aria-haspopup="true" aria-expanded="false"
+                    aria-controls="mh-user-menu" title="<?php echo Format::htmlchars($thisstaff->getName()); ?>"><?php echo Format::htmlchars($mh_initials); ?></button>
+                <div class="mh-user-menu" id="mh-user-menu" hidden>
+                    <div class="mh-user-name"><strong><?php echo Format::htmlchars($thisstaff->getName()); ?></strong>
+                        <span><?php echo Format::htmlchars($thisstaff->getEmail()); ?></span></div>
+<?php if ($thisstaff->isAdmin() && !defined('ADMINPAGE')) { ?>
+                    <a href="<?php echo ROOT_PATH ?>scp/admin.php"><?php echo __('Admin Panel'); ?></a>
+<?php } elseif (defined('ADMINPAGE')) { ?>
+                    <a href="<?php echo ROOT_PATH ?>scp/index.php"><?php echo __('Agent Panel'); ?></a>
+<?php } ?>
+                    <a href="<?php echo ROOT_PATH ?>scp/profile.php"><?php echo __('Profile'); ?></a>
+                    <a href="<?php echo ROOT_PATH ?>scp/logout.php?auth=<?php echo $ost->getLinkToken(); ?>"><?php echo __('Log Out'); ?></a>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php } else { ?>
     <div id="header">
         <p id="info" class="pull-right no-pjax"><?php echo sprintf(__('Welcome, %s.'), '<strong>'.$thisstaff->getFirstName().'</strong>'); ?>
            <?php
@@ -88,6 +132,7 @@ if (osTicket::is_ie())
             <img src="<?php echo ROOT_PATH ?>scp/logo.php?<?php echo strtotime($cfg->lastModified('staff_logo_id')); ?>" alt="<?php echo Format::htmlchars(APP_NAME); ?> &mdash; <?php echo __('Customer Support System'); ?>"/>
         </a>
     </div>
+<?php } # app_theme ?>
     <div id="pjax-container" class="<?php if ($_POST) echo 'no-pjax'; ?>">
 <?php } else {
     header('X-PJAX-Version: ' . GIT_VERSION);
