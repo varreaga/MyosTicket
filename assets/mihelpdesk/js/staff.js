@@ -163,4 +163,20 @@
       property: 'matches',
     });
   }
+  // ------------------------------------------------ Calendario de fechas
+  // Un solo mes a la vista (el original pide dos). Se ajusta la opción al
+  // crear cada calendario; el estilo está en widgets.css.
+  if (window.jQuery && jQuery.fn.datepicker && !jQuery.fn.datepicker.mhPatched) {
+    var origDatepicker = jQuery.fn.datepicker;
+    var patched = function (options) {
+      var args = Array.prototype.slice.call(arguments);
+      if (options && typeof options === 'object')
+        args[0] = jQuery.extend({}, options, { numberOfMonths: 1 });
+      return origDatepicker.apply(this, args);
+    };
+    for (var key in origDatepicker)
+      if (Object.prototype.hasOwnProperty.call(origDatepicker, key)) patched[key] = origDatepicker[key];
+    patched.mhPatched = true;
+    jQuery.fn.datepicker = patched;
+  }
 })();

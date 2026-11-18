@@ -273,6 +273,11 @@
   cursor: pointer;
 }
 
+/* Los elementos ocultos del editor siguen ocultos aunque otra hoja de
+   estilos les dé display (p. ej. los textarea dentro de las ventanas
+   emergentes del panel). */
+.mh-editor [hidden] { display: none !important; }
+
 /* Barra flotante al seleccionar texto */
 .mh-editor-bubble {
   position: absolute;
