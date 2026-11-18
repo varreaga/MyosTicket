@@ -32,6 +32,10 @@ temas). Se carga con `app_theme_scripts()` y lleva `defer`.
 Además, `include/client/templates/mh-home.tmpl.php` es la página de inicio
 del tema; `index.php` la usa solo cuando el tema está activo.
 
+El tablero del panel (`scp/dashboard.php`) usa
+`include/staff/templates/mh-dashboard.tmpl.php` y los cálculos de
+`include/class.mh-dashboard.php` cuando el tema está activo.
+
 En el panel, `include/staff/header.inc.php` muestra la barra superior del
 tema (buscador, nuevo ticket y menú del usuario) y
 `include/staff/ticket-view.inc.php` agrega dos contenedores
@@ -93,3 +97,10 @@ php tools/dev/seed-demo.php
 
 Crea también un cliente con cuenta: `jorge.ramirez@example.com` /
 `Demo12345!`. No lo uses en producción.
+
+Para ver el tablero del panel con números, agrega un historial de unos 70
+tickets repartidos en los últimos 60 días (con respuestas y cierres):
+
+```bash
+php tools/dev/seed-history.php
+```

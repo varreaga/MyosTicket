@@ -23,6 +23,23 @@ Base
 Historial de cambios
 --------------------
 
+### 2026-11-18 — Tablero nuevo del panel de agentes (varreaga)
+
+Con el tema activo, el tablero del panel se reemplaza por uno nuevo. El
+tablero original de osTicket sigue disponible al desactivar el tema.
+
+* Nuevos: `include/class.mh-dashboard.php` (cálculos),
+  `include/staff/templates/mh-dashboard.tmpl.php` (pantalla) y
+  `tools/dev/seed-history.php` (historial de demostración).
+* Modificado: `scp/dashboard.php` (usa el tablero nuevo con el tema activo;
+  enlaces de las tarjetas y exportación a CSV).
+* Indicadores: tickets abiertos, sin asignar, vencidos y asignados al
+  agente; primera respuesta, tiempo hasta resolver y resueltos a tiempo,
+  con su cambio frente al periodo anterior; tickets por día; desempeño por
+  agente, departamento o tema.
+* Los tiempos se calculan en minutos y se muestran en horas y minutos. El
+  tablero original los calculaba en horas completas, sin unidad visible.
+
 ### 2026-11-18 — Fase 4: rediseño del panel de agentes (varreaga)
 
 El panel de agentes y el de administración usan el tema visual. Los estilos

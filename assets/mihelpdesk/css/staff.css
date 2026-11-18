@@ -1063,6 +1063,117 @@ body.mh-staff, html:has(body.mh-staff) {
 
 /* ==== Dashboard ==== */
 
+/* Tablero nuevo (include/staff/templates/mh-dashboard.tmpl.php) */
+.mh-staff .mh-dash { display: flex; flex-direction: column; gap: 28px; max-width: 1200px; }
+.mh-staff .mh-dash h1 { margin: 0; font-size: var(--mh-text-2xl); font-weight: 700; letter-spacing: -.01em; }
+.mh-staff #content .mh-dash h2 { margin: 0; font-size: var(--mh-text-lg); letter-spacing: 0; line-height: 1.3; font-weight: 700; color: var(--mh-text); }
+.mh-staff .mh-dash h2 span { margin-left: 6px; font-size: var(--mh-text-base); font-weight: 500; color: var(--mh-text-muted); }
+.mh-staff .mh-dash-head { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.mh-staff .mh-dash-head h1 { flex: 1 1 auto; }
+.mh-staff .mh-dash-period { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 0; }
+.mh-staff .mh-dash-period label { font-size: var(--mh-text-sm); font-weight: 600; color: var(--mh-text-2); }
+.mh-staff .mh-dash-period select { min-height: 40px; }
+.mh-staff a.mh-dash-export { display: inline-flex; align-items: center; gap: 6px; height: 40px; text-decoration: none; }
+.mh-staff .mh-dash-section { display: flex; flex-direction: column; gap: 12px; }
+.mh-staff .mh-dash-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; }
+.mh-staff .mh-dash-row h2 { flex: 1 1 auto; }
+.mh-staff .mh-dash-cards { display: flex; flex-wrap: wrap; gap: 16px; }
+.mh-staff .mh-dash-card,
+.mh-staff .mh-kpi, .mh-staff .mh-time {
+  padding: 18px 20px;
+  border: 1px solid var(--mh-border);
+  border-radius: var(--mh-radius-lg);
+  background: var(--mh-surface);
+  box-shadow: var(--mh-shadow-sm);
+}
+.mh-staff .mh-kpi {
+  flex: 1 1 200px;
+  display: flex; flex-direction: column; gap: 6px;
+  color: var(--mh-text) !important;
+  text-decoration: none !important;
+}
+.mh-staff .mh-kpi:hover { border-color: var(--mh-border-strong); box-shadow: var(--mh-shadow); }
+.mh-staff .mh-kpi-label { font-size: var(--mh-text-sm); font-weight: 600; color: var(--mh-text-2); }
+.mh-staff .mh-kpi-value { font-size: var(--mh-text-3xl); font-weight: 700; letter-spacing: -.02em; line-height: 1.1; }
+.mh-staff .mh-kpi-link { font-size: var(--mh-text-sm); font-weight: 500; color: var(--mh-link); }
+.mh-staff .mh-kpi.is-danger { border-color: var(--mh-danger-border); }
+.mh-staff .mh-kpi.is-danger .mh-kpi-value { color: var(--mh-danger-text); }
+.mh-staff .mh-time { flex: 1 1 280px; display: flex; flex-direction: column; gap: 8px; }
+.mh-staff .mh-time-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px; }
+.mh-staff .mh-time-value { font-size: 30px; font-weight: 700; letter-spacing: -.02em; line-height: 1.15; }
+.mh-staff .mh-time p { margin: 0; font-size: var(--mh-text-sm); line-height: 1.5; color: var(--mh-text-muted); }
+.mh-staff .mh-delta {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--mh-neutral-soft);
+  color: var(--mh-neutral-text);
+  font-size: var(--mh-text-xs);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.mh-staff .mh-delta.is-good { background: var(--mh-success-soft); color: var(--mh-success-text); }
+.mh-staff .mh-delta.is-bad { background: var(--mh-warning-soft); color: var(--mh-warning-text); }
+.mh-staff .mh-dash .mh-muted { margin: 0; font-size: var(--mh-text-sm); color: var(--mh-text-muted); }
+
+/* Gráfica */
+.mh-staff .mh-legend { display: inline-flex; align-items: center; gap: 6px; font-size: var(--mh-text-sm); color: var(--mh-text-2); }
+.mh-staff .mh-swatch { width: 12px; height: 12px; border-radius: 3px; }
+.mh-staff .mh-swatch.is-received, .mh-staff .mh-chart rect.is-received { background: var(--mh-brand); fill: var(--mh-brand); }
+.mh-staff .mh-swatch.is-resolved, .mh-staff .mh-chart rect.is-resolved { background: #e8890c; fill: #e8890c; }
+.mh-staff .mh-chart-scroll { overflow-x: auto; }
+.mh-staff .mh-chart { display: block; width: 100%; min-width: 600px; height: auto; }
+.mh-staff .mh-chart .mh-grid { stroke: var(--mh-border-soft); stroke-width: 1; }
+.mh-staff .mh-chart .mh-axis { font-size: 12px; fill: var(--mh-text-muted); font-family: var(--mh-font); }
+.mh-staff .mh-chart g:hover rect { opacity: .85; }
+
+/* Desempeño */
+.mh-staff .mh-dash-tabs { display: flex; flex-wrap: wrap; gap: 6px; }
+.mh-staff .mh-dash-tabs a {
+  padding: 7px 14px;
+  border: 1px solid var(--mh-border);
+  border-radius: 999px;
+  background: var(--mh-surface);
+  color: var(--mh-text-2);
+  font-size: var(--mh-text-sm);
+  font-weight: 500;
+  text-decoration: none;
+}
+.mh-staff .mh-dash-tabs a[aria-current] {
+  border-color: var(--mh-link);
+  background: var(--mh-brand-soft);
+  color: var(--mh-link);
+  font-weight: 600;
+}
+.mh-staff .mh-dash-table {
+  overflow-x: auto;
+  border: 1px solid var(--mh-border);
+  border-radius: var(--mh-radius-lg);
+  background: var(--mh-surface);
+  box-shadow: var(--mh-shadow-sm);
+}
+.mh-staff .mh-dash-table table { width: 100%; min-width: 680px; border-collapse: collapse; font-size: var(--mh-text-base); }
+.mh-staff .mh-dash-table th {
+  padding: 12px 10px;
+  border-bottom: 1px solid var(--mh-border);
+  color: var(--mh-text-muted);
+  font-size: var(--mh-text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  text-align: left;
+  white-space: nowrap;
+}
+.mh-staff .mh-dash-table td { padding: 12px 10px; border-bottom: 1px solid var(--mh-border-soft); }
+.mh-staff .mh-dash-table tr:last-child td { border-bottom: 0; }
+.mh-staff .mh-dash-table th:first-child, .mh-staff .mh-dash-table td:first-child { padding-left: 16px; }
+.mh-staff .mh-dash-table th:last-child, .mh-staff .mh-dash-table td:last-child { padding-right: 16px; }
+.mh-staff .mh-dash-table .num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.mh-staff .mh-dash-table td.is-danger { color: var(--mh-danger-text); font-weight: 600; }
+.mh-staff .mh-dash-table tr.is-none td:first-child { color: var(--mh-text-muted); font-style: italic; }
+.mh-staff .mh-dash-name { display: inline-flex; align-items: center; font-weight: 500; }
+.mh-staff .mh-dash-name .mh-avatar:empty { visibility: hidden; }
+
+
 /* ==== Administración ==== */
 
 /* Tablas de formulario (configuración, edición de registros) como tarjetas */
@@ -1290,6 +1401,9 @@ body.mh-staff, html:has(body.mh-staff) {
   .mh-staff #content table[width], .mh-staff #content table.table { width: 100% !important; max-width: 100%; }
   .mh-staff #content table.two-column > tbody > tr > td,
   .mh-staff #content table.table > tbody > tr > td { display: block; width: auto !important; }
+  .mh-staff .mh-kpi { flex-basis: 140px; padding: 14px 16px; box-sizing: border-box; }
+  .mh-staff .mh-kpi-value { font-size: var(--mh-text-2xl); }
+  .mh-staff .mh-dash-head h1 { flex-basis: 100%; }
   .mh-staff .dialog {
     left: 8px !important; right: 8px !important;
     width: auto !important; max-width: none;
