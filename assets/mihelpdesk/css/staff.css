@@ -424,20 +424,24 @@ body.mh-staff, html:has(body.mh-staff) {
   text-align: left;
 }
 
-/* Barras fijas al hacer scroll: se usan con position: sticky para que
-   respeten la columna de contenido. */
+/* Barras fijas al hacer scroll: en lugar del position: fixed del original
+   (que ocupa todo el ancho), el contenedor de la barra usa position: sticky
+   y así respeta la columna de contenido. La barra queda en position:
+   relative para que sus menús desplegables se ubiquen bien. */
 .mh-staff div.sticky.placeholder { height: 0 !important; }
-.mh-staff div.sticky.bar,
-.mh-staff div.sticky.bar.fixed {
-  position: sticky !important;
-  top: 0 !important;
+.mh-staff #content div:has(> div.sticky.bar:not(.stop)) {
+  position: sticky;
+  top: 0;
   z-index: 50;
+  background: var(--mh-bg);
+}
+.mh-staff div.sticky.bar:not(.stop),
+.mh-staff div.sticky.bar.fixed:not(.stop) {
+  position: relative !important;
+  top: 0 !important;
+  box-shadow: none;
 }
 .mh-staff div.sticky.bar .content { width: auto !important; }
-.mh-staff div.sticky.bar.fixed {
-  background: var(--mh-bg);
-  box-shadow: 0 6px 12px -8px rgba(16, 24, 40, .25);
-}
 
 /* Mensajes */
 .mh-staff #msg_error, .mh-staff #msg_notice, .mh-staff #msg_warning,
@@ -525,6 +529,27 @@ body.mh-staff, html:has(body.mh-staff) {
 }
 .mh-staff .action-button.muted { border-color: var(--mh-border); }
 
+/* Sugerencias de búsqueda (typeahead) */
+.mh-staff ul.typeahead.dropdown-menu {
+  margin-top: 6px;
+  padding: 6px;
+  border: 1px solid var(--mh-border);
+  border-radius: var(--mh-radius-lg);
+  background: var(--mh-surface);
+  box-shadow: 0 12px 32px rgba(16, 24, 40, .16);
+  min-width: 260px;
+}
+.mh-staff ul.typeahead.dropdown-menu li a {
+  padding: 8px 12px;
+  border-radius: var(--mh-radius);
+  color: var(--mh-text-2);
+}
+.mh-staff ul.typeahead.dropdown-menu li.active a,
+.mh-staff ul.typeahead.dropdown-menu li a:hover {
+  background: var(--mh-brand-soft);
+  color: var(--mh-link);
+}
+
 /* Menús desplegables de acciones */
 .mh-staff .action-dropdown > ul,
 .mh-staff .noclick-dropdown > ul {
@@ -595,9 +620,10 @@ body.mh-staff, html:has(body.mh-staff) {
 }
 .mh-staff table.list thead th a {
   color: inherit;
-  background-image: none !important;
+  background: none !important;
   padding: 0 !important;
 }
+.mh-staff table.list thead th a.asc, .mh-staff table.list thead th a.desc { color: var(--mh-text); }
 .mh-staff table.list thead th a.asc::after { content: " ↑"; }
 .mh-staff table.list thead th a.desc::after { content: " ↓"; }
 .mh-staff table.list thead th:first-child, .mh-staff table.list tbody td:first-child { padding-left: 16px; }
@@ -846,6 +872,20 @@ body.mh-staff, html:has(body.mh-staff) {
 .mh-staff .mh-ticket-side table.ticket_info tr:last-child > th,
 .mh-staff .mh-ticket-side table.ticket_info tr:last-child > td { padding-bottom: 14px; }
 .mh-staff .mh-ticket-side table.ticket_info a { font-weight: 500; }
+/* Fichas de usuario y organización (fuera de la vista de ticket) */
+.mh-staff #content table.ticket_info:not(.mh-ticket-side table) {
+  width: 100% !important;
+  margin: 0 0 16px;
+  padding: 8px;
+  border: 1px solid var(--mh-border);
+  border-radius: var(--mh-radius-lg);
+  background: var(--mh-surface);
+  border-collapse: separate;
+}
+.mh-staff #content table.ticket_info:not(.mh-ticket-side table) th,
+.mh-staff #content table.ticket_info:not(.mh-ticket-side table) td { background: none !important; font-size: var(--mh-text-sm); }
+.mh-staff #content table.ticket_info:not(.mh-ticket-side table) th { color: var(--mh-text-muted); font-weight: 500; }
+
 /* Formularios adicionales (datos personalizados) */
 .mh-staff .mh-ticket-side table.custom-data thead th {
   display: block;
@@ -1025,6 +1065,138 @@ body.mh-staff, html:has(body.mh-staff) {
 
 /* ==== Administración ==== */
 
+/* Tablas de formulario (configuración, edición de registros) como tarjetas */
+.mh-staff table.form_table,
+.mh-staff table.settings_table {
+  width: 100% !important;
+  margin: 0 0 16px;
+  border: 1px solid var(--mh-border);
+  border-radius: var(--mh-radius-lg);
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--mh-surface);
+  box-shadow: var(--mh-shadow-sm);
+  overflow: hidden;
+}
+.mh-staff table.form_table td,
+.mh-staff table.settings_table td {
+  height: auto;
+  padding: 10px 14px;
+  border: 0;
+  border-bottom: 1px solid var(--mh-border-soft);
+  color: var(--mh-text);
+  vertical-align: middle;
+}
+.mh-staff table.form_table tr:last-child > td,
+.mh-staff table.settings_table tr:last-child > td { border-bottom: 0; }
+.mh-staff table.form_table td:first-child:not([colspan]) { color: var(--mh-text-2); }
+.mh-staff table.form_table th,
+.mh-staff table.settings_table th,
+.mh-staff div.section-break {
+  padding: 14px 14px 10px;
+  border: 0;
+  border-bottom: 1px solid var(--mh-border);
+  background: var(--mh-surface-alt);
+  color: var(--mh-text);
+  text-align: left;
+}
+.mh-staff table.form_table th h4,
+.mh-staff table.settings_table th h4,
+.mh-staff div.section-break h3 {
+  margin: 0;
+  padding: 0;
+  background: none;
+  color: var(--mh-text);
+  font-size: var(--mh-text-lg);
+  font-weight: 700;
+}
+.mh-staff #content .settings_table th h4 a { color: var(--mh-text); }
+.mh-staff table.form_table th em,
+.mh-staff table.settings_table th em {
+  color: var(--mh-text-muted);
+  font-size: var(--mh-text-sm);
+  font-weight: 400;
+}
+.mh-staff table.form_table tbody + tbody th,
+.mh-staff table.form_table tr + tr > th { border-top: 1px solid var(--mh-border); }
+/* Tablas de varias columnas con campos (p. ej. los campos de un formulario):
+   los campos se ajustan a la columna en lugar de fijar su ancho con "size". */
+.mh-staff table.form_table tr:has(> td:nth-child(4)) input[type=text] { width: 100%; min-width: 6em; }
+.mh-staff .help-tip { color: var(--mh-text-muted); opacity: .7; }
+.mh-staff .help-tip:hover { opacity: 1; color: var(--mh-link); }
+
+/* Botones al pie de los formularios */
+.mh-staff p.centered,
+.mh-staff #content form > p[style*="center"] {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+  margin: 16px 0;
+}
+.mh-staff input[type=reset], .mh-staff input[type=button][name=cancel],
+.mh-staff input.btn-cancel { background: var(--mh-surface); }
+.mh-staff input[type=submit][name=delete], .mh-staff input.red, .mh-staff .button.red,
+.mh-staff input[type=submit][value="Delete"] {
+  background: var(--mh-surface);
+  border-color: var(--mh-danger-border);
+  color: var(--mh-danger-text) !important;
+}
+
+/* Títulos de página fuera de la barra fija */
+.mh-staff #content > h2, .mh-staff #content form > h2,
+.mh-staff #content .pull-left > h2 { margin-bottom: 12px; }
+
+/* Diálogos (ventanas emergentes del original) */
+.mh-staff .dialog {
+  border: 1px solid var(--mh-border);
+  border-radius: var(--mh-radius-lg);
+  background: var(--mh-surface);
+  box-shadow: 0 24px 64px rgba(16, 24, 40, .24);
+  font-family: var(--mh-font);
+}
+.mh-staff .dialog h3 { font-size: var(--mh-text-xl); font-weight: 700; color: var(--mh-text); }
+.mh-staff .dialog hr { border: 0; border-top: 1px solid var(--mh-border); }
+.mh-staff #overlay { background: rgba(16, 24, 40, .45); }
+
+/* Tablero: gráfica y estadísticas */
+.mh-staff #line-chart-here, .mh-staff #ticket-activity, .mh-staff #graph {
+  border-radius: var(--mh-radius-lg);
+}
+.mh-staff table.dashboard-stats {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--mh-border);
+  border-radius: var(--mh-radius-lg);
+  background: var(--mh-surface);
+  overflow: hidden;
+}
+.mh-staff table.dashboard-stats th, .mh-staff table.dashboard-stats td {
+  padding: 10px 12px;
+  border: 0 !important;
+  border-bottom: 1px solid var(--mh-border-soft) !important;
+  background: none !important;
+}
+.mh-staff table.dashboard-stats tbody:first-child th {
+  color: var(--mh-text-muted);
+  font-size: var(--mh-text-xs);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+/* Base de conocimiento: categorías y preguntas */
+.mh-staff #kb > li, .mh-staff ul#kb li {
+  padding: 14px 16px;
+  margin: 0 0 10px;
+  border: 1px solid var(--mh-border);
+  border-radius: var(--mh-radius-lg);
+  background: var(--mh-surface) none;
+  list-style: none;
+}
+.mh-staff #kb > li h4 { margin: 0 0 4px; font-size: var(--mh-text-lg); }
+
+
 /* ==== Adaptación a tableta y celular ==== */
 
 @media (max-width: 1100px) {
@@ -1107,6 +1279,33 @@ body.mh-staff, html:has(body.mh-staff) {
   .mh-staff #response_options form > table td { padding: 2px 0; }
   .mh-staff #response_options form > table td:empty, .mh-staff #response_options form > table td:has(> br:only-child) { display: none; }
   .mh-staff #response_options select, .mh-staff #response_options .select2-container { width: 100% !important; }
+  .mh-staff table.form_table, .mh-staff table.form_table > tbody, .mh-staff table.form_table tr,
+  .mh-staff table.form_table td, .mh-staff table.form_table th { display: block; width: auto !important; }
+  .mh-staff table.form_table > thead { display: block; }
+  .mh-staff table.form_table td { padding: 4px 14px; border-bottom: 0; }
+  .mh-staff table.form_table td:first-child:not([colspan]) { padding-top: 12px; font-weight: 600; }
+  .mh-staff table.form_table tr { border-bottom: 1px solid var(--mh-border-soft); padding-bottom: 8px; }
+  .mh-staff table.form_table input[type=text], .mh-staff table.form_table select:not(.select2-hidden-accessible),
+  .mh-staff table.form_table textarea { width: 100% !important; }
+  .mh-staff #content table[width], .mh-staff #content table.table { width: 100% !important; max-width: 100%; }
+  .mh-staff #content table.two-column > tbody > tr > td,
+  .mh-staff #content table.table > tbody > tr > td { display: block; width: auto !important; }
+  .mh-staff .dialog {
+    left: 8px !important; right: 8px !important;
+    width: auto !important; max-width: none;
+    max-height: calc(100vh - 32px); overflow: auto;
+    box-sizing: border-box;
+  }
+  .mh-staff .dialog table, .mh-staff .dialog .form_table { width: 100% !important; }
+  .mh-staff .dialog table:not(.list) > tbody > tr > td { display: block; width: auto !important; }
+  .mh-staff .dialog table:not(.list) > tbody > tr { display: block; padding: 4px 0; }
+  .mh-staff table.dashboard-stats { display: block; overflow-x: auto; }
+  .mh-staff #content table.ticket_info { width: 100% !important; }
+  .mh-staff #content table.ticket_info > tbody > tr > td { display: block; width: auto !important; }
+  .mh-staff .faq-content { width: auto !important; max-width: 100%; overflow-wrap: anywhere; }
+  .mh-staff #content td img.avatar, .mh-staff #content td > .avatar { display: none; }
+  .mh-staff #content input[type=text][size], .mh-staff #content input[type=email] { max-width: 100%; }
+  .mh-staff table.list:not(.queue) { display: block; overflow-x: auto; }
   .mh-staff #footer { padding: 12px 16px 20px; }
 }
 @media (prefers-reduced-motion: reduce) {

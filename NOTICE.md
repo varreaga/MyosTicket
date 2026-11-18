@@ -23,6 +23,25 @@ Base
 Historial de cambios
 --------------------
 
+### 2026-11-18 — Fase 4: rediseño del panel de agentes (varreaga)
+
+El panel de agentes y el de administración usan el tema visual. Los estilos
+van en `assets/mihelpdesk/css/staff.css` y `assets/mihelpdesk/js/staff.js`
+(nuevo); no se modificó ningún CSS de osTicket.
+
+* Modificados:
+  * `include/staff/header.inc.php`: barra superior del tema (buscador,
+    botón de nuevo ticket y menú del usuario) y etiqueta `viewport` para
+    celular, solo con el tema activo.
+  * `include/staff/footer.inc.php`: carga el JavaScript del tema.
+  * `include/staff/ticket-view.inc.php`: contenedores para la vista del
+    ticket en dos columnas, solo con el tema activo.
+* Barra lateral con íconos (cajón en celular), pestañas de sección como
+  botones, lista de tickets en tarjeta con prioridad y estado de color,
+  conversación con tarjetas por tipo de mensaje, detalles del ticket en
+  columna lateral, formularios de configuración en tarjetas y diálogos
+  adaptados a celular.
+
 ### 2026-11-17 — Fase 3: editor Tiptap en lugar de Redactor (varreaga)
 
 Se reemplazó el editor Redactor 3 (Imperavi, licencia comercial que no

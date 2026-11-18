@@ -23,6 +23,7 @@ Archivos
 | `css/staff.css` | Panel de agentes y de administración | Estilos del panel |
 | `css/login.css` | Inicio de sesión de agentes | Estilos de la pantalla de acceso |
 | `js/client.js` | Portal de clientes | Menú en celular y selector de temas en dos niveles |
+| `js/staff.js` | Panel de agentes y de administración | Menú lateral en celular, menú del usuario, sugerencias del buscador, etiquetas de color en las colas e iniciales en la conversación |
 
 El JavaScript es **mejora progresiva**: si no carga, el portal sigue
 funcionando con los controles originales (por ejemplo, el `<select>` de
@@ -30,6 +31,12 @@ temas). Se carga con `app_theme_scripts()` y lleva `defer`.
 
 Además, `include/client/templates/mh-home.tmpl.php` es la página de inicio
 del tema; `index.php` la usa solo cuando el tema está activo.
+
+En el panel, `include/staff/header.inc.php` muestra la barra superior del
+tema (buscador, nuevo ticket y menú del usuario) y
+`include/staff/ticket-view.inc.php` agrega dos contenedores
+(`.mh-ticket-main` y `.mh-ticket-side`) para la vista del ticket en dos
+columnas. Ambos cambios solo se aplican con el tema activo.
 
 El `<body>` de cada página recibe las clases `mh-theme` y `mh-client`,
 `mh-staff` o `mh-login`. **Cada regla debe empezar con la clase de su área**
