@@ -1,0 +1,109 @@
+# Modificado el 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): copia del paquete oficial es_MX con "solicitud" en lugar de "ticket". Ver NOTICE.md.
+#This is popup help messages for the Admin Panel -> Emails -> Add New Email
+#Fields:
+#title - Shown in bold at the top of the popover window
+#content - The body of the help popover
+#links - List of links shows below the content
+#title - Link title
+#href - href of link (links starting with / are translated to the
+#helpdesk installation path)
+#The key names such as 'helpdesk_name' should not be translated as they
+#must match the HTML #ids put into the page template.
+---
+new_ticket_help_topic:
+  title: Nuevo Tema para solicitud de Ayuda
+  content: >
+    Elija un <span class="doc-desc-title">tema de ayuda</span> que será asociado automaticamente a solicitudes creadas a traves de esta direccion de email.<br/><br/>  Los formularios asociados con el tema de ayuda se agregarán a la solicitud, pero no tendrán ningún dato.
+  links:
+    - 
+      title: Gestionar temas de ayuda
+      href: /scp/helptopics.php
+new_ticket_priority:
+  title: Nueva prioridad de solicitud
+  content: >
+    Elija la <span class="doc-desc-title">Prioridad</span> para nuevas solicitudes creadas a través de este correo electrónico.
+new_ticket_department:
+  title: Departamento de la nueva solicitud
+  content: >
+    Elige el <span class="doc-desc-title"> Departamento</span> al que se enrutaran nuevas entradas creadas a traves de esta direccion de correo electronico o email.
+  links:
+    - 
+      title: Gestionar departamentos
+      href: /scp/departments.php
+auto_response:
+  title: Nueva solicitud de auto-respuesta 
+  content: >
+    Puede desactivar la respuesta automática enviada al usuario cuando se crea una nueva solicitud mediante esta dirección de correo electrónico.
+userid:
+  title: Nombre de usuario
+  content: >
+    El nombre de usuario se utiliza en el proceso de autenticación de correo electrónico. Aceptamos cadenas de direcciones únicas, cadenas de buzones compartidos, cadenas de nombre de servidor + nombre de usuario y una combinación de todas. 
+  links:
+    - 
+      title: Más información
+      href: https://docs.osticket.com/en/latest/Admin/Emails/Emails.html
+username:
+  title: Nombre de usuario
+  content: >
+
+password:
+  title: Contraseña
+  content: >
+
+login_information:
+  title: Informacion de acceso a la direccion de correo electronico
+  content: >
+    El <span class="doc-desc-title"> Nombre de Usuario</span> y la <span class="doc-desc-title"> Contraseña</span> son requeridos para obtener correo electrónico de buzones IMAP/POP, así como para enviar correos electrónicos mediante SMTP.
+mail_account:
+  title: Obtener correo electronico
+  content: >
+    Recuperar correos electrónicos desde un buzón remoto IMAP o POP y convertirlos a solicitudes en su helpdesk.
+  links:
+    - 
+      title: Administrar la configuración de <span class="doc-desc-title"> Sondeo de Correo Electrónico</span> y <span class="doc-desc-title"> AutoCron</span>.
+      href: /scp/settings.php?t=emails
+host_and_port:
+  title: Host remoto
+  content: >
+    Introduzca el <span class="doc-desc-title">nombre de host</span> y el número de <span class="doc-desc-title">puerto</span> de su servidor de correo. Esto puede estar disponible en la documentación de su cuenta de hosting o en su administrador de correo electrónico. <br/><br/> Si utiliza un número de <span class="doc-desc-title">puerto</span> no estándar con <span class="doc-desc-title">cifrado</span>, añada antes del nombre de host los prefijos ssl:// o tls:// para indicar el cifrado admitido. <br/><br/> Para forzar una conexión simple incluso cuando se utiliza un <span class="doc-desc-title">puerto</span> de cifrado estándar, utilice el esquema simple://.
+mailbox_folder:
+  title: Carpeta De Correo
+  content: >
+    Ingrese el nombre de la <span class="doc-desc-title">Carpeta</span> desde la que desea recuperar el correo. Si se deja vacío, el sistema buscará desde la BAJA DE ENTRADA.
+protocol:
+  title: Protocolo de casilla de correo
+  content: >
+    Seleccione el protocolo de buzón admitido por su servidor de correo remoto. IMAP en un puerto seguro muy recomendable.
+authentication:
+  title: Autenticación
+  content: >
+    Se requiere osTicket <span class="doc-desc-title">OAuth2 Plugin</span> para admitir la Autenticación Moderna.
+  links:
+    - 
+      title: Descargar osTicket Plugins
+      href: https://osticket.com/download/
+fetch_frequency:
+  title: Frecuencia de obtención
+  content: >
+    Introduzca con qué frecuencia, en minutos, el sistema debe sondear el buzón. <br/> <br/> Esto definirá el retraso promedio en recibir una respuesta automática luego de que un usuario envía un correo electrónico a esta casilla de correo.
+emails_per_fetch:
+  title: Emails por busqueda
+  content: >
+    Introduzca el número de correos procesados simultáneamente.
+fetched_emails:
+  title: Emails obtenidos
+  content: >
+    Decidir qué hacer con los emails procesados: <br/> <br/> <span class="doc-desc-opt"> <b>mover a carpeta</b></span>: esto respaldará sus Emails de la bandeja de entrada a una carpeta especificada. Si la carpeta no existe todavía en el servidor, el sistema intentará crearla automáticamente. (<b>Recomendado</b>) <hr><span class="doc-desc-opt"> <b>Borrar Emails</b></span>: esto borrará su correo de la bandeja de entrada, una vez que se procesa. <hr><span class="doc-desc-opt"> <b>No hacer nada</b></span>: esto dejará los Emails en su bandeja de entrada. El sistema registrará los ID de mensaje de sus emails e intentará no volver a descargarlos. Sin embargo, esta opción puede causar que se creen solicitudes duplicadas. (<em>No recomendado</em>)
+smtp_settings:
+  title: Configuración de SMTP
+  content: >
+    El correo electrónico enviado desde el helpdesk puede ser enviado a través de un servidor SMTP. Esto es recomendable, si es posible, ya que aumentará las posibilidades de entrega de correo electrónico y hará a los mismos menos propensos a ser marcados como spam.
+header_spoofing:
+  title: Permitir suplantación de encabezado
+  content: >
+    Habilitar esta opción para permitir el envío de emails a través de esta casilla de correo desde una dirección distinta a la brindada en la opción <span class="doc-desc-title"> Dirección de correo electrónico</span> anterior. <br/> <br/> Esta configuración avanzada se utiliza generalmente al enviar correo desde alias de este buzón.
+strict_matching:
+  title: Estricta coincidencia de correo electrónico
+  content: >
+    <b>Habilite</b> esta opción para exigir que la dirección de correo electrónico y el propietario del recurso del token coincidan. Esto es útil para evitar la autorización accidental de una cuenta completamente diferente. <br><br> <b>Deshabilite</b> esta opción para permitir un propietario de recurso diferente para el token que la dirección de correo electrónico. Esto es útil para buzones de correo compartidos/alias/etc. donde necesita utilizar una cuenta de servicio o un administrador global para autorizar en nombre del correo electrónico.
+

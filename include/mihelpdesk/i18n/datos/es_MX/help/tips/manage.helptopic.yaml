@@ -1,0 +1,93 @@
+# Modificado el 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): copia del paquete oficial es_MX con "solicitud" en lugar de "ticket". Ver NOTICE.md.
+#This is popup help messages for the Admin Panel -> Manage -> Help Topic
+#Fields:
+#title - Shown in bold at the top of the popover window
+#content - The body of the help popover
+#links - List of links shows below the content
+#title - Link title
+#href - href of link (links starting with / are translated to the
+#helpdesk installation path)
+#The key names such as 'helpdesk_name' should not be translated as they
+#must match the HTML #ids put into the page template.
+---
+help_topic_information:
+  title: Información sobre Tema de Ayuda
+  content: >
+    <span class="doc-desc-title"> Los temas de ayuda</span> Guía que información que recopila  los usuarios y cómo las solicitudes son enrutadas o asignadas.
+topic:
+  title: Nombre del tema
+  content: >
+    Nombre único del tema de ayuda.
+htstatus:
+  title: Estado
+  content: >
+    Si está deshabilitado o archivado, este <span class = "doc-desc-title"> Tema de ayuda </span> no estará disponible.
+status:
+  title: Estado de la solicitud
+  content: >
+    Seleccione el estado de la solicitud asignada a las nuevas solicitudes relacionadas con este <span class="doc-desc-title"> Tema de ayuda</span>. <br><br> Los filtros de solicitud pueden anular el nuevo estado de solicitud. 
+type:
+  title: Tipo
+  content: >
+    Si un <span class="doc-desc-title">Tema de Ayuda</span> es etiquetado como Privado, este solo estará disponible para elegir por los Agentes cuando habran una nueva solicitud desde el Panel del Personal.
+parent_topic:
+  title: Tema principal
+  content: >
+    Seleccione el Tema Padre al cual este <span class="doc-desc-title">Tema de Ayuda</span> pertenecerá. El Tema Padre aparecerá primero en el listado y este <span class="doc-desc-title">Tema de Ayuda</span> será listado a continuación del padre.
+custom_form:
+  title: Formulario personalizado
+  content: >
+    Formularios personalizados le ayudará a adquirir información más específica de los usuarios que son relevantes a este <span class="doc-desc-title"> tema de ayuda</span>.
+  links:
+    - 
+      title: Administrar formularios personalizados
+      href: /scp/forms.php
+priority:
+  title: Prioridad
+  content: >
+    Seleccione la prioridad asignada a nuevas solicitudes relacionadas con este <span class="doc-desc-title"> tema de ayuda</span>. <br><br>los filtros de solicitud puede anular la prioridad de la nueva solicitud.
+department:
+  title: Departamento
+  content: >
+    Elija el Departamento al que se enrutarán nuevas solicitudes en este tema de ayuda.
+  links:
+    - 
+      title: Gestionar departamentos
+      href: /scp/departments.php
+sla_plan:
+  title: Plan SLA
+  content: >
+    Elija el plan NSA asociado con este <span class="doc-desc-title"> tema de ayuda</span>. <br><br>Esta selección anulará cualquier plan NSA seleccionado del Departamento
+  links:
+    - 
+      title: Gestionar planes de SLA
+      href: /scp/slas.php
+thank_you_page:
+  title: Página de agradecimiento
+  content: >
+    Elija la Página de Agradecimiento a la que el usuario es dirigido luego de abrir una solicitud perteneciente a este <span class="doc-desc-title">Tema de Ayuda</span>.
+  links:
+    - 
+      title: Gestionar páginas de agradecimiento
+      href: /scp/pages.php
+auto_assign_to:
+  title: Asignar automáticamente nuevas solicitudes
+  content: >
+    Opcionalmente elija un Agente o Equipo para auto-asignar la apertura de nuevas solicitudes bajo este <span class="doc-desc-title">Tema de Ayuda</span>
+     <br><br> Los Filtros de solicitud pueden modificar esta asignación.
+  links:
+    - 
+      title: Gestión de personal y equipos
+      href: /scp/staff.php
+ticket_auto_response:
+  title: Auto-Respuesta a la solicitud
+  content: >
+    Si está habilitado, esta opción deshabilitará la auto-respuesta a las nuevas solicitudes que pertenezcan a este <span class="doc-desc-title">Tema de Ayuda</span>. <br><br> Esto modifica la opción de autorespuesta para el <span class="doc-desc-title">Departamento</span> así como la opción global <span class="doc-desc-title">Opciones de Autorespuesta</span>.
+  links:
+    - 
+      title: Configuración de autoresponder
+      href: /scp/settings.php?t=autoresp
+custom_numbers:
+  title: Números de solicitud personalizados
+  content: >
+    Elegir "Personalizado" aquí para anular la solicitud de sistema por defecto numeración formato de entradas creado en este tema de ayuda.  Ver los consejos de ayuda en la configuración de entradas Página para más detalles sobre la configuración.

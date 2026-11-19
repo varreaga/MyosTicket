@@ -652,7 +652,11 @@ class DataTemplate {
         }
     }
 
-    function getData() {
+    function getData($corregir=true) {
+        // MiHelpdesk: $corregir=false devuelve los datos sin las correcciones
+        // de MiHelpdesk (lo usa tools/i18n/cargar-idioma.php)
+        if (!$corregir)
+            return $this->filepath ? self::rebrand(YamlDataParser::load($this->filepath), $this->lang) : null;
         if (!isset($this->data) && $this->filepath)
             $this->data = self::rebrand(self::corregir(YamlDataParser::load($this->filepath), $this->lang, $this->path), $this->lang);
             // TODO: If there was a parsing error, attempt to try the next
@@ -680,6 +684,12 @@ class DataTemplate {
      * array('*' => array(texto => corrección), 'archivo.yaml' => array(...)).
      * Solo se cambian valores completos que coinciden exactamente.
      */
+    /** MiHelpdesk: textos que MiHelpdesk usó antes en los datos de un idioma. */
+    static function anteriores($lang) {
+        $f = INCLUDE_DIR . 'mihelpdesk/i18n/datos/' . basename($lang) . '.php';
+        return (is_file($f) && is_array($c = (include $f))) ? ($c['_anteriores'] ?? array()) : array();
+    }
+
     static function corregir($data, $lang, $path) {
         static $todas = array();
         if ($lang == 'en_US' || !$data)
@@ -689,6 +699,7 @@ class DataTemplate {
             $todas[$lang] = (is_file($f) && is_array($c = (include $f))) ? $c : array();
         }
         $mapa = ($todas[$lang][$path] ?? array()) + ($todas[$lang]['*'] ?? array());
+        unset($mapa['_anteriores']);
         if (!$mapa)
             return $data;
         $aplicar = function ($v) use (&$aplicar, $mapa) {

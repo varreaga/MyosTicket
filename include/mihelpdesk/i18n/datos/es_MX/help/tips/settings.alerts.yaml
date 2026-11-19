@@ -1,0 +1,78 @@
+# Modificado el 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): copia del paquete oficial es_MX con "solicitud" en lugar de "ticket". Ver NOTICE.md.
+#This is popup help messages for the Account Panel ->
+#Fields:
+#title - Shown in bold at the top of the popover window
+#content - The body of the help popover
+#links - List of links shows below the content
+#title - Link title
+#href - href of link (links starting with / are translated to the
+#helpdesk installation path)
+#The key names such as 'helpdesk_name' should not be translated as they
+#must match the HTML #ids put into the page template.
+---
+page_title:
+  title: Alertas y notificaciones
+  content: >
+    Alertas y Notificaciones : son notificaciones automáticas por correo electrónico enviadas a los agentes cuando se activan varios eventos de solicitudes.
+ticket_alert:
+  title: Aviso de nueva solicitud
+  content: >
+    <p>Alerta enviada a los agentes cuando se crea una nueva solicitud.</p><p class="info-banner"> <i class="icon-info-sign"></i> Esta alerta no se envía si la solicitud se asigna automáticamente mediante un Filtro de solicitud o Tema de Ayuda.</p>
+  links:
+    - 
+      title: Plantilla Predeterminada de Alerta de Nueva solicitud
+      href: /scp/templates.php?default_for=ticket.alert
+message_alert:
+  title: Nuevo aviso de mensaje
+  content: >
+    Alerta enviada a Agentes cuando un nuevo mensaje del usuario se agrega a una solicitud existente.
+  links:
+    - 
+      title: Plantilla Predeterminada de Alerta de Nuevo Mensaje
+      href: /scp/templates.php?default_for=message.alert
+internal_note_alert:
+  title: Nueva alerta de actividad interna
+  content: >
+    Se envia una alerta a los agentes cuando se registra alguna actividad interna como una nota interna o que un agente haya respondido a una solicitud.
+  links:
+    - 
+      title: Plantilla Predeterminada de Actividad de solicitud
+      href: /scp/templates.php?default_for=note.alert
+assignment_alert:
+  title: Aviso de asignación de solicitud
+  content: >
+    Alerta enviada a agentes por asignación de una solicitud.
+  links:
+    - 
+      title: Plantilla Predeterminada de Alerta de Asignación de solicitud
+      href: /scp/templates.php?default_for=assigned.alert
+transfer_alert:
+  title: Alerta al Transferir
+  content: >
+    Alerta enviada a los agentes por la transferencia de una solicitud entre departamentos.
+  links:
+    - 
+      title: Plantilla de Alerta Predeterminada para Transferencias de solicitudes
+      href: /scp/templates.php?default_for=transfer.alert
+overdue_alert:
+  title: Alerta de solicitud retrasada
+  content: >
+    Alerta enviada a agentes cuando una solicitud se convierte en atrasada según el Acuerdo de Nivel de Servicio -SLA- o su fecha de vencimiento.
+  links:
+    - 
+      title: Plantilla de Alerta Predeterminada para solicitud  Caducada
+      href: /scp/templates.php?default_for=ticket.overdue
+    - 
+      title: Gestionar Niveles de Servicio
+      href: /scp/slas.php
+system_alerts:
+  title: Alertas del Sistema
+  content: >
+    Eventos significativos del sistema que se envían al administrador (%{config.admin_email}). Dependiendo de lo configurado en el <span class="doc-desc-title">Nivel de registro</span>, los eventos también estarán disponibles en los <span class="doc-desc-title">Registros del sistema</span>
+  links:
+    - 
+      title: Ver registros del sistema
+      href: /scp/logs.php
+    - 
+      title: Cambiar email de Administrador
+      href: /scp/settings.php?t=emails

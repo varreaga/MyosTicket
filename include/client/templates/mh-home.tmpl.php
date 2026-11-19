@@ -85,7 +85,7 @@ if ($kbEnabled) {
             <span class="mh-action-text">
                 <span class="mh-action-title"><?php echo $isClient ? __('My Tickets') : __('Check Ticket Status'); ?></span>
                 <span class="mh-action-desc"><?php echo __('Check the status of your requests and reply to our team.'); ?></span>
-                <span class="mh-action-cta"><?php echo __('View'); ?> →</span>
+                <span class="mh-action-cta"><?php echo __('Check now'); ?> →</span>
             </span>
         </a>
     </div>

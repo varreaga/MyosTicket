@@ -51,9 +51,9 @@ $fmtChange = function ($t, $pts=false) {
     <div class="mh-dash-cards">
 <?php
 $cards = array(
-    'open' => array(__('Open'), __('View open tickets')),
-    'unassigned' => array(__('Unassigned'), __('Assign')),
-    'overdue' => array(__('Overdue'), __('Handle now')),
+    'open' => array(__('Open tickets'), __('View open tickets')),
+    'unassigned' => array(__('Unassigned tickets'), __('Assign')),
+    'overdue' => array(__('Overdue tickets'), __('Handle now')),
     'mine' => array(__('Assigned to me'), __('View my tickets')),
 );
 foreach ($cards as $k => $info) {
@@ -171,7 +171,7 @@ foreach ($daily as $i => $d) {
             <th scope="col"><?php echo $h(array('staff' => __('Agent'), 'dept' => __('Department'), 'topic' => __('Help Topic'))[$mh_group]); ?></th>
             <th scope="col" class="num"><?php echo __('Received'); ?></th>
             <th scope="col" class="num"><?php echo __('Resolved'); ?></th>
-            <th scope="col" class="num"><?php echo __('Overdue'); ?></th>
+            <th scope="col" class="num"><?php echo __('Overdue tickets'); ?></th>
             <th scope="col" class="num"><?php echo __('First response'); ?></th>
             <th scope="col" class="num"><?php echo __('Time to resolve'); ?></th>
           </tr>
