@@ -23,6 +23,17 @@ Base
 Historial de cambios
 --------------------
 
+### 2026-11-19 — Inicio de sesión del panel (varreaga)
+
+Con el tema activo, el inicio de sesión de agentes y la página para
+restablecer la contraseña usan una tarjeta centrada con título, campos con
+etiqueta y botón a todo lo ancho, en modo claro u oscuro. El error de acceso
+se muestra como aviso. Ya no se usa la foto de fondo del original.
+
+* Modificados: `include/staff/login.tpl.php` e `include/staff/pwreset.php`
+  (título y etiquetas de los campos, solo con el tema activo) y
+  `assets/mihelpdesk/css/login.css`.
+
 ### 2026-11-19 — Modo oscuro (varreaga)
 
 Apariencia clara, oscura o automática (según el sistema), en el portal, el

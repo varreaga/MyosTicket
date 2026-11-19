@@ -41,6 +41,10 @@ return array(
     'Dark' => 'Oscuro',
     'Automatic' => 'Automático',
 
+    // ------------------------------------------------ Inicio de sesión del panel
+    'Sign in to the agent panel' => 'Inicia sesión en el panel de agentes',
+    'Reset your password' => 'Restablece tu contraseña',
+
     // ------------------------------------------------ Panel de agentes
     'Search tickets' => 'Buscar tickets',
     'Search by number, subject or user' => 'Buscar por número, asunto o cliente',

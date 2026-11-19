@@ -12,12 +12,217 @@
  *  - No edites los CSS originales de osTicket: así se pueden seguir trayendo
  *    sus actualizaciones sin conflictos.
  *
- * Por ahora este archivo no cambia nada: el rediseño se implementará aquí
- * cuando se aprueben las maquetas.
+ * Diseño: tarjeta centrada sobre el fondo del tema (claro u oscuro), con el
+ * logo, un título, los campos con etiqueta y el botón a todo lo ancho. Se
+ * usa en el inicio de sesión del panel (login.tpl.php) y en las páginas de
+ * recuperar contraseña (pwreset.*.php).
  */
 
 /* ==== Fondo ==== */
 
+html:has(body.mh-login) { background: var(--mh-bg); overflow-y: auto; }
+body.mh-login {
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 32px 16px;
+  box-sizing: border-box;
+  background:
+    radial-gradient(circle at 50% -10%, var(--mh-brand-soft) 0, transparent 55%),
+    var(--mh-bg);
+  color: var(--mh-text);
+  font-family: var(--mh-font);
+  font-size: var(--mh-text-base);
+  line-height: 1.5;
+  text-align: left;
+}
+/* Imagen de fondo y desenfoque del original */
+.mh-login #brickwall, .mh-login #blur, .mh-login #background, .mh-login #background-compat { display: none; }
+
 /* ==== Caja de acceso ==== */
 
+.mh-login #loginBox {
+  position: relative;
+  left: auto; top: auto;
+  width: 100%;
+  max-width: 400px;
+  margin: 0;
+  padding: 32px 32px 28px;
+  border: 1px solid var(--mh-border);
+  border-radius: 16px;
+  background: var(--mh-surface) !important;
+  box-shadow: 0 20px 48px rgba(16, 24, 40, .12);
+  text-align: left;
+  isolation: auto;
+}
+html[data-mh-mode="dark"] .mh-login #loginBox { box-shadow: var(--mh-shadow-dialog); }
+.mh-login #loginBox::after { display: none; }
+
+.mh-login #logo { margin: 0 0 20px; text-align: center; }
+.mh-login #logo a { display: inline-block; height: auto; }
+.mh-login #logo a img { max-height: 56px; max-width: 240px; width: auto; height: auto; vertical-align: middle; }
+.mh-login .valign-helper { display: none; }
+
+.mh-login .mh-login-title {
+  margin: 0 0 4px;
+  font-size: var(--mh-text-xl);
+  font-weight: 700;
+  letter-spacing: -.01em;
+  text-align: center;
+  color: var(--mh-text);
+}
+
+.mh-login form { width: auto; margin: 0; }
+.mh-login fieldset { margin: 0; padding: 0; border: 0; }
+.mh-login .mh-login-label {
+  display: block;
+  margin: 16px 0 6px;
+  font-size: var(--mh-text-sm);
+  font-weight: 600;
+  color: var(--mh-text-2);
+}
+.mh-login fieldset input,
+.mh-login input[type=text], .mh-login input[type=password], .mh-login input[type=email] {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  margin: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--mh-border-strong);
+  border-radius: 10px;
+  background: var(--mh-surface);
+  color: var(--mh-text);
+  font: inherit;
+  font-size: var(--mh-text-lg);
+  box-shadow: none;
+}
+.mh-login input:focus {
+  outline: none;
+  border-color: var(--mh-brand);
+  box-shadow: 0 0 0 3px var(--mh-focus);
+}
+.mh-login ::placeholder { color: var(--mh-text-muted); font-style: normal; opacity: .8; }
+/* Sin etiqueta visible (páginas sin el título del tema), el campo se separa */
+.mh-login fieldset input + input { margin-top: 12px; }
+
+/* "Olvidé mi contraseña" y botón */
+.mh-login fieldset h3 {
+  display: block !important;
+  margin: 10px 0 0;
+  text-align: right;
+  font-size: var(--mh-text-sm);
+}
+.mh-login #reset-link { color: var(--mh-link); font-weight: 500; text-decoration: none; }
+.mh-login #reset-link:hover { color: var(--mh-link-hover); text-decoration: underline; }
+.mh-login #reset-link.hidden { display: none; }
+.mh-login button[type=submit], .mh-login input[type=submit], .mh-login .submit.button {
+  float: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  height: auto;
+  min-height: 46px;
+  margin: 20px 0 0;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--mh-brand);
+  color: var(--mh-on-brand);
+  font: inherit;
+  font-size: var(--mh-text-lg);
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+}
+.mh-login button[type=submit]:hover, .mh-login input[type=submit]:hover { background: var(--mh-brand-hover); }
+.mh-login button[type=submit]:focus-visible, .mh-login input[type=submit]:focus-visible {
+  outline: 2px solid var(--mh-brand);
+  outline-offset: 2px;
+}
+.mh-login button[disabled] { opacity: .7; cursor: progress; }
+
+/* Acceso con proveedores externos (Google, Microsoft…) */
+.mh-login .or hr { margin: 24px 0 16px; border: 0; border-top: 1px solid var(--mh-border); }
+.mh-login .external-auth { margin: 8px 0; }
+.mh-login .external-auth-box {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 14px;
+  border: 1px solid var(--mh-border-strong);
+  border-radius: 10px;
+  background: var(--mh-surface);
+  color: var(--mh-text);
+}
+
+/* Aviso del administrador (texto de la página de acceso) */
+.mh-login div.banner { color: var(--mh-text-2); text-align: center; }
+.mh-login div.banner:not(:empty) { margin: 8px 0 0; }
+
+/* Ventana "Verificando…" */
+.mh-login #loading.dialog {
+  position: absolute; inset: 0; z-index: 5;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--mh-surface) 88%, transparent);
+}
+.mh-login #loading[style*="display:none"], .mh-login #loading[style*="display: none"] { display: none !important; }
+.mh-login #loading h1 { font-size: var(--mh-text-lg); font-weight: 600; color: var(--mh-text-2); }
+
 /* ==== Mensajes de error ==== */
+
+.mh-login #login-message, .mh-login #loginBox > h3 {
+  margin: 4px 0 0;
+  font-size: var(--mh-text-sm);
+  font-weight: 500;
+  color: var(--mh-text-muted);
+  text-align: center;
+}
+.mh-login #login-message.mh-default { display: none; }
+/* Mensajes que no son el de bienvenida: error al iniciar sesión */
+.mh-login #login-message:not(:empty):not(.mh-default) {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--mh-danger-border);
+  border-radius: 10px;
+  background: var(--mh-danger-soft);
+  color: var(--mh-danger-text);
+}
+
+/* ==== Pie: empresa y "con tecnología de" ==== */
+
+.mh-login #company {
+  position: static;
+  width: auto;
+  margin: 24px 0 0;
+  text-align: center;
+  font-size: var(--mh-text-xs);
+}
+.mh-login #company .content {
+  padding: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  text-shadow: none;
+  color: var(--mh-text-muted);
+}
+.mh-login #poweredBy {
+  position: static;
+  padding: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  text-shadow: none;
+  color: var(--mh-text-muted);
+  font-size: var(--mh-text-xs);
+}
+.mh-login #poweredBy .osticket-logo { filter: none; width: 64px; opacity: .8; vertical-align: middle; }
+html[data-mh-mode="dark"] .mh-login #poweredBy .osticket-logo { filter: invert(1) brightness(1.4); }
+
+@media (max-width: 480px) {
+  .mh-login #loginBox { padding: 24px 20px; border-radius: 14px; }
+}

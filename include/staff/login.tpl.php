@@ -1,5 +1,5 @@
 <?php
-// Modificado el 2026-11-16 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca. Ver NOTICE.md.
+// Modificado el 2026-11-16 y el 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca y diseño del tema (título y etiquetas de los campos). Ver NOTICE.md.
 include_once(INCLUDE_DIR.'staff/login.header.php');
 $info = ($_POST && $errors)?Format::htmlchars($_POST):array();
 
@@ -17,7 +17,15 @@ if ($thisstaff && $thisstaff->is2FAPending())
         <span class="valign-helper"></span>
         <img src="logo.php?login" alt="<?php echo Format::htmlchars(APP_NAME); ?> :: <?php echo __('Staff Control Panel');?>" />
     </a></h1>
-    <h3 id="login-message"><?php echo Format::htmlchars($msg); ?></h3>
+<?php if (app_theme()) { ?>
+    <h2 class="mh-login-title"><?php echo __('Sign in to the agent panel'); ?></h2>
+<?php } ?>
+<?php
+// MiHelpdesk: el mensaje por omisión ("Authentication Required") no es un
+// error; con el tema se oculta porque el título ya indica qué hacer.
+$mh_default_msg = ($msg == __('Authentication Required'));
+?>
+    <h3 id="login-message"<?php if (app_theme() && $mh_default_msg) echo ' class="mh-default"'; ?>><?php echo Format::htmlchars($msg); ?></h3>
     <div class="banner"><small><?php echo ($content) ? Format::display($content->getLocalBody()) : ''; ?></small></div>
     <div id="loading" style="display:none;" class="dialog">
         <h1><i class="icon-spinner icon-spin icon-large"></i>
@@ -43,9 +51,15 @@ if ($thisstaff && $thisstaff->is2FAPending())
         } else { ?>
             <input type="hidden" name="do" value="scplogin">
             <fieldset>
+<?php if (app_theme()) { ?>
+            <label for="name" class="mh-login-label"><?php echo __('Email or Username'); ?></label>
+<?php } ?>
             <input type="text" name="userid" id="name" value="<?php
                 echo $info['userid'] ?? null; ?>" placeholder="<?php echo __('Email or Username'); ?>"
                 autofocus autocorrect="off" autocapitalize="off">
+<?php if (app_theme()) { ?>
+            <label for="pass" class="mh-login-label"><?php echo __('Password'); ?></label>
+<?php } ?>
             <input type="password" name="passwd" id="pass" maxlength="128" placeholder="<?php echo __('Password'); ?>" autocorrect="off" autocapitalize="off">
                 <h3 style="display:inline"><a id="reset-link" class="<?php
                     if (!$show_reset || !$cfg->allowPasswordReset()) echo 'hidden';
@@ -79,6 +93,18 @@ if (($bks=StaffAuthenticationBackend::getExternal())) { ?>
         <img alt="<?php echo Format::htmlchars(APP_NAME); ?>" src="images/osticket-grey.png" class="osticket-logo">
     </a>
 </div>
+<?php if (app_theme()) { ?>
+    <script>
+    // MiHelpdesk: cuando el inicio de sesión falla, el mensaje deja de ser el
+    // de bienvenida y se muestra como error.
+    (function () {
+        var m = document.getElementById('login-message');
+        if (m && window.MutationObserver)
+            new MutationObserver(function () { m.classList.remove('mh-default'); })
+                .observe(m, { childList: true, characterData: true, subtree: true });
+    })();
+    </script>
+<?php } ?>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         if (undefined === window.getComputedStyle(document.documentElement).backgroundBlendMode) {
