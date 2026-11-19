@@ -1,4 +1,5 @@
 <?php
+// Modificado el 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): el menú de registros de Administración se llama "Estado del sistema". Ver NOTICE.md.
 /*********************************************************************
     class.nav.php
 
@@ -213,7 +214,8 @@ class AdminNav extends StaffNav{
         if(!isset($this->tabs)){
 
             $tabs=array();
-            $tabs['dashboard']=array('desc'=>__('Dashboard'),'href'=>'logs.php','title'=>__('Admin Dashboard'));
+            // MiHelpdesk: no es un tablero; agrupa los registros y la información del sistema
+            $tabs['dashboard']=array('desc'=>__('System status'),'href'=>'logs.php','title'=>__('System logs and information'));
             $tabs['settings']=array('desc'=>__('Settings'),'href'=>'settings.php','title'=>__('System Settings'));
             $tabs['manage']=array('desc'=>__('Manage'),'href'=>'helptopics.php','title'=>__('Manage Options'));
             $tabs['emails']=array('desc'=>__('Emails'),'href'=>'emails.php','title'=>__('Email Settings'));

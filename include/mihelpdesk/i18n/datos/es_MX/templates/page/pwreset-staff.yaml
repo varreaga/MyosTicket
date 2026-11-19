@@ -1,0 +1,24 @@
+#
+# Página: pwreset-staff.yaml (MiHelpdesk, español de México)
+#
+# Redactada para MiHelpdesk a partir de la página en inglés de osTicket.
+# Reemplaza a la del paquete de idioma oficial.
+#
+---
+notes: |
+    Correo que reciben los agentes cuando eligen <strong>Olvidé mi contraseña</strong> en la página de inicio de sesión del panel.
+
+name: "Restablecer tu contraseña de MiHelpdesk"
+body: |
+    <h3><strong>Hola %{staff.name.first},</strong></h3>
+    <div>
+    Se pidió restablecer la contraseña de tu cuenta en el centro de soporte %{url}.<br />
+    <br />
+    Si no lo pediste, puedes borrar este correo. Tu cuenta sigue segura: nadie obtuvo acceso, no está bloqueada y tu contraseña no cambió. Es posible que alguien haya escrito tu correo por error.<br />
+    <br />
+    Para entrar y cambiar tu contraseña, usa este enlace:<br />
+    <br />
+    <a href="%{link}">%{link}</a><br />
+    <br />
+    <em style="font-size: small">Tu sistema de atención a clientes</em>
+    </div>

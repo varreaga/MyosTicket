@@ -1,5 +1,5 @@
 <?php
-// Modificado el 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): traducciones propias de MiHelpdesk sobre el paquete de idioma. Ver NOTICE.md.
+// Modificado el 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): traducciones propias de MiHelpdesk sobre el paquete de idioma y nombre del producto en las traducciones. Ver NOTICE.md.
 /*********************************************************************
     class.gettext.php
 
@@ -583,6 +583,16 @@ class Translation extends gettext_reader implements Serializable {
         $this->short_circuit = false;
     }
 
+    /** MiHelpdesk: cambia "osTicket" por APP_NAME en las traducciones. */
+    function rebrand() {
+        if (!defined('APP_NAME') || APP_NAME == 'osTicket'
+                || !isset($this->cache_translations) || !is_array($this->cache_translations))
+            return;
+        foreach ($this->cache_translations as $k => $v)
+            if ($k !== '' && is_string($v) && strpos($v, 'osTicket') !== false)
+                $this->cache_translations[$k] = str_replace('osTicket', APP_NAME, $v);
+    }
+
     function translate($string) {
         if ($this->short_circuit)
             return $string;
@@ -779,6 +789,10 @@ class TextDomain {
             }
             // TODO: Handle charset hint from the environment
             $this->l10n[$locale] = $T = new Translation($input);
+            // MiHelpdesk: el paquete oficial dice "osTicket"; se muestra el
+            // nombre del producto (APP_NAME), como en los textos en inglés
+            if ($input)
+                $T->rebrand();
             if ($extra && is_array($messages = (include $extra)))
                 $T->addMessages($messages);
             $T->cache($key);

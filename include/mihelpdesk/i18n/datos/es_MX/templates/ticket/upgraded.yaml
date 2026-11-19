@@ -1,0 +1,23 @@
+#
+# Solicitud que se crea al actualizar (MiHelpdesk, español de México)
+#
+# Redactada para MiHelpdesk a partir de la versión en inglés.
+# Reemplaza a la del paquete de idioma oficial.
+#
+---
+source: Web # notrans
+name: Equipo MiHelpdesk
+email: support@example.com
+subject: ¡MiHelpdesk se actualizó!
+message: |
+    <p>
+    ¡MiHelpdesk se actualizó correctamente! Consulte las notas de la versión
+    para conocer los cambios y las funciones nuevas.
+    </p><p>
+    Si necesita ayuda con esta instalación, ofrecemos paquetes de soporte
+    comercial y servicios profesionales. Escríbanos para platicar sobre lo
+    que necesita.
+    </p><p>
+    -<br/>
+    Equipo MiHelpdesk
+    </p>

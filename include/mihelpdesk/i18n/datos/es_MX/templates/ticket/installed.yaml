@@ -1,0 +1,31 @@
+#
+# Solicitud de bienvenida que se crea al instalar (MiHelpdesk, español de México)
+#
+# Redactada para MiHelpdesk a partir de la versión en inglés.
+# Reemplaza a la del paquete de idioma oficial.
+#
+---
+deptId: 1 # support
+topicId: 1 # support
+name: Equipo MiHelpdesk
+email: support@example.com
+source: Web # notrans
+subject: ¡MiHelpdesk está instalado!
+message: |
+    <p>
+    Gracias por elegir MiHelpdesk.
+    </p><p>
+    MiHelpdesk es software libre basado en osTicket y se distribuye bajo la
+    Licencia Pública General de GNU, versión 2. Puede usarlo, estudiarlo,
+    modificarlo y compartirlo según los términos de esa licencia. Encontrará
+    una copia de la licencia en el archivo LICENSE.txt.
+    </p><p>
+    Ofrecemos servicios profesionales: instalación, configuración,
+    personalización, hospedaje y soporte comercial con tiempos de respuesta
+    garantizados. Escríbanos para platicar sobre lo que necesita.
+    </p><p>
+    Saludos,
+    </p><p>
+    -<br/>
+    Equipo MiHelpdesk
+    </p>

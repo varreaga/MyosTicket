@@ -1,0 +1,24 @@
+#
+# Plantilla de correo: message.autoresp.yaml (MiHelpdesk, español de México)
+#
+# Redactada para MiHelpdesk a partir de la plantilla en inglés de osTicket.
+# Reemplaza a la del paquete de idioma oficial.
+#
+---
+notes: |
+    Se envía al usuario cuando agrega un mensaje a su solicitud, ya sea respondiendo un correo o desde el portal.
+
+subject: |
+    Recibimos su mensaje [#%{ticket.number}]
+body: |
+    <h3><strong>Hola %{recipient.name.first},</strong></h3>
+    Recibimos su respuesta a la solicitud <a href="%{recipient.ticket_link}">#%{ticket.number}</a> y la agregamos al historial.
+    <br>
+    <br>
+    <div style="color: rgb(127, 127, 127);">
+    Atentamente,<br>
+    El equipo de %{company.name}<br>
+    %{signature}
+    </div>
+    <hr>
+    <div style="color: rgb(127, 127, 127); font-size: small;"><em>Puede consultar el avance de su solicitud <a href="%{recipient.ticket_link}">en línea</a>.</em></div>

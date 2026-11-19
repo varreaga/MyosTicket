@@ -1,0 +1,23 @@
+#
+# Página: registration-staff.yaml (MiHelpdesk, español de México)
+#
+# Redactada para MiHelpdesk a partir de la página en inglés de osTicket.
+# Reemplaza a la del paquete de idioma oficial.
+#
+---
+notes: |
+    Correo inicial (opcional) que reciben los agentes cuando se les crea una cuenta.
+
+name: "Bienvenido a MiHelpdesk"
+body: |
+    <h3><strong>Hola %{recipient.name.first},</strong></h3>
+    <div>
+    Creamos una cuenta para ti en nuestro centro de soporte %{url}.<br />
+    <br />
+    Usa este enlace para confirmar tu cuenta y empezar a atender solicitudes:<br />
+    <br />
+    <a href="%{link}">%{link}</a><br />
+    <br />
+    <em style="font-size: small">Tu sistema de atención a clientes<br />
+    %{company.name}</em>
+    </div>

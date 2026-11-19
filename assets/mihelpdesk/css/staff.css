@@ -281,7 +281,10 @@ body.mh-staff, html:has(body.mh-staff) {
 .mh-staff {
   --mh-ico-dot: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3C/svg%3E");
 }
-.mh-staff #nav a[href$="dashboard.php"], .mh-staff #nav a[href$="logs.php"] {
+.mh-staff #nav a[href$="logs.php"] {
+  --mh-ico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 12h4l3-8 4 16 3-8h4'/%3E%3C/svg%3E");
+}
+.mh-staff #nav a[href$="dashboard.php"] {
   --mh-ico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linejoin='round'%3E%3Crect x='3' y='3' width='7' height='9' rx='1'/%3E%3Crect x='14' y='3' width='7' height='5' rx='1'/%3E%3Crect x='14' y='12' width='7' height='9' rx='1'/%3E%3Crect x='3' y='16' width='7' height='5' rx='1'/%3E%3C/svg%3E");
 }
 .mh-staff #nav a[href$="users.php"] {
@@ -1509,3 +1512,8 @@ body.mh-staff, html:has(body.mh-staff) {
   box-shadow: inset 0 0 0 1px rgba(16, 24, 40, .15);
 }
 .mh-staff .mh-brand-swatch code { color: var(--mh-text-muted); font-size: var(--mh-text-xs); }
+
+/* Filtro de fechas de los registros del sistema (logs.php): el contenedor
+   original mide 25px y el formulario se encimaba con el título */
+.mh-staff #basic_search > div[style*="height"] { height: auto !important; margin-bottom: 12px; }
+.mh-staff #basic_search #filter > form > div { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }

@@ -23,7 +23,16 @@ if ($thisstaff && $thisstaff->is2FAPending())
 <?php
 // MiHelpdesk: el mensaje por omisión ("Authentication Required") no es un
 // error; con el tema se oculta porque el título ya indica qué hacer.
-$mh_default_msg = ($msg == __('Authentication Required'));
+// Se compara también con el título de fábrica de la página "banner-staff"
+// en los idiomas del sistema, que pueden ser otros que el de la interfaz.
+$mh_defaults = array(__('Authentication Required'), 'Authentication Required');
+if ($cfg)
+    foreach (array_merge(array($cfg->getPrimaryLanguage()), $cfg->getSecondaryLanguages()) as $mh_l)
+        if (($mh_d = (new DataTemplate('templates/page/banner-staff.yaml', array($mh_l)))->getData())
+                && isset($mh_d['name']))
+            $mh_defaults[] = $mh_d['name'];
+$mh_default_msg = in_array(mb_strtolower(trim($msg)),
+    array_map(function ($t) { return mb_strtolower(trim($t)); }, $mh_defaults));
 ?>
     <h3 id="login-message"<?php if (app_theme() && $mh_default_msg) echo ' class="mh-default"'; ?>><?php echo Format::htmlchars($msg); ?></h3>
     <div class="banner"><small><?php echo ($content) ? Format::display($content->getLocalBody()) : ''; ?></small></div>

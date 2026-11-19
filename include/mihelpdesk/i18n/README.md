@@ -13,6 +13,32 @@ paquete oficial ya traduce un texto, se respeta la traducción del paquete.
 Las mismas traducciones llegan al JavaScript (editor y tema) por
 `ajax.php/i18n/<idioma>/js`.
 
+## Datos en español (correos, portal, catálogos)
+
+Además de las frases de la interfaz, el paquete oficial trae los **datos**
+que el instalador guarda en la base de datos: plantillas de correo, páginas
+del portal, colas, estados, prioridades, formularios, etc. MiHelpdesk los
+ajusta sin modificar el paquete:
+
+* `datos/es_MX/…`: archivos completos redactados para MiHelpdesk que
+  reemplazan a los del paquete (las 19 plantillas de correo, las 13 páginas,
+  las solicitudes de bienvenida, la organización y las respuestas de ejemplo).
+* `datos/es_MX.php`: correcciones puntuales a textos del paquete (por ejemplo
+  "Procurador" → "Asignado a").
+* En todos los datos, "osTicket" se muestra con el nombre del producto.
+
+Esto aplica solo al instalar. Para una instalación que ya existe (sobre todo
+si se instaló en inglés) usa:
+
+```bash
+php tools/i18n/cargar-idioma.php es_MX            # vista previa
+php tools/i18n/cargar-idioma.php es_MX --aplicar  # aplica los cambios
+```
+
+Cambia solo los textos que siguen igual a los de la instalación en inglés;
+lo que ya editó el administrador se deja como está. También crea el juego de
+plantillas de correo en español y lo deja como predeterminado.
+
 ## Revisar textos sin traducir
 
 ```bash

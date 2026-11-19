@@ -23,6 +23,27 @@ Base
 Historial de cambios
 --------------------
 
+### 2026-11-19 — Datos en español y "Estado del sistema" (varreaga)
+
+* `include/class.i18n.php` (`DataTemplate`): para idiomas distintos de
+  inglés, primero busca los datos en `include/mihelpdesk/i18n/datos/<idioma>/`
+  (plantillas de correo, páginas del portal, solicitudes de bienvenida,
+  organización y respuestas de ejemplo redactadas para MiHelpdesk), aplica
+  las correcciones de `datos/<idioma>.php` a los datos del paquete oficial y
+  cambia "osTicket" por el nombre del producto. `file.yaml` (imágenes) se toma
+  siempre de `en_US`. El paquete oficial no se modifica.
+* `include/class.translation.php`: las traducciones del paquete oficial
+  muestran el nombre del producto en lugar de "osTicket".
+* `include/class.nav.php`: la primera pestaña de Admin Panel se llama
+  "System status" ("Estado del sistema"); abre los registros e información
+  del sistema, no un tablero.
+* `include/staff/login.tpl.php`: el mensaje por omisión del inicio de sesión
+  se reconoce sin importar mayúsculas (el paquete dice "Autenticación
+  Requerida").
+* Nuevo: `tools/i18n/cargar-idioma.php`, que pasa a otro idioma los textos
+  que una instalación en inglés guardó en la base de datos (solo los que
+  nadie ha editado) y crea el juego de plantillas de correo en ese idioma.
+
 ### 2026-11-19 — Español incluido de fábrica (varreaga)
 
 * Nuevo: `include/i18n/es_MX.phar`, el paquete de idioma **oficial** de

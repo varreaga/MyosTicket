@@ -1,0 +1,19 @@
+#
+# Plantilla de correo: ticket.overlimit.yaml (MiHelpdesk, español de México)
+#
+# Redactada para MiHelpdesk a partir de la plantilla en inglés de osTicket.
+# Reemplaza a la del paquete de idioma oficial.
+#
+---
+notes: |
+    Se envía al usuario cuando llega al máximo de solicitudes abiertas por correo electrónico. El límite se configura en el panel de administración.
+
+subject: |
+    Llegó al límite de solicitudes abiertas
+body: |
+    <h3><strong>Hola %{ticket.name.first},</strong></h3>
+    Llegó al número máximo de solicitudes abiertas que se permiten. Para abrir otra, primero debe cerrarse alguna de sus solicitudes pendientes. Para actualizar o comentar una solicitud abierta, <a href="%{url}/tickets.php?e=%{ticket.email}">entre a nuestro centro de soporte</a>.
+    <br>
+    <br>
+    Gracias,<br>
+    El equipo de %{company.name}

@@ -1,0 +1,29 @@
+#
+# Respuestas predefinidas de ejemplo (MiHelpdesk, español de México)
+#
+# Redactadas para MiHelpdesk a partir de las de inglés.
+# Reemplazan a las del paquete de idioma oficial.
+#
+---
+- isenabled: 1
+  title: ¿Qué es MiHelpdesk? (ejemplo)
+  response: |
+    MiHelpdesk es un sistema de solicitudes de soporte de código abierto,
+    basado en osTicket y distribuido bajo la Licencia Pública General de GNU
+    v2: sencillo, ligero, confiable, en la web y fácil de instalar y usar.
+  notes: |
+
+  attachments:
+    - name: ejemplo.txt
+      type: text/plain
+      data: ¡Las respuestas predefinidas también pueden llevar adjuntos!
+
+- isenabled: 1
+  title: Ejemplo (con variables)
+  response: |
+    Hola %{ticket.name.first},
+    <br>
+    <br>
+    Su solicitud #%{ticket.number}, creada el %{ticket.create_date}, está en
+    el departamento %{ticket.dept.name}.
+  notes: |

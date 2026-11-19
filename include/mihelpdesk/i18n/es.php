@@ -63,6 +63,10 @@ return array(
     'Enter a color in hex (#0072bc) or RGB (rgb(0, 114, 188)) format.'
         => 'Escribe un color en formato hexadecimal (#0072bc) o RGB (rgb(0, 114, 188)).',
 
+    // ------------------------------------------------ Administración
+    'System status' => 'Estado del sistema',
+    'System logs and information' => 'Registros e información del sistema',
+
     // ------------------------------------------------ Panel de agentes
     'Search tickets' => 'Buscar tickets',
     'Search by number, subject or user' => 'Buscar por número, asunto o cliente',

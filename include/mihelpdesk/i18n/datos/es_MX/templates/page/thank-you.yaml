@@ -1,0 +1,23 @@
+#
+# Página: thank-you.yaml (MiHelpdesk, español de México)
+#
+# Redactada para MiHelpdesk a partir de la página en inglés de osTicket.
+# Reemplaza a la del paquete de idioma oficial.
+#
+---
+notes: |
+    Página que ve el cliente después de enviar una solicitud nueva en el portal.
+
+name: "Gracias"
+body: |
+    <div>%{ticket.name},
+    <br>
+    <br>
+    Gracias por comunicarse con nosotros.
+    <br>
+    <br>
+    Registramos su solicitud de soporte. Si hace falta, una persona de nuestro equipo se pondrá en contacto con usted pronto.
+    <br>
+    <br>
+    El equipo de soporte
+    </div>

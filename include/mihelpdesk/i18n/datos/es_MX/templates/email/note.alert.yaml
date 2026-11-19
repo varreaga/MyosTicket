@@ -1,0 +1,36 @@
+#
+# Plantilla de correo: note.alert.yaml (MiHelpdesk, español de México)
+#
+# Redactada para MiHelpdesk a partir de la plantilla en inglés de osTicket.
+# Reemplaza a la del paquete de idioma oficial.
+#
+---
+notes: |
+    Se envía a los agentes cuando se registra actividad interna en una solicitud, como una nota interna o la respuesta de otro agente.
+
+subject: |
+    Nueva actividad interna en la solicitud #%{ticket.number}
+body: |
+    <h3><strong>Hola %{recipient.name},</strong></h3>
+    Un agente registró actividad en la solicitud <a href="%{ticket.staff_link}">#%{ticket.number}</a>.
+    <br>
+    <br>
+    <table>
+    <tbody>
+    <tr>
+        <td><strong>De</strong>:</td>
+        <td>%{note.poster}</td>
+    </tr>
+    <tr>
+        <td><strong>Título</strong>:</td>
+        <td>%{note.title}</td>
+    </tr>
+    </tbody>
+    </table>
+    <br>
+    %{note.message}
+    <br>
+    <br>
+    <hr>
+    <div>Para ver o responder la solicitud, <a href="%{ticket.staff_link}"><span style="color: rgb(84, 141, 212);">inicia sesión</span></a> en el sistema de soporte.</div>
+    <em style="color: rgb(127, 127, 127); font-size: small;">Tu sistema de atención a clientes</em>

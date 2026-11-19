@@ -1,0 +1,12 @@
+#
+# Página: banner-staff.yaml (MiHelpdesk, español de México)
+#
+# Redactada para MiHelpdesk a partir de la página en inglés de osTicket.
+# Reemplaza a la del paquete de idioma oficial.
+#
+---
+notes: |
+    Mensaje y aviso que aparecen en la página de inicio de sesión de los agentes. El primer campo es el mensaje de arriba; el segundo, un aviso o advertencia opcional.
+
+name: "Autenticación Requerida"
+body: ""

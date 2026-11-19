@@ -1,0 +1,18 @@
+#
+# Página: offline.yaml (MiHelpdesk, español de México)
+#
+# Redactada para MiHelpdesk a partir de la página en inglés de osTicket.
+# Reemplaza a la del paquete de idioma oficial.
+#
+---
+notes: |
+    Página que aparece en el portal de clientes cuando el centro de soporte está fuera de línea.
+
+name: "Fuera de línea"
+body: |
+    <div><h1>
+    <span style="font-size: medium">El centro de soporte está fuera de línea</span>
+    </h1>
+    <p>Gracias por querer comunicarse con nosotros.</p>
+    <p>En este momento el centro de soporte no está disponible. Por favor vuelva a intentarlo más tarde.</p>
+    </div>
