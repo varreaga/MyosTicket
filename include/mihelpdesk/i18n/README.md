@@ -21,6 +21,9 @@ python3 tools/i18n/textos-nuevos.py          # revisa es.php
 
 ## Requisito: el paquete de idioma oficial
 
-Para que un idioma aparezca en el sistema hace falta su paquete oficial
-(por ejemplo `include/i18n/es_MX.phar`), que traduce el resto de osTicket.
-Después se activa en **Admin Panel › Settings › System › Language**.
+Para que un idioma aparezca en el sistema hace falta su paquete oficial,
+que traduce el resto de osTicket. MiHelpdesk ya incluye el de español
+(`include/i18n/es_MX.phar`); otros se descargan de
+https://osticket.com/download (Language Packs) y se copian en
+`include/i18n/`. Después se activan en **Admin Panel › Settings › System ›
+Language**.
