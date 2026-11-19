@@ -1,0 +1,55 @@
+# Modificado el 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): copia del paquete oficial es_MX con "solicitud" en lugar de "ticket". Ver NOTICE.md.
+#This is popup help messages for the Admin Panel -> Settings -> Autoresponder
+#Fields:
+#title - Shown in bold at the top of the popover window
+#content - The body of the help popover
+#links - List of links shows below the content
+#title - Link title
+#href - href of link (links starting with / are translated to the
+#helpdesk installation path)
+#The key names such as 'helpdesk_name' should not be translated as they
+#must match the HTML #ids put into the page template.
+---
+new_ticket:
+  title: Nueva solicitud
+  content: >
+    Activalo si esparas que una respuesta automatica sea enviada al usuario al crear una nueva solicitud.
+  links:
+    - 
+      title: Nueva plantilla para autorespuesta de la solicitud.
+      href: /scp/templates.php?default_for=ticket.autoresp
+new_ticket_by_staff:
+  title: Nueva solicitud por el personal
+  content: >
+    Aviso enviado cuando un agente crea una entrada en nombre del usuario. <em>Agente esto puede reemplazar al crear nuevas entradas.</em>
+  links:
+    - 
+      title: Nueva plantilla de aviso de solicitud
+      href: /scp/templates.php?default_for=ticket.notice
+new_message_for_submitter:
+  title: Confirmación de Nuevo Mensaje
+  content: >
+    Aviso de confirmación enviado cuando un nuevo mensaje se anexa a una entrada existente.
+  links:
+    - 
+      title: Nueva plantilla de mensaje de confirmación
+      href: /scp/templates.php?default_for=message.autoresp
+new_message_for_participants:
+  title: Nueva notificación de mensaje
+  content: >
+    Difusión de los mensajes recibidos del remitente del mensaje a todos los demás participantes en la solicitud.
+  links:
+    - 
+      title: Nueva plantilla de aviso de actividad
+      href: /scp/templates.php?default_for=ticket.activity.notice
+overlimit_notice:
+  title: Aviso de limite sobrepasado
+  content: >
+    Aviso de solicitud rechazada que se envía al usuario cuando supera la <span class="doc-desc-title"> Máxima apertura de solicitudes</span>.
+  links:
+    - 
+      title: Plantilla de aviso de sobregiro
+      href: /scp/templates.php?default_for=ticket.overlimit
+    - 
+      title: Establecer la <em>máxima apertura de solicitudes</em>
+      href: /scp/settings.php?t=tickets

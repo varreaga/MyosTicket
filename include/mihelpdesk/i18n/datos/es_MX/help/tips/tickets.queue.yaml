@@ -1,0 +1,80 @@
+# Modificado el 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): copia del paquete oficial es_MX con "solicitud" en lugar de "ticket". Ver NOTICE.md.
+#This is popup help messages for the Staff Panel -> Tickets -> Open
+#Fields:
+#title - Shown in bold at the top of the popover window
+#content - The body of the help popover
+#links - List of links shows below the content
+#title - Link title
+#href - href of link (links starting with / are translated to the
+#helpdesk installation path)
+#The key names such as 'helpdesk_name' should not be translated as they
+#must match the HTML #ids put into the page template.
+---
+search_field:
+  title: Campo de Búsqueda
+  content: >
+
+advanced:
+  title: Opciones avanzadas
+  content: >
+    Ajuste sus parámetros de búsqueda. Una vez que haya seleccionado sus criterios de búsqueda avanzada y ejecute la búsqueda, usted puede <span class="doc-desc-title"> exportar</span> los datos en la parte inferior de la página de solicitudes.
+open_tickets_table:
+  title: Tabla apertura de solicitudes
+  content: >
+    Todas las solicitudes actualmente abiertas y que requieren atención
+ticket:
+  title: Solicitud
+  content: >
+
+date:
+  title: Fecha
+  content: >
+
+subject:
+  title: Asunto
+  content: >
+
+from:
+  title: De
+  content: >
+
+priority:
+  title: Prioridad
+  content: >
+
+assigned_to:
+  title: Asignado a
+  content: >
+
+export:
+  title: Exportar
+  content: >
+    Exportar los datos actualmente a la vista en un archivo CSV. Archivos CSV pueden abrirse con cualquier software de hoja de cálculo (por ejemplo, Microsoft Excel, páginas de Apple, OpenOffice, etc.).
+advanced_search_dialog:
+  title: Búsqueda avanzada
+  content: >
+
+adv_keyword:
+  title: Búsqueda por palabra clave
+  content: >
+    Encontrar éxitos basados en los tema y contenido del  mensaje del hilo de la solicitud así como todo el contenido textual asociado con campos personalizados para los usuarios y las solicitudes.
+adv_date_range:
+  title: Búsqueda por rango de fechas
+  content: >
+    Definición aquí
+merge_types:
+  title: Tipos de Combinación
+  content: >
+    <b>Combinar Hilos:</b> Hilos de todas las solicitudes se mostrarán cronológicamente.</br> <b>Hilos Separados:</b> Hilos de solicitudes se mostrarán una solicitud a la vez.
+child_status:
+  title: Estado de la solicitud secundaria
+  content: >
+    Todas solicitudes Secundarias se establecerán en estado cerrado ya que las entradas del hilo se moverán todas a la solicitud Principal. 
+parent_status:
+  title: Estado de la solicitud Principal
+  content: >
+    Si elige establecer un estado primario, la solicitud de nivel superior se cambiará al estado seleccionado. La solicitud en la parte superior de la lista es solicitud Primaria.
+reply_types:
+  title: Tipos de respuesta
+  content: >
+    Responder a todos: Esta respuesta se envía al Usuario y a los Colaboradores que elige incluir.</br><b>Respuesta al Usuario:</br> Esta respuesta se envía solo al Usuario, no Colaboradores.</br><b>No enviar respuesta por correo electrónico: No se envían alertas por correo electrónico, sin embargo, la respuesta del Agente es visible para todos los usuarios.

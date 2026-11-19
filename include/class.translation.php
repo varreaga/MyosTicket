@@ -1,5 +1,5 @@
 <?php
-// Modificado el 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): traducciones propias de MiHelpdesk sobre el paquete de idioma y nombre del producto en las traducciones. Ver NOTICE.md.
+// Modificado el 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): traducciones propias de MiHelpdesk sobre el paquete de idioma nombre del producto en las traducciones y ajustes a las del paquete. Ver NOTICE.md.
 /*********************************************************************
     class.gettext.php
 
@@ -583,6 +583,19 @@ class Translation extends gettext_reader implements Serializable {
         $this->short_circuit = false;
     }
 
+    /**
+     * MiHelpdesk: reemplaza traducciones del paquete de idioma (por ejemplo,
+     * "ticket" por "solicitud"). A diferencia de addMessages(), estas sí
+     * tienen prioridad sobre el paquete.
+     */
+    function overrideMessages(array $messages) {
+        if (!$messages || !is_array($this->cache_translations))
+            return;
+        foreach ($messages as $k => $v)
+            if (array_key_exists($k, $this->cache_translations))
+                $this->cache_translations[$k] = is_array($v) ? implode("\0", $v) : $v;
+    }
+
     /** MiHelpdesk: cambia "osTicket" por APP_NAME en las traducciones. */
     function rebrand() {
         if (!defined('APP_NAME') || APP_NAME == 'osTicket'
@@ -763,10 +776,14 @@ class TextDomain {
             // MiHelpdesk: traducciones propias para este idioma
             $extra = ($this->domain == 'messages')
                 ? self::getAppMessagesFile($locale) : null;
+            // MiHelpdesk: ajustes a las traducciones del paquete oficial
+            $ajustes = ($this->domain == 'messages')
+                ? self::getPackOverridesFile($locale) : null;
 
             // APC short-circuit (if supported)
             $key = sha1($locale .':lang:'. $subpath
-                . ($extra ? ':'.$extra.':'.@filemtime($extra) : ''));
+                . ($extra ? ':'.$extra.':'.@filemtime($extra) : '')
+                . ($ajustes ? ':'.$ajustes.':'.@filemtime($ajustes) : ''));
             if ($T = Translation::resurrect($key)) {
                 return $this->l10n[$locale] = $T;
             }
@@ -791,6 +808,8 @@ class TextDomain {
             $this->l10n[$locale] = $T = new Translation($input);
             // MiHelpdesk: el paquete oficial dice "osTicket"; se muestra el
             // nombre del producto (APP_NAME), como en los textos en inglés
+            if ($input && $ajustes && is_array($cambios = (include $ajustes)))
+                $T->overrideMessages($cambios);
             if ($input)
                 $T->rebrand();
             if ($extra && is_array($messages = (include $extra)))
@@ -816,6 +835,23 @@ class TextDomain {
             if ($name && is_file($dir . $name . '.php'))
                 return $dir . $name . '.php';
         return null;
+    }
+
+    /**
+     * MiHelpdesk: archivo con ajustes a las traducciones del paquete oficial
+     * de un idioma (include/mihelpdesk/i18n/<idioma>.paquete.php). Solo con
+     * el idioma exacto: cada paquete tiene su propia redacción.
+     */
+    static function getPackOverridesFile($locale) {
+        $locale = preg_replace('/[^A-Za-z_]/', '', strtok((string) $locale, '.@'));
+        $f = INCLUDE_DIR . 'mihelpdesk/i18n/' . $locale . '.paquete.php';
+        return ($locale && is_file($f)) ? $f : null;
+    }
+
+    /** MiHelpdesk: ajustes al paquete oficial (arreglo texto => traducción). */
+    static function getPackOverrides($locale) {
+        $file = self::getPackOverridesFile($locale);
+        return ($file && is_array($m = (include $file))) ? $m : array();
     }
 
     /** MiHelpdesk: traducciones propias (arreglo texto => traducción). */

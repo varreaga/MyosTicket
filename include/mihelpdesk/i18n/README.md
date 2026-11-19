@@ -13,6 +13,13 @@ paquete oficial ya traduce un texto, se respeta la traducción del paquete.
 Las mismas traducciones llegan al JavaScript (editor y tema) por
 `ajax.php/i18n/<idioma>/js`.
 
+## "Solicitud" en lugar de "ticket"
+
+MiHelpdesk usa "solicitud" en todo el sistema. El paquete oficial mezcla
+términos, así que `es_MX.paquete.php` reemplaza sus traducciones que decían
+"ticket" (estas sí tienen prioridad sobre el paquete) y
+`datos/es_MX/help/tips/` hace lo mismo con las ayudas emergentes.
+
 ## Datos en español (correos, portal, catálogos)
 
 Además de las frases de la interfaz, el paquete oficial trae los **datos**

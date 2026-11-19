@@ -1,5 +1,5 @@
 <?php
-// Modificado el 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): traducciones propias del editor y del tema en JavaScript. Ver NOTICE.md.
+// Modificado el 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): traducciones propias del editor y del tema en JavaScript y ajustes a las del paquete. Ver NOTICE.md.
 /*********************************************************************
     ajax.i18n.php
 
@@ -29,6 +29,14 @@ class i18nAjaxAPI extends AjaxController {
             $data .= $i18n->getTemplate('js/jquery.ui.datepicker.js')->getRawData();
             // Strings from various javascript files
             $data .= $i18n->getTemplate('js/osticket-strings.js')->getRawData();
+            // MiHelpdesk: ajustes a las traducciones del paquete ("solicitud")
+            if ($ajustes = TextDomain::getPackOverrides($lang)) {
+                foreach ($ajustes as $k => $v)
+                    $ajustes[$k] = is_array($v) ? $v[0] : explode("\0", $v)[0];
+                $data .= "\n;(function($){ if (!$ || !$.oststrings) return; var a = "
+                    . JsonDataEncoder::encode($ajustes)
+                    . "; for (var k in a) if (k in $.oststrings) $.oststrings[k] = a[k]; })(window.jQuery);\n";
+            }
             // MiHelpdesk: textos propios (editor y tema)
             if ($extra = TextDomain::getAppMessages($lang))
                 $data .= "\n;(function($){ if (!$) return; $.oststrings = $.extend({}, "

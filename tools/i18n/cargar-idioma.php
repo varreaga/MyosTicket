@@ -61,16 +61,34 @@ echo $aplicar
 
 $cuenta = array('cambiado' => 0, 'igual' => 0, 'editado' => 0);
 
-/** Datos en inglés y en el idioma pedido de un archivo del paquete. */
-function datos($path, $lang) {
-    $en = new DataTemplate($path, array('en_US'));
-    $tr = new DataTemplate($path, array($lang));
-    return array($en->getData() ?: array(), $tr->getData() ?: array());
+function normal($s) {
+    return trim(preg_replace('/\s+/u', ' ', (string) $s));
 }
 
 function igual($a, $b) {
-    $n = function ($s) { return trim(preg_replace('/\s+/u', ' ', (string) $s)); };
-    return $n($a) === $n($b);
+    return normal($a) === normal($b);
+}
+
+// Textos que se pueden reemplazar aunque ya no estén en inglés: los del
+// paquete tal cual (sin las correcciones de MiHelpdesk) y los que MiHelpdesk
+// usó en versiones anteriores. Así, volver a correr el script actualiza una
+// instalación que ya se había pasado a español.
+$reemplazables = array();
+foreach (DataTemplate::anteriores($lang) as $t)
+    $reemplazables[normal($t)] = true;
+
+/** Datos en inglés y en el idioma pedido de un archivo del paquete. */
+function datos($path, $lang) {
+    global $reemplazables;
+    $en = new DataTemplate($path, array('en_US'));
+    $tr = new DataTemplate($path, array($lang));
+    $crudo = (new DataTemplate($path, array($lang)))->getData(false);
+    if (is_array($crudo))
+        array_walk_recursive($crudo, function ($v) use (&$reemplazables) {
+            if (is_string($v) && $v !== '')
+                $reemplazables[normal($v)] = true;
+        });
+    return array($en->getData() ?: array(), $tr->getData() ?: array());
 }
 
 /**
@@ -78,7 +96,7 @@ function igual($a, $b) {
  * instalación. $donde es un arreglo columna => valor.
  */
 function cambiar($tabla, $donde, $col, $en, $nuevo, $etiqueta) {
-    global $aplicar, $cuenta;
+    global $aplicar, $cuenta, $reemplazables;
     if ($nuevo === null || $nuevo === '' || $en === null)
         return;
     $w = array();
@@ -93,7 +111,7 @@ function cambiar($tabla, $donde, $col, $en, $nuevo, $etiqueta) {
         $cuenta['igual']++;
         return;
     }
-    if (!igual($actual, $en)) {
+    if (!igual($actual, $en) && !isset($reemplazables[normal($actual)])) {
         $cuenta['editado']++;
         printf("  · Se deja (ya editado): %s\n", $etiqueta);
         return;

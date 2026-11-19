@@ -12,6 +12,9 @@
  * reemplazan a los del paquete. "osTicket" se cambia después por APP_NAME.
  */
 return array(
+    // Textos que MiHelpdesk usó antes y que tools/i18n/cargar-idioma.php
+    // puede reemplazar por los actuales (no cuentan como editados a mano)
+    '_anteriores' => array('Abierto', 'Respondidos', 'Vencidos', 'Cerrados'),
     '*' => array(
         'Fecha de Vencimiento' => 'Fecha de vencimiento',
         'Procurador' => 'Asignado a',
@@ -23,12 +26,35 @@ return array(
         'Detalles de los motivos para abrir el ticket.' => 'Explique el motivo de su solicitud.',
     ),
     'ticket_status.yaml' => array(
-        'Abiertos' => 'Abierto',
+        // Estados de una solicitud: en femenino
+        'Abiertos' => 'Abierta',
+        'Resuelto' => 'Resuelta',
+        'Cerrado' => 'Cerrada',
+        'Archivado' => 'Archivada',
+        'Eliminado' => 'Eliminada',
+        'Tickets abiertos.' => 'Solicitudes abiertas.',
+        'Tickets resueltos' => 'Solicitudes resueltas.',
+        'Tickets cerrados. Los tickets siguen siendo accesibles por el cliente y los miembros del panel.'
+            => 'Solicitudes cerradas. El cliente y los agentes las siguen pudiendo consultar.',
+        'Tickets solamente administrables, pero no accesibles en las colas de entrada ni en el panel del cliente.'
+            => 'Solicitudes que solo se pueden administrar; no aparecen en las colas ni en el portal del cliente.',
+        'Tickets en cola para su eliminación. No se puede acceder en las colas de entrada.'
+            => 'Solicitudes en espera de ser eliminadas. No aparecen en las colas.',
+    ),
+    'list.yaml' => array(
+        'Propiedades del estado del Ticket' => 'Propiedades del estado de la solicitud',
+        'Propiedades que pueden establecerse en un estado del Ticket.' => 'Propiedades que se pueden definir en un estado de la solicitud.',
+        'Estado de un Ticket' => 'Estado de una solicitud',
     ),
     'queue.yaml' => array(
-        'Respondido' => 'Respondidos',
-        'Atrasado' => 'Vencidos',
-        'Cerrado' => 'Cerrados',
+        'Ticket' => 'Solicitud',
+        'Abiertos' => 'Abiertas',
+        'Respondido' => 'Respondidas',
+        'Atrasado' => 'Vencidas',
+        'Cerrado' => 'Cerradas',
+        'Mis Solicitudes' => 'Mis solicitudes',
+        'Asignados a mí' => 'Asignadas a mí',
+        'Asignados a equipos' => 'Asignadas a equipos',
     ),
     'queue_sort.yaml' => array(
         'Prioridad + Vencidos' => 'Prioridad + Fecha de vencimiento',
@@ -43,6 +69,8 @@ return array(
         'Vacaciones de EE.UU.' => 'Días festivos de EE. UU.',
     ),
     'help_topic.yaml' => array(
+        'Tickets que se refieren principalmente a los departamentos de ventas y facturación'
+            => 'Solicitudes que corresponden principalmente a los departamentos de ventas y facturación',
         'Informar de un problema' => 'Reportar un problema',
     ),
     'email_template_group.yaml' => array(

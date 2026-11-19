@@ -23,6 +23,27 @@ Base
 Historial de cambios
 --------------------
 
+### 2026-11-19 — "Solicitud" en todo el sistema (varreaga)
+
+El paquete oficial en español mezcla "ticket", "tiquete", "boleto" y
+"solicitud". MiHelpdesk usa "solicitud" en todos lados.
+
+* Nuevo: `include/mihelpdesk/i18n/es_MX.paquete.php`, 241 traducciones del
+  paquete reescritas con "solicitud" y el género corregido ("la solicitud
+  cerrada"). A diferencia de `es.php`, estas sí tienen prioridad sobre el
+  paquete, que no se modifica.
+* Nuevo: `include/mihelpdesk/i18n/datos/es_MX/help/tips/` (29 archivos),
+  copias de las ayudas emergentes del paquete con el mismo cambio.
+* `include/class.translation.php` y `include/ajax.i18n.php`: cargan esos
+  ajustes en PHP y en JavaScript.
+* `include/class.i18n.php`: `DataTemplate::getData(false)` devuelve los datos
+  del paquete sin correcciones y `DataTemplate::anteriores()` los textos que
+  MiHelpdesk usó antes, para que `tools/i18n/cargar-idioma.php` pueda volver
+  a correrse sobre una instalación ya pasada a español.
+* Colas y estados en femenino ("Abiertas", "Cerrada"); etiquetas del tablero
+  ("Abiertas", "Sin asignar", "Vencidas") con textos propios
+  (`include/staff/templates/mh-dashboard.tmpl.php`, `scp/dashboard.php`).
+
 ### 2026-11-19 — Datos en español y "Estado del sistema" (varreaga)
 
 * `include/class.i18n.php` (`DataTemplate`): para idiomas distintos de

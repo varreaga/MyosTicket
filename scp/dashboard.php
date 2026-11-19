@@ -1,5 +1,5 @@
 <?php
-// Modificado el 2026-11-18 por varreaga (proyecto MiHelpdesk, fork de osTicket): tablero nuevo del tema. Ver NOTICE.md.
+// Modificado el 2026-11-18 y el 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): tablero nuevo del tema; etiqueta de vencidas en la exportación. Ver NOTICE.md.
 /*********************************************************************
     dashboard.php
 
@@ -70,7 +70,7 @@ if (app_theme()) {
         fputs($out, chr(0xEF) . chr(0xBB) . chr(0xBF));
         $first = array('staff' => __('Agent'), 'dept' => __('Department'), 'topic' => __('Help Topic'));
         fputcsv($out, array($first[$mh_group], __('Received'), __('Resolved'),
-            __('Overdue'), __('First response (minutes)'), __('Time to resolve (minutes)')),
+            __('Overdue tickets'), __('First response (minutes)'), __('Time to resolve (minutes)')),
             $delimiter, '"', '');
         foreach ($mh->getPerformance($mh_group) as $r)
             fputcsv($out, array($r['name'], $r['received'], $r['resolved'], $r['overdue'],
