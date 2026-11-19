@@ -1,0 +1,25 @@
+#
+# Página: pwreset-client.yaml (MiHelpdesk, español de México)
+#
+# Redactada para MiHelpdesk a partir de la página en inglés de osTicket.
+# Reemplaza a la del paquete de idioma oficial.
+#
+---
+notes: |
+    Correo que reciben los clientes cuando eligen <strong>Olvidé mi contraseña</strong> en la página de inicio de sesión del portal.
+
+name: "Acceso al centro de soporte de %{company.name}"
+body: |
+    <h3><strong>Hola %{user.name.first},</strong></h3>
+    <div>
+    Se pidió restablecer la contraseña de su cuenta en el centro de soporte %{url}.<br />
+    <br />
+    Si usted no lo pidió, puede borrar este correo. Su cuenta sigue segura: nadie obtuvo acceso, no está bloqueada y su contraseña no cambió. Es posible que alguien haya escrito su correo por error.<br />
+    <br />
+    Para entrar y cambiar su contraseña, use este enlace:<br />
+    <br />
+    <a href="%{link}">%{link}</a><br />
+    <br />
+    <em style="font-size: small">El equipo de soporte<br />
+    %{company.name}</em>
+    </div>

@@ -1,0 +1,25 @@
+#
+# Plantilla de correo: ticket.activity.notice.yaml (MiHelpdesk, español de México)
+#
+# Redactada para MiHelpdesk a partir de la plantilla en inglés de osTicket.
+# Reemplaza a la del paquete de idioma oficial.
+#
+---
+notes: |
+    Aviso a los colaboradores de una solicitud cuando hay actividad, por ejemplo una respuesta o un mensaje.
+
+subject: |
+    Re: %{ticket.subject} [#%{ticket.number}]
+body: |
+    <h3><strong>Hola %{recipient.name.first},</strong></h3>
+    <div>
+    <em>%{poster.name}</em> agregó un mensaje a una solicitud en la que usted participa.
+    </div>
+    <br>
+    %{message}
+    <br>
+    <br>
+    <hr>
+    <div style="color: rgb(127, 127, 127); font-size: small; text-align: center;">
+    <em>Recibe este correo porque colabora en la solicitud <a href="%{recipient.ticket_link}" style="color: rgb(84, 141, 212);">#%{ticket.number}</a>. Para participar, solo responda a este correo o <a href="%{recipient.ticket_link}" style="color: rgb(84, 141, 212);">consulte aquí</a> el historial completo.</em>
+    </div>

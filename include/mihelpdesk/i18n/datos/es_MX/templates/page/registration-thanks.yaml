@@ -1,0 +1,20 @@
+#
+# Página: registration-thanks.yaml (MiHelpdesk, español de México)
+#
+# Redactada para MiHelpdesk a partir de la página en inglés de osTicket.
+# Reemplaza a la del paquete de idioma oficial.
+#
+---
+notes: |
+    Página que ven los clientes cuando confirman su cuenta. Debe decir que el registro terminó y que ya pueden abrir o consultar solicitudes.
+
+name: "¡Cuenta confirmada!"
+body: |
+    <div>
+    <strong>Gracias por registrarse.</strong><br />
+    <br />
+    Confirmó su correo y su cuenta ya está activa. Ahora puede abrir una solicitud nueva o consultar las que ya tiene.<br />
+    <br />
+    <em>El equipo de soporte</em><br />
+    %{company.name}
+    </div>

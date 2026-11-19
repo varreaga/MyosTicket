@@ -1,0 +1,25 @@
+#
+# Página: access-link.yaml (MiHelpdesk, español de México)
+#
+# Redactada para MiHelpdesk a partir de la página en inglés de osTicket.
+# Reemplaza a la del paquete de idioma oficial.
+#
+---
+notes: |
+    Aviso al cliente con el enlace de acceso a su solicitud. Se envía cuando escribe el número de solicitud y su correo.
+
+name: "Enlace de acceso a la solicitud [#%{ticket.number}]"
+body: |
+    <h3><strong>Hola %{recipient.name.first},</strong></h3>
+    <div>
+    Se pidió un enlace de acceso a la solicitud #%{ticket.number} en el centro de soporte %{url}.<br />
+    <br />
+    Use este enlace para consultar el estado de la solicitud #%{ticket.number}:<br />
+    <br />
+    <a href="%{recipient.ticket_link}">%{recipient.ticket_link}</a><br />
+    <br />
+    Si usted <strong>no</strong> lo pidió, puede borrar este correo. Su cuenta sigue segura y nadie obtuvo acceso a la solicitud; es posible que alguien haya escrito su correo por error.<br />
+    <br />
+    --<br />
+    %{company.name}
+    </div>

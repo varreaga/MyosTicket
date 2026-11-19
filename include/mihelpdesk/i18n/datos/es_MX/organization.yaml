@@ -1,0 +1,11 @@
+#
+# Organización de ejemplo que crea el instalador (MiHelpdesk, español de México)
+#
+# Reemplaza a la del paquete de idioma oficial.
+#
+---
+- name: MiHelpdesk
+  fields:
+    notes: >
+        Organización de ejemplo creada por el instalador. Cámbiela por los
+        datos de su empresa o bórrela.

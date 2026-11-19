@@ -1,0 +1,36 @@
+#
+# Plantilla de correo: assigned.alert.yaml (MiHelpdesk, español de México)
+#
+# Redactada para MiHelpdesk a partir de la plantilla en inglés de osTicket.
+# Reemplaza a la del paquete de idioma oficial.
+#
+---
+notes: |
+    Se le asigna a un agente cuando se le asigna una solicitud, ya sea de forma automática o por otro agente. Use %{assigner} para saber quién la asignó.
+
+subject: |
+    Solicitud #%{ticket.number} asignada a ti
+body: |
+    <h3><strong>Hola %{assignee.name.first},</strong></h3>
+    %{assigner.name.short} te asignó la solicitud <a href="%{ticket.staff_link}">#%{ticket.number}</a>.
+    <br>
+    <br>
+    <table>
+    <tbody>
+    <tr>
+        <td><strong>De</strong>:</td>
+        <td>%{ticket.name} &lt;%{ticket.email}&gt;</td>
+    </tr>
+    <tr>
+        <td><strong>Asunto</strong>:</td>
+        <td>%{ticket.subject}</td>
+    </tr>
+    </tbody>
+    </table>
+    <br>
+    %{comments}
+    <br>
+    <br>
+    <hr>
+    <div>Para ver o responder la solicitud, <a href="%{ticket.staff_link}"><span style="color: rgb(84, 141, 212);">inicia sesión</span></a> en el sistema de soporte.</div>
+    <em style="color: rgb(127, 127, 127); font-size: small;">Tu sistema de atención a clientes</em>

@@ -1,0 +1,23 @@
+#
+# Plantilla de correo: task.activity.alert.yaml (MiHelpdesk, español de México)
+#
+# Redactada para MiHelpdesk a partir de la plantilla en inglés de osTicket.
+# Reemplaza a la del paquete de idioma oficial.
+#
+---
+notes: |
+    Se envía a los agentes cuando se agrega un mensaje o nota a una tarea.
+
+subject: |
+    Actividad en la tarea [#%{task.number}] - %{activity.title}
+body: |
+    <h3><strong>Hola %{recipient.name},</strong></h3>
+    La tarea <a href="%{task.staff_link}">#%{task.number}</a> se actualizó: %{activity.description}
+    <br>
+    <br>
+    %{message}
+    <br>
+    <br>
+    <hr>
+    <div>Para ver o responder la tarea, <a href="%{task.staff_link}"><span style="color: rgb(84, 141, 212);">inicia sesión</span></a> en el sistema de soporte.</div>
+    <em style="color: rgb(127, 127, 127); font-size: small;">Tu sistema de atención a clientes</em>

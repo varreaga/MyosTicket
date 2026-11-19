@@ -1,0 +1,24 @@
+#
+# Página: email2fa-staff.yaml (MiHelpdesk, español de México)
+#
+# Redactada para MiHelpdesk a partir de la página en inglés de osTicket.
+# Reemplaza a la del paquete de idioma oficial.
+#
+---
+notes: |
+    Correo que reciben los agentes que usan la verificación en dos pasos por correo electrónico.
+
+name: "Código de verificación de MiHelpdesk"
+body: |
+    <h3><strong>Hola %{staff.name.first},</strong></h3>
+    <div>
+    Acabas de iniciar sesión en el centro de soporte %{url}.<br />
+    <br />
+    Usa este código de verificación para terminar de entrar:<br />
+    <br />
+    <strong style="font-size: large">%{otp}</strong><br />
+    <br />
+    Si no fuiste tú, cambia tu contraseña lo antes posible.<br />
+    <br />
+    <em style="font-size: small">Tu sistema de atención a clientes</em>
+    </div>

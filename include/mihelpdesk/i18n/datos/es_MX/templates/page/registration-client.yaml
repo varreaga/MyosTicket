@@ -1,0 +1,23 @@
+#
+# Página: registration-client.yaml (MiHelpdesk, español de México)
+#
+# Redactada para MiHelpdesk a partir de la página en inglés de osTicket.
+# Reemplaza a la del paquete de idioma oficial.
+#
+---
+notes: |
+    Correo que reciben los clientes cuando se crea su cuenta en el portal o un agente la crea por ellos. Sirve para verificar el correo; incluya %{link} en el texto.
+
+name: "Bienvenido a %{company.name}"
+body: |
+    <h3><strong>Hola %{recipient.name.first},</strong></h3>
+    <div>
+    Creamos una cuenta para usted en nuestro centro de soporte %{url}.<br />
+    <br />
+    Use este enlace para confirmar su cuenta y consultar sus solicitudes:<br />
+    <br />
+    <a href="%{link}">%{link}</a><br />
+    <br />
+    <em style="font-size: small">El equipo de soporte<br />
+    %{company.name}</em>
+    </div>

@@ -1,0 +1,13 @@
+#
+# Página: banner-client.yaml (MiHelpdesk, español de México)
+#
+# Redactada para MiHelpdesk a partir de la página en inglés de osTicket.
+# Reemplaza a la del paquete de idioma oficial.
+#
+---
+notes: |
+    Encabezado de la página de inicio de sesión del portal. Sirve para explicar a los clientes cómo entrar o registrarse.
+
+name: "Iniciar sesión en %{company.name}"
+body: |
+    Para darle un mejor servicio, le recomendamos crear una cuenta.

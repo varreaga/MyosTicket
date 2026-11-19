@@ -17,7 +17,8 @@ El script:
 
 1. Cambia `APP_NAME` en `bootstrap.php`. De esa constante dependen todos
    los títulos, pies de página y textos del panel, el portal y el instalador.
-2. Sustituye el nombre en los datos de instalación (`include/i18n/en_US`),
+2. Sustituye el nombre en los datos de instalación (`include/i18n/en_US` y
+   `include/mihelpdesk/i18n/datos`),
    en la documentación y en los avisos de modificación.
 3. Regenera los logos provisionales de texto con el nombre nuevo.
 

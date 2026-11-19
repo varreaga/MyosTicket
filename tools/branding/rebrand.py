@@ -53,6 +53,7 @@ def current_name():
 def replace_in_files(old, new):
     targets = [ROOT / "bootstrap.php", ROOT / "README.md", ROOT / "NOTICE.md", ROOT / "BRANDING.md"]
     targets += list((ROOT / "include/i18n/en_US").rglob("*.yaml"))
+    targets += list((ROOT / "include/mihelpdesk/i18n/datos").rglob("*.yaml"))
     targets += [p for p in ROOT.rglob("*.php") if "vendor" not in p.parts]
     changed = 0
     for p in targets:

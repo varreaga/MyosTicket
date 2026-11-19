@@ -1,0 +1,16 @@
+#
+# Página: registration-confirm.yaml (MiHelpdesk, español de México)
+#
+# Redactada para MiHelpdesk a partir de la página en inglés de osTicket.
+# Reemplaza a la del paquete de idioma oficial.
+#
+---
+notes: |
+    Página que ven los clientes después de llenar el formulario de registro. Debe decir que se les envió un correo de confirmación y cuál es el siguiente paso.
+
+name: "Registro de cuenta"
+body: |
+    <div><strong>Gracias por registrarse.</strong><br />
+    <br />
+    Le enviamos un correo a la dirección que escribió. Use el enlace de ese correo para confirmar su cuenta y consultar sus solicitudes.
+    </div>

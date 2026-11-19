@@ -1,0 +1,25 @@
+#
+# Plantilla de correo: ticket.autoresp.yaml (MiHelpdesk, español de México)
+#
+# Redactada para MiHelpdesk a partir de la plantilla en inglés de osTicket.
+# Reemplaza a la del paquete de idioma oficial.
+#
+---
+notes: |
+    Se envía al usuario cuando se crea su solicitud.
+
+subject: |
+    Recibimos su solicitud [#%{ticket.number}]
+body: |
+    <h3><strong>Hola %{recipient.name.first},</strong></h3>
+    <p>
+    Recibimos su solicitud de soporte y le asignamos el número #%{ticket.number}. Una persona de nuestro equipo le responderá lo antes posible. Puede <a href="%{recipient.ticket_link}">consultar el avance en línea</a>.
+    </p>
+    <br>
+    <div style="color: rgb(127, 127, 127);">
+    Atentamente,<br>
+    El equipo de %{company.name}<br>
+    %{signature}
+    </div>
+    <hr>
+    <div style="color: rgb(127, 127, 127); font-size: small;"><em>Si quiere agregar comentarios o información sobre el problema, responda a este correo o <a href="%{recipient.ticket_link}"><span style="color: rgb(84, 141, 212);">entre a su cuenta</span></a> para ver el historial completo de sus solicitudes.</em></div>

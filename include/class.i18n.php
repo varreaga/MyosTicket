@@ -1,4 +1,5 @@
 <?php
+// Modificado el 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): nombre del producto, textos propios y correcciones en los datos de los paquetes de idioma. Ver NOTICE.md.
 /*********************************************************************
     class.i18n.php
 
@@ -612,6 +613,7 @@ class DataTemplate {
     var $base = I18N_DIR;
 
     var $filepath;
+    var $path;
     var $data;
 
     /**
@@ -621,7 +623,20 @@ class DataTemplate {
      * it is defined.
      */
     function __construct($path, $langs=array('en_US')) {
+        $this->path = $path;
+        // MiHelpdesk: file.yaml trae imágenes (el logo de los correos), no
+        // textos; siempre se usa el de en_US, que tiene el logo del producto
+        if ($path == 'file.yaml')
+            $langs = array('en_US');
         foreach ($langs as $l) {
+            // MiHelpdesk: textos propios (plantillas de correo y páginas
+            // redactadas para el producto) antes que los del paquete oficial
+            if ($l != 'en_US' && defined('INCLUDE_DIR')
+                    && file_exists($f = INCLUDE_DIR . "mihelpdesk/i18n/datos/$l/$path")) {
+                $this->lang = $l;
+                $this->filepath = Misc::realpath($f);
+                break;
+            }
             if (file_exists("{$this->base}/$l/$path")) {
                 $this->lang = $l;
                 $this->filepath = Misc::realpath("{$this->base}/$l/$path");
@@ -639,7 +654,7 @@ class DataTemplate {
 
     function getData() {
         if (!isset($this->data) && $this->filepath)
-            $this->data = YamlDataParser::load($this->filepath);
+            $this->data = self::rebrand(self::corregir(YamlDataParser::load($this->filepath), $this->lang, $this->path), $this->lang);
             // TODO: If there was a parsing error, attempt to try the next
             //       language in the list of requested languages
         return $this->data;
@@ -647,10 +662,55 @@ class DataTemplate {
 
     function getRawData() {
         if (!isset($this->data) && $this->filepath)
-            return file_get_contents($this->filepath);
+            return self::rebrand(file_get_contents($this->filepath), $this->lang);
             // TODO: If there was a parsing error, attempt to try the next
             //       language in the list of requested languages
         return false;
+    }
+
+    /**
+     * MiHelpdesk: los paquetes de idioma oficiales dicen "osTicket" en sus
+     * datos (plantillas de correo, páginas, ayudas). Se muestra el nombre del
+     * producto (APP_NAME). Los datos en inglés (en_US) ya vienen con el
+     * nombre cambiado y conservan a propósito la mención "basado en osTicket".
+     */
+    /**
+     * MiHelpdesk: correcciones a textos del paquete oficial (que no se
+     * modifica). include/mihelpdesk/i18n/datos/<idioma>.php devuelve
+     * array('*' => array(texto => corrección), 'archivo.yaml' => array(...)).
+     * Solo se cambian valores completos que coinciden exactamente.
+     */
+    static function corregir($data, $lang, $path) {
+        static $todas = array();
+        if ($lang == 'en_US' || !$data)
+            return $data;
+        if (!isset($todas[$lang])) {
+            $f = INCLUDE_DIR . 'mihelpdesk/i18n/datos/' . basename($lang) . '.php';
+            $todas[$lang] = (is_file($f) && is_array($c = (include $f))) ? $c : array();
+        }
+        $mapa = ($todas[$lang][$path] ?? array()) + ($todas[$lang]['*'] ?? array());
+        if (!$mapa)
+            return $data;
+        $aplicar = function ($v) use (&$aplicar, $mapa) {
+            if (is_string($v))
+                return $mapa[trim($v)] ?? $v;
+            if (is_array($v))
+                foreach ($v as $k => $x)
+                    $v[$k] = $aplicar($x);
+            return $v;
+        };
+        return $aplicar($data);
+    }
+
+    static function rebrand($data, $lang) {
+        if ($lang == 'en_US' || !defined('APP_NAME') || APP_NAME == 'osTicket')
+            return $data;
+        if (is_string($data))
+            return str_replace('osTicket', APP_NAME, $data);
+        if (is_array($data))
+            foreach ($data as $k => $v)
+                $data[$k] = self::rebrand($v, $lang);
+        return $data;
     }
 
     function getLang() {

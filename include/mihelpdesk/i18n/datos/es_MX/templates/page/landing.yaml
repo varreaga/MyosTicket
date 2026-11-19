@@ -1,0 +1,16 @@
+#
+# Página: landing.yaml (MiHelpdesk, español de México)
+#
+# Redactada para MiHelpdesk a partir de la página en inglés de osTicket.
+# Reemplaza a la del paquete de idioma oficial.
+#
+---
+notes: |
+    Contenido de la página principal del portal de clientes. Aparece arriba de los botones <strong>Abrir una solicitud</strong> y <strong>Consultar una solicitud</strong>.
+
+name: "Página principal"
+body: |
+    <h1>Bienvenido al Centro de Soporte</h1>
+    <p>
+    Para atender mejor sus solicitudes usamos un sistema de solicitudes de soporte. Cada solicitud recibe un número único con el que puede consultar en línea su avance y nuestras respuestas. Además, guardamos el historial completo de todas sus solicitudes. Para abrir una solicitud necesita un correo electrónico válido.
+    </p>
