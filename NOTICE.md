@@ -23,6 +23,30 @@ Base
 Historial de cambios
 --------------------
 
+### 2026-11-19 — Revisión visual completa (varreaga)
+
+* `include/staff/footer.inc.php`: los textos de JavaScript se cargan en el
+  idioma efectivo del agente. Si el agente tenía "predeterminado del
+  sistema", se quedaban en inglés (por ejemplo, "all changes saved" en el
+  editor).
+* Textos que osTicket mostraba sin traducir: `include/staff/helptopics.inc.php`
+  (estado de los temas), `user-view.inc.php` y `org-view.inc.php`
+  ("Reload"), `faq.inc.php`, `page.inc.php`, `category.inc.php` y
+  `dynamic-form.inc.php` ("This content is translatable"),
+  `slaplans.inc.php` ("(Default)"), `settings-system.inc.php` ("Apply To"),
+  `templates/schedule-entries.tmpl.php` (zona horaria),
+  `template.inc.php` (grupos de plantillas) e `include/class.schedule.php`
+  (días de la semana).
+* `tools/editor/src/editor.css` y `css/mh-editor.css`: el área de texto del
+  editor ya no dibuja un segundo recuadro oscuro al tener el foco.
+* Tema (`assets/mihelpdesk/`): restos del estilo original (grises fijos,
+  iconos .png de los avisos, flecha de los selectores, botones grises del
+  portal), barra de acciones no fija en pantallas chicas, "Mis solicitudes"
+  como tarjetas en el celular e iniciales cuando el avatar no carga.
+* `tools/i18n/cargar-idioma.php`: también traduce los formularios de
+  empresa, organización y tarea, las propiedades de los estados y su
+  descripción.
+
 ### 2026-11-19 — "Solicitud" en todo el sistema (varreaga)
 
 El paquete oficial en español mezcla "ticket", "tiquete", "boleto" y

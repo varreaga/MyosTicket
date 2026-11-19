@@ -1,4 +1,4 @@
-<?php /* Modificado el 2026-11-16, 2026-11-17 y 2026-11-18 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca, editor y script del tema. Ver NOTICE.md. */ ?>
+<?php /* Modificado el 2026-11-16, 2026-11-17, 2026-11-18 y 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca, editor y script del tema; idioma de los textos de JavaScript. Ver NOTICE.md. */ ?>
 </div>
 </div>
 <?php if (!isset($_SERVER['HTTP_X_PJAX'])) { ?>
@@ -65,11 +65,14 @@ if(is_object($thisstaff) && $thisstaff->isStaff()) { ?>
     ?>);
 </script>
 <?php
+// MiHelpdesk: idioma efectivo del agente (si eligió "predeterminado del
+// sistema", getLanguage() viene vacío y los textos de JavaScript quedaban
+// en inglés aunque el panel estuviera en español)
 if ($thisstaff
-        && ($lang = $thisstaff->getLanguage())
+        && ($lang = Internationalization::getCurrentLanguage($thisstaff))
         && 0 !== strcasecmp($lang, 'en_US')) { ?>
     <script type="text/javascript" src="ajax.php/i18n/<?php
-        echo $thisstaff->getLanguage(); ?>/js"></script>
+        echo Format::htmlchars($lang); ?>/js"></script>
 <?php } ?>
 <?php app_theme_scripts('staff'); ?>
 </body>

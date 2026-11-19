@@ -1,4 +1,5 @@
 <?php
+// Modificado el 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): textos sin traducir. Ver NOTICE.md.
 if (!defined('OSTADMININC') || !$thisstaff->isAdmin()) die('Access Denied');
 
 
@@ -150,10 +151,10 @@ $order_by = 'sort';
                     echo Topic::getTopicName($id); ?></a>&nbsp;
                 </td>
                 <td><?php
-                  if($topic->getStatus() == __('Active'))
-                    echo $topic->getStatus();
+                  if($topic->getStatus() == 'Active')
+                    echo __($topic->getStatus());
                   else
-                    echo '<b>'.$topic->getStatus();
+                    echo '<b>'.__($topic->getStatus());
                   ?>
                 </td>
                 <td><?php echo $topic->ispublic ? __('Public') : '<b>'.__('Private').'</b>'; ?></td>

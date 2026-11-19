@@ -495,4 +495,25 @@ return array(
         => 'para reabrir solicitudes',
     'to resolve/close tickets'
         => 'para resolver/cerrar solicitudes',
+    // Traducciones del paquete con errores (no relacionadas con "solicitud")
+    'This content is translatable'
+        => 'Este contenido se puede traducir',
+    'Autoresponder'
+        => 'Respuesta automática',
+    'Optional reason for status change (internal note)'
+        => 'Motivo opcional del cambio de estado (nota interna)',
+    'Access Token'
+        => 'Token de acceso',
+    'Helpdesk URL'
+        => 'URL del centro de soporte',
+    'John Doe'
+        => 'Juan Pérez',
+    // Abierto/cerrado se refiere a solicitudes o tareas (femenino plural)
+    'Open' => 'Abiertas',
+    'Closed' => 'Cerradas',
+    'Most Recently Closed' => 'Cerradas más recientemente',
+    "action-button\x04Open" => 'Abiertas',
+    "queue-name\x04Open" => 'Abiertas',
+    "ticket state name\x04Open" => 'Abierta',
+    "ticket state name\x04Closed" => 'Cerrada',
 );

@@ -1,4 +1,5 @@
 <?php
+// Modificado el 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): textos sin traducir. Ver NOTICE.md.
 if (!defined('OSTSCPINC') || !$thisstaff
         || !$thisstaff->hasPerm(FAQ::PERM_MANAGE))
     die('Access Denied');
@@ -73,7 +74,7 @@ $info=Format::htmlchars(($errors && $_POST)?$_POST:$info, true);
 $langs = Internationalization::getConfiguredSystemLanguages();
 if (count($langs) > 1) { ?>
     <ul class="alt tabs clean" id="trans">
-        <li class="empty"><i class="icon-globe" title="This content is translatable"></i></li>
+        <li class="empty"><i class="icon-globe" title="<?php echo __('This content is translatable'); ?>"></i></li>
 <?php foreach ($langs as $tag=>$i) {
     list($lang, $locale) = explode('_', $tag);
  ?>

@@ -1,4 +1,5 @@
 <?php
+// Modificado el 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): textos sin traducir. Ver NOTICE.md.
 if(!defined('OSTADMININC') || !$thisstaff->isAdmin()) die('Access Denied');
 
 $qs = array();
@@ -112,7 +113,7 @@ $qstr .= '&amp;order='.($order=='DESC' ? 'ASC' : 'DESC');
 
                 $default = '';
                 if ($id == $defaultId)
-                    $default = '<small><em>(Default)</em></small>';
+                    $default = '<small><em>'.__('(Default)').'</em></small>';
                 ?>
             <tr id="<?php echo $id; ?>">
                 <td align="center">
