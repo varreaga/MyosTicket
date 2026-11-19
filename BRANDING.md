@@ -21,6 +21,11 @@ El script:
    en la documentación y en los avisos de modificación.
 3. Regenera los logos provisionales de texto con el nombre nuevo.
 
+Aparte, cambia a mano `APP_URL` en `bootstrap.php` cuando el proyecto tenga
+sitio propio. Es el enlace de los créditos del inicio de sesión y del botón
+"Upgrade" de Admin Panel › Information; por ahora apunta al repositorio en
+GitHub.
+
 Si solo quieres cambiar el nombre y poner tus propios logos a mano, usa
 `--sin-logos`.
 

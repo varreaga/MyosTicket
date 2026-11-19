@@ -374,6 +374,8 @@ define('THIS_VERSION', MAJOR_VERSION.'-git'); //Shown on admin panel
 #Branding: nombre visible del producto (fork de osTicket bajo GPLv2).
 #Cambia APP_NAME aqui cuando tengas el nombre definitivo; ver BRANDING.md.
 define('APP_NAME', 'MiHelpdesk');
+#Sitio del proyecto (creditos del inicio de sesion). Cambialo cuando haya sitio propio.
+define('APP_URL', 'https://github.com/varreaga/MyosTicket');
 define('APP_UPSTREAM_NAME', 'osTicket');
 define('APP_UPSTREAM_URL', 'https://osticket.com');
 

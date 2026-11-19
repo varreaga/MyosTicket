@@ -23,6 +23,18 @@ Base
 Historial de cambios
 --------------------
 
+### 2026-11-19 — Créditos del inicio de sesión y botón de actualizar (varreaga)
+
+* `include/staff/login.tpl.php` y `include/staff/pwreset*.php`: el pie decía
+  "Powered by" con la imagen de MiHelpdesk pero enlazaba a osticket.com.
+  Ahora dice "MiHelpdesk es software libre basado en osTicket, con
+  licencia GNU GPL v2", con cada nombre enlazado a su propio sitio.
+* `bootstrap.php`: nueva constante `APP_URL` (sitio del proyecto; por ahora
+  el repositorio en GitHub).
+* `include/staff/system.inc.php`: el botón "Upgrade" de Admin Panel ›
+  Information lleva a las versiones de MiHelpdesk en lugar de la descarga de
+  osTicket.
+
 ### 2026-11-19 — Inicio de sesión del panel (varreaga)
 
 Con el tema activo, el inicio de sesión de agentes y la página para
