@@ -419,6 +419,18 @@ body.mh-staff, html:has(body.mh-staff) {
    para que sus menús no se escondan debajo; el fondo de los diálogos (9,
    después en la página) la sigue cubriendo. */
 .mh-staff #customQ_nav { position: relative; z-index: 9; }
+/* El menú se abre con :hover. Entre el botón y el menú hay unos pixeles de
+   separación; al cruzarlos el puntero salía del botón y el menú se cerraba.
+   Un puente invisible debajo del botón mantiene el menú abierto, y con
+   :focus-within también se abre con el teclado. */
+.mh-staff #customQ_nav ul li.item { position: relative; }
+.mh-staff #customQ_nav ul li.item::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; top: 100%;
+  height: 12px;
+}
+.mh-staff #customQ_nav ul li.item:focus-within div.customQ-dropdown { display: block; }
 .mh-staff #customQ_nav .customQ-dropdown,
 .mh-staff .jb-overflowmenu-container .jb-overflowmenu-menu-secondary {
   margin-top: 6px;
@@ -430,6 +442,8 @@ body.mh-staff, html:has(body.mh-staff) {
 }
 .mh-staff #customQ_nav .customQ-dropdown li a { color: var(--mh-text-2); }
 .mh-staff #customQ_nav .customQ-dropdown li:hover { background: var(--mh-surface-alt); }
+.mh-staff #customQ_nav .customQ-dropdown li:hover > span { color: #E65524; } /* mismo color que sin el puntero */
+.mh-staff #customQ_nav .customQ-dropdown ul li:hover > a { color: var(--mh-text); }
 .mh-staff #customQ_nav .add-queue { border-top: 1px solid var(--mh-border-soft); background: var(--mh-surface-alt); }
 
 /* Contenido y pie */
@@ -1407,6 +1421,9 @@ body.mh-staff, html:has(body.mh-staff) {
   .mh-staff #pjax-container > nav { padding: 12px 16px 0; }
   .mh-staff #customQ_nav .jb-overflowmenu-container { top: 12px; right: 16px; }
   .mh-staff #sub_nav { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; }
+  /* Las colas no se desplazan de lado: el desplazamiento recortaba sus menús.
+     Las que no caben pasan al menú "más" del original. */
+  .mh-staff #customQ_nav #sub_nav { overflow: visible; }
   .mh-staff #sub_nav > li > a, .mh-staff #customQ_nav li.item > a { white-space: nowrap; }
   .mh-staff #content { padding: 16px; }
   .mh-staff .mh-top-search { flex: 1 1 0; min-width: 0; }
