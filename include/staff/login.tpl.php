@@ -1,5 +1,5 @@
 <?php
-// Modificado el 2026-11-16 y el 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca y diseño del tema (título y etiquetas de los campos). Ver NOTICE.md.
+// Modificado el 2026-11-16 y el 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca y diseño del tema (título y etiquetas de los campos); créditos del pie. Ver NOTICE.md.
 include_once(INCLUDE_DIR.'staff/login.header.php');
 $info = ($_POST && $errors)?Format::htmlchars($_POST):array();
 
@@ -88,10 +88,11 @@ if (($bks=StaffAuthenticationBackend::getExternal())) { ?>
         </div>
     </div>
 </div>
-<div id="poweredBy"><?php echo __('Powered by'); ?>
-    <a href="http://www.osticket.com" target="_blank">
-        <img alt="<?php echo Format::htmlchars(APP_NAME); ?>" src="images/osticket-grey.png" class="osticket-logo">
-    </a>
+<div id="poweredBy"><?php
+    // MiHelpdesk: créditos con el nombre del producto y su origen (osTicket)
+    echo sprintf(__('%1$s is free software based on %2$s, licensed under the GNU GPL v2.'),
+        '<a href="'.APP_URL.'" target="_blank" rel="noopener">'.Format::htmlchars(APP_NAME).'</a>',
+        '<a href="'.APP_UPSTREAM_URL.'" target="_blank" rel="noopener">'.APP_UPSTREAM_NAME.'</a>'); ?>
 </div>
 <?php if (app_theme()) { ?>
     <script>

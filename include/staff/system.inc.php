@@ -1,5 +1,5 @@
 <?php
-// Modificado el 2026-11-16 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca. Ver NOTICE.md.
+// Modificado el 2026-11-16 y el 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca; el botón de actualizar lleva a las versiones de MiHelpdesk. Ver NOTICE.md.
 if(!defined('OSTADMININC') || !$thisstaff || !$thisstaff->isAdmin()) die('Access Denied');
 
 $commit = GIT_VERSION != '$git' ? GIT_VERSION : (
@@ -87,7 +87,7 @@ else {
     $cv = $tv[0] == 'v' ? $tv : $gv;
 ?>
       <a class="green button action-button pull-right"
-         href="https://osticket.com/download?cv=<?php echo $cv; ?>"><i class="icon-rocket"></i>
+         href="<?php echo APP_URL; ?>/releases" target="_blank" rel="noopener"><i class="icon-rocket"></i>
         <?php echo __('Upgrade'); ?></a>
 <?php if ($lv) { ?>
       <strong> — <?php echo str_replace(
