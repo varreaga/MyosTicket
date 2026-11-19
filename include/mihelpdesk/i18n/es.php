@@ -66,6 +66,11 @@ return array(
         => 'Escribe un color en formato hexadecimal (#0072bc) o RGB (rgb(0, 114, 188)).',
 
     // ------------------------------------------------ Administración
+    // Textos de osTicket que el paquete oficial no traduce
+    'Apply To' => 'Aplicar a',
+    'Useful for email processing' => 'Útil para procesar correos',
+    'Required for email fetching' => 'Necesario para descargar correos',
+    'All times are in %s timezone' => 'Todas las horas están en la zona horaria %s',
     'System status' => 'Estado del sistema',
     'System logs and information' => 'Registros e información del sistema',
 

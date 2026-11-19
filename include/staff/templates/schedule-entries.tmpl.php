@@ -1,11 +1,12 @@
 <?php
+// Modificado el 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): textos sin traducir. Ver NOTICE.md.
 $count = $schedule->getNumEntries();
 $entries = $schedule->getEntries()
     ->order_by('sort');
 ?>
 <div style="margin: 5px 0">
 <div class="pull-left" valign="bottom"><?php
-    echo sprintf('All times are in %s timezone',
+    echo sprintf(__('All times are in %s timezone'),
         $schedule->getTimezone()); ?></div>
 <div class="pull-right">
     <a class="green button action-button entry-action"

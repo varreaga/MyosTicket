@@ -340,3 +340,74 @@
 
 /* Campos traducibles (con bandera del idioma) */
 .mh-theme .translatable { background: var(--mh-surface); border-color: var(--mh-border-strong); }
+
+/* ------------------------------------------------------------------
+   Restos del estilo original de osTicket
+   Detalles que seguían con los grises, iconos e imágenes del tema viejo
+   (y se veían mal sobre todo en modo oscuro). Encontrados con una revisión
+   automática de colores fuera de la paleta del tema en todas las páginas.
+   ------------------------------------------------------------------ */
+/* Avisos de la barra superior: iconos del tema en lugar de los .png viejos */
+.mh-theme #warning_bar, .mh-theme #error_bar, .mh-theme #notice_bar {
+  background-repeat: no-repeat;
+  background-position: 14px 50%;
+  background-size: 16px 16px;
+}
+.mh-theme #warning_bar { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23b45309' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z'/%3E%3Cpath d='M12 9v4M12 17h.01'/%3E%3C/svg%3E"); }
+.mh-theme #error_bar { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c62828' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 8v4M12 16h.01'/%3E%3C/svg%3E"); }
+.mh-theme #notice_bar { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232e7d32' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='m8 12 3 3 5-6'/%3E%3C/svg%3E"); }
+
+/* Bordes y separadores grises (#ccc, #ddd, #aaa, #bbb, #777) */
+.mh-theme .action-button i.icon-caret-down,
+.mh-theme .has_bottom_border,
+.mh-theme tr.header, .mh-theme tr.header > th, .mh-theme tr.header > td,
+.mh-theme form.tab_content,
+.mh-theme table caption,
+.mh-theme #content th,
+.mh-theme .secondary_lang,
+.mh-theme #info,
+.mh-theme input.dp { border-color: var(--mh-border); }
+.mh-theme input.dp { background-color: var(--mh-surface); color: var(--mh-text); }
+
+/* Textos grises y oscuros fijos (#444, #555, #666, #777, #999) */
+.mh-theme #content em,
+.mh-theme #content h4 span,
+.mh-theme .filesize,
+.mh-theme .select2-selection__placeholder,
+.mh-theme .select2-container--default .select2-selection--single .select2-selection__placeholder { color: var(--mh-text-muted); }
+.mh-theme #content h3,
+.mh-theme #content h3 strong { color: var(--mh-text); }
+.mh-theme #breadcrumbs a { color: var(--mh-link); }
+.mh-theme .action-button, .mh-theme a.action-button, .mh-theme button.action-button { color: var(--mh-text-2); }
+.mh-theme .dropzone a.manual { color: var(--mh-link); }
+.mh-theme font.error, .mh-theme .error { color: var(--mh-danger); }
+.mh-theme .label-danger { border-color: var(--mh-danger-border); }
+
+/* Flecha de los selectores Select2 */
+.mh-theme .select2-container--default .select2-selection--single .select2-selection__arrow b { border-top-color: var(--mh-text-muted); }
+.mh-theme .select2-container--default.select2-container--open .select2-selection--single .select2-selection__arrow b { border-bottom-color: var(--mh-text-muted); border-top-color: transparent; }
+
+/* Archivos adjuntos: clip del tema en lugar de file.gif */
+.mh-theme div.file {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235f6b7a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m21.4 11.1-9.2 9.2a6 6 0 0 1-8.5-8.5l9.2-9.2a4 4 0 0 1 5.7 5.7l-9.2 9.2a2 2 0 0 1-2.8-2.8l8.5-8.5'/%3E%3C/svg%3E");
+  background-size: 14px 14px;
+  background-repeat: no-repeat;
+}
+/* Los mismos, donde el estilo original es más específico */
+.mh-theme #response_options form.tab_content,
+.mh-theme #content table th,
+.mh-theme table#ticketTable caption,
+.mh-theme table caption,
+.mh-theme .info > div { border-color: var(--mh-border) !important; }
+.mh-theme #content .action-button,
+.mh-theme .pull-right > a.action-button,
+.mh-theme td > button.action-button { color: var(--mh-text-2); }
+.mh-theme .filename .filesize, .mh-theme span.filesize { color: var(--mh-text-muted) !important; }
+/* Portal: botones "action-button" del original (gris #ddd con texto #777 !important) */
+.mh-client .action-button {
+  color: var(--mh-text-2) !important;
+  background: var(--mh-surface);
+  border: 1px solid var(--mh-border-strong);
+  border-radius: var(--mh-radius);
+}
+.mh-client .action-button:hover { background: var(--mh-hover); }

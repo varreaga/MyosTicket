@@ -1,4 +1,5 @@
 <?php
+// Modificado el 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): textos sin traducir. Ver NOTICE.md.
 if (!defined('OSTSCPINC') || !$thisstaff
         || !$thisstaff->hasPerm(FAQ::PERM_MANAGE))
     die('Access Denied');
@@ -132,7 +133,7 @@ if ($topics = $thisstaff->getTopicNames()) {
 $langs = Internationalization::getConfiguredSystemLanguages();
 if ($faq && count($langs) > 1) { ?>
     <ul class="tabs alt clean" id="trans" style="margin-top:10px;">
-        <li class="empty"><i class="icon-globe" title="This content is translatable"></i></li>
+        <li class="empty"><i class="icon-globe" title="<?php echo __('This content is translatable'); ?>"></i></li>
 <?php foreach ($langs as $tag=>$i) {
     list($lang, $locale) = explode('_', $tag);
  ?>
@@ -219,7 +220,7 @@ echo $attrs; ?>><?php echo $draft ?: Format::viewableImages($answer);
     <div style="margin-top:15px"></div>
 
     <ul class="tabs alt clean">
-        <li class="empty"><i class="icon-globe" title="This content is translatable"></i></li>
+        <li class="empty"><i class="icon-globe" title="<?php echo __('This content is translatable'); ?>"></i></li>
 <?php foreach ($langs as $lang=>$i) { ?>
         <li class="<?php if ($i['code'] == $cfg->getPrimaryLanguage()) echo 'active';
 ?>"><a href="#attachments-<?php echo $i['code']; ?>">

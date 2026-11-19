@@ -1,4 +1,5 @@
 <?php
+// Modificado el 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): textos sin traducir. Ver NOTICE.md.
 if(!defined('OSTSCPINC') || !$thisstaff || !is_object($user)) die('Invalid path');
 
 $account = $user->getAccount();
@@ -9,7 +10,7 @@ $extras = new ArrayObject();
     <tr>
         <td width="50%" class="has_bottom_border">
              <h2><a href="users.php?id=<?php echo $user->getId(); ?>"
-             title="Reload"><i class="icon-refresh"></i> <?php echo Format::htmlchars($user->getName()); ?></a></h2>
+             title="<?php echo __('Reload'); ?>"><i class="icon-refresh"></i> <?php echo Format::htmlchars($user->getName()); ?></a></h2>
         </td>
         <td width="50%" class="right_align has_bottom_border">
 <?php if (($account && $account->isConfirmed())

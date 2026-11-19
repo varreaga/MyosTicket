@@ -163,7 +163,7 @@ porId('ticket_status.yaml', TICKET_STATUS_TABLE, 'id', 'id',
     array('name' => 'name'), 'Estado');
 porId('priority.yaml', PRIORITY_TABLE, 'priority_id', 'priority_id',
     array('priority_desc' => 'priority_desc'), 'Prioridad');
-porId('queue.yaml', QUEUE_TABLE, 'id', 'id', array('title' => 'title'), 'Cola');
+porId('queue.yaml', QUEUE_TABLE, 'id', 'id', array('title' => 'title', 'config' => 'config'), 'Cola');
 porId('queue_column.yaml', COLUMN_TABLE, 'id', 'id', array('name' => 'name'), 'Columna');
 porId('queue_sort.yaml', QUEUE_SORT_TABLE, 'id', 'id', array('name' => 'name'), 'Orden');
 porId('department.yaml', DEPT_TABLE, 'id', 'id', array('name' => 'name'), 'Departamento');
@@ -201,19 +201,48 @@ foreach ($en as $i => $t)
         cambiar(TEAM_TABLE, array('name' => $t['name']), 'name', $t['name'],
             $tr[$i]['name'], "Equipo «{$t['name']}»");
 
-// Formularios y sus campos
+// Formularios y sus campos. Los de usuario y solicitud traen id; los de
+// empresa, organización y tarea se buscan por su tipo. Las propiedades de la
+// lista de estados (list.yaml) son también un formulario, de tipo L<id>.
 echo "Formularios\n";
+function formas($datos, $lang) {
+    $r = array();
+    foreach ($datos as $f)
+        if (isset($f['id']))
+            $r['id:' . $f['id']] = $f;
+        elseif (isset($f['type']))
+            $r['type:' . $f['type']] = $f;
+    return $r;
+}
 list($en, $tr) = datos('form.yaml', $lang);
-$trPorId = array();
-foreach ($tr as $f)
-    $trPorId[$f['id']] = $f;
-foreach ($en as $f) {
-    if (!isset($f['id']) || !isset($trPorId[$f['id']]))
+$en = formas($en, $lang);
+$tr = formas($tr, $lang);
+list($lEn, $lTr) = datos('list.yaml', $lang);
+foreach ($lEn as $i => $l) {
+    if (empty($l['properties']) || empty($lTr[$i]['properties']) || empty($l['type']))
         continue;
-    $t = $trPorId[$f['id']];
+    $res = db_query('SELECT id FROM ' . LIST_TABLE . ' WHERE type=' . db_input($l['type']));
+    if ($res && db_num_rows($res)) {
+        $k = 'type:L' . db_result($res);
+        $en[$k] = $l['properties'];
+        $tr[$k] = $lTr[$i]['properties'];
+    }
+}
+foreach ($en as $k => $f) {
+    if (!isset($tr[$k]))
+        continue;
+    $t = $tr[$k];
+    if (strpos($k, 'id:') === 0) {
+        $id = substr($k, 3);
+    } else {
+        $res = db_query('SELECT id FROM ' . FORM_SEC_TABLE . ' WHERE type=' . db_input(substr($k, 5)));
+        if (!$res || db_num_rows($res) != 1)
+            continue;
+        $id = db_result($res);
+    }
     foreach (array('title', 'instructions', 'notes') as $col)
-        cambiar(FORM_SEC_TABLE, array('id' => $f['id']), $col, $f[$col] ?? null,
-            $t[$col] ?? null, "Formulario #{$f['id']} ($col)");
+        cambiar(FORM_SEC_TABLE, array('id' => $id), $col, $f[$col] ?? null,
+            $t[$col] ?? null, "Formulario #$id ($col)");
     $campos = array();
     foreach ($t['fields'] ?? array() as $c)
         if (isset($c['name']))
@@ -222,9 +251,43 @@ foreach ($en as $f) {
         if (!isset($c['name']) || !isset($campos[$c['name']]))
             continue;
         foreach (array('label', 'hint') as $col)
-            cambiar(FORM_FIELD_TABLE, array('form_id' => $f['id'], 'name' => $c['name']),
+            cambiar(FORM_FIELD_TABLE, array('form_id' => $id, 'name' => $c['name']),
                 $col, $c[$col] ?? null, $campos[$c['name']][$col] ?? null,
-                "Campo {$c['name']} del formulario #{$f['id']} ($col)");
+                "Campo {$c['name']} del formulario #$id ($col)");
+    }
+}
+
+// Descripción de los estados (guardada en la columna properties, en JSON)
+echo "Descripción de los estados\n";
+list($en, $tr) = datos('ticket_status.yaml', $lang);
+$trPorId = array();
+foreach ($tr as $st)
+    $trPorId[$st['id']] = $st;
+foreach ($en as $st) {
+    $nuevo = $trPorId[$st['id']]['properties']['description'] ?? null;
+    $viejo = $st['properties']['description'] ?? null;
+    if (!$nuevo || !$viejo)
+        continue;
+    $res = db_query('SELECT properties FROM ' . TICKET_STATUS_TABLE . ' WHERE id=' . db_input($st['id']));
+    if (!$res || !db_num_rows($res))
+        continue;
+    $props = json_decode(db_result($res), true);
+    if (!is_array($props) || !isset($props['description']))
+        continue;
+    $actual = $props['description'];
+    if (igual($actual, $nuevo)) {
+        $cuenta['igual']++;
+    } elseif (igual($actual, $viejo) || isset($reemplazables[normal($actual)])) {
+        $cuenta['cambiado']++;
+        printf("  ✓ Estado #%d (descripción): «%s» → «%s»\n", $st['id'], normal($actual), normal($nuevo));
+        if ($aplicar) {
+            $props['description'] = trim($nuevo);
+            db_query('UPDATE ' . TICKET_STATUS_TABLE . ' SET properties='
+                . db_input(json_encode($props)) . ' WHERE id=' . db_input($st['id']));
+        }
+    } else {
+        $cuenta['editado']++;
+        printf("  · Se deja (ya editado): Estado #%d (descripción)\n", $st['id']);
     }
 }
 

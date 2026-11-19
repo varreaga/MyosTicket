@@ -1,4 +1,5 @@
 <?php
+// Modificado el 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): textos sin traducir. Ver NOTICE.md.
 if(!defined('OSTADMININC') || !$thisstaff || !$thisstaff->isAdmin()) die('Access Denied');
 
 $info = $qs = array();
@@ -86,7 +87,7 @@ $info=Format::htmlchars(($errors && $_POST)?$_POST:$info, true);
         <tr>
             <th colspan="2">
             <em><strong><?php echo isset($_groups[$current_group])
-            ? $_groups[$current_group] : $current_group; ?></strong>
+            ? __($_groups[$current_group]) : $current_group; ?></strong>
             :: <?php echo __('Click on the title to edit.'); ?></em>
             </th>
         </tr>

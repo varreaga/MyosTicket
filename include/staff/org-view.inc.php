@@ -1,4 +1,5 @@
 <?php
+// Modificado el 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): textos sin traducir. Ver NOTICE.md.
 if(!defined('OSTSCPINC') || !$thisstaff || !is_object($org)) die('Invalid path');
 
 ?>
@@ -6,7 +7,7 @@ if(!defined('OSTSCPINC') || !$thisstaff || !is_object($org)) die('Invalid path')
     <tr>
         <td width="50%" class="has_bottom_border">
              <h2><a href="orgs.php?id=<?php echo $org->getId(); ?>"
-             title="Reload"><i class="icon-refresh"></i> <?php echo $org->getName(); ?></a></h2>
+             title="<?php echo __('Reload'); ?>"><i class="icon-refresh"></i> <?php echo $org->getName(); ?></a></h2>
         </td>
         <td width="50%" class="right_align has_bottom_border">
 <?php if ($thisstaff->hasPerm(Organization::PERM_DELETE)) { ?>

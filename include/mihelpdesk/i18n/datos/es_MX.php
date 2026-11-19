@@ -41,6 +41,13 @@ return array(
         'Tickets en cola para su eliminación. No se puede acceder en las colas de entrada.'
             => 'Solicitudes en espera de ser eliminadas. No aparecen en las colas.',
     ),
+    'form.yaml' => array(
+        'Informacion de la compañía' => 'Información de la empresa',
+        'Nombre de la compañía' => 'Nombre de la empresa',
+        'Detalle del motivo(s) para crear la tarea.' => 'Explique el motivo de la tarea.',
+        'Por favor, describa el problema' => 'Describa el problema',
+        'Por favor, describa su problema' => 'Describa su problema',
+    ),
     'list.yaml' => array(
         'Propiedades del estado del Ticket' => 'Propiedades del estado de la solicitud',
         'Propiedades que pueden establecerse en un estado del Ticket.' => 'Propiedades que se pueden definir en un estado de la solicitud.',

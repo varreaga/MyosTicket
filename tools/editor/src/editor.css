@@ -97,6 +97,11 @@
   overflow-wrap: anywhere;
 }
 .mh-editor--compact .mh-editor-content { min-height: 75px; }
+/* El foco ya se indica en el borde de todo el editor (.is-focused); sin esto,
+   el contorno :focus-visible del tema dibujaba un segundo recuadro oscuro
+   dentro del área de texto. */
+.mh-editor .mh-editor-content:focus,
+.mh-editor .mh-editor-content:focus-visible { outline: none; }
 .mh-editor .mh-editor-content > :first-child { margin-top: 0; }
 .mh-editor .mh-editor-content > :last-child { margin-bottom: 0; }
 .mh-editor .mh-editor-content p { margin: 0 0 .6em; }

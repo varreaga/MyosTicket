@@ -152,9 +152,31 @@
     render();
   }
 
+  // ------------------------------------------------ Avatares
+  // Si la imagen del avatar no carga (Gravatar bloqueado, sin internet o
+  // http dentro de https) se muestran las iniciales en lugar del icono roto.
+  function initAvatars() {
+    document.querySelectorAll('.thread-entry > .avatar img').forEach(function (img) {
+      var fallback = function () {
+        var entry = img.closest('.thread-entry');
+        var name = entry && entry.querySelector('.header b, .header strong');
+        var words = name ? name.textContent.trim().split(/\s+/) : [];
+        var txt = words.length ? (words[0][0] + (words.length > 1 ? words[words.length - 1][0] : '')).toUpperCase() : '?';
+        var span = document.createElement('span');
+        span.className = 'mh-avatar-initials';
+        span.setAttribute('aria-hidden', 'true');
+        span.textContent = txt;
+        img.replaceWith(span);
+      };
+      if (img.complete && !img.naturalWidth) fallback();
+      else img.addEventListener('error', fallback);
+    });
+  }
+
   function init() {
     initMenu();
     initTopicPicker();
+    initAvatars();
   }
 
   if (document.readyState === 'loading')

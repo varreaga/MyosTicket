@@ -1,4 +1,5 @@
 <?php
+// Modificado el 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): textos sin traducir. Ver NOTICE.md.
 /*********************************************************************
     class.schedule.php
 
@@ -876,7 +877,7 @@ class ScheduleEntry extends VerySimpleModel {
     function getDesc() {
         $info = $this->getInfo();
         $repeats = $this->getRepeats();
-        $days = self::getDays();
+        $days = self::getTranslatedDays();
         $weeks = self::getWeeks();
         $months = self::getMonths();
         $frequencies = self::getFrequencies();

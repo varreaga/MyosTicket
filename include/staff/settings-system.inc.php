@@ -1,5 +1,5 @@
 <?php
-// Modificado el 2026-11-16 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca. Ver NOTICE.md.
+// Modificado el 2026-11-16 y 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca; textos sin traducir. Ver NOTICE.md.
 if(!defined('OSTADMININC') || !$thisstaff || !$thisstaff->isAdmin() || !$config) die('Access Denied');
 
 $gmtime = Misc::gmtime();
@@ -169,7 +169,7 @@ $gmtime = Misc::gmtime();
             <td><?php echo __('ACL'); ?>:</td>
             <td><input type="text" size="40" name="acl" value="<?php echo $config['acl']; ?>"
                     placeholder="eg. 192.168.1.1, 192.168.2.2, 192.168.3.3">
-                &nbsp;Apply To:
+                &nbsp;<?php echo __('Apply To'); ?>:
                 <select name="acl_backend">
                     <?php foreach($cfg->getACLBackendOpts() as $k=>$v) { ?>
                     <option <?php if ($cfg->getACLBackend() == $k) echo 'selected="selected"'; ?>

@@ -1,4 +1,5 @@
 <?php
+// Modificado el 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): textos sin traducir. Ver NOTICE.md.
 if(!defined('OSTADMININC') || !$thisstaff || !$thisstaff->isAdmin()) die('Access Denied');
 $pageTypes = array(
         'landing' => __('Landing Page'),
@@ -124,7 +125,7 @@ $info=Format::htmlchars(($errors && $_POST)?$_POST:$info, true);
 $langs = Internationalization::getConfiguredSystemLanguages();
 if ($page && count($langs) > 1) { ?>
     <ul class="tabs alt clean" id="translations">
-       <li class="empty"><i class="icon-globe" title="This content is translatable"></i></li>
+       <li class="empty"><i class="icon-globe" title="<?php echo __('This content is translatable'); ?>"></i></li>
 <?php foreach ($langs as $tag=>$nfo) { ?>
        <li class="<?php if ($tag == $cfg->getPrimaryLanguage()) echo "active";
          ?>"><a href="#translation-<?php echo $tag; ?>" title="<?php
