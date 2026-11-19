@@ -60,6 +60,21 @@
   --mh-neutral-soft:     #eef0f3;
   --mh-neutral-text:     #4b5563;
 
+  /* Superficies especiales */
+  --mh-hover:            #f8fafc;   /* fila de tabla al pasar el ratón */
+  --mh-brand-soft-hover: #d4e7f5;
+  --mh-response-bg:      #f4f9fd;   /* respuesta de agente en la conversación */
+  --mh-response-border:  #cfe3f2;
+  --mh-note-bg:          #fffbeb;   /* nota interna */
+  --mh-note-border:      #f5d98b;
+  --mh-note-text:        #3d2c00;
+  --mh-note-icon:        #7a4e00;
+  --mh-note-form-bg:     #fffdf5;
+  --mh-chart-2:          #e8890c;   /* segunda serie de las gráficas */
+  --mh-overlay:          rgba(16, 24, 40, .45);
+  --mh-shadow-pop:       0 12px 32px rgba(16, 24, 40, .16);
+  --mh-shadow-dialog:    0 24px 64px rgba(16, 24, 40, .24);
+
   /* Tipografía */
   --mh-font:             system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --mh-font-mono:        ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
@@ -94,4 +109,62 @@
 
   /* Puntos de corte (referencia; en @media se escriben los valores) */
   /* celular < 640px · tableta < 1024px · escritorio >= 1024px */
+}
+
+/*
+ * Modo oscuro
+ *
+ * Se activa con data-mh-mode="dark" en <html>, que pone el script del tema
+ * en <head> (app_theme_head() en bootstrap.php) según la preferencia de
+ * apariencia guardada: claro, oscuro o automático (según el sistema).
+ */
+html[data-mh-mode="dark"] {
+  color-scheme: dark;
+
+  --mh-brand:            #0072bc;   /* botones: texto blanco con contraste AA */
+  --mh-brand-hover:      #1a85cf;
+  --mh-brand-soft:       #12314a;
+  --mh-brand-soft-hover: #1a4263;
+  --mh-on-brand:         #ffffff;
+  --mh-link:             #6cb6ef;
+  --mh-link-hover:       #9acdf5;
+  --mh-focus:            rgba(108, 182, 239, .4);
+
+  --mh-bg:               #0f1419;
+  --mh-surface:          #182028;
+  --mh-surface-alt:      #1f2933;
+  --mh-border:           #2f3b47;
+  --mh-border-strong:    #46525e;
+  --mh-border-soft:      #232d37;
+  --mh-text:             #e6ebf0;
+  --mh-text-2:           #c5cfda;
+  --mh-text-muted:       #9aa5b1;
+  --mh-hover:            #1d2731;
+
+  --mh-success-soft:     #12301e;
+  --mh-success-border:   #24563a;
+  --mh-success-text:     #7fd39b;
+  --mh-warning-soft:     #3a2a0f;
+  --mh-warning-border:   #6b4a14;
+  --mh-warning-text:     #f3c06b;
+  --mh-danger-soft:      #3b1717;
+  --mh-danger-border:    #6e2a2a;
+  --mh-danger-text:      #f19a9a;
+  --mh-info-border:      #24486a;
+  --mh-neutral-soft:     #26303a;
+  --mh-neutral-text:     #b8c2cc;
+
+  --mh-response-bg:      #132636;
+  --mh-response-border:  #23476a;
+  --mh-note-bg:          #2b2410;
+  --mh-note-border:      #5c4b1c;
+  --mh-note-text:        #f1e2b8;
+  --mh-note-icon:        #e8c06b;
+  --mh-note-form-bg:     #221d0e;
+
+  --mh-overlay:          rgba(0, 0, 0, .6);
+  --mh-shadow-sm:        0 1px 2px rgba(0, 0, 0, .4);
+  --mh-shadow:           0 2px 8px rgba(0, 0, 0, .45);
+  --mh-shadow-pop:       0 12px 32px rgba(0, 0, 0, .55);
+  --mh-shadow-dialog:    0 24px 64px rgba(0, 0, 0, .6);
 }

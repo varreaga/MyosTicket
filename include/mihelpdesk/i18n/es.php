@@ -35,6 +35,12 @@ return array(
     'Professional installation services and commercial support are available.'
         => 'Hay servicios profesionales de instalación y soporte comercial disponibles.',
 
+    // ------------------------------------------------ Apariencia
+    'Appearance' => 'Apariencia',
+    'Light' => 'Claro',
+    'Dark' => 'Oscuro',
+    'Automatic' => 'Automático',
+
     // ------------------------------------------------ Panel de agentes
     'Search tickets' => 'Buscar tickets',
     'Search by number, subject or user' => 'Buscar por número, asunto o cliente',

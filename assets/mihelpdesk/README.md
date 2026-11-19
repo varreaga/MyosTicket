@@ -24,6 +24,7 @@ Archivos
 | `css/staff.css` | Panel de agentes y de administración | Estilos del panel |
 | `css/login.css` | Inicio de sesión de agentes | Estilos de la pantalla de acceso |
 | `js/client.js` | Portal de clientes | Menú en celular y selector de temas en dos niveles |
+| `js/common.js` | Todas las áreas | Apariencia: claro, oscuro o automático |
 | `js/staff.js` | Panel de agentes y de administración | Menú lateral en celular, menú del usuario, sugerencias del buscador, etiquetas de color en las colas e iniciales en la conversación |
 
 El JavaScript es **mejora progresiva**: si no carga, el portal sigue
@@ -105,3 +106,16 @@ tickets repartidos en los últimos 60 días (con respuestas y cierres):
 ```bash
 php tools/dev/seed-history.php
 ```
+
+## Modo oscuro
+
+Los colores del modo oscuro están en `css/tokens.css`, en el bloque
+`html[data-mh-mode="dark"]`. El resto del tema usa solo variables
+(`var(--mh-…)`), así que un color nuevo debe definirse en los dos bloques
+de `tokens.css` (claro y oscuro) y no escribirse fijo en los demás archivos.
+
+`app_theme_head()` (en `bootstrap.php`) pone en `<html>` los atributos
+`data-mh-appearance` (lo que eligió la persona: `light`, `dark` o `auto`) y
+`data-mh-mode` (lo que se aplica: `light` o `dark`) antes de que cargue el
+CSS, para que no parpadee. La elección se guarda en el navegador
+(`localStorage`, clave `mh-appearance`).

@@ -430,11 +430,46 @@ function app_theme_styles($area) {
 function app_theme_scripts($area) {
     if (!($theme = app_theme()))
         return;
-    $file = 'assets/'.$theme.'/js/'.$area.'.js';
-    if (!is_file(ROOT_DIR.$file))
+    foreach (array('common', $area) as $name) {
+        $file = 'assets/'.$theme.'/js/'.$name.'.js';
+        if (is_file(ROOT_DIR.$file))
+            echo sprintf("\n    <script defer src=\"%s%s?v=%d\"></script>\n",
+                ROOT_PATH, $file, filemtime(ROOT_DIR.$file));
+    }
+}
+
+/**
+ * Apariencia (claro, oscuro o automatico). Se escribe en <head>, antes de
+ * las hojas de estilo, para que la pagina no parpadee al cargar en modo
+ * oscuro. La preferencia se guarda en el navegador (localStorage).
+ * Atributos en <html>: data-mh-appearance (lo elegido) y data-mh-mode (lo
+ * que se aplica: light o dark).
+ */
+function app_theme_head() {
+    if (!app_theme())
         return;
-    echo sprintf("\n    <script defer src=\"%s%s?v=%d\"></script>\n",
-        ROOT_PATH, $file, filemtime(ROOT_DIR.$file));
+    echo "\n    <script>(function(d){var a='light';try{a=localStorage.getItem('mh-appearance')||'light';}catch(e){}"
+        ."var m=(a==='dark'||(a==='auto'&&window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches))?'dark':'light';"
+        ."d.setAttribute('data-mh-appearance',a);d.setAttribute('data-mh-mode',m);})(document.documentElement);</script>\n";
+}
+
+/**
+ * Opciones de apariencia (botones). Su comportamiento esta en
+ * assets/<tema>/js/common.js.
+ */
+function app_theme_appearance_options() {
+    $options = array(
+        'light' => array(__('Light'), '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>'),
+        'dark' => array(__('Dark'), '<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>'),
+        'auto' => array(__('Automatic'), '<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/>'),
+    );
+    // <span> y no <div>: en el portal va dentro de un <p>
+    $out = '<span class="mh-appearance" role="group" aria-label="'.Format::htmlchars(__('Appearance')).'">';
+    foreach ($options as $key => $info)
+        $out .= sprintf('<button type="button" data-mh-appearance-set="%s" aria-pressed="false">'
+            .'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">%s</svg>%s</button>',
+            $key, $info[1], Format::htmlchars($info[0]));
+    return $out.'</span>';
 }
 
 /**

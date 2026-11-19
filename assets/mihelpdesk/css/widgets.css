@@ -22,7 +22,7 @@
   border: 1px solid var(--mh-border) !important;
   border-radius: var(--mh-radius-lg);
   background: var(--mh-surface) !important;
-  box-shadow: 0 16px 40px rgba(16, 24, 40, .18);
+  box-shadow: var(--mh-shadow-pop);
   color: var(--mh-text);
   font-family: var(--mh-font);
   font-size: var(--mh-text-base);
@@ -206,3 +206,136 @@
   background-size: 18px 18px !important;
   cursor: pointer;
 }
+
+/* ==== Apariencia: claro, oscuro o automático ==== */
+
+.mh-theme .mh-appearance {
+  display: flex;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--mh-border);
+  border-radius: 10px;
+  background: var(--mh-surface-alt);
+}
+.mh-theme .mh-appearance button {
+  flex: 1 1 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 34px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: var(--mh-radius);
+  background: none;
+  color: var(--mh-text-2);
+  font: inherit;
+  font-size: var(--mh-text-sm);
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.mh-theme .mh-appearance button:hover { color: var(--mh-text); }
+.mh-theme .mh-appearance button[aria-pressed="true"] {
+  background: var(--mh-surface);
+  color: var(--mh-link);
+  font-weight: 600;
+  box-shadow: var(--mh-shadow-sm);
+}
+
+/* Botón y menú en el portal */
+.mh-theme .mh-appearance-pop { position: relative; display: inline-block; vertical-align: middle; }
+.mh-theme .mh-appearance-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  margin-left: 6px;
+  padding: 0;
+  border: 1px solid var(--mh-border);
+  border-radius: 50%;
+  background: var(--mh-surface);
+  color: var(--mh-text-2);
+  cursor: pointer;
+}
+.mh-theme .mh-appearance-toggle:hover { color: var(--mh-text); border-color: var(--mh-border-strong); }
+.mh-theme .mh-appearance-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  z-index: 1000;
+  padding: 6px;
+  border: 1px solid var(--mh-border);
+  border-radius: var(--mh-radius-lg);
+  background: var(--mh-surface);
+  box-shadow: var(--mh-shadow-pop);
+}
+.mh-theme .mh-appearance-menu[hidden] { display: none; }
+.mh-theme .mh-appearance-menu .mh-appearance { flex-direction: column; border: 0; background: none; padding: 0; min-width: 170px; }
+.mh-theme .mh-appearance-menu .mh-appearance button { justify-content: flex-start; }
+.mh-theme .mh-sr {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+/* Transición suave al cambiar de apariencia (salvo movimiento reducido) */
+@media (prefers-reduced-motion: no-preference) {
+  html[data-mh-mode] body.mh-theme { transition: background-color .15s ease, color .15s ease; }
+}
+
+/* ==== Textos y componentes del original que usan colores fijos ==== */
+/* (necesarios sobre todo en modo oscuro) */
+
+.mh-theme .faded { color: var(--mh-text-muted); }
+.mh-theme .faded b, .mh-theme .faded strong { color: var(--mh-text-2); }
+.mh-theme hr { border: 0; border-top: 1px solid var(--mh-border); background: none; }
+.mh-theme blockquote { border-left-color: var(--mh-border-strong); color: var(--mh-text-muted); }
+
+/* Listas con búsqueda (Select2) */
+.mh-theme .select2-container--default .select2-selection--single,
+.mh-theme .select2-container--default .select2-selection--multiple {
+  background-color: var(--mh-surface);
+  border-color: var(--mh-border-strong);
+}
+.mh-theme .select2-container--default .select2-selection--single .select2-selection__rendered { color: var(--mh-text); }
+.mh-theme .select2-container--default .select2-selection--multiple .select2-selection__choice {
+  background: var(--mh-surface-alt);
+  border-color: var(--mh-border);
+  color: var(--mh-text);
+}
+.mh-theme .select2-dropdown {
+  background: var(--mh-surface);
+  border-color: var(--mh-border);
+  color: var(--mh-text);
+}
+.mh-theme .select2-container--default .select2-search--dropdown .select2-search__field,
+.mh-theme .select2-container--default .select2-search--inline .select2-search__field {
+  background: var(--mh-surface);
+  border-color: var(--mh-border-strong);
+  color: var(--mh-text);
+}
+.mh-theme .select2-container--default .select2-results__option[aria-selected=true] { background: var(--mh-surface-alt); }
+.mh-theme .select2-container--default .select2-results__option--highlighted[aria-selected] {
+  background: var(--mh-brand);
+  color: var(--mh-on-brand);
+}
+
+/* Burbujas de ayuda y vistas previas del original */
+.mh-theme .tip_box .tip_content,
+.mh-theme .tip_box .tip_shadow {
+  background: var(--mh-surface);
+  border-color: var(--mh-border);
+  color: var(--mh-text);
+}
+.mh-theme .tooltip-inner { background: var(--mh-text); color: var(--mh-surface); }
+
+/* Cuerpo de mensajes y artículos (thread.css usa blanco y #333 fijos) */
+.mh-theme .thread-body { color: var(--mh-text); background-color: var(--mh-surface); }
+.mh-theme .thread-body.bleed { background-color: transparent; }
+
+/* Campos de fecha con ícono del original (input.dp) */
+.mh-theme input.dp, .mh-theme input.hasDatepicker { background-color: var(--mh-surface) !important; color: var(--mh-text); }
+
+/* Campos traducibles (con bandera del idioma) */
+.mh-theme .translatable { background: var(--mh-surface); border-color: var(--mh-border-strong); }
