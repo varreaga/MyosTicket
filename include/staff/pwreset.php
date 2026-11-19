@@ -1,5 +1,5 @@
 <?php
-// Modificado el 2026-11-16 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca. Ver NOTICE.md.
+// Modificado el 2026-11-16 y el 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca y diseño del tema (título y etiqueta del campo). Ver NOTICE.md.
 include_once(INCLUDE_DIR.'staff/login.header.php');
 defined('OSTSCPINC') or die('Invalid path');
 $info = ($_POST && $errors)?Format::htmlchars($_POST):array();
@@ -14,11 +14,17 @@ $info = ($_POST && $errors)?Format::htmlchars($_POST):array();
         <span class="valign-helper"></span>
         <img src="logo.php?login" alt="<?php echo Format::htmlchars(APP_NAME); ?> :: <?php echo __('Agent Password Reset');?>" />
     </a></h1>
+<?php if (app_theme()) { ?>
+    <h2 class="mh-login-title"><?php echo __('Reset your password'); ?></h2>
+<?php } ?>
     <h3><?php echo Format::htmlchars($msg); ?></h3>
     <form action="pwreset.php" method="post">
         <?php csrf_token(); ?>
         <input type="hidden" name="do" value="sendmail">
         <fieldset>
+<?php if (app_theme()) { ?>
+            <label for="name" class="mh-login-label"><?php echo __('Email or Username'); ?></label>
+<?php } ?>
             <input type="text" name="userid" id="name" value="<?php echo
             $info['userid']; ?>" placeholder="<?php echo __('Email or Username'); ?>" autocorrect="off"
                 autocapitalize="off">
