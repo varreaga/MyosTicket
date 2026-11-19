@@ -1489,3 +1489,23 @@ body.mh-staff, html:has(body.mh-staff) {
   border-radius: var(--mh-radius-lg);
   color: var(--mh-text-2);
 }
+
+/* Color de marca (Admin Panel › Settings › Company › Brand color) */
+.mh-staff .mh-brand-field { display: flex; align-items: center; gap: 8px; }
+.mh-staff .mh-brand-field input[type=color] {
+  width: 44px; height: 36px; padding: 2px;
+  border: 1px solid var(--mh-border-strong);
+  border-radius: var(--mh-radius);
+  background: var(--mh-surface);
+  cursor: pointer;
+}
+.mh-staff .mh-brand-field input[type=text] { width: 200px; font-family: var(--mh-font-mono); }
+.mh-staff #brand-color p.faded { margin: 6px 0 0; font-size: var(--mh-text-sm); }
+.mh-staff .mh-brand-swatches { display: flex; flex-wrap: wrap; gap: 10px 18px; }
+.mh-staff .mh-brand-swatch { display: inline-flex; align-items: center; gap: 8px; font-size: var(--mh-text-sm); color: var(--mh-text-2); }
+.mh-staff .mh-brand-swatch > span {
+  width: 22px; height: 22px;
+  border-radius: 6px;
+  box-shadow: inset 0 0 0 1px rgba(16, 24, 40, .15);
+}
+.mh-staff .mh-brand-swatch code { color: var(--mh-text-muted); font-size: var(--mh-text-xs); }

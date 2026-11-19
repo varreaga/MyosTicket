@@ -119,3 +119,13 @@ de `tokens.css` (claro y oscuro) y no escribirse fijo en los demás archivos.
 `data-mh-mode` (lo que se aplica: `light` o `dark`) antes de que cargue el
 CSS, para que no parpadee. La elección se guarda en el navegador
 (`localStorage`, clave `mh-appearance`).
+
+## Color de marca
+
+El color principal se cambia sin tocar código, en **Admin Panel › Settings ›
+Company › Brand color**. `include/mihelpdesk/class.brand.php` calcula los
+tonos y `app_theme_styles()` los escribe después de `tokens.css`, así que
+reemplazan a `--mh-brand`, `--mh-brand-hover`, `--mh-brand-soft`,
+`--mh-brand-soft-hover`, `--mh-on-brand`, `--mh-link`, `--mh-link-hover`,
+`--mh-focus` y `--mh-info-border` (en modo claro y oscuro). Si el campo
+queda vacío se usan los valores de `tokens.css`.

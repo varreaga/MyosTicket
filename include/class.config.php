@@ -1,4 +1,5 @@
 <?php
+// Modificado el 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): guarda el color de marca del tema; una clave nueva se puede leer en la misma petición. Ver NOTICE.md.
 /*********************************************************************
     class.config.php
 
@@ -114,6 +115,8 @@ class Config {
         if (!$item->save())
             return false;
 
+        // MiHelpdesk: que get() devuelva el valor nuevo en la misma petición
+        $this->config[$key] = $item;
         return true;
     }
 
@@ -1652,8 +1655,20 @@ class OsticketConfig extends Config {
         if (!$company_form->isValid())
             $errors += $company_form->errors();
 
+        // MiHelpdesk: color de marca del tema (vacío = el predeterminado)
+        $mh_brand = null;
+        if (isset($vars['mh_brand_color'])) {
+            require_once INCLUDE_DIR . 'mihelpdesk/class.brand.php';
+            $mh_brand = trim((string) $vars['mh_brand_color']);
+            if ($mh_brand !== '' && !($mh_brand = MhBrand::normalize($mh_brand)))
+                $errors['mh_brand_color'] = __('Enter a color in hex (#0072bc) or RGB (rgb(0, 114, 188)) format.');
+        }
+
         if(!Validator::process($f, $vars, $errors) || $errors)
             return false;
+
+        if ($mh_brand !== null)
+            $this->set(MhBrand::CONFIG_KEY, $mh_brand);
 
         $company_form->save();
 

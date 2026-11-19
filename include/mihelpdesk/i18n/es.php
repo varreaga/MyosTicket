@@ -45,6 +45,24 @@ return array(
     'Sign in to the agent panel' => 'Inicia sesión en el panel de agentes',
     'Reset your password' => 'Restablece tu contraseña',
 
+    // ------------------------------------------------ Color de marca
+    'Brand color' => 'Color de marca',
+    'Main color of the portal and the agent panel. Lighter and darker shades are calculated from it.'
+        => 'Color principal del portal y del panel de agentes. A partir de él se calculan sus tonos más claros y más oscuros.',
+    'Pick a color' => 'Elegir un color',
+    'Hex (%1$s) or RGB (%2$s). Leave empty to use the default color.'
+        => 'Hexadecimal (%1$s) o RGB (%2$s). Déjalo vacío para usar el color predeterminado.',
+    'Shades in use' => 'Tonos en uso',
+    'Main' => 'Principal',
+    'Hover' => 'Al pasar el ratón',
+    'Soft background' => 'Fondo suave',
+    'Links' => 'Enlaces',
+    'Text on buttons' => 'Texto en botones',
+    'Links are darkened or lightened automatically so they stay readable, also in dark mode.'
+        => 'Los enlaces se oscurecen o aclaran solos para que se lean bien, también en modo oscuro.',
+    'Enter a color in hex (#0072bc) or RGB (rgb(0, 114, 188)) format.'
+        => 'Escribe un color en formato hexadecimal (#0072bc) o RGB (rgb(0, 114, 188)).',
+
     // ------------------------------------------------ Panel de agentes
     'Search tickets' => 'Buscar tickets',
     'Search by number, subject or user' => 'Buscar por número, asunto o cliente',

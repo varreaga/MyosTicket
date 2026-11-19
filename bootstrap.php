@@ -422,6 +422,10 @@ function app_theme_styles($area) {
         echo sprintf("\n    <link rel=\"stylesheet\" href=\"%s%s?v=%d\" media=\"screen\">",
             ROOT_PATH, $file, filemtime(ROOT_DIR.$file));
     }
+    // Color de marca elegido en Admin Panel > Settings > Company (sus tonos
+    // reemplazan los azules de tokens.css)
+    require_once INCLUDE_DIR . 'mihelpdesk/class.brand.php';
+    echo MhBrand::getStyleTag();
     echo "\n";
 }
 

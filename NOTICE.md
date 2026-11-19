@@ -23,6 +23,20 @@ Base
 Historial de cambios
 --------------------
 
+### 2026-11-19 — Color de marca configurable (varreaga)
+
+El administrador elige el color principal en **Admin Panel › Settings ›
+Company › Brand color** (hexadecimal o RGB). MiHelpdesk calcula sus tonos
+(al pasar el ratón, fondos suaves, enlaces con contraste AA, texto de los
+botones y variantes del modo oscuro) y reemplaza con ellos los azules de
+`tokens.css`.
+
+* Nuevo: `include/mihelpdesk/class.brand.php` (cálculo de los tonos).
+* Modificados: `include/staff/settings-pages.inc.php` (pestaña "Brand
+  color"), `include/class.config.php` (guarda el color; además, una clave
+  de configuración nueva se puede leer en la misma petición) y
+  `bootstrap.php` (`app_theme_styles()` agrega los tonos).
+
 ### 2026-11-19 — Créditos del inicio de sesión y botón de actualizar (varreaga)
 
 * `include/staff/login.tpl.php` y `include/staff/pwreset*.php`: el pie decía
