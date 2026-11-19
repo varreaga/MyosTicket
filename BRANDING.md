@@ -15,13 +15,16 @@ Desde la raíz del repositorio:
 
 El script:
 
-1. Cambia `APP_NAME` en `bootstrap.php` (y `APP_URL`, el sitio del proyecto
-   que aparece en los créditos del inicio de sesión y en el botón de
-   actualizar). De esa constante dependen todos
+1. Cambia `APP_NAME` en `bootstrap.php`. De esa constante dependen todos
    los títulos, pies de página y textos del panel, el portal y el instalador.
 2. Sustituye el nombre en los datos de instalación (`include/i18n/en_US`),
    en la documentación y en los avisos de modificación.
 3. Regenera los logos provisionales de texto con el nombre nuevo.
+
+Aparte, cambia a mano `APP_URL` en `bootstrap.php` cuando el proyecto tenga
+sitio propio. Es el enlace de los créditos del inicio de sesión y del botón
+"Upgrade" de Admin Panel › Information; por ahora apunta al repositorio en
+GitHub.
 
 Si solo quieres cambiar el nombre y poner tus propios logos a mano, usa
 `--sin-logos`.
