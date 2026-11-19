@@ -23,6 +23,18 @@ Base
 Historial de cambios
 --------------------
 
+### 2026-11-19 — Traducciones propias de MiHelpdesk (varreaga)
+
+Los textos que agregó MiHelpdesk no existen en los paquetes de idioma de
+osTicket. Ahora se traducen con archivos propios que se suman al paquete
+oficial sin modificarlo; si el paquete ya traduce un texto, se respeta.
+
+* Nuevos: `include/mihelpdesk/i18n/es.php` (130 textos al español),
+  `include/mihelpdesk/i18n/README.md` y `tools/i18n/textos-nuevos.py`
+  (lista los textos nuevos sin traducir).
+* Modificados: `include/class.translation.php` (carga las traducciones
+  propias) e `include/ajax.i18n.php` (las entrega también al JavaScript).
+
 ### 2026-11-18 — Tareas y calendario (varreaga)
 
 * Nuevo: `assets/mihelpdesk/css/widgets.css`, estilos comunes del tema
