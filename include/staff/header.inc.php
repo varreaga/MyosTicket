@@ -1,5 +1,5 @@
 <?php
-// Modificado el 2026-11-16 y el 2026-11-18 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca y barra superior del tema. Ver NOTICE.md.
+// Modificado el 2026-11-16, 2026-11-18 y 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca, barra superior y apariencia del tema. Ver NOTICE.md.
 header("Content-Type: text/html; charset=UTF-8");
 header("Content-Security-Policy: frame-ancestors ".$cfg->getAllowIframes()."; script-src 'self' 'unsafe-inline' 'unsafe-eval'; object-src 'none'");
 
@@ -22,6 +22,7 @@ if (osTicket::is_ie())
     $ost->setWarning(brand(__('osTicket no longer supports Internet Explorer.')));
 ?>>
 <head>
+<?php app_theme_head(); ?>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta http-equiv="cache-control" content="no-cache" />
@@ -104,6 +105,8 @@ if (osTicket::is_ie())
                 <div class="mh-user-menu" id="mh-user-menu" hidden>
                     <div class="mh-user-name"><strong><?php echo Format::htmlchars($thisstaff->getName()); ?></strong>
                         <span><?php echo Format::htmlchars($thisstaff->getEmail()); ?></span></div>
+                    <div class="mh-user-section"><span><?php echo __('Appearance'); ?></span>
+                        <?php echo app_theme_appearance_options(); ?></div>
 <?php if ($thisstaff->isAdmin() && !defined('ADMINPAGE')) { ?>
                     <a href="<?php echo ROOT_PATH ?>scp/admin.php"><?php echo __('Admin Panel'); ?></a>
 <?php } elseif (defined('ADMINPAGE')) { ?>

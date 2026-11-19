@@ -1,4 +1,5 @@
 <?php
+// Modificado el 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): traducciones propias de MiHelpdesk sobre el paquete de idioma. Ver NOTICE.md.
 /*********************************************************************
     class.gettext.php
 
@@ -568,6 +569,20 @@ class Translation extends gettext_reader implements Serializable {
         $this->cache_translations = (include $this->STREAM);
     }
 
+    /**
+     * MiHelpdesk: suma traducciones propias a las del paquete de idioma
+     * (sin modificar el paquete). Si un texto ya está traducido en el
+     * paquete oficial, se respeta esa traducción.
+     */
+    function addMessages(array $messages) {
+        if (!$messages)
+            return;
+        if (!isset($this->cache_translations) || !is_array($this->cache_translations))
+            $this->cache_translations = array();
+        $this->cache_translations = $this->cache_translations + $messages;
+        $this->short_circuit = false;
+    }
+
     function translate($string) {
         if ($this->short_circuit)
             return $string;
@@ -735,8 +750,13 @@ class TextDomain {
             $subpath = self::$LC_CATEGORIES[$category] .
                 '/'.$this->domain.'.mo.php';
 
+            // MiHelpdesk: traducciones propias para este idioma
+            $extra = ($this->domain == 'messages')
+                ? self::getAppMessagesFile($locale) : null;
+
             // APC short-circuit (if supported)
-            $key = sha1($locale .':lang:'. $subpath);
+            $key = sha1($locale .':lang:'. $subpath
+                . ($extra ? ':'.$extra.':'.@filemtime($extra) : ''));
             if ($T = Translation::resurrect($key)) {
                 return $this->l10n[$locale] = $T;
             }
@@ -759,6 +779,8 @@ class TextDomain {
             }
             // TODO: Handle charset hint from the environment
             $this->l10n[$locale] = $T = new Translation($input);
+            if ($extra && is_array($messages = (include $extra)))
+                $T->addMessages($messages);
             $T->cache($key);
         }
         return $this->l10n[$locale];
@@ -766,6 +788,26 @@ class TextDomain {
 
     function setPath($path) {
         $this->path = $path;
+    }
+
+    /**
+     * MiHelpdesk: archivo con las traducciones propias para un idioma, en
+     * include/mihelpdesk/i18n/. Primero el idioma con país (es_MX.php) y
+     * luego solo el idioma (es.php).
+     */
+    static function getAppMessagesFile($locale) {
+        $dir = INCLUDE_DIR . 'mihelpdesk/i18n/';
+        $locale = preg_replace('/[^A-Za-z_]/', '', (string) $locale);
+        foreach (array($locale, strtok($locale, '_')) as $name)
+            if ($name && is_file($dir . $name . '.php'))
+                return $dir . $name . '.php';
+        return null;
+    }
+
+    /** MiHelpdesk: traducciones propias (arreglo texto => traducción). */
+    static function getAppMessages($locale) {
+        $file = self::getAppMessagesFile($locale);
+        return ($file && is_array($m = (include $file))) ? $m : array();
     }
 
     static function configureForUser($user=false) {

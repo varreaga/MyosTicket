@@ -23,6 +23,37 @@ Base
 Historial de cambios
 --------------------
 
+### 2026-11-19 — Modo oscuro (varreaga)
+
+Apariencia clara, oscura o automática (según el sistema), en el portal, el
+panel y la página de inicio de sesión. La elección se guarda en el
+navegador.
+
+* Nuevo: `assets/mihelpdesk/js/common.js` (botones de apariencia).
+* Modificados:
+  * `bootstrap.php`: `app_theme_head()` aplica la apariencia antes de
+    pintar la página; `app_theme_appearance_options()` dibuja los botones;
+    `app_theme_scripts()` carga `common.js`.
+  * `include/client/header.inc.php`, `include/staff/header.inc.php` e
+    `include/staff/login.header.php`: llaman a `app_theme_head()`; el
+    portal tiene un botón de apariencia y el panel lo muestra en el menú del
+    usuario.
+  * Tema: colores del modo oscuro en `tokens.css`; colores fijos cambiados
+    por variables en `staff.css`, `client.css`, `widgets.css` y en el
+    editor (`tools/editor/src/editor.css`).
+
+### 2026-11-19 — Traducciones propias de MiHelpdesk (varreaga)
+
+Los textos que agregó MiHelpdesk no existen en los paquetes de idioma de
+osTicket. Ahora se traducen con archivos propios que se suman al paquete
+oficial sin modificarlo; si el paquete ya traduce un texto, se respeta.
+
+* Nuevos: `include/mihelpdesk/i18n/es.php` (130 textos al español),
+  `include/mihelpdesk/i18n/README.md` y `tools/i18n/textos-nuevos.py`
+  (lista los textos nuevos sin traducir).
+* Modificados: `include/class.translation.php` (carga las traducciones
+  propias) e `include/ajax.i18n.php` (las entrega también al JavaScript).
+
 ### 2026-11-18 — Tareas y calendario (varreaga)
 
 * Nuevo: `assets/mihelpdesk/css/widgets.css`, estilos comunes del tema

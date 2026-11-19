@@ -1,5 +1,5 @@
 <?php
-// Modificado el 2026-11-16 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca. Ver NOTICE.md.
+// Modificado el 2026-11-16 y el 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca y apariencia del tema (modo oscuro). Ver NOTICE.md.
 $title=($cfg && is_object($cfg) && $cfg->getTitle())
     ? $cfg->getTitle() : APP_NAME.' :: '.__('Support Ticket System');
 $signin_url = ROOT_PATH . "login.php"
@@ -30,6 +30,7 @@ if (osTicket::is_ie())
     $ost->setWarning(brand(__('osTicket no longer supports Internet Explorer.')));
 ?>>
 <head>
+<?php app_theme_head(); ?>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title><?php echo Format::htmlchars($title); ?></title>
@@ -121,7 +122,17 @@ if (osTicket::is_ie())
                     <a href="<?php echo $signin_url; ?>"><?php echo __('Sign In'); ?></a>
 <?php
                 }
-            } ?>
+            }
+            if (app_theme()) { ?>
+                <span class="mh-appearance-pop">
+                    <button type="button" class="mh-appearance-toggle" aria-haspopup="true" aria-expanded="false"
+                        aria-controls="mh-appearance-menu" title="<?php echo __('Appearance'); ?>">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+                        <span class="mh-sr"><?php echo __('Appearance'); ?></span></button>
+                    <span class="mh-appearance-menu" id="mh-appearance-menu" hidden>
+                        <?php echo app_theme_appearance_options(); ?></span>
+                </span>
+<?php       } ?>
             </p>
             <p>
 <?php
