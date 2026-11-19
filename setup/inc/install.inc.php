@@ -1,7 +1,9 @@
 <?php
-// Modificado el 2026-11-16 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca. Ver NOTICE.md.
+// Modificado el 2026-11-16 y el 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca; español sugerido como idioma principal al instalar. Ver NOTICE.md.
 if(!defined('SETUPINC')) die('Kwaheri!');
-$info=($_POST && $errors)?Format::htmlchars($_POST):array('prefix'=>'ost_','dbhost'=>'localhost','lang_id'=>'en_US');
+// MiHelpdesk: español (México) como idioma principal sugerido si está instalado
+$info=($_POST && $errors)?Format::htmlchars($_POST):array('prefix'=>'ost_','dbhost'=>'localhost',
+    'lang_id'=>(Internationalization::isLanguageInstalled('es_MX') ? 'es_MX' : 'en_US'));
 ?>
 <div id="main" class="step2">
     <h1><?php echo brand(__('osTicket Basic Installation')); ?></h1>

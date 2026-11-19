@@ -23,6 +23,18 @@ Base
 Historial de cambios
 --------------------
 
+### 2026-11-19 — Español incluido de fábrica (varreaga)
+
+* Nuevo: `include/i18n/es_MX.phar`, el paquete de idioma **oficial** de
+  osTicket para español (México), sin modificar (frases 1.18, generado el
+  2025-02-04 a partir de osTicket v1.18.2; SHA-256
+  `af5cd19153221bf85f8f4e51ca54db25d28efbcaef56dd2dd7090e6115ec18ef`).
+  Las traducciones de osTicket son obra de sus traductores en Crowdin y se
+  distribuyen bajo la misma licencia GPLv2.
+* `.gitignore`: excepción para incluir ese paquete en el repositorio.
+* `setup/inc/install.inc.php`: el instalador sugiere español (México) como
+  idioma principal cuando el paquete está presente.
+
 ### 2026-11-19 — Color de marca configurable (varreaga)
 
 El administrador elige el color principal en **Admin Panel › Settings ›
