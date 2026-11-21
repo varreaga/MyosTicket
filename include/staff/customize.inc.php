@@ -360,6 +360,11 @@ $tabNames = array(
 
 <script>
 (function () {
+    // Las pestañas son enlaces a otra página: que no las intercepte el manejo
+    // de pestañas de osTicket (ul.tabs), que solo cambia de panel en la misma
+    document.querySelectorAll('.mh-cz-tabs a').forEach(function (a) {
+        a.addEventListener('click', function (e) { e.stopPropagation(); });
+    });
     // Color: el selector y el campo de texto van juntos
     var picker = document.getElementById('mh_brand_picker');
     var text = document.getElementById('mh_brand_color');
