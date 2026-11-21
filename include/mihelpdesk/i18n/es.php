@@ -287,4 +287,6 @@ return array(
     'WhatsApp' => 'WhatsApp',
     'Your pages' => 'Sus páginas',
     'Open page' => 'Abrir página',
+    '%s Alerts' => 'Alertas de %s',
+    'Support' => 'Soporte',
 );

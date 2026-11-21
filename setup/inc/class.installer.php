@@ -1,5 +1,5 @@
 <?php
-// Modificado el 2026-11-16 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca. Ver NOTICE.md.
+// Modificado el 2026-11-16 y el 2026-11-21 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca; nombres de los correos traducidos y respuesta automática encendida. Ver NOTICE.md.
 /*********************************************************************
     class.installer.php
 
@@ -233,9 +233,10 @@ class Installer extends SetupWizard {
         // Create default emails!
         $email = $vars['email'];
         list(,$domain) = explode('@', $vars['email']);
+        // MiHelpdesk: nombres en el idioma de la instalación
         foreach (array(
-            "Support" => $email,
-            "osTicket Alerts" => "alerts@$domain",
+            __('Support') => $email,
+            sprintf(__('%s Alerts'), APP_NAME) => "alerts@$domain",
             '' => "noreply@$domain",
         ) as $name => $mailbox) {
             $mb = Email::create(array(
@@ -262,7 +263,10 @@ class Installer extends SetupWizard {
             'admin_email'=>$vars['admin_email'],
             'schema_signature'=>$streams['core'],
             'helpdesk_url'=>URL,
-            'helpdesk_title'=>Format::htmlchars($vars['name'], true)
+            'helpdesk_title'=>Format::htmlchars($vars['name'], true),
+            // MiHelpdesk: respuesta automática al cliente encendida de fábrica
+            'ticket_autoresponder'=>1,
+            'message_autoresponder'=>1,
         );
 
         $config = new Config('core');
