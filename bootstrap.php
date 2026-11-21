@@ -1,5 +1,5 @@
 <?php
-// Modificado el 2026-11-16 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca. Ver NOTICE.md.
+// Modificado el 2026-11-16 y 2026-11-21 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca; favicon y logo para modo oscuro de Personalización. Ver NOTICE.md.
 
 class Bootstrap {
 
@@ -451,6 +451,34 @@ function app_theme_scripts($area) {
  * Atributos en <html>: data-mh-appearance (lo elegido) y data-mh-mode (lo
  * que se aplica: light o dark).
  */
+/**
+ * MiHelpdesk: etiquetas del icono de la pestaña (favicon). Con el tema usa el
+ * que se haya subido en Personalización.
+ */
+function app_favicon_tags() {
+    if (app_theme()) {
+        require_once INCLUDE_DIR . 'mihelpdesk/class.customize.php';
+        return MhCustomize::faviconTags(ROOT_PATH);
+    }
+    return sprintf('<link rel="icon" type="image/png" href="%1$simages/oscar-favicon-32x32.png" sizes="32x32" />'
+        . "\n    " . '<link rel="icon" type="image/png" href="%1$simages/oscar-favicon-16x16.png" sizes="16x16" />', ROOT_PATH);
+}
+
+/**
+ * MiHelpdesk: imagen del logo y, si se eligió uno para modo oscuro, una
+ * segunda imagen que el tema muestra en modo oscuro. $site: client o staff.
+ */
+function app_logo_img($site, $src, $alt) {
+    $html = sprintf('<img src="%s" alt="%s" class="mh-logo-light"/>', $src, $alt);
+    if (app_theme()) {
+        require_once INCLUDE_DIR . 'mihelpdesk/class.customize.php';
+        if (($dark = MhCustomize::getDarkLogo($site)))
+            $html .= sprintf('<img src="%s%sdark&amp;v=%d" alt="%s" class="mh-logo-dark"/>',
+                $src, strpos($src, '?') === false ? '?' : '&amp;', $dark->getId(), $alt);
+    }
+    return $html;
+}
+
 function app_theme_head() {
     if (!app_theme())
         return;

@@ -1,5 +1,5 @@
 <?php
-// Modificado el 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): pestaña del color de marca del tema. Ver NOTICE.md.
+// Modificado el 2026-11-19 y el 2026-11-21 por varreaga (proyecto MiHelpdesk, fork de osTicket): con el tema, logos, fondo y color de marca se mueven a Personalización. Ver NOTICE.md.
 if(!defined('OSTADMININC') || !$thisstaff || !$thisstaff->isAdmin() || !$config) die('Access Denied');
 $pages = Page::getPages();
 ?>
@@ -17,15 +17,17 @@ $pages = Page::getPages();
         <?php echo __('Basic Information'); ?></a></li>
     <li><a href="#site-pages"><i class="icon-file"></i>
         <?php echo __('Site Pages'); ?></a></li>
+<?php if (!app_theme()) { ?>
     <li><a href="#logos"><i class="icon-picture"></i>
         <?php echo __('Logos'); ?></a></li>
     <li><a href="#backdrops"><i class="icon-picture"></i>
         <?php echo __('Login Backdrop'); ?></a></li>
-<?php if (app_theme()) { ?>
-    <li><a href="#brand-color"><i class="icon-tint"></i>
-        <?php echo __('Brand color'); ?></a></li>
 <?php } ?>
 </ul>
+<?php if (app_theme()) { ?>
+<div class="mh-cz-notice"><?php echo sprintf(__('Logos, brand color, favicon and the texts of the portal are now in %s.'),
+    '<a href="customize.php">'.__('Settings › Customization').'</a>'); ?></div>
+<?php } ?>
 
 <div class="tab_content" id="basic-information">
 <table class="form_table settings_table" width="940" border="0" cellspacing="0" cellpadding="2">
@@ -113,6 +115,7 @@ $pages = Page::getPages();
     </tbody>
 </table>
 </div>
+<?php if (!app_theme()) { // MiHelpdesk: con el tema, los logos están en Personalización ?>
 <div class="hidden tab_content" id="logos">
 <table class="form_table settings_table" width="940" border="0" cellspacing="0" cellpadding="2">
     <thead>
@@ -209,77 +212,9 @@ $pages = Page::getPages();
     </tbody>
 </table>
 </div>
-
-<?php if (app_theme()) {
-    require_once INCLUDE_DIR . 'mihelpdesk/class.brand.php';
-    $mh_color = MhBrand::getConfigured();
-    $mh_value = $_POST ? ($_POST['mh_brand_color'] ?? '') : $mh_color;
-    $mh_palette = MhBrand::palette($mh_color ?: MhBrand::DEFAULT_COLOR);
-?>
-<div class="hidden tab_content" id="brand-color">
-<table class="form_table settings_table" width="940" border="0" cellspacing="0" cellpadding="2">
-    <thead>
-        <tr>
-            <th colspan="2">
-                <em><?php echo __('Main color of the portal and the agent panel. Lighter and darker shades are calculated from it.'); ?></em>
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td width="220"><label for="mh_brand_color"><?php echo __('Brand color'); ?></label></td>
-            <td>
-                <div class="mh-brand-field">
-                    <input type="color" id="mh_brand_picker" aria-label="<?php echo __('Pick a color'); ?>"
-                        value="<?php echo Format::htmlchars(MhBrand::normalize($mh_value) ?: ($mh_color ?: MhBrand::DEFAULT_COLOR)); ?>">
-                    <input type="text" name="mh_brand_color" id="mh_brand_color" size="22"
-                        value="<?php echo Format::htmlchars($mh_value); ?>"
-                        placeholder="<?php echo MhBrand::DEFAULT_COLOR; ?>"
-                        aria-describedby="mh_brand_help">
-                </div>
-                <span class="error"><?php echo $errors['mh_brand_color'] ?? ''; ?></span>
-                <p class="faded" id="mh_brand_help"><?php echo sprintf(
-                    __('Hex (%1$s) or RGB (%2$s). Leave empty to use the default color.'),
-                    '#0072bc', 'rgb(0, 114, 188)'); ?></p>
-            </td>
-        </tr>
-        <tr>
-            <td width="220"><?php echo __('Shades in use'); ?></td>
-            <td>
-                <div class="mh-brand-swatches">
-<?php
-    $mh_names = array(
-        '--mh-brand' => __('Main'),
-        '--mh-brand-hover' => __('Hover'),
-        '--mh-brand-soft' => __('Soft background'),
-        '--mh-link' => __('Links'),
-        '--mh-on-brand' => __('Text on buttons'),
-    );
-    foreach ($mh_names as $var => $label) {
-        $v = $mh_palette['light'][$var]; ?>
-                    <span class="mh-brand-swatch"><span style="background: <?php echo $v; ?>"></span>
-                        <?php echo Format::htmlchars($label); ?> <code><?php echo $v; ?></code></span>
-<?php } ?>
-                </div>
-                <p class="faded"><?php echo __('Links are darkened or lightened automatically so they stay readable, also in dark mode.'); ?></p>
-            </td>
-        </tr>
-    </tbody>
-</table>
-</div>
-<script>
-(function () {
-    var picker = document.getElementById('mh_brand_picker');
-    var text = document.getElementById('mh_brand_color');
-    if (!picker || !text) return;
-    picker.addEventListener('input', function () { text.value = picker.value; });
-    text.addEventListener('input', function () {
-        if (/^#[0-9a-f]{6}$/i.test(text.value.trim())) picker.value = text.value.trim();
-    });
-})();
-</script>
 <?php } ?>
 
+<?php if (!app_theme()) { // MiHelpdesk: el fondo del inicio de sesión no se usa con el tema ?>
 <div class="hidden tab_content" id="backdrops">
 <table class="form_table settings_table" width="940" border="0" cellspacing="0" cellpadding="2">
     <thead>
@@ -359,6 +294,7 @@ $pages = Page::getPages();
     </tbody>
 </table>
 </div>
+<?php } ?>
 
 <p style="text-align:center;">
     <input class="button" type="submit" name="submit-button" value="<?php

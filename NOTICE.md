@@ -23,6 +23,32 @@ Base
 Historial de cambios
 --------------------
 
+### 2026-11-21 — Personalización sin programar (varreaga)
+
+Pantalla nueva **Administración › Configuración › Personalización**
+(`scp/customize.php`, `include/staff/customize.inc.php`,
+`include/mihelpdesk/class.customize.php`), con el tema activo:
+
+* Marca: nombre del centro de soporte, color, logos del portal y del panel
+  (también para modo oscuro) y favicon.
+* Portada del portal: texto de bienvenida, textos de las tarjetas y qué
+  secciones se muestran, con vista previa.
+* Menú y pie del portal: páginas propias, enlaces (WhatsApp, teléfono,
+  redes) y texto.
+* Inicio de sesión de agentes y clientes: título y texto.
+* Correos: encabezado con el logo (incrustado) y el color de la empresa, y
+  pie propio.
+
+Archivos de osTicket modificados para esto: `bootstrap.php` (ayudas
+`app_favicon_tags()` y `app_logo_img()`), `logo.php` y `scp/logo.php`
+(`?favicon` y `?dark`), `include/class.nav.php` (menú),
+`include/class.config.php` (la pantalla Empresa ya no borra los logos cuando
+no los envía), `include/class.mailer.php` (encabezado de marca),
+`include/staff/settings-pages.inc.php` (con el tema, logos, fondo y color
+se mueven a Personalización), `include/staff/header.inc.php`,
+`include/staff/login.header.php`, `include/staff/login.tpl.php`,
+`include/client/header.inc.php` e `include/client/footer.inc.php`.
+
 ### 2026-11-19 — Revisión visual completa (varreaga)
 
 * `include/staff/footer.inc.php`: los textos de JavaScript se cargan en el

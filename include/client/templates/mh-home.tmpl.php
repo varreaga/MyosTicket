@@ -11,6 +11,11 @@ $canOpen = $cfg->getClientRegistrationMode() != 'disabled'
     || !$cfg->isClientLoginRequired();
 $isClient = $thisclient && is_object($thisclient) && $thisclient->isValid()
     && !$thisclient->isGuest();
+// Textos y secciones que el administrador cambia en Personalización
+require_once INCLUDE_DIR . 'mihelpdesk/class.customize.php';
+$showSearch = MhCustomize::isOn('home_show_search');
+$showPopular = MhCustomize::isOn('home_show_popular');
+$showCategories = MhCustomize::isOn('home_show_categories');
 
 // Artículos populares: los destacados; si no hay, los principales de las
 // categorías destacadas.
@@ -49,7 +54,7 @@ if ($kbEnabled) {
             echo '<h1>'.__('How can we help you?').'</h1>';
         ?>
         </div>
-<?php if ($kbEnabled) { ?>
+<?php if ($kbEnabled && $showSearch) { ?>
         <form class="mh-search" method="get" action="kb/faq.php" role="search">
             <input type="hidden" name="a" value="search"/>
             <label for="mh-search-q" class="mh-sr"><?php echo __('Search our knowledge base'); ?></label>
@@ -71,8 +76,8 @@ if ($kbEnabled) {
                     stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>
             </span>
             <span class="mh-action-text">
-                <span class="mh-action-title"><?php echo __('Open a New Ticket'); ?></span>
-                <span class="mh-action-desc"><?php echo __('Tell us about your problem or request. You will get a ticket number to follow up.'); ?></span>
+                <span class="mh-action-title"><?php echo Format::htmlchars(MhCustomize::text('home_open_title', __('Open a New Ticket'))); ?></span>
+                <span class="mh-action-desc"><?php echo Format::htmlchars(MhCustomize::text('home_open_desc', __('Tell us about your problem or request. You will get a ticket number to follow up.'))); ?></span>
                 <span class="mh-action-cta"><?php echo __('Get started'); ?> →</span>
             </span>
         </a>
@@ -83,14 +88,17 @@ if ($kbEnabled) {
                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"></path><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"></path></svg>
             </span>
             <span class="mh-action-text">
-                <span class="mh-action-title"><?php echo $isClient ? __('My Tickets') : __('Check Ticket Status'); ?></span>
-                <span class="mh-action-desc"><?php echo __('Check the status of your requests and reply to our team.'); ?></span>
+                <span class="mh-action-title"><?php echo $isClient ? __('My Tickets') : Format::htmlchars(MhCustomize::text('home_status_title', __('Check Ticket Status'))); ?></span>
+                <span class="mh-action-desc"><?php echo Format::htmlchars(MhCustomize::text('home_status_desc', __('Check the status of your requests and reply to our team.'))); ?></span>
                 <span class="mh-action-cta"><?php echo __('Check now'); ?> →</span>
             </span>
         </a>
     </div>
 
-<?php if ($kbEnabled && ($popular || $categories->exists(true))) { ?>
+<?php
+if (!$showPopular) $popular = array();
+$showCats = $kbEnabled && $showCategories && $categories->exists(true);
+if ($kbEnabled && ($popular || $showCats)) { ?>
     <div class="mh-kb-home">
 <?php if ($popular) { ?>
         <section>
@@ -103,7 +111,7 @@ if ($kbEnabled) {
             </ul>
         </section>
 <?php } ?>
-<?php if ($categories->exists(true)) { ?>
+<?php if ($showCats) { ?>
         <section>
             <h2><?php echo __('Categories'); ?></h2>
             <div class="mh-category-grid">

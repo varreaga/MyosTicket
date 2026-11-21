@@ -1,5 +1,5 @@
 <?php
-// Modificado el 2026-11-16, 2026-11-18 y 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca, barra superior y apariencia del tema. Ver NOTICE.md.
+// Modificado el 2026-11-16, 2026-11-18, 2026-11-19 y 2026-11-21 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca, barra superior y apariencia del tema; favicon y logo para modo oscuro. Ver NOTICE.md.
 header("Content-Type: text/html; charset=UTF-8");
 header("Content-Security-Policy: frame-ancestors ".$cfg->getAllowIframes()."; script-src 'self' 'unsafe-inline' 'unsafe-eval'; object-src 'none'");
 
@@ -56,8 +56,7 @@ if (osTicket::is_ie())
     <link type="text/css" rel="stylesheet" href="<?php echo ROOT_PATH; ?>css/rtl.css"/>
     <link type="text/css" rel="stylesheet" href="<?php echo ROOT_PATH ?>scp/css/translatable.css"/>
     <!-- Favicons -->
-    <link rel="icon" type="image/png" href="<?php echo ROOT_PATH ?>images/oscar-favicon-32x32.png" sizes="32x32" />
-    <link rel="icon" type="image/png" href="<?php echo ROOT_PATH ?>images/oscar-favicon-16x16.png" sizes="16x16" />
+    <?php echo app_favicon_tags(); ?>
 
     <?php
     if($ost && ($headers=$ost->getExtraHeaders())) {
@@ -83,7 +82,7 @@ if (osTicket::is_ie())
     $mh_can_create = $thisstaff->hasPerm(Ticket::PERM_CREATE, false); ?>
     <div id="header" class="mh-header">
         <a href="<?php echo ROOT_PATH ?>scp/index.php" class="no-pjax" id="logo">
-            <img src="<?php echo ROOT_PATH ?>scp/logo.php?<?php echo strtotime($cfg->lastModified('staff_logo_id')); ?>" alt="<?php echo Format::htmlchars(APP_NAME); ?>"/>
+            <?php echo app_logo_img('staff', ROOT_PATH.'scp/logo.php?'.strtotime($cfg->lastModified('staff_logo_id')), Format::htmlchars(APP_NAME)); ?>
         </a>
         <div class="mh-topbar no-pjax">
             <button type="button" class="mh-nav-toggle" aria-controls="nav" aria-expanded="false"
@@ -132,7 +131,7 @@ if (osTicket::is_ie())
         </p>
         <a href="<?php echo ROOT_PATH ?>scp/index.php" class="no-pjax" id="logo">
             <span class="valign-helper"></span>
-            <img src="<?php echo ROOT_PATH ?>scp/logo.php?<?php echo strtotime($cfg->lastModified('staff_logo_id')); ?>" alt="<?php echo Format::htmlchars(APP_NAME); ?> &mdash; <?php echo __('Customer Support System'); ?>"/>
+            <?php echo app_logo_img('staff', ROOT_PATH.'scp/logo.php?'.strtotime($cfg->lastModified('staff_logo_id')), Format::htmlchars(APP_NAME).' &mdash; '.__('Customer Support System')); ?>
         </a>
     </div>
 <?php } # app_theme ?>

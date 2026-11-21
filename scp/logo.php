@@ -1,4 +1,5 @@
 <?php
+// Modificado el 2026-11-21 por varreaga (proyecto MiHelpdesk, fork de osTicket): favicon y logo para modo oscuro. Ver NOTICE.md.
 /*********************************************************************
     logo.php
 
@@ -28,7 +29,18 @@ if (isset($_GET['backdrop'])) {
     header('Pragma: private');
     Http::redirect('images/login-headquarters.jpg');
 }
-elseif (($logo = $ost->getConfig()->getStaffLogo())) {
+// MiHelpdesk: ?favicon y ?dark (logo del panel para modo oscuro)
+require_once INCLUDE_DIR . 'mihelpdesk/class.customize.php';
+if (isset($_GET['favicon'])) {
+    if (($icon = MhCustomize::getFavicon()))
+        $icon->display(false, $ttl);
+    header("Cache-Control: private, max-age=$ttl");
+    header('Pragma: private');
+    Http::redirect(ROOT_PATH . 'images/oscar-favicon-32x32.png');
+}
+if (isset($_GET['dark']) && ($logo = MhCustomize::getDarkLogo('staff')))
+    $logo->display(false, $ttl);
+if (($logo = $ost->getConfig()->getStaffLogo())) {
     $logo->display(false, $ttl);
 }
 

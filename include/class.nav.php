@@ -1,5 +1,5 @@
 <?php
-// Modificado el 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): el menú de registros de Administración se llama "Estado del sistema". Ver NOTICE.md.
+// Modificado el 2026-11-19 y el 2026-11-21 por varreaga (proyecto MiHelpdesk, fork de osTicket): el menú de registros de Administración se llama "Estado del sistema"; menú Personalización. Ver NOTICE.md.
 /*********************************************************************
     class.nav.php
 
@@ -242,6 +242,9 @@ class AdminNav extends StaffNav{
                     break;
                 case 'settings':
                     $subnav[]=array('desc'=>__('Company'),'href'=>'settings.php?t=pages','iconclass'=>'pages');
+                    // MiHelpdesk: logos, color, portada, menú, inicio de sesión y correos
+                    if (app_theme())
+                        $subnav[]=array('desc'=>__('Customization'),'href'=>'customize.php','iconclass'=>'customize');
                     $subnav[]=array('desc'=>__('System'),'href'=>'settings.php?t=system','iconclass'=>'preferences');
                     $subnav[]=array('desc'=>__('Tickets'),'href'=>'settings.php?t=tickets','iconclass'=>'ticket-settings');
                     $subnav[]=array('desc'=>__('Tasks'),'href'=>'settings.php?t=tasks','iconclass'=>'lists');
