@@ -5,6 +5,21 @@ El nombre actual, **MiHelpdesk**, es **provisional**. Este documento
 explica cómo cambiarlo y qué reglas seguir para que el fork siga siendo
 legal.
 
+Marca del producto y marca de cada cliente
+------------------------------------------
+Hay dos marcas distintas:
+
+* **La del producto** (MiHelpdesk): nombre, créditos y logos de fábrica. Se
+  cambia con el script de abajo y afecta a todas las instalaciones.
+* **La de cada empresa que lo usa**: su logo, color, favicon, textos del
+  portal, menú, pie, inicio de sesión y correos. El administrador la cambia
+  sin programar en **Administración › Configuración › Personalización**
+  (`scp/customize.php`). Se guarda en la base de datos de esa instalación.
+
+La línea "MiHelpdesk es software libre basado en osTicket…" del pie y del
+inicio de sesión no se puede quitar desde Personalización: es el aviso de la
+licencia GPL.
+
 Cambiar el nombre
 -----------------
 Desde la raíz del repositorio:

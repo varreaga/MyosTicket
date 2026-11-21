@@ -1,5 +1,5 @@
 <?php
-// Modificado el 2026-11-16 y el 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca y apariencia del tema (modo oscuro). Ver NOTICE.md.
+// Modificado el 2026-11-16, 2026-11-19 y 2026-11-21 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca y apariencia del tema (modo oscuro); favicon, logo para modo oscuro y páginas propias en el menú. Ver NOTICE.md.
 $title=($cfg && is_object($cfg) && $cfg->getTitle())
     ? $cfg->getTitle() : APP_NAME.' :: '.__('Support Ticket System');
 $signin_url = ROOT_PATH . "login.php"
@@ -52,8 +52,7 @@ if (osTicket::is_ie())
     <link type="text/css" rel="stylesheet" href="<?php echo ROOT_PATH; ?>css/rtl.css"/>
     <link type="text/css" rel="stylesheet" href="<?php echo ROOT_PATH; ?>css/select2.min.css">
     <!-- Favicons -->
-    <link rel="icon" type="image/png" href="<?php echo ROOT_PATH ?>images/oscar-favicon-32x32.png" sizes="32x32" />
-    <link rel="icon" type="image/png" href="<?php echo ROOT_PATH ?>images/oscar-favicon-16x16.png" sizes="16x16" />
+    <?php echo app_favicon_tags(); ?>
     <script type="text/javascript" src="<?php echo ROOT_PATH; ?>js/jquery-3.7.0.min.js"></script>
     <script type="text/javascript" src="<?php echo ROOT_PATH; ?>js/jquery-ui-1.13.2.custom.min.js"></script>
     <script type="text/javascript" src="<?php echo ROOT_PATH; ?>js/jquery-ui-timepicker-addon.js"></script>
@@ -155,8 +154,8 @@ if (($all_langs = Internationalization::getConfiguredSystemLanguages())
             <a class="pull-left" id="logo" href="<?php echo ROOT_PATH; ?>index.php"
             title="<?php echo __('Support Center'); ?>">
                 <span class="valign-helper"></span>
-                <img src="<?php echo ROOT_PATH; ?>logo.php" border=0 alt="<?php
-                echo $ost->getConfig()->getTitle(); ?>">
+                <?php echo app_logo_img('client', ROOT_PATH.'logo.php',
+                    Format::htmlchars($ost->getConfig()->getTitle())); ?>
             </a>
         </div>
         <div class="clear"></div>
@@ -173,6 +172,13 @@ if (($all_langs = Internationalization::getConfiguredSystemLanguages())
                 foreach($navs as $name =>$nav) {
                     echo sprintf('<li><a class="%s %s" href="%s">%s</a></li>%s',$nav['active']?'active':'',$name,(ROOT_PATH.$nav['href']),$nav['desc'],"\n");
                 }
+            }
+            // MiHelpdesk: páginas propias elegidas en Personalización
+            if (app_theme()) {
+                require_once INCLUDE_DIR . 'mihelpdesk/class.customize.php';
+                foreach (MhCustomize::getPages('nav_pages') as $P)
+                    echo sprintf('<li><a class="mh-page" href="%s">%s</a></li>%s',
+                        MhCustomize::pageUrl($P), Format::htmlchars($P->getLocalName()), "\n");
             } ?>
         </ul>
         <?php

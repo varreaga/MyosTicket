@@ -1,7 +1,26 @@
-<?php /* Modificado el 2026-11-16 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca. Ver NOTICE.md. */ ?>
+<?php /* Modificado el 2026-11-16 y el 2026-11-21 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca; enlaces y texto del pie de Personalización. Ver NOTICE.md. */ ?>
         </div>
     </div>
     <div id="footer">
+<?php
+// MiHelpdesk: enlaces, páginas y texto del pie elegidos en Personalización
+if (app_theme()) {
+    require_once INCLUDE_DIR . 'mihelpdesk/class.customize.php';
+    $mh_links = array();
+    foreach (MhCustomize::getPages('footer_pages') as $P)
+        $mh_links[] = sprintf('<a href="%s">%s</a>', MhCustomize::pageUrl($P),
+            Format::htmlchars($P->getLocalName()));
+    foreach (MhCustomize::getFooterLinks() as $l) {
+        $ext = preg_match('#^https?://#i', $l['url']);
+        $mh_links[] = sprintf('<a href="%s"%s>%s</a>', Format::htmlchars($l['url']),
+            $ext ? ' target="_blank" rel="noopener"' : '', Format::htmlchars($l['label']));
+    }
+    if ($mh_links)
+        echo '<nav class="mh-footer-links" aria-label="'.__('Footer links').'">'
+            .implode('', $mh_links).'</nav>';
+    if (($mh_ft = trim((string) MhCustomize::get('footer_text'))) !== '')
+        echo '<p class="mh-footer-text">'.nl2br(Format::htmlchars($mh_ft)).'</p>';
+} ?>
         <p><?php echo __('Copyright &copy;'); ?> <?php echo date('Y'); ?> <?php
         echo Format::htmlchars((string) $ost->company ?: APP_NAME); ?> - <?php echo __('All rights reserved.'); ?></p>
         <p class="based-on"><?php echo sprintf(__('%1$s is free software based on %2$s, licensed under the GNU GPL v2.'),

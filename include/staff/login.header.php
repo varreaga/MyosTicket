@@ -1,5 +1,5 @@
 <?php
-// Modificado el 2026-11-16 y el 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca y apariencia del tema (modo oscuro). Ver NOTICE.md.
+// Modificado el 2026-11-16, 2026-11-19 y 2026-11-21 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca y apariencia del tema (modo oscuro); favicon de Personalización. Ver NOTICE.md.
 defined('OSTSCPINC') or die('Invalid path');
 header("Content-Security-Policy: frame-ancestors ".$cfg->getAllowIframes()."; script-src 'self' 'unsafe-inline'; object-src 'none'");
 ?>
@@ -16,8 +16,7 @@ header("Content-Security-Policy: frame-ancestors ".$cfg->getAllowIframes()."; sc
     <meta http-equiv="cache-control" content="no-cache" />
     <meta http-equiv="pragma" content="no-cache" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="<?php echo ROOT_PATH ?>images/oscar-favicon-32x32.png" sizes="32x32" />
-    <link rel="icon" type="image/png" href="<?php echo ROOT_PATH ?>images/oscar-favicon-16x16.png" sizes="16x16" />
+    <?php echo app_favicon_tags(); ?>
     <script type="text/javascript" src="<?php echo ROOT_PATH; ?>js/jquery-3.7.0.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {

@@ -1,5 +1,5 @@
 <?php
-// Modificado el 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): guarda el color de marca del tema; una clave nueva se puede leer en la misma petición. Ver NOTICE.md.
+// Modificado el 2026-11-19 y el 2026-11-21 por varreaga (proyecto MiHelpdesk, fork de osTicket): guarda el color de marca del tema; una clave nueva se puede leer en la misma petición; logos de Personalización. Ver NOTICE.md.
 /*********************************************************************
     class.config.php
 
@@ -1684,10 +1684,17 @@ class OsticketConfig extends Config {
                         && ($f = AttachmentFile::lookup((int) $id)))
                     $f->delete();
 
-        return $this->updateAll(array(
+        $pages = array(
             'landing_page_id' => $vars['landing_page_id'],
             'offline_page_id' => $vars['offline_page_id'],
             'thank-you_page_id' => $vars['thank-you_page_id'],
+        );
+        // MiHelpdesk: con el tema, los logos y el fondo se eligen en
+        // Personalización y no vienen en este formulario; no se tocan.
+        if (!isset($vars['selected-logo']) && !isset($vars['selected-backdrop']))
+            return $this->updateAll($pages);
+
+        return $this->updateAll($pages + array(
             'client_logo_id' => (
                 (is_numeric($vars['selected-logo']) && $vars['selected-logo'])
                 ? $vars['selected-logo'] : false),

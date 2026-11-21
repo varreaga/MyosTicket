@@ -411,3 +411,9 @@
   border-radius: var(--mh-radius);
 }
 .mh-client .action-button:hover { background: var(--mh-hover); }
+
+/* Logo para modo oscuro (Personalización): solo existe si se eligió uno */
+.mh-theme .mh-logo-dark { display: none; }
+html[data-mh-mode="dark"] .mh-theme .mh-logo-dark,
+html[data-mh-mode="dark"] .mh-logo-dark { display: inline-block; }
+html[data-mh-mode="dark"] .mh-logo-light:has(+ .mh-logo-dark) { display: none; }

@@ -1,4 +1,5 @@
 <?php
+// Modificado el 2026-11-21 por varreaga (proyecto MiHelpdesk, fork de osTicket): encabezado de marca en los correos. Ver NOTICE.md.
 /*********************************************************************
     class.mailer.php
 
@@ -526,6 +527,13 @@ class Mailer {
         }
 
         if ($isHtml && $cfg && $cfg->isRichTextEnabled()) {
+            // MiHelpdesk: encabezado con el logo y el color de la empresa
+            // (Administración › Configuración › Personalización › Correos).
+            // El logo va como imagen incrustada (cid:), que se resuelve abajo.
+            if (function_exists('app_theme') && app_theme()) {
+                require_once INCLUDE_DIR . 'mihelpdesk/class.customize.php';
+                $body = \MhCustomize::wrapEmail($body);
+            }
             // Pick a domain compatible with pear Mail_Mime
             $matches = array();
             if (preg_match('#(@[0-9a-zA-Z\-\.]+)#', (string) $this->getFromAddress(), $matches)) {

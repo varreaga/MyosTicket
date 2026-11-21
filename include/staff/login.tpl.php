@@ -1,5 +1,5 @@
 <?php
-// Modificado el 2026-11-16 y el 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca y diseño del tema (título y etiquetas de los campos); créditos del pie. Ver NOTICE.md.
+// Modificado el 2026-11-16, 2026-11-19 y 2026-11-21 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca y diseño del tema (título y etiquetas de los campos); créditos del pie; logo para modo oscuro y título del inicio de sesión de Personalización. Ver NOTICE.md.
 include_once(INCLUDE_DIR.'staff/login.header.php');
 $info = ($_POST && $errors)?Format::htmlchars($_POST):array();
 
@@ -15,10 +15,11 @@ if ($thisstaff && $thisstaff->is2FAPending())
     </div>
     <h1 id="logo"><a href="index.php">
         <span class="valign-helper"></span>
-        <img src="logo.php?login" alt="<?php echo Format::htmlchars(APP_NAME); ?> :: <?php echo __('Staff Control Panel');?>" />
+        <?php echo app_logo_img('staff', 'logo.php?login', Format::htmlchars(APP_NAME).' :: '.__('Staff Control Panel')); ?>
     </a></h1>
 <?php if (app_theme()) { ?>
-    <h2 class="mh-login-title"><?php echo __('Sign in to the agent panel'); ?></h2>
+    <h2 class="mh-login-title"><?php require_once INCLUDE_DIR . 'mihelpdesk/class.customize.php';
+        echo Format::htmlchars(MhCustomize::text('staff_login_title', __('Sign in to the agent panel'))); ?></h2>
 <?php } ?>
 <?php
 // MiHelpdesk: el mensaje por omisión ("Authentication Required") no es un
