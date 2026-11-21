@@ -1,5 +1,5 @@
 <?php
-// Modificado el 2026-11-16 y el 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca; el botón de actualizar lleva a las versiones de MiHelpdesk. Ver NOTICE.md.
+// Modificado el 2026-11-16, 2026-11-19 y 2026-11-21 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca; el botón de actualizar lleva a las versiones de MiHelpdesk; sin la alerta de la extensión imap, que no se usa. Ver NOTICE.md.
 if(!defined('OSTADMININC') || !$thisstaff || !$thisstaff->isAdmin()) die('Access Denied');
 
 $commit = GIT_VERSION != '$git' ? GIT_VERSION : (
@@ -14,10 +14,9 @@ $extensions = array(
             'name' => 'iconv',
             'desc' => __('Useful for email processing')
             ),
-        'imap' => array(
-            'name' => 'imap',
-            'desc' => __('Useful for email processing')
-            ),
+        // MiHelpdesk: la extensión imap ya no se usa (desde osTicket 1.17 el
+        // correo se descarga con laminas-mail, en PHP puro) y PHP 8.4 dejó de
+        // incluirla; Debian 13 no la trae. Mostrarla solo causaba una alerta.
         'ctype' => array(
             'name' => 'ctype',
             'desc' => __('Required for email fetching')

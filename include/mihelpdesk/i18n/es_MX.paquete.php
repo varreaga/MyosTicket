@@ -516,4 +516,6 @@ return array(
     "queue-name\x04Open" => 'Abiertas',
     "ticket state name\x04Open" => 'Abierta',
     "ticket state name\x04Closed" => 'Cerrada',
+    'Highly recommended for plugins and language packs'
+        => 'Muy recomendable para complementos y paquetes de idioma',
 );
