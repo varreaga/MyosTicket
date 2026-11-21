@@ -417,3 +417,159 @@
 html[data-mh-mode="dark"] .mh-theme .mh-logo-dark,
 html[data-mh-mode="dark"] .mh-logo-dark { display: inline-block; }
 html[data-mh-mode="dark"] .mh-logo-light:has(+ .mh-logo-dark) { display: none; }
+
+/* ------------------------------------------------------------------
+   Avisos de resultado (los mensajes verdes, amarillos y rojos que
+   aparecen al guardar, responder, etc.)
+   osTicket los pinta con iconos .png y bordes de color fuerte. Aquí
+   llevan el icono del tema, dibujado con el color del propio aviso,
+   así se ve bien también en modo oscuro. Incluye .success-banner y
+   .debug-banner, que usa el sistema de mensajes de osTicket al volver
+   a la cola tras responder una solicitud.
+   ------------------------------------------------------------------ */
+.mh-theme #msg_notice, .mh-theme #msg_warning, .mh-theme #msg_error, .mh-theme #msg_info,
+.mh-theme .notice-banner, .mh-theme .success-banner, .mh-theme .warning-banner,
+.mh-theme .error-banner, .mh-theme .info-banner, .mh-theme .debug-banner {
+  position: relative;
+  margin: 0 0 16px;
+  padding: 12px 16px 12px 42px;
+  border: 1px solid;
+  border-radius: var(--mh-radius);
+  background-image: none;
+  font-size: var(--mh-text-sm);
+  line-height: 1.5;
+}
+.mh-theme #msg_notice, .mh-theme .notice-banner, .mh-theme .success-banner {
+  background-color: var(--mh-success-soft); border-color: var(--mh-success-border); color: var(--mh-success-text);
+}
+.mh-theme #msg_warning, .mh-theme .warning-banner {
+  background-color: var(--mh-warning-soft); border-color: var(--mh-warning-border); color: var(--mh-warning-text);
+}
+.mh-theme #msg_error, .mh-theme .error-banner {
+  background-color: var(--mh-danger-soft); border-color: var(--mh-danger-border); color: var(--mh-danger-text);
+}
+.mh-theme #msg_info, .mh-theme .info-banner, .mh-theme .debug-banner {
+  background-color: var(--mh-brand-soft); border-color: var(--mh-info-border); color: var(--mh-text);
+}
+.mh-theme #msg_notice::before, .mh-theme #msg_warning::before, .mh-theme #msg_error::before,
+.mh-theme .notice-banner::before, .mh-theme .success-banner::before, .mh-theme .warning-banner::before,
+.mh-theme .error-banner::before, .mh-theme .info-banner::before, .mh-theme .debug-banner::before {
+  content: "";
+  position: absolute;
+  left: 15px; top: 14px;
+  width: 17px; height: 17px;
+  background-color: currentColor;
+  -webkit-mask: var(--mh-ico) center / contain no-repeat;
+          mask: var(--mh-ico) center / contain no-repeat;
+}
+.mh-theme #msg_notice, .mh-theme .notice-banner, .mh-theme .success-banner {
+  --mh-ico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='m8 12 3 3 5-6'/%3E%3C/svg%3E");
+}
+.mh-theme #msg_warning, .mh-theme .warning-banner {
+  --mh-ico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z'/%3E%3Cpath d='M12 9v4M12 17h.01'/%3E%3C/svg%3E");
+}
+.mh-theme #msg_error, .mh-theme .error-banner {
+  --mh-ico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 8v4M12 16h.01'/%3E%3C/svg%3E");
+}
+.mh-theme .info-banner, .mh-theme .debug-banner {
+  --mh-ico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 16v-4M12 8h.01'/%3E%3C/svg%3E");
+}
+/* #msg_info ya trae su propio icono (<i class="icon-info-sign">) */
+.mh-theme #msg_info { padding-left: 16px; }
+.mh-theme #msg_notice a, .mh-theme #msg_warning a, .mh-theme #msg_error a,
+.mh-theme .success-banner a, .mh-theme .notice-banner a, .mh-theme .warning-banner a,
+.mh-theme .error-banner a, .mh-theme .info-banner a, .mh-theme .debug-banner a { color: inherit; text-decoration: underline; }
+/* El icono viejo de "atrasado" dentro del aviso sobra: el aviso ya trae el suyo */
+.mh-theme #msg_warning .Icon.overdueTicket { padding-left: 0; background: none; }
+/* Dentro de ventanas emergentes, más compactos */
+.mh-theme .dialog #msg_notice, .mh-theme .dialog #msg_warning, .mh-theme .dialog #msg_error {
+  margin-bottom: 12px;
+}
+
+/* ------------------------------------------------------------------
+   Barra de aviso flotante ($.messageBar de osTicket)
+   La usa el aviso "¿Sigues trabajando en esta solicitud?" que sale
+   cuando el apartado (bloqueo) de una solicitud está por vencer por
+   inactividad, y el de "No se pudo bloquear la solicitud".
+   osTicket la pone pegada arriba, medio escondida hasta pasar el
+   mouse y con el muñequito "Oscar". Aquí es una tarjeta centrada,
+   siempre visible, con icono y botón del tema. Los !important ganan
+   a las posiciones que el script de osTicket pone en línea.
+   ------------------------------------------------------------------ */
+.mh-theme .message.bar {
+  position: fixed;
+  top: 16px !important;
+  bottom: auto;
+  left: 50%;
+  right: auto;
+  margin: 0 !important;
+  transform: translateX(-50%);
+  width: min(560px, calc(100vw - 32px));
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  column-gap: 12px;
+  align-items: start;
+  padding: 16px;
+  z-index: 10000;
+  background: var(--mh-surface);
+  color: var(--mh-text);
+  border: 1px solid var(--mh-border);
+  border-left: 4px solid var(--mh-brand);
+  border-radius: var(--mh-radius-lg);
+  box-shadow: var(--mh-shadow-pop);
+  opacity: 1;
+  font-family: inherit;
+}
+.mh-theme .message.bar.bottom { top: auto !important; bottom: 16px !important; }
+.mh-theme .message.bar.warning, .mh-theme .message.bar.bottom.warning { border: 1px solid var(--mh-warning-border); border-left: 4px solid var(--mh-warning); }
+.mh-theme .message.bar.danger,  .mh-theme .message.bar.bottom.danger  { border: 1px solid var(--mh-danger-border);  border-left: 4px solid var(--mh-danger); }
+/* El muñequito se cambia por un icono */
+.mh-theme .message.bar .avatar[class*=" oscar-"] {
+  grid-column: 1; grid-row: 1 / span 2;
+  float: none;
+  width: 20px; height: 20px;
+  margin: 1px 0 0;
+  background: var(--mh-brand);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 16v-4M12 8h.01'/%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 16v-4M12 8h.01'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.mh-theme .message.bar.warning .avatar[class*=" oscar-"] {
+  background: var(--mh-warning);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 6v6l4 2'/%3E%3C/svg%3E");
+          mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 6v6l4 2'/%3E%3C/svg%3E");
+}
+.mh-theme .message.bar.danger .avatar[class*=" oscar-"] {
+  background: var(--mh-danger);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'%3E%3Crect x='4' y='11' width='16' height='10' rx='2'/%3E%3Cpath d='M8 11V7a4 4 0 0 1 8 0v4'/%3E%3C/svg%3E");
+          mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'%3E%3Crect x='4' y='11' width='16' height='10' rx='2'/%3E%3Cpath d='M8 11V7a4 4 0 0 1 8 0v4'/%3E%3C/svg%3E");
+}
+.mh-theme .message.bar .title { grid-column: 2; grid-row: 1; font-weight: 600; font-size: var(--mh-text-base); line-height: 1.4; }
+.mh-theme .message.bar .body  { grid-column: 2; grid-row: 2; margin: 4px 0 0; font-size: var(--mh-text-sm); color: var(--mh-text-muted); line-height: 1.5; }
+/* Contenedor del botón: el script lo pone en posición absoluta en línea */
+.mh-theme .message.bar > div:not(.avatar):not(.title):not(.body) {
+  grid-column: 3; grid-row: 1 / span 2;
+  position: static !important;
+  margin: 0 !important;
+  align-self: center;
+}
+.mh-theme .message.bar .valign-helper { display: none; }
+.mh-theme .message.bar button.inline.button {
+  margin: 0;
+  padding: 8px 14px;
+  border: 1px solid var(--mh-brand);
+  border-radius: var(--mh-radius);
+  background: var(--mh-brand);
+  color: var(--mh-on-brand);
+  font: 600 var(--mh-text-sm)/1.2 inherit;
+  font-family: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.mh-theme .message.bar button.inline.button:hover { filter: brightness(.95); }
+.mh-theme .message.bar button.inline.button.red { background: var(--mh-danger) !important; border-color: var(--mh-danger) !important; color: #fff !important; }
+.mh-theme .message.bar .icon-spinner { color: var(--mh-text-muted); }
+@media (max-width: 560px) {
+  .mh-theme .message.bar { grid-template-columns: auto 1fr; }
+  .mh-theme .message.bar > div:not(.avatar):not(.title):not(.body) { grid-column: 2; grid-row: 3; margin-top: 12px !important; justify-self: start; }
+}

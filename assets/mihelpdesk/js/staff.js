@@ -179,4 +179,14 @@
     patched.mhPatched = true;
     jQuery.fn.datepicker = patched;
   }
+
+  // Barra de aviso flotante de osTicket ($.messageBar): su botón por
+  // omisión dice "OK" porque el texto se fija antes de que carguen las
+  // traducciones. Se vuelve a traducir cuando la página ya está lista.
+  if (window.jQuery) {
+    jQuery(function () {
+      if (jQuery.messageBar && jQuery.messageBar.defaults && typeof window.__ === 'function')
+        jQuery.messageBar.defaults.buttonText = window.__('OK');
+    });
+  }
 })();
