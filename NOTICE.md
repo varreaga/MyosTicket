@@ -28,8 +28,9 @@ Historial de cambios
 * `setup/inc/class.installer.php`: los correos que crea el instalador
   llevan nombre en el idioma de la instalación ("Soporte", "Alertas de
   MiHelpdesk") y la respuesta automática al cliente queda encendida.
-* Encabezado de marca de los correos: los enlaces de las plantillas toman
-  el color de la empresa y el nombre de la empresa usa la misma letra que
+* Encabezado de marca de los correos: los enlaces de las plantillas (también
+  los que no tienen estilo, como el número de solicitud) toman el color de
+  la empresa y el nombre de la empresa usa la misma letra que
   el resto del correo.
 * `tools/i18n/cargar-idioma.php`: también traduce la firma de los
   departamentos y los nombres de los correos.
