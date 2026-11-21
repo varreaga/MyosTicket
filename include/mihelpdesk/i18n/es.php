@@ -32,8 +32,8 @@ return array(
     '%d topic' => '%d tema',
     '%d topics' => '%d temas',
     'Menu' => 'Menú',
-    '%1$s is free software based on %2$s, licensed under the GNU GPL v2.'
-        => '%1$s es software libre basado en %2$s, con licencia GNU GPL v2.',
+    'Based on %s, licensed under the GNU GPL v2.'
+        => 'Basado en %s bajo licencia GNU GPL v2.',
     'Professional installation services and commercial support are available.'
         => 'Hay servicios profesionales de instalación y soporte comercial disponibles.',
 

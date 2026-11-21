@@ -1,5 +1,5 @@
 <?php
-// Modificado el 2026-11-16 y el 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca y diseño del tema (título y etiqueta del campo); créditos del pie. Ver NOTICE.md.
+// Modificado el 2026-11-16, 2026-11-19 y 2026-11-21 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca y diseño del tema (título y etiqueta del campo); créditos del pie; créditos más cortos. Ver NOTICE.md.
 include_once(INCLUDE_DIR.'staff/login.header.php');
 defined('OSTSCPINC') or die('Invalid path');
 $info = ($_POST && $errors)?Format::htmlchars($_POST):array();
@@ -40,8 +40,7 @@ $info = ($_POST && $errors)?Format::htmlchars($_POST):array();
 </div>
 <div id="poweredBy"><?php
     // MiHelpdesk: créditos con el nombre del producto y su origen (osTicket)
-    echo sprintf(__('%1$s is free software based on %2$s, licensed under the GNU GPL v2.'),
-        '<a href="'.APP_URL.'" target="_blank" rel="noopener">'.Format::htmlchars(APP_NAME).'</a>',
+    echo sprintf(__('Based on %s, licensed under the GNU GPL v2.'),
         '<a href="'.APP_UPSTREAM_URL.'" target="_blank" rel="noopener">'.APP_UPSTREAM_NAME.'</a>'); ?>
 </div>
     <script>
