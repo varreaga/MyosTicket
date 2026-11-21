@@ -321,6 +321,10 @@ class MhCustomize {
         // en su color (oscurecido si hace falta para que se lea sobre blanco)
         $link = MhBrand::palette($brand)['light']['--mh-link'] ?? $brand;
         $html = str_ireplace(array('rgb(84, 141, 212)', '#548dd4'), $link, $html);
+        // Enlaces sin estilo (por ejemplo, el número de solicitud en los
+        // avisos a agentes): el programa de correo los pintaba de azul
+        $html = preg_replace('/<a\b(?![^>]*\bstyle=)([^>]*)>/i',
+            '<a$1 style="color:' . $link . ';">', $html);
         $foot = trim((string) self::get('email_footer'));
         $foot = $foot !== '' ? nl2br(Format::htmlchars($foot)) : $name;
         return '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f3f5f8;padding:24px 0;">'
