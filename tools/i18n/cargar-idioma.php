@@ -166,7 +166,19 @@ porId('priority.yaml', PRIORITY_TABLE, 'priority_id', 'priority_id',
 porId('queue.yaml', QUEUE_TABLE, 'id', 'id', array('title' => 'title', 'config' => 'config'), 'Cola');
 porId('queue_column.yaml', COLUMN_TABLE, 'id', 'id', array('name' => 'name'), 'Columna');
 porId('queue_sort.yaml', QUEUE_SORT_TABLE, 'id', 'id', array('name' => 'name'), 'Orden');
-porId('department.yaml', DEPT_TABLE, 'id', 'id', array('name' => 'name'), 'Departamento');
+porId('department.yaml', DEPT_TABLE, 'id', 'id', array('name' => 'name', 'signature' => 'signature'), 'Departamento');
+
+// Nombres de los correos que crea el instalador (no vienen en los datos)
+echo "Nombres de los correos\n";
+Internationalization::setCurrentLanguage($lang);
+TextDomain::setLocale(LC_ALL, $lang);
+foreach (array(
+        'Support' => __('Support'),
+        'osTicket Alerts' => sprintf(__('%s Alerts'), APP_NAME),
+        APP_NAME . ' Alerts' => sprintf(__('%s Alerts'), APP_NAME),
+    ) as $viejo => $nuevo) {
+    cambiar(EMAIL_TABLE, array('name' => $viejo), 'name', $viejo, $nuevo, "Correo «{$viejo}»");
+}
 porId('sla.yaml', SLA_TABLE, 'id', 'id', array('name' => 'name'), 'SLA');
 porId('help_topic.yaml', TOPIC_TABLE, 'topic_id', 'topic_id',
     array('topic' => 'topic'), 'Tema de ayuda');

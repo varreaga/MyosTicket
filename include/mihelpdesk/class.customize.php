@@ -312,10 +312,15 @@ class MhCustomize {
         $company = $ost && $ost->company ? (string) $ost->company : '';
         $name = Format::htmlchars($company ?: $cfg->getTitle());
         $logo = $cfg->getClientLogo();
+        $font = 'font-family:Arial,Helvetica,sans-serif;';
         $head = ($logo && $logo->getKey())
-            ? sprintf('<img src="cid:%s" alt="%s" style="max-height:48px;max-width:240px;border:0;display:block">',
-                $logo->getKey(), $name)
-            : sprintf('<span style="font-size:18px;font-weight:bold;color:#1f2937">%s</span>', $name);
+            ? sprintf('<img src="cid:%s" alt="%s" style="max-height:48px;max-width:240px;border:0;display:block;%s">',
+                $logo->getKey(), $name, $font)
+            : sprintf('<span style="%sfont-size:18px;font-weight:bold;color:#1f2937">%s</span>', $font, $name);
+        // Los enlaces de las plantillas usan un azul fijo; con la marca se ven
+        // en su color (oscurecido si hace falta para que se lea sobre blanco)
+        $link = MhBrand::palette($brand)['light']['--mh-link'] ?? $brand;
+        $html = str_ireplace(array('rgb(84, 141, 212)', '#548dd4'), $link, $html);
         $foot = trim((string) self::get('email_footer'));
         $foot = $foot !== '' ? nl2br(Format::htmlchars($foot)) : $name;
         return '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f3f5f8;padding:24px 0;">'
