@@ -1,4 +1,4 @@
-<?php /* Modificado el 2026-11-16 y el 2026-11-21 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca; enlaces y texto del pie de Personalización. Ver NOTICE.md. */ ?>
+<?php /* Modificado el 2026-11-16 y el 2026-11-21 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca; enlaces y texto del pie de Personalización; créditos más cortos. Ver NOTICE.md. */ ?>
         </div>
     </div>
     <div id="footer">
@@ -23,9 +23,8 @@ if (app_theme()) {
 } ?>
         <p><?php echo __('Copyright &copy;'); ?> <?php echo date('Y'); ?> <?php
         echo Format::htmlchars((string) $ost->company ?: APP_NAME); ?> - <?php echo __('All rights reserved.'); ?></p>
-        <p class="based-on"><?php echo sprintf(__('%1$s is free software based on %2$s, licensed under the GNU GPL v2.'),
-            Format::htmlchars(APP_NAME),
-            '<a href="'.APP_UPSTREAM_URL.'" target="_blank" rel="noopener">'.APP_UPSTREAM_NAME.'</a>'); ?></p>
+        <p class="based-on"><?php echo sprintf(__('Based on %s, licensed under the GNU GPL v2.'),
+        '<a href="'.APP_UPSTREAM_URL.'" target="_blank" rel="noopener">'.APP_UPSTREAM_NAME.'</a>'); ?></p>
     </div>
 <div id="overlay"></div>
 <div id="loading">

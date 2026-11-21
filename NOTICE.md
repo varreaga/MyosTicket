@@ -23,6 +23,14 @@ Base
 Historial de cambios
 --------------------
 
+### 2026-11-21 — Créditos más cortos (varreaga)
+
+* La línea de créditos del portal, del inicio de sesión, de las páginas de
+  contraseña y del instalador dice ahora "Basado en osTicket bajo licencia
+  GNU GPL v2." (`include/client/footer.inc.php`,
+  `include/staff/login.tpl.php`, `pwreset.php`, `pwreset.sent.php`,
+  `pwreset.login.php` y `setup/inc/footer.inc.php`).
+
 ### 2026-11-21 — Estado del sistema sin la alerta de imap (varreaga)
 
 * `include/staff/system.inc.php`: ya no revisa la extensión `imap` de PHP.

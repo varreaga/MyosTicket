@@ -16,8 +16,8 @@ Hay dos marcas distintas:
   sin programar en **Administración › Configuración › Personalización**
   (`scp/customize.php`). Se guarda en la base de datos de esa instalación.
 
-La línea "MiHelpdesk es software libre basado en osTicket…" del pie y del
-inicio de sesión no se puede quitar desde Personalización: es el aviso de la
+La línea "Basado en osTicket bajo licencia GNU GPL v2." del pie y del inicio
+de sesión no se puede quitar desde Personalización: es el aviso de la
 licencia GPL.
 
 Cambiar el nombre
