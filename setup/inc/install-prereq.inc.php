@@ -1,5 +1,5 @@
 <?php
-// Modificado el 2026-11-16 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca. Ver NOTICE.md.
+// Modificado el 2026-11-16 y el 2026-11-21 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca; sin la extensión imap, que no se usa. Ver NOTICE.md.
 if(!defined('SETUPINC')) die('Kwaheri!');
 
 ?>
@@ -26,8 +26,6 @@ if(!defined('SETUPINC')) die('Kwaheri!');
             <ul class="progress">
                 <li class="<?php echo extension_loaded('gd')?'yes':'no'; ?>">Gdlib <?php echo __('Extension');?></li>
                 <li class="<?php echo extension_loaded('iconv')?'yes':'no'; ?>">PHP ICONV <?php echo __('Extension');?> &mdash; <em><?php
-                    echo __('Useful for email processing');?></em></li>
-                <li class="<?php echo extension_loaded('imap')?'yes':'no'; ?>">PHP IMAP <?php echo __('Extension');?> &mdash; <em><?php
                     echo __('Useful for email processing');?></em></li>
                 <li class="<?php echo extension_loaded('ctype')?'yes':'no'; ?>">PHP CTYPE <?php echo __('Extension');?> &mdash; <em><?php
                     echo __('Required for email fetching');?></em></li>

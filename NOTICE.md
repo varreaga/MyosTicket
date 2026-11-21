@@ -23,6 +23,14 @@ Base
 Historial de cambios
 --------------------
 
+### 2026-11-21 — Estado del sistema sin la alerta de imap (varreaga)
+
+* `include/staff/system.inc.php`: ya no revisa la extensión `imap` de PHP.
+  osTicket descarga el correo con laminas-mail desde la versión 1.17, PHP
+  8.4 dejó de incluir esa extensión y Debian 13 no la trae, así que solo
+  mostraba una alerta sin motivo. Por lo mismo se quita de la lista de
+  requisitos del instalador (`setup/inc/install-prereq.inc.php`).
+
 ### 2026-11-21 — Personalización sin programar (varreaga)
 
 Pantalla nueva **Administración › Configuración › Personalización**
