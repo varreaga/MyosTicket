@@ -1,5 +1,5 @@
 <?php
-// Modificado el 2026-11-16, 2026-11-19 y 2026-11-21 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca; el botón de actualizar lleva a las versiones de MiHelpdesk; sin la alerta de la extensión imap, que no se usa. Ver NOTICE.md.
+// Modificado el 2026-11-16, 2026-11-19 y 2026-11-21 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca; el botón de actualizar lleva a las versiones de MiHelpdesk; sin la alerta de la extensión imap, que no se usa, ni la de cgi.fix_pathinfo cuando PHP corre dentro de Apache. Ver NOTICE.md.
 if(!defined('OSTADMININC') || !$thisstaff || !$thisstaff->isAdmin()) die('Access Denied');
 
 $commit = GIT_VERSION != '$git' ? GIT_VERSION : (
@@ -129,6 +129,12 @@ if (!$lv) { ?>
     <tr><th colspan="2"><?php echo __('PHP Settings'); ?></th></tr>
 </thead>
 <tbody>
+<?php
+    // MiHelpdesk: cgi.fix_pathinfo solo existe cuando PHP corre como CGI o
+    // FPM. Con PHP dentro de Apache (mod_php) no aplica: ini_get() devuelve
+    // false y la alerta salía aunque todo funcionara.
+    $mh_cgi = (strpos(PHP_SAPI, 'cgi') !== false || strpos(PHP_SAPI, 'fpm') !== false);
+    if ($mh_cgi) { ?>
     <tr>
         <td><span class="ltr"><code>cgi.fix_pathinfo</code></span></td>
         <td><i class="icon icon-<?php
@@ -136,6 +142,7 @@ if (!$lv) { ?>
                 <span class="faded"><?php echo __('"1" is recommended if AJAX is not working'); ?></span>
         </td>
     </tr>
+<?php } ?>
     <tr>
         <td><span class="ltr"><code>date.timezone</code></span></td>
         <td><i class="icon icon-<?php

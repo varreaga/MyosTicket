@@ -30,6 +30,9 @@ Historial de cambios
   8.4 dejó de incluir esa extensión y Debian 13 no la trae, así que solo
   mostraba una alerta sin motivo. Por lo mismo se quita de la lista de
   requisitos del instalador (`setup/inc/install-prereq.inc.php`).
+* `include/staff/system.inc.php`: la revisión de `cgi.fix_pathinfo` solo se
+  muestra cuando PHP corre como CGI o FPM; con PHP dentro de Apache esa
+  opción no existe y la alerta salía sin motivo.
 
 ### 2026-11-21 — Personalización sin programar (varreaga)
 
