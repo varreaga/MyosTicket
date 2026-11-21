@@ -485,21 +485,7 @@ body.mh-staff, html:has(body.mh-staff) {
 .mh-staff #error_bar { background-color: var(--mh-danger-soft); border-color: var(--mh-danger-border); color: var(--mh-danger-text); }
 .mh-staff #notice_bar { background-color: var(--mh-success-soft); border-color: var(--mh-success-border); color: var(--mh-success-text); }
 
-/* Mensajes */
-.mh-staff #msg_info, .mh-staff .info-banner {
-  background-color: var(--mh-brand-soft); border: 1px solid var(--mh-info-border); color: var(--mh-text);
-}
-.mh-staff #msg_info, .mh-staff #msg_error, .mh-staff #msg_notice, .mh-staff #msg_warning,
-.mh-staff .error-banner, .mh-staff .warning-banner, .mh-staff .notice-banner {
-  margin: 0 0 16px;
-  padding: 12px 16px 12px 40px;
-  border-radius: var(--mh-radius);
-  background-position: 14px 50%;
-  font-size: var(--mh-text-sm);
-}
-.mh-staff #msg_error, .mh-staff .error-banner { background-color: var(--mh-danger-soft); border: 1px solid var(--mh-danger-border); color: var(--mh-danger-text); }
-.mh-staff #msg_notice, .mh-staff .notice-banner { background-color: var(--mh-success-soft); border: 1px solid var(--mh-success-border); color: var(--mh-success-text); }
-.mh-staff #msg_warning, .mh-staff .warning-banner { background-color: var(--mh-warning-soft); border: 1px solid var(--mh-warning-border); color: var(--mh-warning-text); }
+/* Mensajes: ver «Avisos de resultado» en widgets.css */
 
 /* ==== Lista de tickets ==== */
 

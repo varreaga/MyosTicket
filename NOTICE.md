@@ -23,6 +23,17 @@ Base
 Historial de cambios
 --------------------
 
+### 2026-11-21 — Avisos con el estilo del tema (varreaga)
+
+* Archivos propios del tema (`assets/mihelpdesk/`): los avisos de
+  resultado (verde, amarillo, rojo, informativo), incluido el que sale al
+  volver a la cola tras responder (`.success-banner`), y la barra flotante
+  de osTicket (`$.messageBar`, usada al vencer el apartado de una
+  solicitud) ya no usan los iconos .png ni el muñequito "Oscar".
+* Traducciones: el aviso de apartado por vencer se explica en lenguaje
+  claro ("¿Sigues trabajando en esta solicitud?") y se corrigieron
+  "Publicar nota interna" y "¡Marcada como atrasada!".
+
 ### 2026-11-21 — Detalles de los correos (varreaga)
 
 * `setup/inc/class.installer.php`: los correos que crea el instalador

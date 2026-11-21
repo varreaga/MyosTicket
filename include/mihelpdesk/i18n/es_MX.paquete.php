@@ -287,6 +287,15 @@ return array(
         => 'La firma se hace disponible como una opción en la respuesta de una solicitud.',
     'Size and maximum uploads setting mainly apply to web tickets.'
         => 'Ajustes de tamaño y máximas subidas aplicados principalmente a las solicitudes de la página.',
+    // Aviso de apartado (bloqueo) por vencer y otros textos con mayúscula o género mal puestos
+    'Your lock is expiring soon.'
+        => '¿Sigues trabajando en esta solicitud?',
+    'Renew'
+        => 'Seguir trabajando',
+    'Post Internal Note'
+        => 'Publicar nota interna',
+    'Marked overdue!'
+        => '¡Marcada como atrasada!',
     'Someone else could be working on the same ticket.'
         => 'Alguien más podría estar trabajando en la misma solicitud.',
     'Sort the forms on this ticket by click and dragging on them. Use the box below the forms list to add new forms to the ticket.'
@@ -304,7 +313,7 @@ return array(
     'Template used on ticket response/reply'
         => 'Plantilla utilizada en solicitud de respuesta',
     'The lock you hold on this ticket will expire soon. Would you like to renew the lock?'
-        => 'El bloqueo que añadiste a esta solicitud caduca pronto. ¿Quieres renovar el bloqueo?',
+        => 'Mientras la atiendes, la solicitud queda apartada a tu nombre para que nadie más responda al mismo tiempo. El apartado vence pronto por inactividad.',
     'This Task was created from Ticket %1$s'
         => 'Esta Tarea fue creada desde la solicitud %1$s',
     'This Ticket is Merged into another Ticket. Please go to the %s%d%s to reply.'
