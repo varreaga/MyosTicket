@@ -287,6 +287,11 @@ return array(
         => 'La firma se hace disponible como una opción en la respuesta de una solicitud.',
     'Size and maximum uploads setting mainly apply to web tickets.'
         => 'Ajustes de tamaño y máximas subidas aplicados principalmente a las solicitudes de la página.',
+    // Pantalla final del instalador (el paquete tiene una errata y una frase cortada)
+    'Config file permission'
+        => 'Permisos del archivo de configuración',
+    'Your osTicket installation has been completed successfully. Your next step is to fully configure your new support ticket system for use, but before you get to it please take a minute to cleanup.'
+        => 'La instalación de osTicket se completó correctamente. El siguiente paso es configurar el sistema de solicitudes, pero antes tómese un minuto para hacer limpieza.',
     // Aviso de apartado (bloqueo) por vencer y otros textos con mayúscula o género mal puestos
     'Your lock is expiring soon.'
         => '¿Sigues trabajando en esta solicitud?',

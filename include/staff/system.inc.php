@@ -1,5 +1,5 @@
 <?php
-// Modificado el 2026-11-16, 2026-11-19 y 2026-11-21 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca; el botón de actualizar lleva a las versiones de MiHelpdesk; sin la alerta de la extensión imap, que no se usa, ni la de cgi.fix_pathinfo cuando PHP corre dentro de Apache. Ver NOTICE.md.
+// Modificado el 2026-11-16, 2026-11-19, 2026-11-21 y 2026-11-23 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca; el botón de actualizar lleva a las versiones de MiHelpdesk; sin la alerta de la extensión imap, que no se usa, ni la de cgi.fix_pathinfo cuando PHP corre dentro de Apache; compatibilidad con PHP 8.5. Ver NOTICE.md.
 if(!defined('OSTADMININC') || !$thisstaff || !$thisstaff->isAdmin()) die('Access Denied');
 
 $commit = GIT_VERSION != '$git' ? GIT_VERSION : (
@@ -76,7 +76,7 @@ $extensions = array(
 <?php
 $lv = $ost->getLatestVersion('core', MAJOR_VERSION);
 $tv = THIS_VERSION;
-$gv = (GIT_VERSION == '$git') ? substr(@`git rev-parse HEAD`, 0, 7) : (false ?: GIT_VERSION);
+$gv = (GIT_VERSION == '$git') ? substr(@shell_exec('git rev-parse HEAD') ?? '', 0, 7) : (false ?: GIT_VERSION);
 if ($lv && $tv[0] == 'v' ? version_compare(THIS_VERSION, $lv, '>=') : $lv == $gv) { ?>
     — <span style="color:green"><i class="icon-check"></i> <?php echo __('Up to date'); ?></span>
 <?php

@@ -1,4 +1,5 @@
 <?php
+// Modificado el 2026-11-23 por varreaga (proyecto MiHelpdesk, fork de osTicket): compatibilidad con PHP 8.5 (sin avisos de código obsoleto). Ver NOTICE.md.
 /*********************************************************************
     class.orm.php
 
@@ -3511,7 +3512,7 @@ extends MySqlPreparedExecutor {
             case MYSQLI_TYPE_LONGLONG:
             case MYSQLI_TYPE_FLOAT:
             case MYSQLI_TYPE_DOUBLE:
-                $f = isset($f) ? (double) $f : $f;
+                $f = isset($f) ? (float) $f : $f;
                 break;
 
             case MYSQLI_TYPE_BIT:

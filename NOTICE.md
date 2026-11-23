@@ -23,6 +23,17 @@ Base
 Historial de cambios
 --------------------
 
+### 2026-11-23 — Compatibilidad con PHP 8.5 (varreaga)
+
+* `include/JSON.php`, `include/class.orm.php`, `include/class.misc.php`,
+  `include/class.staff.php`, `include/class.forms.php`, `scp/faq.php`,
+  `include/staff/system.inc.php`, `include/cli/modules/i18n.php` y
+  `include/cli/modules/package.php`: se cambió la sintaxis que PHP 8.5
+  marca como obsoleta (conversiones `(integer)` y `(double)`, `case` con
+  punto y coma, el operador de comillas invertidas y `"${var}"`). El
+  comportamiento no cambia.
+* Traducciones: se corrigió la pantalla final del instalador.
+
 ### 2026-11-21 — Avisos con el estilo del tema (varreaga)
 
 * Archivos propios del tema (`assets/mihelpdesk/`): los avisos de
