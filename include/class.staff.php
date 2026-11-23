@@ -1,4 +1,5 @@
 <?php
+// Modificado el 2026-11-23 por varreaga (proyecto MiHelpdesk, fork de osTicket): compatibilidad con PHP 8.5 (sin avisos de código obsoleto). Ver NOTICE.md.
 /*********************************************************************
     class.staff.php
 
@@ -1055,7 +1056,7 @@ implements AuthenticatedUser, EmailContact, TemplateVariable, Searchable {
             $fields = array("{$path}lastname", "{$path}firstname");
             break;
         default:
-            $fields = array("${path}firstname", "${path}lastname");
+            $fields = array("{$path}firstname", "{$path}lastname");
         }
 
         return $fields;

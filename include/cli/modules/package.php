@@ -1,4 +1,5 @@
 <?php
+// Modificado el 2026-11-23 por varreaga (proyecto MiHelpdesk, fork de osTicket): compatibilidad con PHP 8.5 (sin avisos de código obsoleto). Ver NOTICE.md.
 require_once "deploy.php";
 
 class Packager extends Deployment {
@@ -98,7 +99,7 @@ class Packager extends Deployment {
         $streams = DatabaseMigrater::getUpgradeStreams(INCLUDE_DIR.'upgrader/streams/');
         $this->stdout->write(sprintf(
             '"v=1; m=%s; V=%s; c=%s; s=%s"',
-            MAJOR_VERSION, trim(`git describe`), substr(`git rev-parse HEAD`, 0, 7),
+            MAJOR_VERSION, trim(shell_exec('git describe') ?? ''), substr(shell_exec('git rev-parse HEAD') ?? '', 0, 7),
             substr($streams['core'], 0, 8)
         ));
     }

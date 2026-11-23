@@ -1,4 +1,5 @@
 <?php
+// Modificado el 2026-11-23 por varreaga (proyecto MiHelpdesk, fork de osTicket): compatibilidad con PHP 8.5 (sin avisos de código obsoleto). Ver NOTICE.md.
 /*********************************************************************
     class.forms.php
 
@@ -4436,7 +4437,7 @@ class TextboxWidget extends Widget {
                         $v = $v ? 'on' : 'off';
                     $attrs[$k] = '"'.$v.'"';
                     break;
-                case 'disabled';
+                case 'disabled':
                     $attrs[$k] = '"disabled"';
                     break;
                 case 'translatable':
