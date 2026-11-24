@@ -44,6 +44,16 @@ Historial de cambios
   caben en celular.
 * Traducciones del paquete corregidas: «Equipo de actualización» →
   «Actualizar equipo» y otros títulos de edición.
+### 2026-11-24 — PDF de solicitudes y tareas con diseño propio (varreaga)
+
+* `include/class.pdf.php`: con el tema activo, los PDF usan las plantillas
+  nuevas de `include/mihelpdesk/print/` (agente, cliente y tarea). Sin
+  tema se usan las originales.
+* `scp/tasks.php`: imprimir una tarea indicando el tamaño de papel ya no
+  da error (se pasaba texto donde `Task::pdfExport()` espera un arreglo).
+* Se agrega la biblioteca `mpdf/qrcode` (LGPL-2.1 o posterior) en
+  `include/mpdf/vendor/mpdf/qrcode/`, solo con los datos de las versiones
+  1 a 10 del código QR. Ver `LEEME-MIHELPDESK.md` en esa carpeta.
 
 ### 2026-11-24 — Logo de MiHelpdesk (varreaga)
 
