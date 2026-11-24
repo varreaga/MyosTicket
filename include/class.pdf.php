@@ -1,4 +1,5 @@
 <?php
+// Modificado el 2026-11-24 por varreaga (proyecto MiHelpdesk, fork de osTicket): con el tema activo, los PDF usan las plantillas de include/mihelpdesk/print/. Ver NOTICE.md.
 /*********************************************************************
     class.pdf.php
 
@@ -93,10 +94,13 @@ class Ticket2PDF extends mPDFWithLocalImages
             return;
 
         ob_start();
+        // MiHelpdesk: diseño propio de los PDF cuando el tema está activo
+        $mh = function_exists('app_theme') && app_theme()
+            ? INCLUDE_DIR.'mihelpdesk/print/' : null;
         if ($thisstaff)
-            include STAFFINC_DIR.'templates/ticket-print.tmpl.php';
+            include $mh ? $mh.'ticket-agente.tmpl.php' : STAFFINC_DIR.'templates/ticket-print.tmpl.php';
         elseif ($thisclient)
-            include CLIENTINC_DIR.'templates/ticket-print.tmpl.php';
+            include $mh ? $mh.'ticket-cliente.tmpl.php' : CLIENTINC_DIR.'templates/ticket-print.tmpl.php';
         else
             return;
         $html = ob_get_clean();
@@ -129,7 +133,10 @@ class Task2PDF extends mPDFWithLocalImages {
             return;
 
         ob_start();
-        include STAFFINC_DIR.'templates/task-print.tmpl.php';
+        if (function_exists('app_theme') && app_theme())
+            include INCLUDE_DIR.'mihelpdesk/print/tarea.tmpl.php';
+        else
+            include STAFFINC_DIR.'templates/task-print.tmpl.php';
         $html = ob_get_clean();
         $this->autoScriptToLang = true;
         $this->WriteHtml($html, 0, true, true);
