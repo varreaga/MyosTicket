@@ -289,4 +289,206 @@ return array(
     'Open page' => 'Abrir página',
     '%s Alerts' => 'Alertas de %s',
     'Support' => 'Soporte',
+
+    // ------------------------------------------------ Instalador (include/mihelpdesk/setup/)
+    'The configuration file is missing'
+        => 'Falta el archivo de configuración',
+    'The installer saves its settings in %1$s. Create it by copying the template %2$s:'
+        => 'El instalador guarda la configuración en %1$s. Créelo copiando la plantilla %2$s:',
+    'The file still does not exist.'
+        => 'El archivo todavía no existe.',
+    'Linux, macOS or Git Bash'
+        => 'Linux, macOS o Git Bash',
+    'Windows (PowerShell)'
+        => 'Windows (PowerShell)',
+    'With a file manager or FTP: copy the file and rename the copy to ost-config.php.'
+        => 'Con un administrador de archivos o por FTP: copie el archivo y cambie el nombre de la copia a ost-config.php.',
+    'Done, continue'
+        => 'Listo, continuar',
+    'The configuration file cannot be written'
+        => 'No se puede escribir en el archivo de configuración',
+    'The installer needs to write to %s. Give the web server write access to it:'
+        => 'El instalador necesita escribir en %s. Dé permiso de escritura al servidor web:',
+    'The file still cannot be written.'
+        => 'Todavía no se puede escribir en el archivo.',
+    'Linux or macOS'
+        => 'Linux o macOS',
+    'When the installation finishes, we will remind you to remove that access.'
+        => 'Al terminar la instalación le recordaremos quitar ese permiso.',
+    '%s is already installed'
+        => '%s ya está instalado',
+    'The file %s already has a configuration.'
+        => 'El archivo %s ya tiene una configuración.',
+    'To update to a new version, sign in to the control panel. If you think this is a mistake, replace the file with a fresh copy of include/ost-sampleconfig.php and try again.'
+        => 'Para actualizar a una versión nueva, entre al panel de control. Si cree que es un error, reemplace el archivo por una copia nueva de include/ost-sampleconfig.php y vuelva a intentarlo.',
+    'Go to the control panel'
+        => 'Ir al panel de control',
+    'Check again'
+        => 'Revisar de nuevo',
+    'Requirements check'
+        => 'Requisitos',
+    'Installation details'
+        => 'Datos',
+    'All set'
+        => 'Listo',
+    'Copied'
+        => 'Copiado',
+    'Copy'
+        => 'Copiar',
+    'Install %s'
+        => 'Instalar %s',
+    'Installer · version %s'
+        => 'Instalador · versión %s',
+    '%s does not support Internet Explorer. Use a current browser.'
+        => '%s no funciona con Internet Explorer. Use un navegador actual.',
+    '%s is installed!'
+        => '¡%s quedó instalado!',
+    'You can now sign in to the control panel with the username and password you just created.'
+        => 'Ya puede entrar al panel de control con el usuario y la contraseña que acaba de crear.',
+    'View the customer portal'
+        => 'Ver el portal de clientes',
+    'Customer portal'
+        => 'Portal de clientes',
+    'Control panel for agents'
+        => 'Panel de control para agentes',
+    'Protect your installation'
+        => 'Proteja la instalación',
+    'Remove write access to the configuration file'
+        => 'Quite el permiso de escritura al archivo de configuración',
+    'The installer no longer needs to write to %s.'
+        => 'El instalador ya no necesita escribir en %s.',
+    'Delete the setup folder'
+        => 'Borre la carpeta setup',
+    'On a production server, delete it; the control panel will show a warning while it exists.'
+        => 'En un servidor de producción, bórrela; mientras exista, el panel de control mostrará un aviso.',
+    'First steps'
+        => 'Primeros pasos',
+    'Make it yours'
+        => 'Póngale su marca',
+    'Name, color, logos and customer portal home page.'
+        => 'Nombre, color, logos y portada del portal de clientes.',
+    'Set up email'
+        => 'Configure el correo',
+    'Outgoing server (SMTP) and the mailbox your customers write to.'
+        => 'Servidor de salida (SMTP) y el buzón al que escriben sus clientes.',
+    'Add your team'
+        => 'Agregue a su equipo',
+    'Agents, departments and permissions.'
+        => 'Agentes, departamentos y permisos.',
+    'Review help topics'
+        => 'Revise los temas de ayuda',
+    'What customers can choose when they open a request.'
+        => 'Lo que los clientes pueden elegir al abrir una solicitud.',
+    'PHP %s or newer'
+        => 'PHP %s o mayor',
+    'MySQLi extension'
+        => 'Extensión MySQLi',
+    'Connects to the MySQL or MariaDB database'
+        => 'Conecta con la base de datos MySQL o MariaDB',
+    'Logos, favicon and images'
+        => 'Logos, favicon e imágenes',
+    'Dates, numbers and language'
+        => 'Fechas, números e idioma',
+    'Text with accents and other alphabets'
+        => 'Textos con acentos y otros alfabetos',
+    'Emails in other character sets'
+        => 'Correos con otras codificaciones de texto',
+    'Fetching emails'
+        => 'Descargar correos',
+    'HTML emails'
+        => 'Correos en HTML',
+    'Faster performance'
+        => 'Mejor rendimiento',
+    'Language packs and plugins'
+        => 'Paquetes de idioma y complementos',
+    'Faster performance (optional)'
+        => 'Mejor rendimiento (opcional)',
+    'Welcome to %s'
+        => 'Bienvenido a %s',
+    'Your helpdesk will be ready in a few minutes. First, let’s check that your server has everything it needs.'
+        => 'En unos minutos tendrá su mesa de ayuda lista. Primero revisamos que el servidor tenga todo lo necesario.',
+    'Your server does not meet the minimum requirements.'
+        => 'El servidor no cumple los requisitos mínimos.',
+    'Fix the items marked in red and reload this page.'
+        => 'Corrija lo marcado en rojo y vuelva a cargar esta página.',
+    'Your server meets the minimum requirements.'
+        => 'El servidor cumple los requisitos mínimos.',
+    'Your server meets all the requirements.'
+        => 'El servidor cumple todos los requisitos.',
+    'Loaded'
+        => 'Activa',
+    'Missing'
+        => 'Falta',
+    '%s works without these PHP extensions, but some features need them.'
+        => '%s funciona sin estas extensiones de PHP, pero algunas funciones las necesitan.',
+    'Not installed'
+        => 'No instalada',
+    'To enable an extension, remove the %1$s at the start of its line in %2$s (for example %3$s) and restart the web server.'
+        => 'Para activar una extensión, quite el %1$s al inicio de su línea en %2$s (por ejemplo %3$s) y reinicie el servidor web.',
+    'Set up %s'
+        => 'Configure %s',
+    'Fill in these details to finish the installation. All fields are required.'
+        => 'Complete estos datos para terminar la instalación. Todos los campos son obligatorios.',
+    'Your helpdesk'
+        => 'Su mesa de ayuda',
+    'How your customers will see it.'
+        => 'Cómo la verán sus clientes.',
+    'Helpdesk address'
+        => 'Dirección de la mesa de ayuda',
+    'Helpdesk name'
+        => 'Nombre de la mesa de ayuda',
+    'Shown on the customer portal, in emails and in the browser title. For example, your company name.'
+        => 'Aparece en el portal de clientes, en los correos y en el título del navegador. Por ejemplo, el nombre de su empresa.',
+    'Support email'
+        => 'Correo de soporte',
+    'The address your customers write to, for example support@yourcompany.com.'
+        => 'La dirección a la que le escriben sus clientes, por ejemplo soporte@suempresa.com.',
+    'Primary language'
+        => 'Idioma principal',
+    'Used for emails, pages and sample data.'
+        => 'Se usa en los correos, las páginas y los datos de ejemplo.',
+    'Administrator account'
+        => 'Cuenta de administrador',
+    'You will use this account to sign in to the control panel. You can add more agents later.'
+        => 'Con esta cuenta entrará al panel de control. Después puede agregar más agentes.',
+    'Your email'
+        => 'Su correo',
+    'Must be different from the support email.'
+        => 'Debe ser distinto del correo de soporte.',
+    'Without spaces. It cannot be “admin”.'
+        => 'Sin espacios. No puede ser «admin».',
+    'Repeat password'
+        => 'Repita la contraseña',
+    'Database'
+        => 'Base de datos',
+    'Create an empty database and a user with permissions on it first (for example, in phpMyAdmin).'
+        => 'Antes, cree una base de datos vacía y un usuario con permisos sobre ella (por ejemplo, en phpMyAdmin).',
+    'Database server'
+        => 'Servidor de la base de datos',
+    'Usually localhost.'
+        => 'Normalmente es localhost.',
+    'Database name'
+        => 'Nombre de la base de datos',
+    'Database user'
+        => 'Usuario de la base de datos',
+    'Database password'
+        => 'Contraseña de la base de datos',
+    'Advanced options'
+        => 'Opciones avanzadas',
+    'Table prefix'
+        => 'Prefijo de las tablas',
+    'Change it only if the database is shared with another installation. It must end with _'
+        => 'Cámbielo solo si la base de datos la comparte otra instalación. Debe terminar en _',
+    'Required to install'
+        => 'Obligatorios',
+    'Recommended extensions'
+        => 'Extensiones recomendadas',
+    'Install now'
+        => 'Instalar ahora',
+    'Installing…'
+        => 'Instalando…',
+    'Creating the tables and settings. This takes less than a minute; please do not close this page.'
+        => 'Estamos creando las tablas y la configuración. Tarda menos de un minuto; no cierre esta página.',
+    "You can continue. %d recommended extension is missing; some features may not work.\0You can continue. %d recommended extensions are missing; some features may not work."
+        => "Puede continuar. Falta %d extensión recomendada; algunas funciones podrían no estar disponibles.\0Puede continuar. Faltan %d extensiones recomendadas; algunas funciones podrían no estar disponibles.",
 );

@@ -1,5 +1,5 @@
 <?php
-// Modificado el 2026-11-16 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca. Ver NOTICE.md.
+// Modificado el 2026-11-16 y el 2026-11-24 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca; plantillas del instalador con el estilo del tema. Ver NOTICE.md.
 /*********************************************************************
     install.php
 
@@ -120,7 +120,13 @@ switch(strtolower($_SESSION['ost_installer']['s'])) {
             $inc='install-prereq.inc.php';
 }
 
-require(INC_DIR.'header.inc.php');
-require(INC_DIR.$inc);
-require(INC_DIR.'footer.inc.php');
+// MiHelpdesk: con el tema activo, las pantallas salen de
+// include/mihelpdesk/setup/; sin tema, se usan las originales de setup/inc/.
+$tpl_dir = INC_DIR;
+if (function_exists('app_theme') && app_theme()
+        && is_file(INCLUDE_DIR.'mihelpdesk/setup/'.$inc))
+    $tpl_dir = INCLUDE_DIR.'mihelpdesk/setup/';
+require($tpl_dir.'header.inc.php');
+require($tpl_dir.$inc);
+require($tpl_dir.'footer.inc.php');
 ?>

@@ -23,6 +23,16 @@ Base
 Historial de cambios
 --------------------
 
+### 2026-11-24 — Instalador con el estilo del tema (varreaga)
+
+* `setup/install.php`: con el tema activo, las pantallas del instalador
+  salen de `include/mihelpdesk/setup/` (archivos nuevos) en lugar de
+  `setup/inc/`. Con `define('APP_THEME', '')` vuelve el instalador
+  original sin cambios.
+* Archivos nuevos: `include/mihelpdesk/setup/*.inc.php` y
+  `assets/mihelpdesk/css/setup.css`. Textos en español en
+  `include/mihelpdesk/i18n/es.php`.
+
 ### 2026-11-23 — Compatibilidad con PHP 8.5 (varreaga)
 
 * `include/JSON.php`, `include/class.orm.php`, `include/class.misc.php`,
