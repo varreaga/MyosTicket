@@ -37,6 +37,7 @@ $mh_css = function ($name) use ($mh_theme) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?php echo Format::htmlchars(sprintf(__('Install %s'), APP_NAME)); ?></title>
+    <link rel="icon" type="image/png" href="../images/oscar-favicon-32x32.png" sizes="32x32">
     <?php app_theme_head(); ?>
     <link rel="stylesheet" href="<?php echo $mh_css('tokens'); ?>">
     <link rel="stylesheet" href="<?php echo $mh_css('setup'); ?>">
@@ -45,7 +46,7 @@ $mh_css = function ($name) use ($mh_theme) {
 <div class="mh-setup-wrap">
     <header class="mh-setup-top">
         <div class="mh-setup-brand">
-            <span class="mh-setup-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="2" y="14" width="5" height="6" rx="2"/><rect x="17" y="14" width="5" height="6" rx="2"/></svg></span>
+            <span class="mh-setup-mark" aria-hidden="true"><svg viewBox="5.8 5.2 56 56"><path d="M15.6 24.5 A20 20 0 1 1 15.6 47.5" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round"/><path d="M18 21 L20 7 L29 16.5 Z M46 21 L44 7 L35 16.5 Z" fill="currentColor"/><circle cx="26" cy="34" r="5.5" fill="currentColor"/><circle cx="39" cy="34" r="5.5" fill="currentColor"/><circle cx="27" cy="33" r="1.8" fill="var(--mh-brand)"/><circle cx="40" cy="33" r="1.8" fill="var(--mh-brand)"/><path d="M32.5 40 L35.3 43.5 L32.5 47.5 L29.7 43.5 Z" fill="#ffc94d"/></svg></span>
             <div>
                 <div class="mh-setup-name"><?php echo Format::htmlchars(APP_NAME); ?></div>
                 <div class="mh-setup-sub"><?php echo Format::htmlchars(sprintf(__('Installer · version %s'),

@@ -13,11 +13,13 @@ Que hace:
   2. Sustituye ese nombre por el nuevo en bootstrap.php, en los datos de
      instalacion (include/i18n/en_US/**/*.yaml), en README.md, NOTICE.md
      y en los avisos de modificacion de los archivos PHP.
-  3. Regenera los logos de texto (portal de clientes, panel de agentes,
-     instalador, PDF de impresion, pie de los correos).
+  3. Solo con --logos-de-texto: reemplaza los logos (portal de clientes,
+     panel de agentes, instalador, PDF de impresion, pie de los correos)
+     por logos provisionales de puro texto con el nombre nuevo.
 
-Si ya tienes un logo de verdad, usa --sin-logos y reemplaza los PNG a mano
-(ver BRANDING.md para la lista de archivos y tamanos).
+Por omision los logos no se tocan: el producto ya tiene logo propio (el
+buho copyleft, en assets/mihelpdesk/marca/). Si cambias de nombre, cambia
+tambien el texto de esos logos (ver BRANDING.md).
 
 No toca: avisos de copyright de osTicket, LICENSE.txt ni nombres internos
 del codigo (clases osTicket::, etc.).
@@ -125,7 +127,9 @@ def regenerate_logos(name):
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("nombre", help="Nombre nuevo del producto")
-    ap.add_argument("--sin-logos", action="store_true", help="No regenerar los logos de texto")
+    ap.add_argument("--logos-de-texto", action="store_true",
+                    help="Reemplazar los logos por logos provisionales de texto con el nombre nuevo")
+    ap.add_argument("--sin-logos", action="store_true", help=argparse.SUPPRESS)  # compatibilidad: ya es lo normal
     args = ap.parse_args()
 
     new = args.nombre.strip()
@@ -136,9 +140,11 @@ def main():
         sys.exit(f"El nombre ya es {new}.")
     n = replace_in_files(old, new)
     print(f"{old} -> {new}: {n} archivos actualizados")
-    if not args.sin_logos:
+    if args.logos_de_texto:
         regenerate_logos(new)
-        print("Logos regenerados.")
+        print("Logos reemplazados por logos de texto.")
+    else:
+        print("Los logos no se tocaron (usa --logos-de-texto para reemplazarlos).")
     print("Revisa los cambios con: git diff --stat")
 
 

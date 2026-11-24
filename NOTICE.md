@@ -23,6 +23,23 @@ Base
 Historial de cambios
 --------------------
 
+### 2026-11-24 — Logo de MiHelpdesk (varreaga)
+
+* Logo propio del producto, el búho copyleft (`assets/mihelpdesk/marca/`).
+  Se reemplazaron las imágenes de fábrica que traía osTicket con el mismo
+  nombre y tamaño: `assets/default/images/logo.png` y `poweredby.png`,
+  `scp/images/ost-logo.png` y `osticket-grey.png`, `setup/images/logo.png`,
+  `include/fpdf/print-logo.png`, `images/favicon.png`,
+  `images/oscar-favicon-16x16.png` y `-32x32.png`, y la imagen del pie de
+  los correos en `include/i18n/en_US/file.yaml`. Nuevas: `logo-dark.png` y
+  `ost-logo-dark.png` para el modo oscuro.
+* `bootstrap.php`: `app_logo_img()` usa el logo oscuro de fábrica cuando la
+  empresa no subió logo propio.
+* `tools/branding/rebrand.py`: ya no reemplaza los logos salvo con
+  `--logos-de-texto`.
+* El texto del logo usa la tipografía Inter (SIL Open Font License 1.1),
+  convertida a trazos.
+
 ### 2026-11-24 — Migración desde osTicket (varreaga)
 
 * `scp/upgrade.php`: con el tema activo, las pantallas del actualizador
