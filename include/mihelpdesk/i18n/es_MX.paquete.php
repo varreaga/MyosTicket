@@ -287,6 +287,15 @@ return array(
         => 'La firma se hace disponible como una opción en la respuesta de una solicitud.',
     'Size and maximum uploads setting mainly apply to web tickets.'
         => 'Ajustes de tamaño y máximas subidas aplicados principalmente a las solicitudes de la página.',
+    // Actualizador (mayúsculas y signos que faltaban en el paquete)
+    'Upgrade Now'
+        => 'Actualizar ahora',
+    "We're done!"
+        => '¡Listo!',
+    'Cleaning up!...'
+        => 'Terminando…',
+    'Still busy... smile #'
+        => 'Seguimos trabajando… paso ',
     // Pantalla final del instalador (el paquete tiene una errata y una frase cortada)
     'Config file permission'
         => 'Permisos del archivo de configuración',

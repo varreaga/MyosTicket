@@ -22,20 +22,8 @@ if (!defined('SETUPINC')) die('Kwaheri!');
         if (busy) busy.classList.add('is-on');
     });
 
-    // Botones «Copiar» de los comandos
-    document.querySelectorAll('.mh-copy').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-            var code = btn.parentNode.querySelector('code').textContent, label = btn.textContent;
-            var ok = function () { btn.textContent = btn.getAttribute('data-copied');
-                setTimeout(function () { btn.textContent = label; }, 1500); };
-            if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(code).then(ok);
-            else {
-                var t = document.createElement('textarea'); t.value = code; document.body.appendChild(t);
-                t.select(); try { document.execCommand('copy'); ok(); } catch (e) {} t.remove();
-            }
-        });
-    });
 })();
 </script>
+<?php echo mh_setup_copy_script(); ?>
 </body>
 </html>

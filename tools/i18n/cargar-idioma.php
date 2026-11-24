@@ -82,12 +82,22 @@ function datos($path, $lang) {
     global $reemplazables;
     $en = new DataTemplate($path, array('en_US'));
     $tr = new DataTemplate($path, array($lang));
-    $crudo = (new DataTemplate($path, array($lang)))->getData(false);
-    if (is_array($crudo))
-        array_walk_recursive($crudo, function ($v) use (&$reemplazables) {
-            if (is_string($v) && $v !== '')
+    // Lo que pudo dejar el instalador: los datos propios sin correcciones y
+    // los del paquete oficial, con y sin el cambio de nombre (un osTicket
+    // normal instalado en este idioma guarda los del paquete tal cual).
+    $paquete = new DataTemplate($path, array($lang), false);
+    foreach (array((new DataTemplate($path, array($lang)))->getData(false),
+                    $paquete->getData(false), $paquete->getOriginalData()) as $crudo)
+        if (is_array($crudo))
+            array_walk_recursive($crudo, function ($v) use (&$reemplazables) {
+                if (!is_string($v) || $v === '')
+                    return;
                 $reemplazables[normal($v)] = true;
-        });
+                // Las plantillas de correo se guardan limpiadas con
+                // Format::sanitize(); se reconoce también esa forma.
+                if (strpos($v, '<') !== false)
+                    $reemplazables[normal(Format::sanitize($v, false))] = true;
+            });
     return array($en->getData() ?: array(), $tr->getData() ?: array());
 }
 
@@ -332,7 +342,18 @@ if ($conPlantillas) {
         . ' WHERE lang=' . db_input($lang) . ' ORDER BY tpl_id LIMIT 1');
     $tplId = ($res && db_num_rows($res)) ? db_result($res) : null;
     if ($tplId) {
-        echo "  · Ya existe un juego de plantillas en $lang (#$tplId).\n";
+        // Juego que ya existía (por ejemplo, el de un osTicket instalado en
+        // este idioma): se actualizan las plantillas que nadie editó.
+        echo "  · Ya existe un juego de plantillas en $lang (#$tplId); se revisan sus plantillas.\n";
+        foreach (EmailTemplateGroup::$all_names as $name => $info) {
+            list($en, $tr) = datos("templates/email/$name.yaml", $lang);
+            // El texto se guarda limpiado, igual que al editarlo en el panel
+            if (isset($tr['body']))
+                $tr['body'] = Format::sanitize($tr['body'], false);
+            foreach (array('subject' => 'asunto', 'body' => 'texto') as $col => $nom)
+                cambiar(EMAIL_TEMPLATE_TABLE, array('tpl_id' => $tplId, 'code_name' => $name), $col,
+                    $en[$col] ?? null, $tr[$col] ?? null, "Plantilla «{$name}» ($nom)");
+        }
     } else {
         // Mismo nombre y notas que usaría el instalador en ese idioma
         $grupo = (new DataTemplate('email_template_group.yaml', array($lang)))->getData();

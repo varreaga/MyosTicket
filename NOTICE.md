@@ -23,6 +23,21 @@ Base
 Historial de cambios
 --------------------
 
+### 2026-11-24 — Migración desde osTicket (varreaga)
+
+* `scp/upgrade.php`: con el tema activo, las pantallas del actualizador
+  salen de `include/mihelpdesk/upgrader/` (archivos nuevos) con el estilo
+  del instalador. Sin tema se usan las originales.
+* `scp/js/upgrader.js`: los mensajes del actualizador se traducen (la
+  comprobación original de la función de traducción siempre fallaba).
+* `include/class.i18n.php`: `DataTemplate` puede leer solo el paquete de
+  idioma oficial (`$propios = false`) y devolver sus datos tal cual
+  (`getOriginalData()`).
+* `tools/i18n/cargar-idioma.php`: reconoce los textos que dejó un osTicket
+  instalado en español (páginas y plantillas de correo del paquete oficial)
+  y actualiza las plantillas de un juego de correo ya existente.
+* Guía nueva: `MIGRAR-DESDE-OSTICKET.md`.
+
 ### 2026-11-24 — Instalador con el estilo del tema (varreaga)
 
 * `setup/install.php`: con el tema activo, las pantallas del instalador

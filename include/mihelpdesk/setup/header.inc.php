@@ -20,13 +20,7 @@ if (in_array($inc, array('install.inc.php', 'file-missing.inc.php', 'file-perm.i
 elseif (in_array($inc, array('install-done.inc.php', 'subscribe.inc.php', 'file-unclean.inc.php')))
     $mh_step = 3;
 
-/** Bloque con un comando y botón para copiarlo */
-function mh_setup_cmd($label, $cmd) {
-    return sprintf('<div class="mh-cmd"><span class="mh-cmd-label">%s</span><div class="mh-cmd-row"><code>%s</code>'
-        .'<button type="button" class="mh-copy" data-copied="%s">%s</button></div></div>',
-        Format::htmlchars($label), Format::htmlchars($cmd),
-        Format::htmlchars(__('Copied')), Format::htmlchars(__('Copy')));
-}
+require_once __DIR__.'/funciones.php';
 
 $mh_lang = Internationalization::getCurrentLanguage();
 $mh_info = Internationalization::getLanguageInfo($mh_lang);

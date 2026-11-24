@@ -47,12 +47,12 @@ bajo GPLv2.
 Requisitos
 ----------
   * Servidor HTTP: Apache o Microsoft® IIS
-  * PHP 8.2 – 8.4 (se recomienda 8.4)
+  * PHP 8.2 – 8.5 (se recomienda 8.4 o 8.5)
   * Extensión mysqli de PHP
   * MySQL 5.5 o superior (o MariaDB)
 
 ### Recomendado
-  * Extensiones de PHP: ctype, fileinfo, gd, gettext, iconv, imap, intl,
+  * Extensiones de PHP: ctype, fileinfo, gd, gettext, iconv, intl,
     json, mbstring, Zend OPcache, phar, xml, xml-dom y zip
   * Módulo APCu habilitado y configurado
 
@@ -73,12 +73,12 @@ Para desplegar actualizaciones:
     git pull
     php manage.php deploy -v /var/www/htdocs/mihelpdesk/
 
-Actualización desde osTicket
-----------------------------
-MiHelpdesk mantiene la estructura de base de datos de osTicket, así que se
-puede instalar sobre una instalación existente de osTicket 1.6-rc1 o
-posterior. Antes de actualizar, haz siempre un respaldo de la base de datos,
-los adjuntos y el código. Consulta [UPGRADING.txt](UPGRADING.txt).
+Pasar de osTicket a MiHelpdesk
+------------------------------
+MiHelpdesk usa la misma base de datos que osTicket: se cambia el código y
+se conservan las solicitudes, los adjuntos, los agentes y la configuración.
+Probado desde osTicket 1.17 y 1.18. Los pasos, con respaldo y cómo volver
+atrás, están en [MIGRAR-DESDE-OSTICKET.md](MIGRAR-DESDE-OSTICKET.md).
 
 Cambiar el nombre o el logo
 ---------------------------

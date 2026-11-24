@@ -491,4 +491,72 @@ return array(
         => 'Estamos creando las tablas y la configuración. Tarda menos de un minuto; no cierre esta página.',
     "You can continue. %d recommended extension is missing; some features may not work.\0You can continue. %d recommended extensions are missing; some features may not work."
         => "Puede continuar. Falta %d extensión recomendada; algunas funciones podrían no estar disponibles.\0Puede continuar. Faltan %d extensiones recomendadas; algunas funciones podrían no estar disponibles.",
+
+    // ------------------------------------------------ Actualizador (include/mihelpdesk/upgrader/)
+    'The update stopped'
+        => 'La actualización se detuvo',
+    'An error occurred while updating the database, so the update was stopped.'
+        => 'Ocurrió un error al actualizar la base de datos y la actualización se detuvo.',
+    'Write down the error'
+        => 'Anote el error',
+    'You can see the details in %s.'
+        => 'Puede ver los detalles en %s.',
+    'Restore your backup'
+        => 'Restaure su respaldo',
+    'Restore the database and the previous files, then try again or get technical help.'
+        => 'Restaure la base de datos y los archivos anteriores; luego vuelva a intentarlo o pida ayuda técnica.',
+    'The update is complete'
+        => 'La actualización terminó',
+    'The database is now up to date with %1$s %2$s.'
+        => 'La base de datos ya está al día con %1$s %2$s.',
+    'Next steps'
+        => 'Siguientes pasos',
+    'Update the texts to the new version'
+        => 'Actualice los textos a la nueva versión',
+    'Translates the pages, email templates, queues and statuses that came from the previous installation. It only changes texts that nobody edited, and it can be run more than once.'
+        => 'Traduce las páginas, plantillas de correo, colas y estados que venían de la instalación anterior. Solo cambia los textos que nadie editó y se puede ejecutar más de una vez.',
+    'Preview the changes'
+        => 'Ver los cambios antes',
+    'Apply them'
+        => 'Aplicarlos',
+    'Review your brand'
+        => 'Revise su marca',
+    'Color, logos and portal home page are in %s.'
+        => 'El color, los logos y la portada del portal están en %s.',
+    'Update the database'
+        => 'Actualizar la base de datos',
+    'This version of %s needs to update the database. Your requests, users and settings are kept.'
+        => 'Esta versión de %s necesita actualizar la base de datos. Sus solicitudes, usuarios y configuración se conservan.',
+    'MySQL %s or newer'
+        => 'MySQL %s o mayor',
+    'Before you start'
+        => 'Antes de empezar',
+    'Back up the database'
+        => 'Respalde la base de datos',
+    'If something goes wrong, you can restore it. For example, from phpMyAdmin (Export) or with:'
+        => 'Si algo sale mal, podrá restaurarla. Por ejemplo, desde phpMyAdmin (Exportar) o con:',
+    'Keep this page open'
+        => 'No cierre esta página',
+    'The update usually takes less than a minute.'
+        => 'La actualización suele tardar menos de un minuto.',
+    'Start the update'
+        => 'Empezar la actualización',
+    'Rename the configuration file'
+        => 'Cambie el nombre del archivo de configuración',
+    'Your installation uses the old name %1$s. Rename it to %2$s and continue.'
+        => 'Su instalación usa el nombre anterior %1$s. Cámbielo a %2$s y continúe.',
+    'Updating to %1$s %2$s'
+        => 'Actualizando a %1$s %2$s',
+    'The database changes below will be applied. Do not close or reload this page until it finishes.'
+        => 'Se aplicarán los cambios de la base de datos que aparecen abajo. No cierre ni recargue esta página hasta que termine.',
+    'Changes to apply: %s'
+        => 'Cambios por aplicar: %s',
+    'Update now'
+        => 'Actualizar ahora',
+    'Updating the database… Please wait.'
+        => 'Actualizando la base de datos… Espere un momento.',
+    'Cleaning up!...'
+        => 'Terminando…',
+    'Still busy... smile #'
+        => 'Seguimos trabajando… paso ',
 );
