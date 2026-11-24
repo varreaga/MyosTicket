@@ -1,5 +1,5 @@
 <?php
-// Modificado el 2026-11-16 y 2026-11-21 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca; favicon y logo para modo oscuro de Personalización. Ver NOTICE.md.
+// Modificado el 2026-11-16, 2026-11-21 y 2026-11-24 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca; favicon y logo para modo oscuro de Personalización; logo de fábrica en modo oscuro. Ver NOTICE.md.
 
 class Bootstrap {
 
@@ -472,9 +472,14 @@ function app_logo_img($site, $src, $alt) {
     $html = sprintf('<img src="%s" alt="%s" class="mh-logo-light"/>', $src, $alt);
     if (app_theme()) {
         require_once INCLUDE_DIR . 'mihelpdesk/class.customize.php';
+        global $cfg;
         if (($dark = MhCustomize::getDarkLogo($site)))
             $html .= sprintf('<img src="%s%sdark&amp;v=%d" alt="%s" class="mh-logo-dark"/>',
                 $src, strpos($src, '?') === false ? '?' : '&amp;', $dark->getId(), $alt);
+        // Sin logo propio: el logo de fábrica también tiene versión oscura
+        elseif ($cfg && !($site == 'staff' ? $cfg->getStaffLogo() : $cfg->getClientLogo()))
+            $html .= sprintf('<img src="%s" alt="%s" class="mh-logo-dark"/>', ROOT_PATH
+                . ($site == 'staff' ? 'scp/images/ost-logo-dark.png' : 'assets/default/images/logo-dark.png'), $alt);
     }
     return $html;
 }

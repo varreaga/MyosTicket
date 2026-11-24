@@ -44,7 +44,7 @@ body.mh-setup {
   border-radius: 10px;
   background: var(--mh-brand); color: var(--mh-on-brand);
 }
-.mh-setup-mark svg { width: 22px; height: 22px; }
+.mh-setup-mark svg { width: 28px; height: 28px; }
 .mh-setup-name { font-size: var(--mh-text-xl); font-weight: 700; letter-spacing: -.01em; line-height: 1.2; }
 .mh-setup-sub  { font-size: var(--mh-text-sm); color: var(--mh-text-muted); }
 .mh-setup-langs { display: flex; gap: 4px; flex-wrap: wrap; padding: 3px; border: 1px solid var(--mh-border); border-radius: 999px; background: var(--mh-surface); }

@@ -35,29 +35,38 @@ El script:
 2. Sustituye el nombre en los datos de instalación (`include/i18n/en_US` y
    `include/mihelpdesk/i18n/datos`),
    en la documentación y en los avisos de modificación.
-3. Regenera los logos provisionales de texto con el nombre nuevo.
+3. Con `--logos-de-texto`, reemplaza los logos por logos provisionales de
+   texto con el nombre nuevo. Sin esa opción los logos no se tocan.
 
 Aparte, cambia a mano `APP_URL` en `bootstrap.php` cuando el proyecto tenga
 sitio propio. Es el enlace de los créditos del inicio de sesión y del botón
 "Upgrade" de Admin Panel › Information; por ahora apunta al repositorio en
 GitHub.
 
-Si solo quieres cambiar el nombre y poner tus propios logos a mano, usa
-`--sin-logos`.
+El logo oficial (el búho copyleft) lleva el texto "MiHelpdesk". Si cambias
+el nombre, edita también el texto de los SVG de `assets/mihelpdesk/marca/` y
+vuelve a exportar los PNG de la tabla siguiente.
 
 > Los datos de instalación (plantillas de correo, organización de ejemplo,
 > tickets de bienvenida) se copian a la base de datos **al instalar**. En una
 > instalación que ya existe, el cambio de nombre en esos textos no se aplica
 > solo: hay que editarlos desde el panel de administración.
 
-Poner tu propio logo
+El logo del producto
 --------------------
-Reemplaza estos archivos manteniendo el **mismo nombre y tamaño**:
+El logo de MiHelpdesk es el **búho copyleft**. Sus archivos fuente (SVG),
+colores, tipografía y reglas de uso están en
+[assets/mihelpdesk/marca/README.md](assets/mihelpdesk/marca/README.md).
+
+Para cambiarlo, reemplaza estos archivos manteniendo el **mismo nombre y
+tamaño**:
 
 | Archivo | Tamaño (px) | Dónde aparece |
 |---|---|---|
 | `assets/default/images/logo.png` | 817 × 170 | Portal de clientes |
+| `assets/default/images/logo-dark.png` | 817 × 170 | Portal de clientes, modo oscuro |
 | `scp/images/ost-logo.png` | 395 × 132 | Panel de agentes |
+| `scp/images/ost-logo-dark.png` | 395 × 132 | Panel de agentes, modo oscuro |
 | `scp/images/osticket-grey.png` | 110 × 26 | Pie de la pantalla de inicio de sesión de agentes |
 | `setup/images/logo.png` | 560 × 144 | Instalador |
 | `include/fpdf/print-logo.png` | 817 × 170 (escala de grises) | PDF al imprimir tickets |
