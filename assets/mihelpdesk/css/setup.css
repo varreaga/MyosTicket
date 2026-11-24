@@ -10,7 +10,7 @@
  * (Requisitos · Datos · Listo) y una tarjeta centrada con el contenido.
  */
 
-html { background: var(--mh-bg); }
+html:has(body.mh-setup) { background: var(--mh-bg); }
 body.mh-setup {
   margin: 0;
   min-height: 100vh;
@@ -24,7 +24,7 @@ body.mh-setup {
   font-size: var(--mh-text-base);
   line-height: 1.55;
 }
-.mh-setup *, .mh-setup *::before, .mh-setup *::after { box-sizing: border-box; }
+:is(.mh-setup, .mh-upgrader) *, :is(.mh-setup, .mh-upgrader) *::before, :is(.mh-setup, .mh-upgrader) *::after { box-sizing: border-box; }
 .mh-setup a { color: var(--mh-link); }
 .mh-setup a:hover { color: var(--mh-link-hover); }
 .mh-setup :focus-visible { outline: 3px solid var(--mh-focus); outline-offset: 2px; }
@@ -86,13 +86,13 @@ body.mh-setup {
   background: var(--mh-surface);
   box-shadow: 0 12px 32px rgba(16, 24, 40, .08);
 }
-.mh-setup h1 { margin: 0 0 8px; font-size: var(--mh-text-2xl); line-height: 1.25; letter-spacing: -.01em; }
-.mh-setup h2 { margin: 28px 0 4px; font-size: var(--mh-text-lg); line-height: 1.35; }
-.mh-setup h2:first-child { margin-top: 0; }
-.mh-setup p { margin: 0 0 12px; }
+:is(.mh-setup, .mh-upgrader) h1 { margin: 0 0 8px; font-size: var(--mh-text-2xl); line-height: 1.25; letter-spacing: -.01em; }
+:is(.mh-setup, .mh-upgrader) h2 { margin: 28px 0 4px; font-size: var(--mh-text-lg); line-height: 1.35; }
+:is(.mh-setup, .mh-upgrader) h2:first-child { margin-top: 0; }
+:is(.mh-setup, .mh-upgrader) p { margin: 0 0 12px; }
 .mh-lead { font-size: var(--mh-text-lg); color: var(--mh-text-2); margin-bottom: 20px !important; }
 .mh-muted { color: var(--mh-text-muted); }
-.mh-setup code, .mh-setup kbd {
+:is(.mh-setup, .mh-upgrader) code, :is(.mh-setup, .mh-upgrader) kbd {
   font-family: var(--mh-font-mono); font-size: .92em;
   padding: 1px 6px; border-radius: var(--mh-radius-sm);
   background: var(--mh-surface-alt); color: var(--mh-text);
@@ -252,10 +252,40 @@ form .mh-section:first-of-type { margin-top: 8px; padding-top: 0; border-top: 0;
   .mh-setup-wrap { padding: 0 12px; }
   .mh-setup-top { padding: 18px 0 14px; }
   .mh-setup-card { padding: 22px 18px; border-radius: 12px; }
-  .mh-setup h1 { font-size: var(--mh-text-xl); }
+  :is(.mh-setup, .mh-upgrader) h1 { font-size: var(--mh-text-xl); }
   .mh-lead { font-size: var(--mh-text-base); }
   .mh-grid, .mh-links, .mh-next { grid-template-columns: 1fr; }
   .mh-steps li { flex-direction: column; gap: 4px; padding: 8px 4px; text-align: center; font-size: var(--mh-text-xs); }
   .mh-checks li { padding: 10px 12px; }
   .mh-actions .mh-btn { width: 100%; }
 }
+
+/* ==== Actualizador del panel (scp/upgrade.php) ====
+   Usa los mismos componentes dentro del panel de agentes. */
+.mh-upgrader { max-width: 780px; margin: 8px 0 24px; padding: 32px; border: 1px solid var(--mh-border);
+  border-radius: 16px; background: var(--mh-surface); box-shadow: var(--mh-shadow-sm); color: var(--mh-text); line-height: 1.55; }
+.mh-upgrader h1 { color: var(--mh-text); }
+.mh-upgrader h2 { color: var(--mh-text); border: 0; padding: 0; }
+.mh-upgrader ul:not([class]) { margin: 8px 0 0; padding-left: 20px; }
+.mh-upgrader ul:not([class]) li { margin: 4px 0; }
+.mh-upgrader .mh-actions input[type=submit], .mh-upgrader .mh-actions button { font-size: var(--mh-text-base); }
+/* Ventana de espera: osTicket la muestra con .show() y le pone posición en línea */
+#upgrading.mh-upgrading {
+  display: none; position: fixed; inset: 0 !important; top: 0 !important; left: 0 !important;
+  z-index: 1000; padding: 20px; background: var(--mh-overlay); width: auto; height: auto;
+}
+#upgrading.mh-upgrading .mh-busy-card { margin: 18vh auto 0; }
+#upgrading.mh-upgrading #msg { margin-top: 8px; font-weight: 600; color: var(--mh-text-2); }
+@media (max-width: 640px) { .mh-upgrader { padding: 22px 18px; border-radius: 12px; } }
+/* Dentro del panel, las reglas de títulos y botones de staff.css pesan más */
+.mh-staff #content .mh-upgrader h1 { font-size: var(--mh-text-2xl); margin: 0 0 8px; }
+.mh-staff #content .mh-upgrader h2 { font-size: var(--mh-text-lg); font-weight: 700; margin: 24px 0 4px; letter-spacing: 0; }
+.mh-staff #content .mh-upgrader .mh-done-head h1 { margin-top: 0; }
+.mh-staff #content .mh-upgrader .mh-busy-card h2, .mh-staff .mh-upgrading h2 { margin-top: 0; font-size: var(--mh-text-xl); }
+.mh-staff #content .mh-upgrader .mh-btn {
+  height: auto; min-height: 42px; padding: 0 22px; border: 1px solid var(--mh-brand); border-radius: var(--mh-radius);
+  background: var(--mh-brand); color: var(--mh-on-brand); box-shadow: none; text-shadow: none;
+  font: inherit; font-weight: 600; opacity: 1;
+}
+.mh-staff #content .mh-upgrader .mh-btn:hover { background: var(--mh-brand-hover); }
+.mh-staff #content .mh-upgrader .mh-btn[disabled] { opacity: .6; }

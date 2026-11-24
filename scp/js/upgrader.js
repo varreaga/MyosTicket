@@ -1,3 +1,4 @@
+// Modificado el 2026-11-24 por varreaga (proyecto MiHelpdesk, fork de osTicket): los mensajes del actualizador se traducen. Ver NOTICE.md.
 jQuery(function($) {
 
     $("#overlay").css({
@@ -28,11 +29,10 @@ jQuery(function($) {
 
     function autoUpgrade(url, data) {
 
-        if (!$.isFunction('__')) {
-          function __(s) {
-                return s;
-          }
-        }
+        // MiHelpdesk: la comprobación original ($.isFunction('__')) siempre
+        // fallaba y dejaba los mensajes sin traducir; se usa la función
+        // global de traducción si existe.
+        var __ = (typeof window.__ === 'function') ? window.__ : function (s) { return s; };
 
         function _lp(count) {
             $.ajax({

@@ -1,4 +1,5 @@
 <?php
+// Modificado el 2026-11-24 por varreaga (proyecto MiHelpdesk, fork de osTicket): pantallas del actualizador con el estilo del tema. Ver NOTICE.md.
 /*********************************************************************
     upgrade.php
 
@@ -83,7 +84,18 @@ $nav->addSubMenu(array('desc'=>__('Upgrader'),
                            'iconclass'=>'preferences'),
                         true);
 $ost->addExtraHeader('<script type="text/javascript" src="./js/upgrader.js"></script>');
+// MiHelpdesk: con el tema activo, las pantallas salen de
+// include/mihelpdesk/upgrader/ (con los estilos del instalador); sin tema,
+// se usan las originales de include/upgrader/.
+$tpl_dir = UPGRADE_DIR;
+if (function_exists('app_theme') && ($mh_theme = app_theme())
+        && is_file(INCLUDE_DIR.'mihelpdesk/upgrader/'.$inc)) {
+    $tpl_dir = INCLUDE_DIR.'mihelpdesk/upgrader/';
+    $mh_css = 'assets/'.$mh_theme.'/css/setup.css';
+    $ost->addExtraHeader(sprintf('<link rel="stylesheet" href="%s%s?v=%d">',
+        ROOT_PATH, $mh_css, @filemtime(ROOT_DIR.$mh_css)));
+}
 require(STAFFINC_DIR.'header.inc.php');
-require(UPGRADE_DIR.$inc);
+require($tpl_dir.$inc);
 require(STAFFINC_DIR.'footer.inc.php');
 ?>

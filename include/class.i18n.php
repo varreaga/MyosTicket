@@ -1,5 +1,5 @@
 <?php
-// Modificado el 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): nombre del producto, textos propios y correcciones en los datos de los paquetes de idioma. Ver NOTICE.md.
+// Modificado el 2026-11-19 y el 2026-11-24 por varreaga (proyecto MiHelpdesk, fork de osTicket): nombre del producto, textos propios y correcciones en los datos de los paquetes de idioma; lectura del paquete oficial sin los textos propios. Ver NOTICE.md.
 /*********************************************************************
     class.i18n.php
 
@@ -622,7 +622,11 @@ class DataTemplate {
      * template itself does not have to keep track of the language for which
      * it is defined.
      */
-    function __construct($path, $langs=array('en_US')) {
+    function __construct($path, $langs=array('en_US'), $propios=true) {
+        // MiHelpdesk: $propios=false lee solo el paquete oficial (sin los
+        // textos de include/mihelpdesk/i18n/datos/); lo usa
+        // tools/i18n/cargar-idioma.php para reconocer lo que dejó instalado
+        // un osTicket normal.
         $this->path = $path;
         // MiHelpdesk: file.yaml trae imágenes (el logo de los correos), no
         // textos; siempre se usa el de en_US, que tiene el logo del producto
@@ -631,7 +635,7 @@ class DataTemplate {
         foreach ($langs as $l) {
             // MiHelpdesk: textos propios (plantillas de correo y páginas
             // redactadas para el producto) antes que los del paquete oficial
-            if ($l != 'en_US' && defined('INCLUDE_DIR')
+            if ($propios && $l != 'en_US' && defined('INCLUDE_DIR')
                     && file_exists($f = INCLUDE_DIR . "mihelpdesk/i18n/datos/$l/$path")) {
                 $this->lang = $l;
                 $this->filepath = Misc::realpath($f);
@@ -662,6 +666,11 @@ class DataTemplate {
             // TODO: If there was a parsing error, attempt to try the next
             //       language in the list of requested languages
         return $this->data;
+    }
+
+    /** MiHelpdesk: datos del archivo tal cual, sin correcciones ni cambio de nombre. */
+    function getOriginalData() {
+        return $this->filepath ? YamlDataParser::load($this->filepath) : null;
     }
 
     function getRawData() {
