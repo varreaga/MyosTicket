@@ -105,7 +105,14 @@ class MhBrand {
         $darkSurface = self::parse(self::DARK_SURFACE);
         $darkText = self::parse(self::DARK_TEXT);
 
-        // Texto sobre el color de marca (botones): el que más contraste tenga
+        // Texto sobre el color de marca (botones): el que más contraste tenga.
+        // Si ni el blanco ni el casi negro llegan a 4.5:1 (tonos medios, como
+        // un naranja), el color se oscurece apenas lo necesario para que el
+        // texto blanco de los botones cumpla WCAG AA.
+        if (max(self::contrast($brand, $white), self::contrast($brand, $darkText)) < 4.5) {
+            for ($i = 0; $i < 40 && self::contrast($brand, $white) < 4.5; $i++)
+                $brand = self::mix($brand, $black, 0.03);
+        }
         $onBrand = self::contrast($brand, $white) >= self::contrast($brand, $darkText)
             ? $white : $darkText;
         // Al pasar el ratón: un poco más oscuro (o más claro si ya es muy oscuro)

@@ -559,4 +559,12 @@ return array(
         => 'Terminando…',
     'Still busy... smile #'
         => 'Seguimos trabajando… paso ',
+
+    // ------------------------------------------------ Accesibilidad (assets/mihelpdesk/js/a11y.js)
+    'Select all'
+        => 'Seleccionar todo',
+    'Skip to content'
+        => 'Saltar al contenido',
+    'Scrollable content'
+        => 'Contenido desplazable',
 );

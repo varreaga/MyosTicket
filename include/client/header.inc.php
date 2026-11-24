@@ -1,5 +1,5 @@
 <?php
-// Modificado el 2026-11-16, 2026-11-19 y 2026-11-21 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca y apariencia del tema (modo oscuro); favicon, logo para modo oscuro y páginas propias en el menú. Ver NOTICE.md.
+// Modificado el 2026-11-16, 2026-11-19, 2026-11-21 y 2026-11-24 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca y apariencia del tema (modo oscuro); favicon, logo para modo oscuro y páginas propias en el menú; atributo lang válido (es-MX). Ver NOTICE.md.
 $title=($cfg && is_object($cfg) && $cfg->getTitle())
     ? $cfg->getTitle() : APP_NAME.' :: '.__('Support Ticket System');
 $signin_url = ROOT_PATH . "login.php"
@@ -22,7 +22,7 @@ if ($lang
         && (@$info['direction'] == 'rtl'))
     echo ' dir="rtl" class="rtl"';
 if ($lang) {
-    echo ' lang="' . $lang . '"';
+    echo ' lang="' . Internationalization::rfc1766($lang) . '"';
 }
 
 // Dropped IE Support Warning

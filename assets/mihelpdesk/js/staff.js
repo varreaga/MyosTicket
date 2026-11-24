@@ -189,4 +189,20 @@
         jQuery.messageBar.defaults.buttonText = window.__('OK');
     });
   }
+
+  // Tablas de listas (categorías, departamentos, directorio…): en una
+  // tableta o celular se desplazan a lo ancho en lugar de cortarse.
+  function wrapTables(root) {
+    (root || document).querySelectorAll('#content table.list:not(.queue)').forEach(function (t) {
+      if (t.parentElement && t.parentElement.classList.contains('mh-table-scroll'))
+        return;
+      var w = document.createElement('div');
+      w.className = 'mh-table-scroll';
+      t.parentNode.insertBefore(w, t);
+      w.appendChild(t);
+    });
+  }
+  wrapTables();
+  if (window.jQuery)
+    jQuery(document).on('pjax:end ajaxComplete', function () { wrapTables(); });
 })();

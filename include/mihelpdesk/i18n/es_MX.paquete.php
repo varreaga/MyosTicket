@@ -287,6 +287,27 @@ return array(
         => 'La firma se hace disponible como una opción en la respuesta de una solicitud.',
     'Size and maximum uploads setting mainly apply to web tickets.'
         => 'Ajustes de tamaño y máximas subidas aplicados principalmente a las solicitudes de la página.',
+    // Títulos de edición mal traducidos en el paquete ("Equipo de actualización")
+    'Update Department'
+        => 'Actualizar departamento',
+    'Update Team'
+        => 'Actualizar equipo',
+    'Update FAQ'
+        => 'Actualizar FAQ',
+    'Update Instance'
+        => 'Actualizar instancia',
+    'Update Page'
+        => 'Actualizar página',
+    'Update Role'
+        => 'Actualizar rol',
+    'Update Schedule'
+        => 'Actualizar horario',
+    'Update User'
+        => 'Actualizar usuario',
+    'Update Ticket #%s'
+        => 'Actualizar solicitud #%s',
+    'Members'
+        => 'Miembros',
     // Actualizador (mayúsculas y signos que faltaban en el paquete)
     'Upgrade Now'
         => 'Actualizar ahora',

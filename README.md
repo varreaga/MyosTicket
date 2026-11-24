@@ -51,6 +51,11 @@ Requisitos
   * Extensión mysqli de PHP
   * MySQL 5.5 o superior (o MariaDB)
 
+### Navegadores
+  * Chrome, Edge u otro basado en Chromium 110 o posterior
+  * Firefox 121 o posterior
+  * Safari 15.4 o posterior (Mac, iPhone y iPad)
+
 ### Recomendado
   * Extensiones de PHP: ctype, fileinfo, gd, gettext, iconv, intl,
     json, mbstring, Zend OPcache, phar, xml, xml-dom y zip
@@ -91,6 +96,15 @@ Tema visual
 El aspecto de la interfaz se personaliza en `assets/mihelpdesk/`, una capa
 de estilos propia que no modifica el CSS original. Ver
 [assets/mihelpdesk/README.md](assets/mihelpdesk/README.md).
+
+Accesibilidad
+-------------
+El portal y el panel se revisan con axe-core contra WCAG 2.1 nivel AA
+(81 páginas, en claro y oscuro, en escritorio, tableta y celular): todos
+los campos tienen nombre para lectores de pantalla, el foco del teclado
+se ve en todo lo que se puede enfocar, hay un enlace «Saltar al
+contenido» y el color de marca se ajusta solo para que el texto de los
+botones tenga contraste suficiente.
 
 Traducciones
 ------------
