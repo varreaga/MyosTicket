@@ -243,8 +243,16 @@
     document.body.insertBefore(a, document.body.firstChild);
   }
 
+  // Ventana «Un momento, por favor»: el lector la anuncia al aparecer
+  function busyBox() {
+    var el = document.getElementById('loading');
+    if (el && !el.hasAttribute('role'))
+      el.setAttribute('role', 'status'), el.setAttribute('aria-live', 'polite');
+  }
+
   function start() {
     skipLink();
+    busyBox();
     run(document);
     // Contenido que llega después (pjax, ventanas emergentes, select2)
     if (window.MutationObserver)

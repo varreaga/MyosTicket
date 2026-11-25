@@ -487,6 +487,58 @@ html[data-mh-mode="dark"] .mh-logo-light:has(+ .mh-logo-dark) { display: none; }
 }
 
 /* ------------------------------------------------------------------
+   Ventana «Un momento, por favor» (#loading de osTicket)
+   Sale al enviar formularios del portal y al cargar ventanas del
+   panel. osTicket la dibuja como un recuadro blanco con un gif y
+   texto naranja, y la coloca con top/left en línea; aquí es una
+   tarjeta centrada con un indicador giratorio del color de marca.
+   La de la página de acceso (#loading.dialog) tiene su propio estilo
+   en login.css.
+   ------------------------------------------------------------------ */
+.mh-theme #loading:not(.dialog) {
+  position: fixed !important;
+  top: 50% !important; left: 50% !important;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  width: min(380px, calc(100vw - 32px)); height: auto; min-height: 0;
+  margin: 0; padding: 20px 24px 20px 76px;
+  background: var(--mh-surface);
+  color: var(--mh-text);
+  border: 1px solid var(--mh-border);
+  border-radius: var(--mh-radius-lg);
+  box-shadow: var(--mh-shadow-dialog);
+  font-family: var(--mh-font);
+  vertical-align: baseline;
+  z-index: 3000;
+}
+.mh-theme #loading:not(.dialog)::before {
+  content: "";
+  position: absolute; left: 24px; top: 50%;
+  box-sizing: border-box;
+  width: 34px; height: 34px; margin-top: -17px;
+  border-radius: 50%;
+  border: 3px solid var(--mh-brand-soft);
+  border-top-color: var(--mh-brand);
+  animation: mh-espera .8s linear infinite;
+}
+.mh-theme #loading:not(.dialog) > i { display: none; }
+.mh-theme #loading:not(.dialog) h4,
+.mh-theme #loading:not(.dialog) h1 {
+  margin: 0; padding: 0;
+  font-size: var(--mh-text-base); font-weight: 600; line-height: 1.4;
+  color: var(--mh-text);
+}
+.mh-theme #loading:not(.dialog) p {
+  margin: 2px 0 0; font-size: var(--mh-text-sm); line-height: 1.45;
+  color: var(--mh-text-2);
+}
+.mh-theme #overlay { background: var(--mh-overlay); opacity: 1 !important; }
+@keyframes mh-espera { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .mh-theme #loading:not(.dialog)::before { animation-duration: 2.4s; }
+}
+
+/* ------------------------------------------------------------------
    Barra de aviso flotante ($.messageBar de osTicket)
    La usa el aviso "¿Sigues trabajando en esta solicitud?" que sale
    cuando el apartado (bloqueo) de una solicitud está por vencer por

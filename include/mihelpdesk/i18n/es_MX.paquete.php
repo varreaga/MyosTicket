@@ -201,6 +201,8 @@ return array(
         => 'Enlace para ver la tarea dentro de la solicitud',
     'Link to view the ticket'
         => 'Enlace para ver la solicitud',
+    'Loading ...'
+        => 'Cargando…',
     'Maximum <b>Open</b> Tickets'
         => '<b>Número</b> máximo de solicitudes abiertas',
     'Maximum Open Tickets Limit (%s)'
@@ -247,6 +249,10 @@ return array(
         => 'Permiso denegado. No puede editar solicitudes',
     'Phone number of ticket owner'
         => 'Teléfono del propietario de la solicitud',
+    'Please Wait!'
+        => 'Un momento, por favor',
+    'Please wait... it will take a second!'
+        => 'Estamos procesando la información.',
     'Please fill in the form below to open a new ticket.'
         => 'Favor de completar el siguiente formulario para crear una nueva solicitud.',
     'Please provide your email address and a ticket number.'
