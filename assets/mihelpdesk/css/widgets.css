@@ -573,3 +573,26 @@ html[data-mh-mode="dark"] .mh-logo-light:has(+ .mh-logo-dark) { display: none; }
   .mh-theme .message.bar { grid-template-columns: auto 1fr; }
   .mh-theme .message.bar > div:not(.avatar):not(.title):not(.body) { grid-column: 2; grid-row: 3; margin-top: 12px !important; justify-self: start; }
 }
+
+/* ------------------------------------------------------------------
+   Accesibilidad: indicador de foco al navegar con el teclado
+   Red de seguridad para todo lo que se puede enfocar y no trae su propio
+   indicador (enlaces, botones, casillas, el logo). Solo aparece con el
+   teclado (:focus-visible), no al hacer clic.
+   ------------------------------------------------------------------ */
+.mh-theme a:focus-visible, .mh-theme button:focus-visible, .mh-theme summary:focus-visible,
+.mh-theme [tabindex]:focus-visible, .mh-theme input[type=checkbox]:focus-visible,
+.mh-theme input[type=radio]:focus-visible, .mh-theme input[type=submit]:focus-visible,
+.mh-theme input[type=button]:focus-visible {
+  outline: 2px solid var(--mh-link);
+  outline-offset: 2px;
+}
+/* scp.css quita el contorno del logo con un selector de id */
+.mh-theme #logo:focus-visible { outline: 2px solid var(--mh-link); outline-offset: 2px; }
+/* Enlace «Saltar al contenido» (lo agrega a11y.js): visible solo con el foco */
+.mh-theme .mh-skip {
+  position: absolute; left: 12px; top: -100px; z-index: 10001;
+  padding: 10px 16px; border-radius: var(--mh-radius);
+  background: var(--mh-brand); color: var(--mh-on-brand); font-weight: 600; text-decoration: none;
+}
+.mh-theme .mh-skip:focus { top: 12px; }

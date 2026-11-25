@@ -1371,7 +1371,9 @@ body.mh-staff, html:has(body.mh-staff) {
   .mh-staff .mh-ticket-layout { grid-template-columns: minmax(0, 1fr) 280px; }
 }
 
-@media (max-width: 900px) {
+/* Hasta 1100 px (tabletas, también en horizontal): la barra lateral pasa a
+   ser un cajón y el contenido usa todo el ancho. */
+@media (max-width: 1100px) {
   /* En pantallas chicas la barra de acciones no se queda fija: ocupa dos
      renglones y tapaba el inicio de la conversación. */
   .mh-staff #content div:has(> div.sticky.bar:not(.stop)) { position: static; }
@@ -1643,3 +1645,17 @@ body.mh-staff, html:has(body.mh-staff) {
   .mh-staff .mh-cz-split { grid-template-columns: 1fr; }
   .mh-staff .mh-cz-preview { position: static; }
 }
+
+/* Tablas de listas: en pantallas angostas se desplazan a lo ancho dentro
+   de su recuadro en vez de cortarse (staff.js las envuelve). */
+.mh-staff .mh-table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.mh-staff .mh-table-scroll > table.list { min-width: 100%; }
+@media (max-width: 1024px) {
+  .mh-staff .mh-table-scroll > table.list { width: auto !important; table-layout: auto; }
+}
+
+/* Campos traducibles (texto + botón de idioma): en celular el botón quedaba
+   fuera de la pantalla; ahora el campo se encoge para dejarle lugar. */
+.mh-staff .translatable { display: inline-flex; align-items: stretch; max-width: 100%; vertical-align: middle; }
+.mh-staff .translatable > input[type=text] { min-width: 0; flex: 1 1 auto; }
+.mh-staff .translatable > button.translatable { flex: 0 0 auto; }

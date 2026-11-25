@@ -215,8 +215,16 @@
 .mh-client #footer p {
   margin: 0;
 }
+/* Enlaces dentro de un párrafo: subrayados, para no depender solo del color */
+.mh-client #content p a:not(.button):not(.btn), .mh-client #content .instructions a,
+.mh-client #clientLogin div > a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
 .mh-client #footer a {
   color: var(--mh-link);
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 /* ==== Botones, formularios y mensajes ==== */
@@ -948,7 +956,7 @@
 .mh-client .thread-entry > .avatar .mh-avatar-initials {
   display: flex; align-items: center; justify-content: center;
   width: 100%; height: 100%;
-  background: var(--mh-brand-soft); color: var(--mh-brand);
+  background: var(--mh-brand-soft); color: var(--mh-link);
   font-size: 13px; font-weight: 700;
 }
 .mh-client .thread-entry > .avatar img {
@@ -1583,6 +1591,15 @@
 /* Página "Page Not Found" y mensajes sueltos dentro del contenido */
 .mh-client #content > p:only-child {
   font-size: var(--mh-text-lg);
+}
+
+/* ==== Tableta (641 a 1000 px): «Mis solicitudes» cabe sin desbordar ==== */
+@media (min-width: 641px) and (max-width: 1000px) {
+  .mh-client #ticketTable th, .mh-client #ticketTable td {
+    width: auto !important;
+    padding: var(--mh-space-3) var(--mh-space-2);
+  }
+  .mh-client #ticketTable th:first-child, .mh-client #ticketTable td:first-child { padding-left: var(--mh-space-4); }
 }
 
 /* ==== Adaptación a celular (@media max-width: 640px) ==== */

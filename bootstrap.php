@@ -1,5 +1,5 @@
 <?php
-// Modificado el 2026-11-16, 2026-11-21 y 2026-11-24 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca; favicon y logo para modo oscuro de Personalización; logo de fábrica en modo oscuro. Ver NOTICE.md.
+// Modificado el 2026-11-16, 2026-11-21 y 2026-11-24 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca; favicon y logo para modo oscuro de Personalización; logo de fábrica en modo oscuro; nombres accesibles en formularios (a11y.js). Ver NOTICE.md.
 
 class Bootstrap {
 
@@ -436,7 +436,7 @@ function app_theme_styles($area) {
 function app_theme_scripts($area) {
     if (!($theme = app_theme()))
         return;
-    foreach (array('common', $area) as $name) {
+    foreach (array('common', 'a11y', $area) as $name) {
         $file = 'assets/'.$theme.'/js/'.$name.'.js';
         if (is_file(ROOT_DIR.$file))
             echo sprintf("\n    <script defer src=\"%s%s?v=%d\"></script>\n",

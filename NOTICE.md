@@ -23,6 +23,27 @@ Base
 Historial de cambios
 --------------------
 
+### 2026-11-24 — Accesibilidad y tabletas (varreaga)
+
+* `assets/mihelpdesk/js/a11y.js` (nuevo): da nombre accesible a los campos
+  de los formularios de osTicket que no tienen `<label>`, a los enlaces y
+  botones de solo icono, agrega «Saltar al contenido», corrige atributos
+  `lang` (es_MX → es-MX) y hace alcanzables con el teclado las zonas con
+  desplazamiento lateral. Se carga desde `app_theme_scripts()` en
+  `bootstrap.php`.
+* `include/staff/login.header.php`: el idioma de la página ya no está fijo
+  en inglés, y la recarga cada 2 horas (para renovar el token) se hace solo
+  si los campos están vacíos, en lugar de con `<meta refresh>`.
+* `include/client/header.inc.php`: atributo `lang` con formato válido.
+* `include/mihelpdesk/class.brand.php`: si el color de marca no permite
+  texto legible en los botones (contraste menor a 4.5:1), se oscurece lo
+  necesario.
+* Estilos del tema: indicador de foco para todo lo que se enfoca, enlaces
+  subrayados dentro de párrafos, barra lateral como cajón hasta 1100 px,
+  tablas con desplazamiento lateral en tabletas y campos traducibles que
+  caben en celular.
+* Traducciones del paquete corregidas: «Equipo de actualización» →
+  «Actualizar equipo» y otros títulos de edición.
 ### 2026-11-24 — PDF de solicitudes y tareas con diseño propio (varreaga)
 
 * `include/class.pdf.php`: con el tema activo, los PDF usan las plantillas
