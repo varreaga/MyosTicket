@@ -1,3 +1,34 @@
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/mihelpdesk/marca/mihelpdesk-logo-oscuro.png">
+    <img src="assets/mihelpdesk/marca/mihelpdesk-logo.png" alt="MiHelpdesk" width="260">
+  </picture>
+</p>
+
+Novedades
+=========
+
+MiHelpdesk se basa en **osTicket 1.18.4**. Los cambios propios de
+MiHelpdesk, con fecha y archivos modificados, están en
+[NOTICE.md](NOTICE.md). Lo principal:
+
+* Interfaz nueva para agentes y clientes, con modo claro y oscuro, y
+  adaptada a celular y tableta.
+* Logo y color de marca de cada empresa en el portal, el panel, los correos
+  y los PDF.
+* Panel de control con métricas de atención.
+* Editor de respuestas nuevo.
+* PDF de solicitudes y tareas rediseñados, con código QR.
+* Instalador y actualizador renovados; migración directa desde osTicket
+  1.17 y 1.18 (ver [MIGRAR-DESDE-OSTICKET.md](MIGRAR-DESDE-OSTICKET.md)).
+* Compatible con PHP 8.2 a 8.5.
+* Español revisado y accesibilidad WCAG 2.1 AA.
+
+Abajo se conserva, sin cambios y en inglés, el historial de versiones de
+osTicket.
+
+---
+
 osTicket v1.18.4
 ================
 ### Security

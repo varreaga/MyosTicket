@@ -1,3 +1,10 @@
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="marca/mihelpdesk-logo-oscuro.png">
+    <img src="marca/mihelpdesk-logo.png" alt="MiHelpdesk" width="260">
+  </picture>
+</p>
+
 Tema visual de MiHelpdesk
 =========================
 

@@ -1,28 +1,29 @@
-### Prerequisites
+### Antes de reportar
 
-* [ ] Can you reproduce the problem in a fresh installation of the "develop" branch?
-* [ ] Do you have any errors in the PHP error log, or javascript console?
-* [ ] Did you check the [osTicket forums](https://forum.osticket.com/)?
-* [ ] Did you [perform a cursory search](https://github.com/osTicket/osTicket/issues) to see if your bug or enhancement is already reported?
+* [ ] ¿El problema ocurre en una instalación nueva de la rama `develop`?
+* [ ] ¿Revisaste el registro de errores de PHP y la consola del navegador?
+* [ ] ¿Buscaste en los [issues existentes](https://github.com/varreaga/MyosTicket/issues) si ya se reportó?
+* [ ] ¿Pasa también con el tema desactivado? (ver `assets/mihelpdesk/README.md`). Si pasa igual, puede ser un error de osTicket.
 
-For more information on how to write a good [bug report](https://github.com/osTicket/osTicket/wiki/Github-Issues-Guidelines)
+**No reportes aquí problemas de seguridad.** Sigue los pasos de [SECURITY.md](SECURITY.md).
 
-### Description
+### Descripción
 
-[Description of the bug or feature]
+[Qué falla o qué mejora propones]
 
-### Steps to Reproduce
+### Pasos para reproducirlo
 
-1. [First Step]
-2. [Second Step]
-3. [and so on...]
+1. [Primer paso]
+2. [Segundo paso]
+3. [Y así...]
 
-**Expected behavior:** [What you expected to happen]
+**Qué esperabas:** [Lo que debería pasar]
 
-**Actual behavior:** [What actually happened]
+**Qué pasó:** [Lo que pasó en realidad; agrega capturas si ayudan]
 
-### Versions
+### Versiones
 
-Admin panel -> Dashboard -> Information which also additionally gives you information about your server.
+Panel Administrador → Panel de Control → Información.
 
-Also, please include the OS and what version of the OS you're running. As well as your browser and browser version.
+Indica también el sistema operativo del servidor, la versión de PHP y el
+navegador con su versión (y si usas modo claro u oscuro).

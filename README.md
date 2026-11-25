@@ -1,5 +1,33 @@
-MiHelpdesk
-==========
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/mihelpdesk/marca/mihelpdesk-logo-oscuro.png">
+    <img src="assets/mihelpdesk/marca/mihelpdesk-logo.png" alt="MiHelpdesk" width="420">
+  </picture>
+</p>
+
+<p align="center">
+  <b>Mesa de ayuda libre, en español, lista para tu equipo de soporte.</b><br>
+  Basada en osTicket · Licencia GNU GPL v2
+</p>
+
+<p align="center">
+  <a href="LICENSE.txt"><img alt="Licencia GPL v2" src="https://img.shields.io/badge/licencia-GPL%20v2-0072bc"></a>
+  <img alt="PHP 8.2 a 8.5" src="https://img.shields.io/badge/PHP-8.2%20%E2%80%93%208.5-0072bc">
+  <img alt="Basado en osTicket 1.18" src="https://img.shields.io/badge/basado%20en-osTicket%201.18-0f1b2d">
+  <img alt="WCAG 2.1 AA" src="https://img.shields.io/badge/accesibilidad-WCAG%202.1%20AA-2e7d32">
+</p>
+
+<p align="center">
+  <a href="#qué-incluye">Qué incluye</a> ·
+  <a href="#instalación">Instalación</a> ·
+  <a href="MIGRAR-DESDE-OSTICKET.md">Migrar desde osTicket</a> ·
+  <a href="SOPORTE.md">Soporte profesional</a> ·
+  <a href="NOTICE.md">Cambios respecto a osTicket</a>
+</p>
+
+<p align="center">
+  <img src="docs/capturas/panel-cola.png" alt="Cola de solicitudes del panel de agentes" width="860">
+</p>
 
 > **MiHelpdesk** es un sistema de tickets de soporte de código abierto,
 > **basado en el proyecto [osTicket](https://osticket.com)** distribuido bajo la
@@ -19,6 +47,43 @@ seguimiento y archivar los tickets de soporte.
   1. Los usuarios crean tickets desde el portal web, por correo o por teléfono.
   2. Los tickets se guardan y se asignan a agentes.
   3. Los agentes ayudan a resolver cada caso.
+
+Qué incluye
+-----------
+Todo lo que hace osTicket, más una capa propia que no toca el código
+original y se puede desactivar:
+
+  * **Interfaz nueva** para agentes y clientes, con **modo claro y oscuro**.
+  * **Funciona en celular y tableta**: menú lateral plegable, tablas que se
+    desplazan y formularios que se ajustan a la pantalla.
+  * **Marca de cada empresa**: logo para fondo claro y oscuro, y un color de
+    marca que se aplica a botones, enlaces y PDF.
+  * **Panel de control** con solicitudes abiertas, vencidas, tiempos de
+    respuesta y de resolución, y gráfica por día.
+  * **Editor de respuestas nuevo**, con imágenes, tablas, enlaces y respuestas
+    predefinidas.
+  * **PDF de solicitudes y tareas** rediseñados: resumen, tiempos, datos del
+    formulario y un código QR que lleva a la solicitud.
+  * **Español revisado** en toda la interfaz, el instalador y los correos.
+  * **Instalador y actualizador renovados**, con la lista de requisitos y
+    los comandos que hay que correr.
+  * **Accesible**: revisado contra WCAG 2.1 nivel AA.
+
+<table>
+  <tr>
+    <td width="50%"><img src="docs/capturas/panel-tablero.png" alt="Panel de control con métricas"><br><sub>Panel de control</sub></td>
+    <td width="50%"><img src="docs/capturas/panel-solicitud.png" alt="Vista de una solicitud"><br><sub>Vista de una solicitud</sub></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="docs/capturas/panel-oscuro.png" alt="Panel en modo oscuro"><br><sub>Modo oscuro</sub></td>
+    <td width="50%"><img src="docs/capturas/portal-inicio.png" alt="Portal de clientes"><br><sub>Portal de clientes</sub></td>
+  </tr>
+</table>
+
+<p align="center">
+  <img src="docs/capturas/portal-celular.png" alt="Portal de clientes en un celular" width="260"><br>
+  <sub>Portal de clientes en el celular</sub>
+</p>
 
 Licencia y libertades
 ---------------------
@@ -87,6 +152,14 @@ atrás, están en [MIGRAR-DESDE-OSTICKET.md](MIGRAR-DESDE-OSTICKET.md).
 
 Cambiar el nombre o el logo
 ---------------------------
+El logo de MiHelpdesk es el **búho copyleft**: el cuerpo del búho es la C
+invertida del símbolo copyleft. Los archivos y su significado están en
+[assets/mihelpdesk/marca/](assets/mihelpdesk/marca/README.md).
+
+Cada empresa puede subir su propio logo (para fondo claro y oscuro) y su
+color de marca desde el panel de administración; con eso se reemplaza el de
+fábrica en el portal, el panel, los correos y los PDF.
+
 El nombre visible del producto está definido en un solo lugar
 (`APP_NAME` en `bootstrap.php`). Para cambiarlo en todo el proyecto, ver
 [BRANDING.md](BRANDING.md).
