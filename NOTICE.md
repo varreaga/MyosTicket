@@ -30,6 +30,18 @@ Base
 Historial de cambios
 --------------------
 
+### 2026-11-25 — Traducciones de JavaScript sin copia vieja (varreaga)
+
+* `include/ajax.i18n.php`: el archivo de traducciones para JavaScript se
+  guarda en caché según su contenido (ETag). osTicket usaba la fecha de la
+  configuración, así que después de actualizar el navegador seguía con la
+  copia vieja y mostraba textos nuevos en inglés (p. ej. «Skip to content»).
+* `bootstrap.php`: `app_i18n_version()`, versión según la fecha de los
+  archivos de idioma.
+* `include/client/footer.inc.php`, `include/staff/footer.inc.php`: la
+  dirección de ese archivo lleva `?v=<versión>`, para que el navegador lo
+  pida de nuevo al cambiar las traducciones.
+
 ### 2026-11-25 — Ventana «Un momento, por favor» (varreaga)
 
 * `assets/mihelpdesk/css/widgets.css`: la ventana de espera de osTicket

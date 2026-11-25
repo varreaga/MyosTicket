@@ -445,6 +445,22 @@ function app_theme_scripts($area) {
 }
 
 /**
+ * Version del archivo de traducciones para JavaScript (ajax.php/i18n/<idioma>/js).
+ * Cambia cuando cambia cualquiera de sus fuentes (paquete de idioma, textos
+ * propios, ajustes al paquete), para que el navegador no use una copia vieja.
+ */
+function app_i18n_version($lang) {
+    $files = array_merge(
+        glob(INCLUDE_DIR.'i18n/*.phar') ?: array(),
+        glob(INCLUDE_DIR.'mihelpdesk/i18n/*.php') ?: array(),
+        array(INCLUDE_DIR.'ajax.i18n.php'));
+    $v = 0;
+    foreach ($files as $f)
+        $v = max($v, (int) @filemtime($f));
+    return $v;
+}
+
+/**
  * Apariencia (claro, oscuro o automatico). Se escribe en <head>, antes de
  * las hojas de estilo, para que la pagina no parpadee al cargar en modo
  * oscuro. La preferencia se guarda en el navegador (localStorage).
