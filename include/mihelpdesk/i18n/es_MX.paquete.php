@@ -119,6 +119,8 @@ return array(
         => '¿Está seguro que desea marcar la solicitud como <b>%s</b>?',
     'Assign tickets from this organization to the <em>Account Manager</em>'
         => 'Asignar las solicitudes de esta organización al <em>Administrador de cuentas</em>',
+    'Automatic'
+        => 'Automático',
     'Autoresponse sent to user, if enabled, on new ticket.'
         => 'Autorespuesta enviada al usuario, si esta activa, en una solicitud nueva.',
     'Basic Ticket Information'
