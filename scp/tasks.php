@@ -1,4 +1,5 @@
 <?php
+// Modificado el 2026-11-24 por varreaga (proyecto MiHelpdesk, fork de osTicket): imprimir una tarea con tamaño de papel ya no da error. Ver NOTICE.md.
 /*************************************************************************
     tasks.php
 
@@ -222,7 +223,9 @@ if($task) {
         if (!$forms) $forms=DynamicFormEntry::forObject($task->getId(), 'A');
         // Auto add new fields to the entries
         foreach ($forms as $f) $f->addMissingFields();
-    } elseif($_REQUEST['a'] == 'print' && !$task->pdfExport($_REQUEST['psize']))
+    } elseif($_REQUEST['a'] == 'print' && !$task->pdfExport(
+            // MiHelpdesk: pdfExport() espera un arreglo; con un tamaño en texto fallaba
+            !empty($_REQUEST['psize']) ? array('psize' => (string) $_REQUEST['psize']) : array()))
         $errors['err'] = __('Unable to print to PDF.')
             .' '.__('Internal error occurred');
 } else {

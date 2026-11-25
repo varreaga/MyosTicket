@@ -559,4 +559,112 @@ return array(
         => 'Terminando…',
     'Still busy... smile #'
         => 'Seguimos trabajando… paso ',
+
+    // ------------------------------------------------ PDF (include/mihelpdesk/print/)
+    'less than a minute'
+        => '< 1 min',
+    '%1$d d %2$d h'
+        => '%1$d d %2$d h',
+    '%1$d h %2$d min'
+        => '%1$d h %2$d min',
+    'Task #%1$s · Printed by %2$s on %3$s'
+        => 'Tarea #%1$s · Impresa por %2$s el %3$s',
+    'Page %1$s of %2$s'
+        => 'Página %1$s de %2$s',
+    'Internal task'
+        => 'Tarea interna',
+    'Scan to open it in the system'
+        => 'Escanee para abrirla en el sistema',
+    'Done in'
+        => 'Terminada en',
+    'Open for'
+        => 'Abierta desde hace',
+    'Since %s'
+        => 'Desde el %s',
+    'Closed on'
+        => 'Cerrada el',
+    'Due'
+        => 'Vence',
+    'No due date'
+        => 'Sin fecha de vencimiento',
+    'notes and messages'
+        => 'notas y mensajes',
+    'Related request'
+        => 'Solicitud relacionada',
+    'Not linked'
+        => 'Sin solicitud',
+    'Handling'
+        => 'Atención',
+    'Dates'
+        => 'Fechas',
+    'Activity'
+        => 'Actividad',
+    'Request #%s'
+        => 'Solicitud #%s',
+    'Request #%1$s · Printed by %2$s on %3$s'
+        => 'Solicitud #%1$s · Impresa por %2$s el %3$s',
+    'Support request'
+        => 'Solicitud de soporte',
+    'Priority: %s'
+        => 'Prioridad: %s',
+    'For internal use.'
+        => 'Uso interno.',
+    'This document includes internal notes that the customer cannot see.'
+        => 'Este documento incluye notas internas que el cliente no puede ver.',
+    'Resolved in'
+        => 'Resuelta en',
+    'after it was opened'
+        => 'después de abrirse',
+    'No response yet'
+        => 'Todavía sin respuesta',
+    'Conversation'
+        => 'Conversación',
+    'Customer: %1$d · Replies: %2$d'
+        => 'Del cliente: %1$d · Respuestas: %2$d',
+    'Customer'
+        => 'Cliente',
+    'Service acknowledgment'
+        => 'Constancia de atención',
+    'Use these lines when the request is handled in person or the customer needs to sign that it was received.'
+        => 'Úselas cuando la atención sea en persona o el cliente deba firmar de recibido.',
+    'Handled by'
+        => 'Atendió',
+    'Received by the customer'
+        => 'Recibió conforme',
+    'Request #%1$s · Printed on %2$s'
+        => 'Solicitud #%1$s · Impresa el %2$s',
+    'Request receipt'
+        => 'Comprobante de solicitud',
+    'Scan to check its status'
+        => 'Escanee para ver su estado',
+    'Opened on'
+        => 'Abierta el',
+    'Closed on %s'
+        => 'Cerrada el %s',
+    'In progress'
+        => 'En curso',
+    'Yours: %1$d · Replies: %2$d'
+        => 'Suyos: %1$d · Respuestas: %2$d',
+    'Your details'
+        => 'Sus datos',
+    'How to follow up'
+        => 'Cómo darle seguimiento',
+    'Keep this receipt. To check the status or reply, go to %1$s and use your email and the number %2$s, or scan the QR code.'
+        => 'Conserve este comprobante. Para ver el estado o responder, entre a %1$s con su correo y el número %2$s, o escanee el código QR.',
+    'You'
+        => 'Usted',
+    'Support team'
+        => 'Equipo de soporte',
+    'Past due'
+        => 'Vencida',
+    'Agent reply'
+        => 'Respuesta',
+    'Received via'
+        => 'Recibida por',
+    'Created on'
+        => 'Creada el',
+    'Due date'
+        => 'Vencimiento',
+    'Finished'
+        => 'Terminada',
 );
