@@ -1,3 +1,18 @@
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="mihelpdesk-logo-oscuro.png">
+    <img src="mihelpdesk-logo.png" alt="MiHelpdesk" width="420">
+  </picture>
+</p>
+
+<p align="center">
+  <img src="mihelpdesk-simbolo-512.png" alt="Búho sobre fondo claro" width="96">
+  &nbsp;&nbsp;
+  <img src="mihelpdesk-simbolo-oscuro-512.png" alt="Búho sobre fondo oscuro" width="96">
+  &nbsp;&nbsp;
+  <img src="mihelpdesk-icono-app-512.png" alt="Ícono de app" width="96">
+</p>
+
 Logo de MiHelpdesk
 ==================
 

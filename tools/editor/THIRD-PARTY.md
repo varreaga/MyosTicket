@@ -1,3 +1,10 @@
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="../../assets/mihelpdesk/marca/mihelpdesk-logo-oscuro.png">
+    <img src="../../assets/mihelpdesk/marca/mihelpdesk-logo.png" alt="MiHelpdesk" width="260">
+  </picture>
+</p>
+
 Componentes de terceros del editor
 ==================================
 

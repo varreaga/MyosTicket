@@ -1,3 +1,10 @@
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/mihelpdesk/marca/mihelpdesk-logo-oscuro.png">
+    <img src="assets/mihelpdesk/marca/mihelpdesk-logo.png" alt="MiHelpdesk" width="260">
+  </picture>
+</p>
+
 Aviso de modificaciones (NOTICE)
 ================================
 
@@ -22,6 +29,22 @@ Base
 
 Historial de cambios
 --------------------
+
+### 2026-11-25 — Documentación con el logo (varreaga)
+
+* `README.md`: logo al inicio (versión clara y oscura según el tema de
+  GitHub), sección «Qué incluye» con capturas, y explicación del logo y de
+  cómo cada empresa lo reemplaza por el suyo.
+* `SECURITY.md`: reescrito en español; los reportes de seguridad de
+  MiHelpdesk se hacen en privado desde la pestaña Security del repositorio.
+* `ISSUE_TEMPLATE.md`: traducido y apuntando a este repositorio.
+* `WHATSNEW.md`: resumen de las novedades de MiHelpdesk al inicio; el
+  historial de versiones de osTicket se conserva sin cambios.
+* Logo al inicio de `BRANDING.md`, `MIGRAR-DESDE-OSTICKET.md`, `NOTICE.md`,
+  `SOPORTE.md` y de los README de `assets/mihelpdesk/`,
+  `include/mihelpdesk/i18n/` y `tools/editor/`.
+* `docs/capturas/` (nuevo): capturas del panel y del portal usadas en el
+  README.
 
 ### 2026-11-24 — Accesibilidad y tabletas (varreaga)
 
