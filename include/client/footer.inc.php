@@ -1,4 +1,4 @@
-<?php /* Modificado el 2026-11-16 y el 2026-11-21 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca; enlaces y texto del pie de Personalización; créditos más cortos. Ver NOTICE.md. */ ?>
+<?php /* Modificado el 2026-11-16 y el 2026-11-21 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca; enlaces y texto del pie de Personalización; créditos más cortos; el 2026-11-25, versión en la dirección de las traducciones de JavaScript. Ver NOTICE.md. */ ?>
         </div>
     </div>
     <div id="footer">
@@ -34,7 +34,7 @@ if (app_theme()) {
 <?php
 if (($lang = Internationalization::getCurrentLanguage()) && $lang != 'en_US') { ?>
     <script type="text/javascript" src="<?php echo ROOT_PATH; ?>ajax.php/i18n/<?php
-        echo $lang; ?>/js"></script>
+        echo $lang; ?>/js?v=<?php echo app_i18n_version($lang); ?>"></script>
 <?php } ?>
 <script type="text/javascript">
     getConfig().resolve(<?php

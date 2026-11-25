@@ -1,5 +1,5 @@
 <?php
-// Modificado el 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): traducciones propias del editor y del tema en JavaScript y ajustes a las del paquete. Ver NOTICE.md.
+// Modificado el 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): traducciones propias del editor y del tema en JavaScript y ajustes a las del paquete; el 2026-11-25, caché según el contenido. Ver NOTICE.md.
 /*********************************************************************
     ajax.i18n.php
 
@@ -47,7 +47,10 @@ class i18nAjaxAPI extends AjaxController {
             Http::response(404, 'No such i18n data');
         }
 
-        Http::cacheable(md5($data), $cfg->lastModified());
+        // MiHelpdesk: la caché depende solo del contenido (ETag). osTicket
+        // usaba la fecha de la configuración, y el navegador seguía con la
+        // copia vieja aunque cambiaran las traducciones.
+        Http::cacheable(md5($data));
         echo $data;
     }
 
