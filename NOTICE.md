@@ -30,6 +30,16 @@ Base
 Historial de cambios
 --------------------
 
+### 2026-11-25 — Logo de fábrica sin copia vieja (varreaga)
+
+* `bootstrap.php` (`app_logo_img()`): si la empresa no subió logo, el logo
+  de fábrica (claro y oscuro) se enlaza directo con su fecha como versión.
+  Antes pasaba por `logo.php`, cuya redirección el navegador guardaba un
+  día, y después de actualizar seguía mostrando el logo anterior.
+* `logo.php`, `scp/logo.php`: la redirección al logo de fábrica lleva
+  `?v=<fecha del archivo>`.
+* `include/mihelpdesk/i18n/es_MX.paquete.php`: «Automático» con acento
+  (el paquete decía «Automatico»).
 ### 2026-11-25 — Traducciones de JavaScript sin copia vieja (varreaga)
 
 * `include/ajax.i18n.php`: el archivo de traducciones para JavaScript se

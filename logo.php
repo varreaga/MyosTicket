@@ -1,5 +1,5 @@
 <?php
-// Modificado el 2026-11-21 por varreaga (proyecto MiHelpdesk, fork de osTicket): favicon y logo para modo oscuro. Ver NOTICE.md.
+// Modificado el 2026-11-21 por varreaga (proyecto MiHelpdesk, fork de osTicket): favicon y logo para modo oscuro; el 2026-11-25, versión en el logo de fábrica. Ver NOTICE.md.
 /*********************************************************************
     logo.php
 
@@ -38,5 +38,5 @@ if (($logo = $ost->getConfig()->getClientLogo())) {
 
 header("Cache-Control: private, max-age=$ttl");
 header('Pragma: private');
-header('Location: '.ASSETS_PATH.'images/logo.png');
+header('Location: '.ASSETS_PATH.'images/logo.png?v='.@filemtime(ROOT_DIR.'assets/default/images/logo.png'));
 ?>

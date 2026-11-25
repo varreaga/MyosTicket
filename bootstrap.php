@@ -485,17 +485,29 @@ function app_favicon_tags() {
  * segunda imagen que el tema muestra en modo oscuro. $site: client o staff.
  */
 function app_logo_img($site, $src, $alt) {
+    global $cfg;
+    $own = $cfg && ($site == 'staff' ? $cfg->getStaffLogo() : $cfg->getClientLogo());
+    // Sin logo propio: el de fábrica directo, con su fecha como versión.
+    // Pasar por logo.php dejaba en caché del navegador (un día) la
+    // redirección al logo anterior después de actualizar.
+    if (app_theme() && $cfg && !$own) {
+        $file = $site == 'staff' ? 'scp/images/ost-logo.png' : 'assets/default/images/logo.png';
+        if (is_file(ROOT_DIR.$file))
+            $src = ROOT_PATH.$file.'?v='.filemtime(ROOT_DIR.$file);
+    }
     $html = sprintf('<img src="%s" alt="%s" class="mh-logo-light"/>', $src, $alt);
     if (app_theme()) {
         require_once INCLUDE_DIR . 'mihelpdesk/class.customize.php';
-        global $cfg;
         if (($dark = MhCustomize::getDarkLogo($site)))
             $html .= sprintf('<img src="%s%sdark&amp;v=%d" alt="%s" class="mh-logo-dark"/>',
-                $src, strpos($src, '?') === false ? '?' : '&amp;', $dark->getId(), $alt);
+                $own ? $src : ROOT_PATH.($site == 'staff' ? 'scp/' : '').'logo.php',
+                ($own && strpos($src, '?') !== false) ? '&amp;' : '?', $dark->getId(), $alt);
         // Sin logo propio: el logo de fábrica también tiene versión oscura
-        elseif ($cfg && !($site == 'staff' ? $cfg->getStaffLogo() : $cfg->getClientLogo()))
-            $html .= sprintf('<img src="%s" alt="%s" class="mh-logo-dark"/>', ROOT_PATH
-                . ($site == 'staff' ? 'scp/images/ost-logo-dark.png' : 'assets/default/images/logo-dark.png'), $alt);
+        elseif (!$own) {
+            $file = $site == 'staff' ? 'scp/images/ost-logo-dark.png' : 'assets/default/images/logo-dark.png';
+            $html .= sprintf('<img src="%s%s?v=%d" alt="%s" class="mh-logo-dark"/>',
+                ROOT_PATH, $file, @filemtime(ROOT_DIR.$file), $alt);
+        }
     }
     return $html;
 }
