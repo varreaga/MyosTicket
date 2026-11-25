@@ -30,6 +30,18 @@ Base
 Historial de cambios
 --------------------
 
+### 2026-11-25 — Ventana «Un momento, por favor» (varreaga)
+
+* `assets/mihelpdesk/css/widgets.css`: la ventana de espera de osTicket
+  (`#loading`, al enviar formularios del portal y al cargar en el panel)
+  pasa a ser una tarjeta centrada con indicador giratorio del color de
+  marca, en modo claro y oscuro; el fondo oscurecido usa el color del tema.
+* `assets/mihelpdesk/js/a11y.js`: la ventana se anuncia a los lectores de
+  pantalla (`role="status"`).
+* `include/mihelpdesk/i18n/es_MX.paquete.php`: «Un momento, por favor»,
+  «Estamos procesando la información.» y «Cargando…» en lugar de las
+  traducciones del paquete sin signo de apertura.
+
 ### 2026-11-25 — Documentación con el logo (varreaga)
 
 * `README.md`: logo al inicio (versión clara y oscura según el tema de
