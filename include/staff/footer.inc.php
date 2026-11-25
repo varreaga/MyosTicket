@@ -1,4 +1,4 @@
-<?php /* Modificado el 2026-11-16, 2026-11-17, 2026-11-18 y 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca, editor y script del tema; idioma de los textos de JavaScript. Ver NOTICE.md. */ ?>
+<?php /* Modificado el 2026-11-16, 2026-11-17, 2026-11-18 y 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca, editor y script del tema; idioma de los textos de JavaScript; el 2026-11-25, versión en la dirección de esas traducciones. Ver NOTICE.md. */ ?>
 </div>
 </div>
 <?php if (!isset($_SERVER['HTTP_X_PJAX'])) { ?>
@@ -72,7 +72,7 @@ if ($thisstaff
         && ($lang = Internationalization::getCurrentLanguage($thisstaff))
         && 0 !== strcasecmp($lang, 'en_US')) { ?>
     <script type="text/javascript" src="ajax.php/i18n/<?php
-        echo Format::htmlchars($lang); ?>/js"></script>
+        echo Format::htmlchars($lang); ?>/js?v=<?php echo app_i18n_version($lang); ?>"></script>
 <?php } ?>
 <?php app_theme_scripts('staff'); ?>
 </body>
