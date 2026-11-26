@@ -417,11 +417,20 @@ export class MHEditor {
         title: t('Link'), icon: 'link', active: () => e().isActive('link'),
         action: () => {
           const current = e().getAttributes('link').href || '';
-          this._askUrl(this._buttonEl('link'), t('Link URL'), current, (url) => {
-            const c = e().chain().focus().extendMarkRange('link');
-            if (!url) c.unsetLink().run();
-            else c.setLink({ href: /^(https?:|mailto:|tel:|\/|#)/.test(url) ? url : 'https://' + url }).run();
-          }, current ? t('Remove link') : null);
+          this._askUrl(this._buttonEl('link'), t('Link URL'), current, (url, label) => {
+            if (!url) { e().chain().focus().extendMarkRange('link').unsetLink().run(); return; }
+            // %{...}: variable que osTicket reemplaza al enviar (enlaces predefinidos)
+            const href = /^(https?:|mailto:|tel:|\/|#|%\{)/.test(url) ? url : 'https://' + url;
+            if (e().state.selection.empty && !e().isActive('link')) {
+              // Sin texto seleccionado: se inserta el enlace con su nombre o la dirección
+              e().chain().focus().insertContent([
+                { type: 'text', text: label || url, marks: [{ type: 'link', attrs: { href } }] },
+                { type: 'text', text: ' ' },
+              ]).run();
+            } else {
+              e().chain().focus().extendMarkRange('link').setLink({ href }).run();
+            }
+          }, current ? t('Remove link') : null, this.opts.definedLinks);
         },
       },
       line: { title: t('Line'), icon: 'line', action: run((c) => c.setHorizontalRule()) },
@@ -517,12 +526,34 @@ export class MHEditor {
     if (first) first.focus({ preventScroll: true });
   }
 
-  _askUrl(anchor, label, value, cb, removeLabel) {
+  _askUrl(anchor, label, value, cb, removeLabel, definedLinks) {
     this._closeMenus();
     const input = h('input', { type: 'url', class: 'mh-editor-input', value: value || '', 'aria-label': label, placeholder: 'https://' });
-    const done = (val) => { this._closeMenus(); cb(val); };
-    const form = h('form', { class: 'mh-editor-menu mh-editor-ask', role: 'dialog', 'aria-label': label }, [
+    let chosen = null;  // nombre del enlace predefinido elegido
+    const done = (val) => { this._closeMenus(); cb(val, chosen && chosen.url === val ? chosen.name : null); };
+    // Enlaces predefinidos (panel de agentes): enlace a la solicitud, páginas
+    // de acceso... Usan variables %{...} que se reemplazan al enviar.
+    let picker = null;
+    if (definedLinks) {
+      picker = h('select', { class: 'mh-editor-input mh-editor-links', 'aria-label': t('Predefined links') },
+        [h('option', { value: '', text: t('Predefined links') + '…' })]);
+      picker.addEventListener('change', () => {
+        const l = (MHEditor._links || [])[picker.value];
+        if (!l) return;
+        chosen = l;
+        input.value = l.url;
+        input.focus();
+      });
+      MHEditor.loadDefinedLinks(definedLinks).then((links) => {
+        links.forEach((l, i) => picker.appendChild(h('option', { value: String(i), text: l.name })));
+        if (!links.length) picker.remove();
+      });
+    }
+    // novalidate: el navegador rechazaba "ejemplo.com" o "%{...}" por no ser
+    // una dirección completa y el botón Aceptar no hacía nada
+    const form = h('form', { class: 'mh-editor-menu mh-editor-ask', role: 'dialog', 'aria-label': label, novalidate: true }, [
       h('label', { class: 'mh-editor-menu-label', text: label }),
+      picker,
       input,
       h('div', { class: 'mh-editor-ask-actions' }, [
         removeLabel ? h('button', { type: 'button', class: 'mh-editor-menu-item is-danger', text: removeLabel, onclick: () => done('') }) : null,
@@ -534,6 +565,22 @@ export class MHEditor {
     this.menu = { el: form, anchor };
     input.focus();
     input.select();
+  }
+
+  // Lista de enlaces predefinidos (una sola vez por página)
+  static loadDefinedLinks(url) {
+    if (!MHEditor._linksReq) {
+      MHEditor._linksReq = fetch(url, { credentials: 'same-origin', headers: { 'X-Requested-With': 'XMLHttpRequest' } })
+        .then((r) => (r.ok ? r.json() : []))
+        .catch(() => [])
+        .then((list) => {
+          MHEditor._links = (Array.isArray(list) ? list : [])
+            .filter((l) => l && l.url)
+            .map((l) => ({ name: t(l.name), url: l.url }));
+          return MHEditor._links;
+        });
+    }
+    return MHEditor._linksReq;
   }
 
   _placePopover(pop, anchor) {

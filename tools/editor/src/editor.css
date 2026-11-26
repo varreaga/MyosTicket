@@ -262,6 +262,8 @@
   border-radius: 6px;
   font: inherit;
   font-size: 14px;
+  background: var(--ed-bg);
+  color: var(--ed-text);
 }
 .mh-editor-ask-actions { display: flex; justify-content: flex-end; gap: 6px; }
 .mh-editor-ask-actions .mh-editor-menu-item { width: auto; }

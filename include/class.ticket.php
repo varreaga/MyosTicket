@@ -1,4 +1,5 @@
 <?php
+// Modificado el 2026-11-26 por varreaga (proyecto MiHelpdesk, fork de osTicket): avisos de menciones con @ en notas internas. Ver NOTICE.md.
 /*********************************************************************
     class.ticket.php
 
@@ -2031,6 +2032,8 @@ implements RestrictedAccess, Threadable, Searchable {
             $email->sendAlert($staff, $alert['subj'], $alert['body'], null, $options);
             $sentlist[$staff->getEmail()] = 1;
         }
+        // MiHelpdesk: quiénes ya recibieron el aviso (para las menciones)
+        return $sentlist;
     }
 
     function onAssign($assignee, $comments, $alert=true) {
@@ -3547,11 +3550,15 @@ implements RestrictedAccess, Threadable, Searchable {
         }
 
         $activity = $vars['activity'] ?: _S('New Internal Note');
-        $this->onActivity(array(
+        $sent = $this->onActivity(array(
             'activity' => $activity,
             'threadentry' => $note,
             'assignee' => $assignee
         ), $alert);
+
+        // MiHelpdesk: avisar a los agentes mencionados con "@"
+        require_once INCLUDE_DIR . 'mihelpdesk/class.mentions.php';
+        MhMentions::notify($this, $note, $sent ?: array());
 
         $type = array('type' => 'note');
         Signal::send('object.created', $this, $type);

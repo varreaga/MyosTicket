@@ -30,6 +30,26 @@ Base
 Historial de cambios
 --------------------
 
+### 2026-11-26 — Editor: menciones, enlaces predefinidos y ventana de enlace (varreaga)
+
+* `include/mihelpdesk/class.mentions.php` (nuevo): al publicar una nota
+  interna con «@Nombre Apellido» o «@usuario», se avisa por correo al
+  agente mencionado (si tiene acceso, está disponible y no es quien
+  escribe), aunque no le toquen los avisos normales.
+* `include/class.ticket.php`, `include/class.task.php`: `onActivity()`
+  devuelve a quiénes avisó y `postNote()` llama a los avisos de menciones,
+  sin repetir el correo a quien ya lo recibió.
+* `tools/editor/` (y `js/mh-editor.js`, `css/mh-editor.css` compilados):
+  - La ventana de enlace tiene la lista de **enlaces predefinidos** del
+    panel (enlace a la solicitud para agente o cliente, páginas de acceso),
+    como en el editor anterior; se reemplazan al enviar.
+  - Corregido: el botón Aceptar de las ventanas de enlace, imagen y video
+    no hacía nada si la dirección no empezaba con `https://`.
+  - Sin texto seleccionado, el enlace se inserta con su nombre o dirección.
+* `include/mihelpdesk/i18n/es.php`: textos de los avisos y de los enlaces
+  predefinidos.
+* `README.md`: cómo activar la compresión en Apache y nginx.
+
 ### 2026-11-25 — Logo de fábrica sin copia vieja (varreaga)
 
 * `bootstrap.php` (`app_logo_img()`): si la empresa no subió logo, el logo
