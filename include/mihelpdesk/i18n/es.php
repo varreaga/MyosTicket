@@ -674,4 +674,13 @@ return array(
         => 'Vencimiento',
     'Finished'
         => 'Terminada',
+    // Avisos de menciones con @ (class.mentions.php)
+    '%1$s mentioned you on ticket #%2$s' => '%1$s te mencionó en la solicitud #%2$s',
+    '%1$s mentioned you on task #%2$s' => '%1$s te mencionó en la tarea #%2$s',
+    // Enlaces predefinidos del editor (ajax.php/config/links)
+    'Predefined links' => 'Enlaces predefinidos',
+    'Agent Ticket Link' => 'Enlace a la solicitud (agentes)',
+    'Agent Login Page' => 'Página de acceso de agentes',
+    'End-User Ticket Link' => 'Enlace a la solicitud (cliente)',
+    'End-User Login Page' => 'Página de acceso de clientes',
 );

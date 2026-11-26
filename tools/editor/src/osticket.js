@@ -293,6 +293,8 @@ export function createEditor(el, extra) {
     isStaff: staff && el.getAttribute('name') === 'note',
     getEditor: () => ctx.ed,
   });
+  // Enlaces predefinidos en la ventana de enlace (solo en el panel)
+  if (staff && !('definedLinks' in opts)) opts.definedLinks = 'ajax.php/config/links';
   opts.uploadData = () => ({ __CSRFToken__: csrf() });
   opts.imageUpload = () => (ctx.draft && ctx.draft.imageUploadUrl()) || null;
 

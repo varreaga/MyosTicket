@@ -143,6 +143,18 @@ Para desplegar actualizaciones:
     git pull
     php manage.php deploy -v /var/www/htdocs/mihelpdesk/
 
+### Compresión (recomendado)
+El editor de texto pesa unos 520 KB; comprimido, unos 160 KB. Se descarga
+una sola vez por navegador, pero conviene que el servidor lo mande
+comprimido. En Apache, con `mod_deflate` activo (`a2enmod deflate` en
+Debian), agrega al sitio:
+
+    <IfModule mod_deflate.c>
+        AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json
+    </IfModule>
+
+En nginx: `gzip on; gzip_types text/css application/javascript application/json;`
+
 Pasar de osTicket a MiHelpdesk
 ------------------------------
 MiHelpdesk usa la misma base de datos que osTicket: se cambia el código y
