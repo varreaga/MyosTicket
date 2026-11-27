@@ -8,21 +8,52 @@
 Novedades
 =========
 
-MiHelpdesk se basa en **osTicket 1.18.4**. Los cambios propios de
-MiHelpdesk, con fecha y archivos modificados, están en
-[NOTICE.md](NOTICE.md). Lo principal:
+Los cambios con fecha y archivos modificados están en
+[NOTICE.md](NOTICE.md). Cómo se publican las versiones:
+[tools/release/LEEME.md](tools/release/LEEME.md).
 
-* Interfaz nueva para agentes y clientes, con modo claro y oscuro, y
-  adaptada a celular y tableta.
+MiHelpdesk 1.0.0-rc1 (versión de prueba)
+----------------------------------------
+Primera versión de MiHelpdesk, basada en **osTicket v1.18.4**. Es una
+versión de prueba antes de la 1.0.0: úsala en un servidor de pruebas y
+reporta lo que encuentres.
+
+**Interfaz**
+* Interfaz nueva para agentes y clientes, con modo claro, oscuro y
+  automático, adaptada a celular y tableta.
 * Logo y color de marca de cada empresa en el portal, el panel, los correos
-  y los PDF.
-* Panel de control con métricas de atención.
-* Editor de respuestas nuevo.
-* PDF de solicitudes y tareas rediseñados, con código QR.
-* Instalador y actualizador renovados; migración directa desde osTicket
-  1.17 y 1.18 (ver [MIGRAR-DESDE-OSTICKET.md](MIGRAR-DESDE-OSTICKET.md)).
+  y los PDF, configurables desde el panel sin programar.
+* Panel de control con solicitudes abiertas, vencidas y tiempos de
+  atención.
+* Avisos, ventanas de espera y calendario con el estilo del tema.
+
+**Editor de respuestas**
+* Editor nuevo (Tiptap, licencia MIT) en lugar de Redactor.
+* Menciones con «@» en notas internas, con aviso por correo al agente
+  mencionado.
+* Respuestas predefinidas con «/» y enlaces predefinidos (enlace a la
+  solicitud, páginas de acceso).
+
+**Documentos y correo**
+* PDF de solicitudes y tareas rediseñados, con resumen, tiempos y código
+  QR.
+* Correos, páginas del portal y datos de ejemplo redactados en español.
+
+**Instalación y mantenimiento**
+* Instalador y actualizador renovados.
+* Migración directa desde osTicket 1.17 y 1.18 (ver
+  [MIGRAR-DESDE-OSTICKET.md](MIGRAR-DESDE-OSTICKET.md)).
 * Compatible con PHP 8.2 a 8.5.
-* Español revisado y accesibilidad WCAG 2.1 AA.
+* La versión de MiHelpdesk y la de osTicket en la que se basa se ven en
+  *Administración › Estado del sistema › Información*.
+
+**Calidad**
+* Español revisado: un solo término, «solicitud», en todo el sistema.
+* Accesibilidad WCAG 2.1 AA, revisada con axe-core en 81 páginas.
+* Navegadores: Chromium 110+, Firefox 121+, Safari 15.4+.
+
+**Pendiente para la 1.0.0**
+* Prueba del correo de entrada (crear solicitudes desde un buzón).
 
 Abajo se conserva, sin cambios y en inglés, el historial de versiones de
 osTicket.

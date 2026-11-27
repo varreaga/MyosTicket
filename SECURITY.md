@@ -32,5 +32,7 @@ seguridad que publique osTicket se incorporan a MiHelpdesk.
 
 Versiones con soporte
 ---------------------
-Se corrigen los problemas de seguridad en la última versión publicada y en
-la rama `develop`.
+Se corrigen los problemas de seguridad en la última versión publicada
+(ver [versiones](https://github.com/varreaga/MyosTicket/releases)) y en la
+rama `develop`. Las versiones de prueba (`-rc`) no reciben correcciones:
+se reemplazan por la siguiente.

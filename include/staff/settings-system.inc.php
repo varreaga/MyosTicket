@@ -1,10 +1,10 @@
 <?php
-// Modificado el 2026-11-16 y 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca; textos sin traducir. Ver NOTICE.md.
+// Modificado el 2026-11-16 y 2026-11-19 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca; textos sin traducir; el 2026-11-27, versión de MiHelpdesk en el título. Ver NOTICE.md.
 if(!defined('OSTADMININC') || !$thisstaff || !$thisstaff->isAdmin() || !$config) die('Access Denied');
 
 $gmtime = Misc::gmtime();
 ?>
-<h2><?php echo __('System Settings and Preferences');?> <small>— <span class="ltr"><?php echo Format::htmlchars(APP_NAME); ?> (<?php echo $cfg->getVersion(); ?>)</span></small></h2>
+<h2><?php echo __('System Settings and Preferences');?> <small>— <span class="ltr"><?php echo Format::htmlchars(APP_NAME.' '.APP_VERSION); ?></span></small></h2>
 <form action="settings.php?t=system" method="post" class="save">
 <?php csrf_token(); ?>
 <input type="hidden" name="t" value="system" >

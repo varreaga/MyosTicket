@@ -128,6 +128,21 @@ Requisitos
 
 Instalación
 -----------
+### Desde el paquete (recomendado)
+1. Descarga `mihelpdesk-X.Y.Z.zip` de la página de
+   [versiones](https://github.com/varreaga/MyosTicket/releases) y
+   descomprímelo en la carpeta pública del servidor (por ejemplo
+   `/var/www/` o `C:\xampp\htdocs\`). Queda una carpeta `mihelpdesk/`.
+2. Copia `include/ost-sampleconfig.php` como `include/ost-config.php` y
+   dale permiso de escritura al servidor web.
+3. Abre `http://tu-servidor/mihelpdesk/` y sigue el instalador.
+4. Al terminar, borra la carpeta `setup/` y quita el permiso de escritura
+   a `include/ost-config.php`.
+
+Para comprobar que la descarga está completa, compara la huella del
+archivo `.sha256` con `sha256sum mihelpdesk-X.Y.Z.zip`.
+
+### Desde git
 Clona el repositorio y despliega el código en la carpeta pública de tu
 servidor web:
 
