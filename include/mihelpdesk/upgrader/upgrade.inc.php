@@ -12,7 +12,7 @@ if (($mode = $ost->get_var('m', $_GET)) && $mode != $upgrader->getMode()) {
 $action = $upgrader->getNextAction();
 ?>
 <div class="mh-upgrader" id="main">
-<h1><?php echo Format::htmlchars(sprintf(__('Updating to %1$s %2$s'), APP_NAME, THIS_VERSION)); ?></h1>
+<h1><?php echo Format::htmlchars(sprintf(__('Updating to %1$s %2$s'), APP_NAME, APP_VERSION)); ?></h1>
 <p class="mh-lead"><?php echo Format::htmlchars(__('The database changes below will be applied. Do not close or reload this page until it finishes.')); ?></p>
 
 <div class="mh-alert mh-alert-info"><strong id="task"><?php echo Format::htmlchars(sprintf(__('Changes to apply: %s'),

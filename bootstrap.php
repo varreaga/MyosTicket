@@ -1,5 +1,5 @@
 <?php
-// Modificado el 2026-11-16, 2026-11-21 y 2026-11-24 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca; favicon y logo para modo oscuro de Personalización; logo de fábrica en modo oscuro; nombres accesibles en formularios (a11y.js). Ver NOTICE.md.
+// Modificado el 2026-11-16, 2026-11-21, 2026-11-24, 2026-11-25 y 2026-11-27 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca; favicon y logo para modo oscuro de Personalización; logo de fábrica en modo oscuro; nombres accesibles en formularios (a11y.js); el 2026-11-25 y 2026-11-27, versión de las traducciones y del logo, y número de versión de MiHelpdesk. Ver NOTICE.md.
 
 class Bootstrap {
 
@@ -378,6 +378,11 @@ define('APP_NAME', 'MiHelpdesk');
 define('APP_URL', 'https://github.com/varreaga/MyosTicket');
 define('APP_UPSTREAM_NAME', 'osTicket');
 define('APP_UPSTREAM_URL', 'https://osticket.com');
+#Version de MiHelpdesk y de osTicket en la que se basa. Al armar el paquete,
+#tools/release/empaquetar.sh pone aqui la version de la etiqueta (v1.0.0 ->
+#1.0.0) y fija THIS_VERSION = APP_UPSTREAM_VERSION. Ver tools/release/LEEME.md.
+define('APP_VERSION', '1.0.0-dev');
+define('APP_UPSTREAM_VERSION', 'v1.18.4');
 
 /**
  * Sustituye la marca original por APP_NAME en un texto ya traducido.

@@ -30,6 +30,23 @@ Base
 Historial de cambios
 --------------------
 
+### 2026-11-27 — Versiones y paquete de instalación (varreaga)
+
+* `bootstrap.php`: `APP_VERSION` (versión de MiHelpdesk) y
+  `APP_UPSTREAM_VERSION` (versión de osTicket en la que se basa).
+* `include/staff/system.inc.php`: *Información* muestra la versión de
+  MiHelpdesk y la de osTicket en la que se basa. El aviso de versión nueva
+  de osTicket ya no lleva un botón de actualizar ni dice «ya no tiene
+  soporte» cuando no hay conexión.
+* `include/staff/settings-system.inc.php` y el actualizador
+  (`include/mihelpdesk/upgrader/`): muestran la versión de MiHelpdesk.
+* `tools/release/empaquetar.sh` y `tools/release/LEEME.md` (nuevos): arman
+  el .zip de una versión (con `LICENSE.txt`, `NOTICE.md` y el código fuente
+  del editor, sin `include/ost-config.php` ni archivos de desarrollo) y
+  explican cómo publicarla.
+* `README.md`: instalación desde el paquete. `WHATSNEW.md`: notas de
+  1.0.0-rc1. `SECURITY.md`: versiones con soporte. `.gitignore`: `dist/`.
+
 ### 2026-11-26 — Editor: menciones, enlaces predefinidos y ventana de enlace (varreaga)
 
 * `include/mihelpdesk/class.mentions.php` (nuevo): al publicar una nota

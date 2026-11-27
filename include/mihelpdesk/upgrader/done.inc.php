@@ -9,7 +9,7 @@ $idioma = $cfg ? $cfg->getPrimaryLanguage() : '';
 <div class="mh-done-head">
     <div class="mh-done-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></div>
     <h1><?php echo __('The update is complete'); ?></h1>
-    <p class="mh-lead"><?php echo Format::htmlchars(sprintf(__('The database is now up to date with %1$s %2$s.'), APP_NAME, THIS_VERSION)); ?></p>
+    <p class="mh-lead"><?php echo Format::htmlchars(sprintf(__('The database is now up to date with %1$s %2$s.'), APP_NAME, APP_VERSION)); ?></p>
     <div class="mh-actions"><a class="mh-btn" href="index.php"><?php echo __('Go to the control panel'); ?></a></div>
 </div>
 <section class="mh-section">

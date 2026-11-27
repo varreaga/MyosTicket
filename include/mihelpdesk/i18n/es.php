@@ -683,4 +683,9 @@ return array(
     'Agent Login Page' => 'Página de acceso de agentes',
     'End-User Ticket Link' => 'Enlace a la solicitud (cliente)',
     'End-User Login Page' => 'Página de acceso de clientes',
+    // Versión (Administración › Estado del sistema › Información)
+    '%s version' => 'Versión de %s',
+    'See releases' => 'Ver versiones',
+    'Based on osTicket' => 'Basado en osTicket',
+    'osTicket %1$s is available; it will be included in a future version of %2$s' => 'osTicket %1$s ya está disponible; se incluirá en una próxima versión de %2$s',
 );

@@ -1,5 +1,5 @@
 <?php
-// Modificado el 2026-11-16, 2026-11-19, 2026-11-21 y 2026-11-23 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca; el botón de actualizar lleva a las versiones de MiHelpdesk; sin la alerta de la extensión imap, que no se usa, ni la de cgi.fix_pathinfo cuando PHP corre dentro de Apache; compatibilidad con PHP 8.5. Ver NOTICE.md.
+// Modificado el 2026-11-16, 2026-11-19, 2026-11-21 y 2026-11-23 por varreaga (proyecto MiHelpdesk, fork de osTicket): cambio de marca; el botón de actualizar lleva a las versiones de MiHelpdesk; sin la alerta de la extensión imap, que no se usa, ni la de cgi.fix_pathinfo cuando PHP corre dentro de Apache; compatibilidad con PHP 8.5; el 2026-11-27, versión de MiHelpdesk y versión de osTicket en la que se basa. Ver NOTICE.md.
 if(!defined('OSTADMININC') || !$thisstaff || !$thisstaff->isAdmin()) die('Access Denied');
 
 $commit = GIT_VERSION != '$git' ? GIT_VERSION : (
@@ -70,34 +70,32 @@ $extensions = array(
     <tr><th colspan="2"><?php echo __('Server Information'); ?></th></tr>
 </thead>
 <tbody>
-    <tr><td><?php echo brand(__('osTicket Version')); ?></td>
+    <tr><td><?php echo Format::htmlchars(sprintf(__('%s version'), APP_NAME)); ?></td>
         <td><span class="ltr"><?php
-            echo sprintf("%s (%s)", THIS_VERSION, trim($commit)); ?></span>
+            echo Format::htmlchars(sprintf("%s (%s)", APP_VERSION, trim($commit))); ?></span>
+        — <a href="<?php echo APP_URL; ?>/releases" target="_blank" rel="noopener"><?php echo __('See releases'); ?></a>
+        </td></tr>
+    <?php // MiHelpdesk: versión de osTicket en la que se basa; el aviso de
+          // "disponible" compara contra osTicket (parches de seguridad). ?>
+    <tr><td><?php echo __('Based on osTicket'); ?></td>
+        <td><span class="ltr"><?php
+            echo Format::htmlchars($tv0 = (THIS_VERSION[0] == 'v' ? THIS_VERSION : APP_UPSTREAM_VERSION)); ?></span>
 <?php
+// MiHelpdesk: se compara la base con la última versión de osTicket de la
+// misma rama (registro DNS de osTicket). Si hay una más nueva, se avisa que
+// llegará en una próxima versión de MiHelpdesk; no se actualiza desde aquí.
+// Sin conexión o en una copia de desarrollo no se muestra nada.
 $lv = $ost->getLatestVersion('core', MAJOR_VERSION);
-$tv = THIS_VERSION;
-$gv = (GIT_VERSION == '$git') ? substr(@shell_exec('git rev-parse HEAD') ?? '', 0, 7) : (false ?: GIT_VERSION);
-if ($lv && $tv[0] == 'v' ? version_compare(THIS_VERSION, $lv, '>=') : $lv == $gv) { ?>
+if ($lv && $tv0[0] == 'v' && $lv[0] == 'v') {
+    if (version_compare($tv0, $lv, '>=')) { ?>
     — <span style="color:green"><i class="icon-check"></i> <?php echo __('Up to date'); ?></span>
 <?php
-}
-else {
-    // Report current version (v1.9.x ?: deadbeef ?: $git)
-    $cv = $tv[0] == 'v' ? $tv : $gv;
-?>
-      <a class="green button action-button pull-right"
-         href="<?php echo APP_URL; ?>/releases" target="_blank" rel="noopener"><i class="icon-rocket"></i>
-        <?php echo __('Upgrade'); ?></a>
-<?php if ($lv) { ?>
-      <strong> — <?php echo str_replace(
-          '%s', $lv, __("%s is available")
-      ); ?></strong>
-<?php }
-}
-if (!$lv) { ?>
-    <strong> — <?php echo brand(__('This osTicket version is no longer supported. Please consider upgrading'));
-        ?></strong>
+    } else { ?>
+    — <strong><?php echo Format::htmlchars(sprintf(
+        __('osTicket %1$s is available; it will be included in a future version of %2$s'),
+        $lv, APP_NAME)); ?></strong>
 <?php
+    }
 }
 ?>
     </td></tr>
